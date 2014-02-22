@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Project2.Components.IndexedSprite" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgQAQAACAAAAAAAAAgAAAAEAAAAAAAQ=</HashCode>
+      <FileName>Components\IndexedSprite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Project2.Components.NullInputComponent" BaseTypeListCollapsed="true">
+    <Position X="9" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\NullInputComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Project2.Components.NullSoundComponent" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Components\NullSoundComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Project2.Components.ShipInput" BaseTypeListCollapsed="true">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Components\ShipInput.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Project2.Components.Sound" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Components\Sound.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Project2.Physics" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Physics.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Project2.Sprite" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAACAAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Components\Sprite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Project2.GameObject">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAACAAAAgkABwIAAAAAAAEYAQ=</HashCode>
+      <FileName>Entities\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project2.Ship">
+    <Position X="5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAACABgCgDAAAAAAAAEAAAgAEgAAACBCAAAAwAAI=</HashCode>
+      <FileName>Entities\Ship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project2.Game">
+    <Position X="0.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAEMAAAAAgQwEAAAAIAAAAAACAAAgAwAAABAQAJAQ=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project2.Program">
+    <Position X="2.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project2.Entities.Explosion">
+    <Position X="0.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAAQAQAggAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project2.Entities.Laser">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAARAAAAIAAAAAAAEABAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Entities\Laser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Project2.Entities.SpaceBlock">
+    <Position X="7.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAABAAAAQAAAAAAAEEAAABAAAAAAAAAAAQgAAQ=</HashCode>
+      <FileName>Entities\SpaceBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Project2.Components.Abstract.Component" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Abstract\Component.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project2.Components.Abstract.GraphicsComponent">
+    <Position X="11.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Components\Abstract\GraphicsComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project2.Components.Abstract.InputComponent">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Abstract\InputComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project2.Components.Abstract.PhysicsComponent">
+    <Position X="15.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Abstract\PhysicsComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Project2.Components.Abstract.SoundComponent">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Components\Abstract\SoundComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
