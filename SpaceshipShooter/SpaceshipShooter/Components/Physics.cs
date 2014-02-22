@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Project2.Components.Abstract;
+using SpaceshipShooter.Components.Abstract;
 
-namespace Project2
+namespace SpaceshipShooter
 {
     // Updates The game objects position using its properties. 
     // This will use acceleration and friction at some point in the

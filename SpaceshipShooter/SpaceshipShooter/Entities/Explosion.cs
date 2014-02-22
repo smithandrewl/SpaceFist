@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Project2.Components;
+using SpaceshipShooter.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project2.Entities
+namespace SpaceshipShooter.Entities
 {
     // Represents an explosion
     // Draws an animation using an IndexedSprite and sprite sheet

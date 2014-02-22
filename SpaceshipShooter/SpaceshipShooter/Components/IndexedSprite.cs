@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Project2.Components.Abstract;
+using SpaceshipShooter.Components.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project2.Components
+namespace SpaceshipShooter.Components
 {
     // Loads a sprite sheet and displays the sprite at the current index
     class IndexedSprite : GraphicsComponent

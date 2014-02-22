@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Project2.Components.Abstract;
+using SpaceshipShooter.Components.Abstract;
 
-namespace Project2.Components
+namespace SpaceshipShooter.Components
 {
     // For use by entities that do not use input
     public class NullInputComponent : InputComponent

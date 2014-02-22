@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Project2.Components.Abstract;
+using SpaceshipShooter.Components.Abstract;
 
-namespace Project2
+namespace SpaceshipShooter
 {
     // Sprite represents a static image at a position on-screen 
     public class Sprite : GraphicsComponent

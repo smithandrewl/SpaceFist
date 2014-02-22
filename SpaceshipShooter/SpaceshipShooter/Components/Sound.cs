@@ -6,9 +6,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 
-using Project2.Components.Abstract;
+using SpaceshipShooter.Components.Abstract;
 
-namespace Project2.Components
+namespace SpaceshipShooter.Components
 {
     class Sound : SoundComponent
     {

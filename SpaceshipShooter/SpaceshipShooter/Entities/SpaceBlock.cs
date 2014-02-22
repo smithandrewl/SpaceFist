@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Project2.Components;
+using SpaceshipShooter.Components;
 
-namespace Project2.Entities
+namespace SpaceshipShooter.Entities
 {
     public class SpaceBlock : GameObject
     {

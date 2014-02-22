@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Project2.Components.Abstract;
-using Project2.Components;
+using SpaceshipShooter.Components.Abstract;
+using SpaceshipShooter.Components;
 
-namespace Project2  
+namespace SpaceshipShooter  
 {
     class Ship : GameObject
     {

@@ -8,11 +8,11 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Project2.Entities;
-using Project2.State.Abstract;
-using Project2.State;
+using SpaceshipShooter.Entities;
+using SpaceshipShooter.State.Abstract;
+using SpaceshipShooter.State;
 
-namespace Project2
+namespace SpaceshipShooter
 {
     public class Game : Microsoft.Xna.Framework.Game
     {

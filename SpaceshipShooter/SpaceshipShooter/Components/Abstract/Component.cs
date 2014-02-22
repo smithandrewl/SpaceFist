@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Project2.Components.Abstract
+namespace SpaceshipShooter.Components.Abstract
 {
     public interface Component
     {

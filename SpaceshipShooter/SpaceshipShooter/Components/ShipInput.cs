@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Project2.Components.Abstract;
+using SpaceshipShooter.Components.Abstract;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 
-namespace Project2.Components
+namespace SpaceshipShooter.Components
 {
     // Calls ship methods in response to user input
     public class ShipInput : InputComponent

@@ -1,6 +1,6 @@
 using System;
 
-namespace Project2
+namespace SpaceshipShooter
 {
 #if WINDOWS || XBOX
     static class Program

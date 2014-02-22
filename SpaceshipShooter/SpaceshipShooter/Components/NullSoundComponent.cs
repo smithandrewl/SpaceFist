@@ -1,10 +1,10 @@
-﻿using Project2.Components.Abstract;
+﻿using SpaceshipShooter.Components.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project2.Components
+namespace SpaceshipShooter.Components
 {
     // For use by entities that do not have a sound 
     // The background for example
