@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using SpaceshipShooter.Components;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceshipShooter.Entities
 {
@@ -12,30 +13,20 @@ namespace SpaceshipShooter.Entities
         private const int Width  = 80;
         private const int Height = 60;
 
-        private const String ImageAsset          = @"Images\Sprites\Block";
-        private const String ExplosionSoundAsset = @"Sound\explosion";
-        private const String ThumpSoundAsset     = @"Sound\thump";
-
         private Sound thump;
 
-        public SpaceBlock(Game game, Vector2 position, Vector2 velocity) : 
+        public SpaceBlock(Game game, Texture2D texture, Vector2 position, Vector2 velocity) : 
             base(game, 
                  new Rectangle((int) position.X, (int) position.Y, Width, Height), 
                  new Physics(), 
                  new NullInputComponent(), 
-                 new Sprite(ImageAsset),
-                 new Sound(ExplosionSoundAsset),
+                 new Sprite(texture),
+                 new Sound(game.ExplosionSound),
                  game.ScreenScale)
         {
-            thump = new Sound(ThumpSoundAsset);
+            thump = new Sound(game.ExplosionSound);
 
             Velocity = velocity;
-        }
-
-        public override void LoadContent()
-        {
-            thump.LoadContent(game);
-            base.LoadContent();
         }
 
         public void Destroy()

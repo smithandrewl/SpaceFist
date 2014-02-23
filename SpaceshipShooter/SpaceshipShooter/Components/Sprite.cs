@@ -15,19 +15,11 @@ namespace SpaceshipShooter
     // Sprite represents a static image at a position on-screen 
     public class Sprite : GraphicsComponent
     {
-        private String    spritePath;
         private Texture2D image;
 
-        public Sprite(String path)
+        public Sprite(Texture2D texture)
         {
-            spritePath = path;
-        }
-
-        public void LoadContent(Game game) 
-        {
-            var contentManager = game.Content;
-
-            image = contentManager.Load<Texture2D>(spritePath);
+            image = texture;
         }
 
         public void Update(Game game, GameObject obj, GameTime time) 

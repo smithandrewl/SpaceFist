@@ -17,7 +17,6 @@ namespace SpaceshipShooter
         private const int RightIndex  = 7;
         private const int MaxVelocity = 20;
 
-        private const String SpriteSheetAsset = @"Images\Sprites\ShipSheet";
 
         private IndexedSprite indexedSprite;
 
@@ -31,7 +30,7 @@ namespace SpaceshipShooter
                    new Rectangle((int)position.X, (int)position.Y, Width, Height),
                    new Physics(), 
                    new ShipInput(), 
-                   new IndexedSprite(SpriteSheetAsset, Width, Height, 4),
+                   new IndexedSprite(game.ShipSheet, Width, Height, 4),
                    new NullSoundComponent(),
                    game.ScreenScale)
         {

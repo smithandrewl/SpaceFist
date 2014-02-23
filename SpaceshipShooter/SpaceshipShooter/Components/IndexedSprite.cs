@@ -11,24 +11,18 @@ namespace SpaceshipShooter.Components
     // Loads a sprite sheet and displays the sprite at the current index
     class IndexedSprite : GraphicsComponent
     {
-        private String    path;
         private Texture2D texture;
         private int       width;
         private int       height;
 
         public int Index { get; set; }
 
-        public IndexedSprite(String path, int width, int height, int index = 0)
+        public IndexedSprite(Texture2D texture, int width, int height, int index = 0)
         {
-            this.path   = path;
-            this.width  = width;
-            this.height = height;
-            Index       = index;
-        }
-
-        public void LoadContent(Game game)
-        {
-            texture = game.Content.Load<Texture2D>(path);
+            this.width   = width;
+            this.height  = height;
+            Index        = index;
+            this.texture = texture;
         }
 
         public void Draw(Game game, GameObject obj, Microsoft.Xna.Framework.GameTime time)

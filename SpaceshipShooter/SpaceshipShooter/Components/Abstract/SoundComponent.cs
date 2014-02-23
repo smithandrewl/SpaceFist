@@ -7,6 +7,5 @@ namespace SpaceshipShooter.Components.Abstract
 {
     public interface SoundComponent : Component
     {
-        void LoadContent(Game game);
     }
 }

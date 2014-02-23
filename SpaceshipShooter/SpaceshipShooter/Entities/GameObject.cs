@@ -66,12 +66,6 @@ namespace SpaceshipShooter
 
         }
 
-        public virtual void LoadContent()
-        {
-            graphics.LoadContent(game);
-            sound.LoadContent(game);
-        }
-
         public virtual void Update(GameTime time)
         {
             if (Alive)

@@ -12,22 +12,16 @@ namespace SpaceshipShooter.Components
 {
     class Sound : SoundComponent
     {
-        String      path;
         SoundEffect soundEffect;
 
-        public Sound(String path)
+        public Sound(SoundEffect sound)
         {
-            this.path = path;
+            this.soundEffect = sound;
         }
         
         public void play()
         {
             soundEffect.Play();
-        }
-
-        public void LoadContent(Game game)
-        {
-            soundEffect = game.Content.Load<SoundEffect>(path);
         }
 
         public void Update(Game game, GameObject obj, Microsoft.Xna.Framework.GameTime time)

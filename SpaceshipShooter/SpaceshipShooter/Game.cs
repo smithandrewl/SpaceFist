@@ -20,16 +20,34 @@ namespace SpaceshipShooter
         SpriteBatch           spriteBatch;
         GameState             currentState;
 
-        public float       ScreenScale    { get; set; }
-        public SpriteFont  Font           { get; set; }
-        public Texture2D   Background     { get; set; }
-        public Rectangle   BackgroundRect { get; set; }
+        public float       ScreenScale      { get; set; }
+        public SpriteFont  Font             { get; set; }
+        public Texture2D   Background       { get; set; }
+        public Texture2D   LaserTexture     { get; set; }
+        public Texture2D   BlockTexture     { get; set; }
+        public Texture2D   ShipSheet        { get; set; }
+        public Texture2D   ExplosionTexture { get; set; }
+        
+        public Rectangle   BackgroundRect   { get; set; }
+        
+        public SoundEffect LaserSound      { get; set; }
+        public SoundEffect ExplosionSound  { get; set; }
+        public SoundEffect ThumpSound      { get; set; }
         
         public InPlayState       InPlayState       { get; set; }
         public SplashScreenState SplashScreenState { get; set; }
 
         private const String SpriteFontAsset = @"Fonts\SpriteFont";
-        private const String BackgroundAsset = @"Images\Backgrounds\Purple";
+
+        private const String LaserImageAsset         = @"Images\Sprites\Laser";
+        private const String BackgroundAsset         = @"Images\Backgrounds\Purple";
+        private const String BlockImageAsset         = @"Images\Sprites\Block";
+        private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
+        private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
+
+        private const String ExplosionSoundAsset = @"Sound\explosion";
+        private const String ThumpSoundAsset     = @"Sound\thump";
+        private const String LaserSoundAsset     = @"Sound\laser";
 
         public SpriteBatch SpriteBatch {
             get {
@@ -82,9 +100,18 @@ namespace SpaceshipShooter
             ScreenScale = ((float)viewPort.Width) / 1680;
             
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            Font        = Content.Load<SpriteFont>(SpriteFontAsset);
-            Background  = Content.Load<Texture2D>(BackgroundAsset);
+            spriteBatch      = new SpriteBatch(GraphicsDevice);
+            Font             = Content.Load<SpriteFont>(SpriteFontAsset);
+            
+            Background       = Content.Load<Texture2D>(BackgroundAsset);
+            LaserTexture     = Content.Load<Texture2D>(LaserImageAsset);
+            BlockTexture     = Content.Load<Texture2D>(BlockImageAsset);
+            ShipSheet        = Content.Load<Texture2D>(ShipSheetAsset);
+            ExplosionTexture = Content.Load<Texture2D>(ExplosionAnimationAsset);
+
+            ExplosionSound = Content.Load<SoundEffect>(ExplosionSoundAsset);
+            ThumpSound     = Content.Load<SoundEffect>(ThumpSoundAsset);
+            LaserSound     = Content.Load<SoundEffect>(LaserSoundAsset);
 
             SplashScreenState.LoadContent();
             InPlayState.LoadContent();

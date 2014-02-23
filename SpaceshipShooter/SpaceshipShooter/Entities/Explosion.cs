@@ -18,14 +18,12 @@ namespace SpaceshipShooter.Entities
         private long startTime;
         private long TimeBetweenFrames = 400000; 
 
-        private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
-
         public Explosion(Game game, Vector2 position): 
             base(game, 
                  new Rectangle((int)position.X, (int)position.Y, width, height), 
                  new Physics(), 
                  new NullInputComponent(), 
-                 new IndexedSprite(ExplosionAnimationAsset, width, height), 
+                 new IndexedSprite(game.ExplosionTexture, width, height), 
                  new NullSoundComponent(),
                  game.ScreenScale)
         {

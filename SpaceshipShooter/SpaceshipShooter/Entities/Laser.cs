@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SpaceshipShooter.Components;
 using System;
 using System.Collections.Generic;
@@ -11,20 +12,17 @@ namespace SpaceshipShooter.Entities
     {
         private const int Width  = 26;
         private const int Height = 47;
-        private const int Speed  = 10;
-
-        private const String LaserImageAsset = @"Images\Sprites\Laser";
-        private const String LaserSoundAsset = @"Sound\laser";
+        private const int Speed = 10;
 
         private bool soundPlayed = false;
 
-        public Laser(Game game, Vector2 position) : 
+        public Laser(Game game, Texture2D texture, Vector2 position) : 
             base(game, 
                  new Rectangle((int)position.X, (int)position.Y, Width, Height), 
                  new Physics(), 
                  new NullInputComponent(), 
-                 new Sprite(LaserImageAsset),
-                 new Sound(LaserSoundAsset),
+                 new Sprite(texture),
+                 new Sound(game.LaserSound),
                  game.ScreenScale)
         {
             Velocity = new Vector2(0, -Speed);

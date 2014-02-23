@@ -8,7 +8,6 @@ namespace SpaceshipShooter.Components.Abstract
 {
     public interface GraphicsComponent : Component
     {
-        void LoadContent(Game game);
         void Draw(Game game, GameObject obj, GameTime time);
     }
 }

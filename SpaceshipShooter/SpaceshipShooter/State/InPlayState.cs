@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceshipShooter.Entities;
+using SpaceshipShooter.Managers;
 using SpaceshipShooter.State.Abstract;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,10 @@ namespace SpaceshipShooter.State
         Ship ship;
         Game game;
 
-        List<SpaceBlock> blocks     = new List<SpaceBlock>();
-        List<Laser>      lasers     = new List<Laser>();
-        List<Explosion>  explosions = new List<Explosion>();
+        // Entity Managers
+        BlockManager     blockManager;
+        LaserManager     laserManager;
+        ExplosionManager explosionManager;
 
         public InPlayState(Game game)
         {
@@ -33,11 +35,10 @@ namespace SpaceshipShooter.State
         {
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
-            // Start the ship at the bottom in the center of the screen
-            ship = new Ship(game, new Vector2((float)(resolution.Width / 2), (float)(resolution.Height * .80)));
-            ship.LoadContent();
-
-            blocks.ForEach(block => block.LoadContent());
+            var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
+            blockManager     = new BlockManager(game, screenRect);
+            laserManager     = new LaserManager(game);
+            explosionManager = new ExplosionManager(game);
         }
 
         public void EnteringState()
@@ -47,34 +48,8 @@ namespace SpaceshipShooter.State
             // Start the ship at the bottom in the center of the screen
             ship = new Ship(game, new Vector2((float)(resolution.Width / 2), 
                                               (float)(resolution.Height * .80)));
-            ship.LoadContent();
 
-            var viewport  = game.GraphicsDevice.Viewport;
-            var titleSafe = game.GraphicsDevice.Viewport.TitleSafeArea;
-
-            // Spawn space blocks
-            for (int i = 0; i < 15; i++)
-            {
-                // Generate a random position on-screen
-                var randX = rand.Next(titleSafe.Width);
-                var randY = rand.Next(titleSafe.Height);
-
-                // Generate a random velocity of between -5 and 5d 
-                var randXVel = rand.Next(10) - 5;
-                var randYVel = rand.Next(10) - 5;
-
-                // Construct the block
-                var block =
-                    new SpaceBlock(game,
-                        new Vector2(randX, randY),
-                        new Vector2(randXVel, randYVel));
-
-                // Initialize and the block to the list
-                
-                block.Initialize();
-                block.LoadContent();
-                blocks.Add(block);
-            }
+            blockManager.SpawnBlocks(10);
 
             ship.Initialize();
         }
@@ -90,58 +65,52 @@ namespace SpaceshipShooter.State
 
             var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
 
-            //  Update blocks
-            foreach (var block in blocks.Where(block => block.Alive))
-            {
-                block.Update(gameTime);
-                WrapOffScreen(block);
 
-                // Block collided with the ship
-                if (block.Rectangle.Intersects(ship.Rectangle))
-                {
-                    // Create an explosion at the coordinates of the blockdddd
-                    // and and add it to the list of explosions
-                    var explosion = new Explosion(game, new Vector2(block.X, block.Y));
-                    
-                    explosion.LoadContent();
-                    explosions.Add(explosion);
+            var blocksToRemove = new List<SpaceBlock>();
+
+            //  Update blocks
+            foreach (var block in blockManager.collisions(ship))
+            {
+                    // Create an explosion at the coordinates of the block
+                    explosionManager.add(block.X, block.Y);
 
                     // Decrement the score since the ship hit a block
                     score -= 1;
 
                     // Notify the block that it has been hit
                     block.Thump();
+                    blocksToRemove.Add(block);
+            }
 
-                }
-
-                foreach (var laser in lasers)
+            foreach (var laser in laserManager)
+            {
+                // Only process lasers that are still in play
+                if (laser.Alive)
                 {
-                    // Only process lasers that are still in play
-                    if (laser.Alive)
+                    // If an alive laser hits a block
+                    foreach(var block in blockManager.collisions(laser))
                     {
-                        // If a live laser has hit the block
-                        if (block.Rectangle.Intersects(laser.Rectangle))
-                        {
-                            // Create and add a new explosion to the list
-                            var explosion = new Explosion(game, new Vector2(block.X, block.Y));
-                    
-                            explosion.LoadContent();
-                            explosions.Add(explosion);
+                        // Create and add a new explosion
+                        explosionManager.add(block.X, block.Y);
 
-                            // Update the score
-                            score += 1;
+                        // Update the score
+                        score += 1;
 
-                            // Kill the block
-                            block.Destroy();
-                        }
+                        // Kill the block
+                        block.Destroy();
+                        blocksToRemove.Add(block);
                     }
+
                 }
-            };
+            }
+
+            blocksToRemove.ForEach(block => blockManager.Remove(block));
 
             WrapOffScreen(ship);
 
-            lasers.ForEach(laser => laser.Update(gameTime));
-            explosions.ForEach(explosion => explosion.Update(gameTime));
+            laserManager.Update(gameTime);
+            blockManager.Update(gameTime);
+            explosionManager.Update(gameTime);
 
             ship.Update(gameTime);
         }
@@ -167,23 +136,20 @@ namespace SpaceshipShooter.State
             game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
 
             // Draw the entities
-            explosions.ForEach(explosion => explosion.Draw(gameTime));
-            blocks.ForEach(block => block.Draw(gameTime));
-            lasers.ForEach(laser => laser.Draw(gameTime));
-            ship.Draw(gameTime);
-        }
+            explosionManager.Draw(gameTime);
+            blockManager.Draw(gameTime);
+            laserManager.Draw(gameTime);
 
-        public void ExitingState()
-        {
+            ship.Draw(gameTime);
         }
 
         public void fireLaser(int x, int y)
         {
-            // Place a new active laser at x, y
-            Laser laser = new Laser(game, new Vector2(x, y));
-            laser.LoadContent();
+            laserManager.fireLaser(x, y);
+        }
 
-            lasers.Add(laser);
+        public void ExitingState()
+        {
         }
 
         // If the specified game object has left the screen,
