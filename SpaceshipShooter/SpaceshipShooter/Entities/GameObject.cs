@@ -33,6 +33,8 @@ namespace SpaceshipShooter
             set { rectangle.Y = value; }
         }
 
+        public float Rotation { get; set; }
+        
         public Rectangle Rectangle
         {
             get { return rectangle; }
@@ -50,7 +52,8 @@ namespace SpaceshipShooter
                           InputComponent    input, 
                           GraphicsComponent graphics,
                           SoundComponent    sound,
-                          float             scale)
+                          float             scale,
+                          float rotation = 0)
         {
             Alive          = true;
             this.game      = game;

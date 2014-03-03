@@ -82,6 +82,7 @@
     <Compile Include="Components\NullSoundComponent.cs" />
     <Compile Include="Components\ShipInput.cs" />
     <Compile Include="Components\Sound.cs" />
+    <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Explosion.cs" />
     <Compile Include="Entities\GameObject.cs" />
     <Compile Include="Components\Physics.cs" />

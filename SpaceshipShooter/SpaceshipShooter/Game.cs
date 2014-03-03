@@ -26,6 +26,7 @@ namespace SpaceshipShooter
         public Texture2D   LaserTexture     { get; set; }
         public Texture2D   BlockTexture     { get; set; }
         public Texture2D   ShipSheet        { get; set; }
+        public Texture2D   EnemySheet       { get; set; }
         public Texture2D   ExplosionTexture { get; set; }
         
         public Rectangle   BackgroundRect   { get; set; }
@@ -37,17 +38,17 @@ namespace SpaceshipShooter
         public InPlayState       InPlayState       { get; set; }
         public SplashScreenState SplashScreenState { get; set; }
 
-        private const String SpriteFontAsset = @"Fonts\SpriteFont";
-
+        private const String SpriteFontAsset         = @"Fonts\SpriteFont";
         private const String LaserImageAsset         = @"Images\Sprites\Laser";
         private const String BackgroundAsset         = @"Images\Backgrounds\Purple";
         private const String BlockImageAsset         = @"Images\Sprites\Block";
         private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
+        private const String EnemeySheetAsset        = @"Images\Sprites\EnemySheet";
         private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
 
-        private const String ExplosionSoundAsset = @"Sound\explosion";
-        private const String ThumpSoundAsset     = @"Sound\thump";
-        private const String LaserSoundAsset     = @"Sound\laser";
+        private const String ExplosionSoundAsset     = @"Sound\explosion";
+        private const String ThumpSoundAsset         = @"Sound\thump";
+        private const String LaserSoundAsset         = @"Sound\laser";
 
         public SpriteBatch SpriteBatch {
             get {
@@ -77,7 +78,6 @@ namespace SpaceshipShooter
        
         protected override void Initialize()
         {
-            // Set the preferred size to 1280 x 800
             graphics.PreferredBackBufferWidth = 1366;
             graphics.PreferredBackBufferHeight = 768;
             graphics.ApplyChanges();
@@ -95,9 +95,7 @@ namespace SpaceshipShooter
             
             var viewPort = GraphicsDevice.Viewport;
 
-            // Written to run at 1680x1050
-            // This is used to scale the sprites for other resolution
-            ScreenScale = ((float)viewPort.Width) / 1680;
+            ScreenScale = .60f;
             
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch      = new SpriteBatch(GraphicsDevice);
@@ -107,6 +105,7 @@ namespace SpaceshipShooter
             LaserTexture     = Content.Load<Texture2D>(LaserImageAsset);
             BlockTexture     = Content.Load<Texture2D>(BlockImageAsset);
             ShipSheet        = Content.Load<Texture2D>(ShipSheetAsset);
+            EnemySheet       = Content.Load<Texture2D>(EnemeySheetAsset);
             ExplosionTexture = Content.Load<Texture2D>(ExplosionAnimationAsset);
 
             ExplosionSound = Content.Load<SoundEffect>(ExplosionSoundAsset);

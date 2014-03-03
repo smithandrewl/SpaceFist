@@ -12,7 +12,7 @@ namespace SpaceshipShooter.Entities
     {
         private const int Width  = 26;
         private const int Height = 47;
-        private const int Speed = 10;
+        private const int Speed  = 10;
 
         private bool soundPlayed = false;
 

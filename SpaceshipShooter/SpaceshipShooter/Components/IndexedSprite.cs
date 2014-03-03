@@ -30,10 +30,11 @@ namespace SpaceshipShooter.Components
             var sourceRect  = new Rectangle(Index * width, 0, width, height);
             var spriteBatch = game.SpriteBatch;
 
-            
-            spriteBatch.Draw(texture, new Vector2(obj.X, obj.Y), 
-                             sourceRect, Color.White, 
-                             0f, new Vector2(0, 0), 
+            var origin = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
+
+            spriteBatch.Draw(texture, new Vector2(obj.X, obj.Y) + origin, 
+                             sourceRect, Color.White,
+                             obj.Rotation, origin, 
                              game.ScreenScale, SpriteEffects.None, 0);
         }
 

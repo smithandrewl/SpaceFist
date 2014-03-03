@@ -48,7 +48,7 @@ namespace SpaceshipShooter.State
             // Start the ship at the bottom in the center of the screen
             ship = new Ship(game, new Vector2((float)(resolution.Width / 2), 
                                               (float)(resolution.Height * .80)));
-
+            
             blockManager.SpawnBlocks(10);
 
             ship.Initialize();
@@ -88,7 +88,7 @@ namespace SpaceshipShooter.State
                 if (laser.Alive)
                 {
                     // If an alive laser hits a block
-                    foreach(var block in blockManager.collisions(laser))
+                    foreach (var block in blockManager.collisions(laser))
                     {
                         // Create and add a new explosion
                         explosionManager.add(block.X, block.Y);
@@ -102,7 +102,7 @@ namespace SpaceshipShooter.State
                     }
 
                 }
-            }
+            }      
 
             blocksToRemove.ForEach(block => blockManager.Remove(block));
 
