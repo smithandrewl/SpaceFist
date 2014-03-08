@@ -130,7 +130,7 @@ namespace SpaceshipShooter.State
 
             // Draw the score green if the user has a non-negative score
             // red otherwise
-            var color = score >= 0 ? Color.GreenYellow : Color.Crimson;
+            var color = Color.Ivory;
 
             // Write the score to the screen
             game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
