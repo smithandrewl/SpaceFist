@@ -8,7 +8,7 @@ using SpaceshipShooter.Components;
 
 namespace SpaceshipShooter  
 {
-    class Ship : GameObject
+    public class Ship : GameObject
     {
 
         private const int maxHealthPoints = 100;
