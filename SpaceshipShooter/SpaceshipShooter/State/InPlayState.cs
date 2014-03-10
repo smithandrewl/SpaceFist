@@ -14,7 +14,7 @@ namespace SpaceshipShooter.State
     public class InPlayState : GameState
     {
         private int score = 0;
-
+        private int lives = 3;
         Random rand = new Random();
 
         // GameObject Derived 
@@ -49,7 +49,7 @@ namespace SpaceshipShooter.State
             ship = new Ship(game, new Vector2((float)(resolution.Width / 2), 
                                               (float)(resolution.Height * .80)));
             
-            blockManager.SpawnBlocks(10);
+            blockManager.SpawnBlocks(35);
 
             ship.Initialize();
         }
@@ -75,13 +75,26 @@ namespace SpaceshipShooter.State
                     explosionManager.add(block.X, block.Y);
 
                     // Decrement the score since the ship hit a block
-                    score -= 1;
+                    ship.HealthPoints -= 25;
 
+                    if (ship.HealthPoints <= 0)
+                    {
+                        if (lives > 0)
+                        {
+                            lives--;
+                            ship.HealthPoints = 100;
+                        }
+                        else
+                        {
+                            ship.Alive = false;
+                            explosionManager.add(ship.X, ship.Y);
+                        }
+                    }
                     // Notify the block that it has been hit
                     block.Thump();
                     blocksToRemove.Add(block);
             }
-
+            
             foreach (var laser in laserManager)
             {
                 // Only process lasers that are still in play
@@ -123,7 +136,7 @@ namespace SpaceshipShooter.State
                 new Vector2(game.GraphicsDevice.Viewport.Width * .01f,
                             game.GraphicsDevice.Viewport.Height * .01f);
 
-            var scoreDisplay = String.Format("Score: {0}", score);
+            var scoreDisplay = String.Format("Score: {0} | Health: {1:P0} | Lives: {2}", score, ship.Health, lives);
 
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
@@ -132,15 +145,18 @@ namespace SpaceshipShooter.State
             // red otherwise
             var color = Color.Ivory;
 
-            // Write the score to the screen
-            game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
-
-            // Draw the entities
+             // Draw the entities
             explosionManager.Draw(gameTime);
             blockManager.Draw(gameTime);
             laserManager.Draw(gameTime);
 
             ship.Draw(gameTime);
+            // Write the score to the screen
+            game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
+               
+        
+            game.SpriteBatch.Draw(game.HudTexture, new Rectangle(0, 0, game.HudTexture.Width, game.HudTexture.Height), Color.White);
+            
         }
 
         public void fireLaser(int x, int y)

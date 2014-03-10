@@ -28,6 +28,7 @@ namespace SpaceshipShooter
         public Texture2D   ShipSheet        { get; set; }
         public Texture2D   EnemySheet       { get; set; }
         public Texture2D   ExplosionTexture { get; set; }
+        public Texture2D   HudTexture       { get; set; }
         
         public Rectangle   BackgroundRect   { get; set; }
         
@@ -45,6 +46,7 @@ namespace SpaceshipShooter
         private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
         private const String EnemeySheetAsset        = @"Images\Sprites\EnemySheet";
         private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
+        private const String HUDAsset                = @"Images\UI\Hud";
 
         private const String ExplosionSoundAsset     = @"Sound\explosion";
         private const String ThumpSoundAsset         = @"Sound\thump";
@@ -107,6 +109,7 @@ namespace SpaceshipShooter
             ShipSheet        = Content.Load<Texture2D>(ShipSheetAsset);
             EnemySheet       = Content.Load<Texture2D>(EnemeySheetAsset);
             ExplosionTexture = Content.Load<Texture2D>(ExplosionAnimationAsset);
+            HudTexture       = Content.Load<Texture2D>(HUDAsset);
 
             ExplosionSound = Content.Load<SoundEffect>(ExplosionSoundAsset);
             ThumpSound     = Content.Load<SoundEffect>(ThumpSoundAsset);

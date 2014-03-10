@@ -10,13 +10,25 @@ namespace SpaceshipShooter
 {
     class Ship : GameObject
     {
+
+        private const int maxHealthPoints = 100;
+
+        public int HealthPoints { get; set; }
+
+        public float Health
+        {
+            get
+            {
+                return HealthPoints / (float) maxHealthPoints;
+            }
+        }
+
         private const int Width       = 60;
         private const int Height      = 133;
         private const int LeftIndex   = 0;
         private const int AtRestIndex = 4;
         private const int RightIndex  = 7;
         private const int MaxVelocity = 20;
-
 
         private IndexedSprite indexedSprite;
 
@@ -35,6 +47,7 @@ namespace SpaceshipShooter
                    game.ScreenScale)
         {
             indexedSprite = (IndexedSprite) graphics;
+            HealthPoints = 100;
         }
 
         public void Fire()
