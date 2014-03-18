@@ -25,7 +25,7 @@ namespace SpaceshipShooter.Managers
 
         public void SpawnBlocks(int count)
         {
-
+            blocks.Clear();
             // Spawn space blocks
             for (int i = 0; i < count; i++)
             {

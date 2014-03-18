@@ -12,11 +12,11 @@ namespace SpaceshipShooter.Managers
         private ExplosionManager explosionManager;
         private BlockManager     blockManager;
         private LaserManager     laserManager;
-        private ShipManager      shipManager;
+        private PlayerManager      shipManager;
 
         public CollisionManager(
             BlockManager     blockManager, 
-            ShipManager      shipManager, 
+            PlayerManager      shipManager, 
             LaserManager     laserManager, 
             ExplosionManager explosionManager)
         {

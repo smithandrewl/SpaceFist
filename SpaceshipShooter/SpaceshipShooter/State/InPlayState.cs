@@ -22,7 +22,7 @@ namespace SpaceshipShooter.State
         BlockManager     blockManager;
         LaserManager     laserManager;
         ExplosionManager explosionManager;
-        ShipManager      shipManager;
+        PlayerManager      shipManager;
         CollisionManager collisionManager;
 
         public InPlayState(Game game)
@@ -38,7 +38,7 @@ namespace SpaceshipShooter.State
             blockManager     = new BlockManager(game, screenRect);
             laserManager     = new LaserManager(game);
             explosionManager = new ExplosionManager(game);
-            shipManager      = new ShipManager(game);
+            shipManager      = new PlayerManager(game);
             collisionManager = new CollisionManager(blockManager, shipManager, laserManager, explosionManager);
         }
 
@@ -48,6 +48,8 @@ namespace SpaceshipShooter.State
 
             // Start the ship at the bottom in the center of the screen
             shipManager.Spawn();
+            shipManager.ResetLives();
+            shipManager.ResetScore();
 
             blockManager.SpawnBlocks(35);
 
@@ -56,30 +58,37 @@ namespace SpaceshipShooter.State
 
         public void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            KeyboardState keys = Keyboard.GetState();
-
-            if (keys.IsKeyDown(Keys.Q))
+            if (shipManager.Alive)
             {
-                game.Exit();
+                KeyboardState keys = Keyboard.GetState();
+
+                if (keys.IsKeyDown(Keys.Q))
+                {
+                    game.Exit();
+                }
+
+                var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
+
+
+                var blocksToRemove = new List<SpaceBlock>();
+
+                blocksToRemove.ForEach(block => blockManager.Remove(block));
+
+                WrapOffScreen(shipManager.Ship);
+
+                laserManager.Update(gameTime);
+                blockManager.Update(gameTime);
+                explosionManager.Update(gameTime);
+
+
+                collisionManager.Update(gameTime);
+
+                shipManager.Update(gameTime);
             }
-
-            var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
-
-
-            var blocksToRemove = new List<SpaceBlock>();
-
-            blocksToRemove.ForEach(block => blockManager.Remove(block));
-
-            WrapOffScreen(shipManager.Ship);
-
-            laserManager.Update(gameTime);
-            blockManager.Update(gameTime);
-            explosionManager.Update(gameTime);
-
-
-            collisionManager.Update(gameTime);
-
-            shipManager.Update(gameTime);
+            else
+            {
+                game.SetState(game.SplashScreenState);
+            }
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime gameTime)

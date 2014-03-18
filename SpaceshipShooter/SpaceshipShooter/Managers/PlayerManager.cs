@@ -6,12 +6,12 @@ using System.Text;
 
 namespace SpaceshipShooter.Managers
 {
-    public class ShipManager
+    public class PlayerManager
     {
         Game game;
 
         private int score = 0;
-        private int lives = 3;
+        private int lives = 2;
         private Ship ship;
 
         public int Score
@@ -37,7 +37,7 @@ namespace SpaceshipShooter.Managers
                 return ship.Alive;
             }
         }
-        public ShipManager(Game game)
+        public PlayerManager(Game game)
         {
             this.game = game;
         }
@@ -110,6 +110,16 @@ namespace SpaceshipShooter.Managers
         internal void Scored()
         {
             score += 10;
+        }
+
+        internal void ResetScore()
+        {
+            score = 0;
+        }
+
+        internal void ResetLives()
+        {
+            lives = 3;
         }
     }
 }
