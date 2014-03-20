@@ -87,7 +87,7 @@ namespace SpaceshipShooter.State
             }
             else
             {
-                game.SetState(game.SplashScreenState);
+                game.SetState(game.GameOverState);
             }
         }
 
@@ -96,7 +96,7 @@ namespace SpaceshipShooter.State
             // Calculate the position that the score should be written to
             // It is the upper left with a padding of one percent
             Vector2 scorePosition =
-                new Vector2(game.GraphicsDevice.Viewport.Width * .01f,
+                new Vector2(game.GraphicsDevice.Viewport.Width  * .01f,
                             game.GraphicsDevice.Viewport.Height * .01f);
 
             var scoreDisplay = String.Format("Score: {0} | Health: {1:P0} | Lives: {2}", shipManager.Score, shipManager.Ship.Health, shipManager.Lives);

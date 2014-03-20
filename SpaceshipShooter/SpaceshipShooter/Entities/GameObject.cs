@@ -23,6 +23,8 @@ namespace SpaceshipShooter
         public Vector2 Velocity { get; set; }
         public bool    Alive    { get; set; }
 
+        public Color Tint;
+
         public int X {
             get { return rectangle.X;  }
             set { rectangle.X = value; } 
@@ -62,6 +64,8 @@ namespace SpaceshipShooter
             this.input     = input;
             this.graphics  = graphics;
             this.sound     = sound;
+
+            Tint = Color.White;
         }
 
         public virtual void Initialize()

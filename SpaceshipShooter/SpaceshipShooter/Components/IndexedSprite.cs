@@ -25,6 +25,7 @@ namespace SpaceshipShooter.Components
             this.texture = texture;
         }
 
+        
         public void Draw(Game game, GameObject obj, Microsoft.Xna.Framework.GameTime time)
         {
             var sourceRect  = new Rectangle(Index * width, 0, width, height);
@@ -33,7 +34,7 @@ namespace SpaceshipShooter.Components
             var origin = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
 
             spriteBatch.Draw(texture, new Vector2(obj.X, obj.Y) + origin, 
-                             sourceRect, Color.White,
+                             sourceRect,  obj.Tint,
                              obj.Rotation, origin, 
                              game.ScreenScale, SpriteEffects.None, 0);
         }

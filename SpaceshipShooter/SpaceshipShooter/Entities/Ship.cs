@@ -5,15 +5,25 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using SpaceshipShooter.Components.Abstract;
 using SpaceshipShooter.Components;
+using SpaceshipShooter.State.Abstract;
+using SpaceshipShooter.State.ShipStates;
 
 namespace SpaceshipShooter  
 {
     public class Ship : GameObject
     {
+        private ShipState State { get; set; }
 
         private const int maxHealthPoints = 100;
-
+        
         public int HealthPoints { get; set; }
+
+        public void setState(ShipState state)
+        {
+            state.ExitingState();
+            state.EnteringState();
+            this.State = state;
+        }
 
         public float Health
         {
@@ -48,8 +58,15 @@ namespace SpaceshipShooter
         {
             indexedSprite = (IndexedSprite) graphics;
             HealthPoints = 100;
+
+            setState(new SpawningState(this));
         }
 
+        public override void Update(GameTime time)
+        {
+            State.Update();
+            base.Update(time);
+        }
         public void Fire()
         {
             Game.InPlayState.fireLaser((int) (X + (Width / 2) - (20 * game.ScreenScale)), (int) ((Y - (35 * game.ScreenScale))));  

@@ -34,7 +34,7 @@ namespace SpaceshipShooter
             var origin = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
 
             spriteBatch.Draw(image, new Vector2(obj.X, obj.Y) + origin, 
-                             null, Color.White, 
+                             null, obj.Tint, 
                              obj.Rotation, origin, 
                              game.ScreenScale, SpriteEffects.None, 0f);
         }

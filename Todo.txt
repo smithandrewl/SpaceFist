@@ -1,4 +1,4 @@
-
+ 
 ----------- Milestone 1 ----------
 [X] Add health to ship
 	[X] Draw health to HUD
@@ -10,16 +10,23 @@
 	[X] health
 	[X] lives left
 
-[ ] Ship has states
-[ ] Add a low health state
-[ ] Add a respawning state
-[ ] Add a spawn / respawn state
-[ ] Game Over state on depletion of lives
-[ ] Add Game Over State
+[X] Ship has states
+[X] Add a low health state
+[X] Add a spawning state
+
+[X] Add Game Over State
+[X] Game Over state on depletion of lives
+
+--------------------------------
+[ ] Add camera class
+[ ] World is much larger than the screen
+[ ] Game objects can no longer go offscreen / wrap around
+[ ] The background is the same no matter where the player is on the map
+[ ] Blocks spawn across the giant map
 
 --------------------------------
 
-[ ] Add animated grain layer
+[ ] Add animated grain layer that wraps when the camera moves
 [ ] Add transparent overlay for HUD
 [ ] Particle Effects engine
 [ ] Replace explosion animation with particle effects

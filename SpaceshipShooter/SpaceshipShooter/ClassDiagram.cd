@@ -1,143 +1,219 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Project2.Components.IndexedSprite" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="6" Width="1.5" />
+  <Class Name="SpaceshipShooter.Components.IndexedSprite" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAgQAQAACAAAAAAAAAgAAAAEAAAAAAAQ=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgQAQAAAAAAAAAAAAgAAAAEAAAAAAAA=</HashCode>
       <FileName>Components\IndexedSprite.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Project2.Components.NullInputComponent" BaseTypeListCollapsed="true">
-    <Position X="9" Y="5.25" Width="1.75" />
+  <Class Name="SpaceshipShooter.Components.NullInputComponent" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\NullInputComponent.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Project2.Components.NullSoundComponent" BaseTypeListCollapsed="true">
-    <Position X="13.5" Y="6" Width="1.75" />
+  <Class Name="SpaceshipShooter.Components.NullSoundComponent" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Components\NullSoundComponent.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Project2.Components.ShipInput" BaseTypeListCollapsed="true">
-    <Position X="9" Y="3" Width="1.5" />
+  <Class Name="SpaceshipShooter.Components.ShipInput" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>Components\ShipInput.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Project2.Components.Sound" BaseTypeListCollapsed="true">
-    <Position X="13.5" Y="3.25" Width="1.5" />
+  <Class Name="SpaceshipShooter.Components.Sound" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AASAAAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AASAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Sound.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Project2.Physics" BaseTypeListCollapsed="true">
-    <Position X="15.75" Y="3.25" Width="1.5" />
+  <Class Name="SpaceshipShooter.Physics" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Physics.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Project2.Sprite" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="3.5" Width="1.5" />
+  <Class Name="SpaceshipShooter.Sprite" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAACAAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Sprite.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Project2.GameObject">
-    <Position X="3.75" Y="0.5" Width="1.5" />
+  <Class Name="SpaceshipShooter.GameObject">
+    <Position X="12.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAwAAAAAAACAAAAgkABwIAAAAAAAEYAQ=</HashCode>
+      <HashCode>AAQAAAAAAAAAA4AAAAAAACAAAAgkABwIAAAAAAAEYAA=</HashCode>
       <FileName>Entities\GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Project2.Ship">
-    <Position X="5" Y="6" Width="1.75" />
+  <Class Name="SpaceshipShooter.Ship" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAACABgCgDAAAAAAAAEAAAgAEgAAACBCAAAAwAAI=</HashCode>
+      <HashCode>AAgACACARgCgDAAAAAAAAEAAAgAEgAAACACAAQAwAAI=</HashCode>
       <FileName>Entities\Ship.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Project2.Game">
-    <Position X="0.5" Y="10.5" Width="1.5" />
+  <Class Name="SpaceshipShooter.Game" Collapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABYAEMAAAAAgQwEAAAAIAAAAAACAAAgAwAAABAQAJAQ=</HashCode>
+      <HashCode>EAQAFEAAQAAwA4EAICAgAAMBAABCAAgQQAAkQAATBAQ=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Project2.Program">
-    <Position X="2.25" Y="10.5" Width="1.5" />
+  <Class Name="SpaceshipShooter.Program" Collapsed="true">
+    <Position X="23.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Project2.Entities.Explosion">
-    <Position X="0.5" Y="6" Width="2" />
+  <Class Name="SpaceshipShooter.Entities.Enemy" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAgAAAAAAAAQAQAggAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>gAwAAAAAAgAACAAAAAAAAgAAAAQAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Entities\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceshipShooter.Entities.Explosion" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAAQAQAggAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Explosion.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Project2.Entities.Laser">
-    <Position X="2.75" Y="6" Width="1.5" />
+  <Class Name="SpaceshipShooter.Entities.Laser" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAARAAAAIAAAAAAAEABAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAQAAAAABAAAAAAAAAAAAEABAAAAAAAAAAAAAAAAAAE=</HashCode>
       <FileName>Entities\Laser.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Project2.Entities.SpaceBlock">
-    <Position X="7.25" Y="6" Width="1.75" />
+  <Class Name="SpaceshipShooter.Entities.SpaceBlock" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAABAAAAQAAAAAAAEEAAABAAAAAAAAAAAQgAAQ=</HashCode>
+      <HashCode>ACAAAAAABAAAAAAAAAAAAEAAAABAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Entities\SpaceBlock.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Project2.Components.Abstract.Component" Collapsed="true">
-    <Position X="12.25" Y="0.5" Width="1.5" />
+  <Class Name="SpaceshipShooter.Managers.BlockManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACYAAIAAAAAAAhAAAAIABAQAAAAAAAAIAAAAAAQABAA=</HashCode>
+      <FileName>Managers\BlockManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceshipShooter.Managers.CollisionManager" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAIACQAAAAAAAAAAAIAAQAAAAAAE=</HashCode>
+      <FileName>Managers\CollisionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceshipShooter.Managers.ExplosionManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAAAAAhAAAAAABAAAAACAAAAIAAAAAAACAAA=</HashCode>
+      <FileName>Managers\ExplosionManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceshipShooter.Managers.LaserManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAAAAQhAAAAAQAAAAAAAAAAAIAAAABAAAAAA=</HashCode>
+      <FileName>Managers\LaserManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceshipShooter.Managers.PlayerManager" Collapsed="true">
+    <Position X="21.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAgAwgAAEEIAAAIAAKAAAQKgAAAAAAAAAA=</HashCode>
+      <FileName>Managers\PlayerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceshipShooter.State.GameOverState" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAgAAAAAAAQ=</HashCode>
+      <FileName>State\GameOverState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceshipShooter.State.InPlayState" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAIAAAAAAwgAAAIAAQAAAAAAAAAAIIAgQAAQAAAQ=</HashCode>
+      <FileName>State\InPlayState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceshipShooter.State.SplashScreenState" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoQAAAAAAAIAAggAAAAAAAAAAAAAAAAIAAgAAAAAAAQ=</HashCode>
+      <FileName>State\SplashScreenState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="SpaceshipShooter.Components.Abstract.Component" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Abstract\Component.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Project2.Components.Abstract.GraphicsComponent">
-    <Position X="11.25" Y="1.75" Width="1.75" />
+  <Interface Name="SpaceshipShooter.Components.Abstract.GraphicsComponent" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Abstract\GraphicsComponent.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Project2.Components.Abstract.InputComponent">
-    <Position X="9" Y="1.75" Width="1.5" />
+  <Interface Name="SpaceshipShooter.Components.Abstract.InputComponent" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Abstract\InputComponent.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Project2.Components.Abstract.PhysicsComponent">
-    <Position X="15.75" Y="1.75" Width="1.75" />
+  <Interface Name="SpaceshipShooter.Components.Abstract.PhysicsComponent" Collapsed="true">
+    <Position X="12.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Abstract\PhysicsComponent.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Project2.Components.Abstract.SoundComponent">
-    <Position X="13.5" Y="1.75" Width="1.5" />
+  <Interface Name="SpaceshipShooter.Components.Abstract.SoundComponent" Collapsed="true">
+    <Position X="15" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Abstract\SoundComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SpaceshipShooter.State.Abstract.GameState" Collapsed="true">
+    <Position X="19.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAAQ=</HashCode>
+      <FileName>State\Abstract\GameState.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

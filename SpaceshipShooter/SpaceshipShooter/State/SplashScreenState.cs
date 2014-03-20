@@ -14,6 +14,7 @@ namespace SpaceshipShooter.State
         Game      game;
         Texture2D overlayTexture;
         Rectangle overlayRect;
+        DateTime enteredAt;
 
         public SplashScreenState(Game game)
         {
@@ -31,15 +32,20 @@ namespace SpaceshipShooter.State
 
         public void EnteringState()
         {
+            enteredAt = DateTime.Now;
         }
 
         public void Update(Microsoft.Xna.Framework.GameTime time)
         {
             KeyboardState keyboardState = Keyboard.GetState();
 
+
             if(keyboardState.IsKeyDown(Keys.Enter))
             {
-                game.SetState(game.InPlayState);
+                if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
+                {
+                    game.SetState(game.InPlayState);
+                }
             }
         }
 

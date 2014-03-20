@@ -99,7 +99,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="State\Abstract\GameState.cs" />
+    <Compile Include="State\Abstract\ShipState.cs" />
+    <Compile Include="State\GameOverState.cs" />
     <Compile Include="State\InPlayState.cs" />
+    <Compile Include="State\ShipStates\LowHealthState.cs" />
+    <Compile Include="State\ShipStates\NormalState.cs" />
+    <Compile Include="State\ShipStates\SpawningState.cs" />
     <Compile Include="State\SplashScreenState.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,7 @@ namespace SpaceshipShooter
         public Texture2D   Background       { get; set; }
         public Texture2D   LaserTexture     { get; set; }
         public Texture2D   BlockTexture     { get; set; }
+        public Texture2D   GameOverTexture  { get; set; }
         public Texture2D   ShipSheet        { get; set; }
         public Texture2D   EnemySheet       { get; set; }
         public Texture2D   ExplosionTexture { get; set; }
@@ -38,10 +39,12 @@ namespace SpaceshipShooter
         
         public InPlayState       InPlayState       { get; set; }
         public SplashScreenState SplashScreenState { get; set; }
+        public GameOverState     GameOverState     { get; set; }
 
         private const String SpriteFontAsset         = @"Fonts\SpriteFont";
         private const String LaserImageAsset         = @"Images\Sprites\Laser";
         private const String BackgroundAsset         = @"Images\Backgrounds\Purple";
+        private const String GameOverAsset           = @"Images\Backgrounds\GameOver";
         private const String BlockImageAsset         = @"Images\Sprites\Block";
         private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
         private const String EnemeySheetAsset        = @"Images\Sprites\EnemySheet";
@@ -70,6 +73,7 @@ namespace SpaceshipShooter
         {
             SplashScreenState = new SplashScreenState(this);
             InPlayState       = new InPlayState(this);
+            GameOverState     = new GameOverState(this);
 
             graphics = new GraphicsDeviceManager(this);
             
@@ -95,6 +99,7 @@ namespace SpaceshipShooter
             // Draw the background image with the dimensions of the screen
             BackgroundRect = new Rectangle(0, 0, titleSafe.Width, titleSafe.Height);
             
+
             var viewPort = GraphicsDevice.Viewport;
 
             ScreenScale = .60f;
@@ -104,6 +109,7 @@ namespace SpaceshipShooter
             Font             = Content.Load<SpriteFont>(SpriteFontAsset);
             
             Background       = Content.Load<Texture2D>(BackgroundAsset);
+            GameOverTexture  = Content.Load<Texture2D>(GameOverAsset);
             LaserTexture     = Content.Load<Texture2D>(LaserImageAsset);
             BlockTexture     = Content.Load<Texture2D>(BlockImageAsset);
             ShipSheet        = Content.Load<Texture2D>(ShipSheetAsset);

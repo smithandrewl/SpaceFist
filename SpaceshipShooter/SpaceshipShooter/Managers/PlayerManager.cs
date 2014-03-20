@@ -87,6 +87,8 @@ namespace SpaceshipShooter.Managers
             {
                 lives--;
                 ship.HealthPoints = 100;
+
+                Spawn();
             }
             else
             {
@@ -98,7 +100,7 @@ namespace SpaceshipShooter.Managers
         internal void ShipHit()
         {
 
-            ship.HealthPoints -= 25;
+            ship.HealthPoints -= 10;
 
             if (ship.HealthPoints <= 0)
             {
@@ -119,7 +121,7 @@ namespace SpaceshipShooter.Managers
 
         internal void ResetLives()
         {
-            lives = 3;
+            lives = 2;
         }
     }
 }
