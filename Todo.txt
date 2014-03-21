@@ -1,4 +1,26 @@
  
+
+
+--------------------------------
+[ ] Add camera class
+[ ] The World is much larger than the screen
+[ ] Game objects can no longer go offscreen / wrap around
+[ ] The background is the same no matter where the player is on the map
+[ ] Blocks spawn across the giant map
+
+---------------------------------
+[ ] Particle Effects engine
+[ ] Implement physics using Mathematics for Game Programmers as a reference
+[ ] Fuzz logic engine / functions
+[ ] Replace explosion animation with particle effects
+
+[ ] Add firing blocks
+
+[ ] Blocks bounce
+
+[X] Add enemy class
+[ ] Enemies explode after crashing into blocks
+
 ----------- Milestone 1 ----------
 [X] Add health to ship
 	[X] Draw health to HUD
@@ -16,57 +38,3 @@
 
 [X] Add Game Over State
 [X] Game Over state on depletion of lives
-
---------------------------------
-[ ] Add camera class
-[ ] World is much larger than the screen
-[ ] Game objects can no longer go offscreen / wrap around
-[ ] The background is the same no matter where the player is on the map
-[ ] Blocks spawn across the giant map
-
---------------------------------
-
-[ ] Add animated grain layer that wraps when the camera moves
-[ ] Add transparent overlay for HUD
-[ ] Particle Effects engine
-[ ] Replace explosion animation with particle effects
-
-[ ] Add firing blocks
-
-[ ] Blocks bounce
-
-[X] Add enemy class
-[ ] Enemies explode after crashing into blocks
-[ ] Enemies use A* to get to their waywapoint(s)
-[ ] Implement physics using Mathematics for Game Programmers as a reference
-things to make
-level manager
-camera class
-Game Over state
-
-Slow vertical scrolling
-Static background
-Tilemap
-Camera
-Unpassable blocks
-Destructable blocks
-Firing blocks
-Enemy spawn point
-power-ups
-multiple levels
-Game Over / score screen
-End of game / score screen
-
-file format
-	header
-		number of levels
-	levels
-		level number
-			background image
-			grid
-				# are fixed blocks
-				* are firing blocks
-				S are spawn points
-				P are power-ups
-				- are empty blocks
-				A are asteroid fields
