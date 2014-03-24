@@ -11,7 +11,9 @@
 ---------------------------------
 [ ] Particle Effects engine
 [ ] Implement physics using Mathematics for Game Programmers as a reference
+
 [ ] Fuzz logic engine / functions
+
 [ ] Replace explosion animation with particle effects
 
 [ ] Add firing blocks
@@ -38,3 +40,4 @@
 
 [X] Add Game Over State
 [X] Game Over state on depletion of lives
+-------------------

@@ -90,6 +90,7 @@
     <Compile Include="Entities\Ship.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Entities\SpaceBlock.cs" />
+    <Compile Include="FuzzyLogicEnabled.cs" />
     <Compile Include="Managers\BlockManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\ExplosionManager.cs" />
