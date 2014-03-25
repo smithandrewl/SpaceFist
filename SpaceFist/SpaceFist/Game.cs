@@ -14,7 +14,7 @@ using SpaceFist.State;
 
 namespace SpaceFist
 {
-    public class Game : Microsoft.Xna.Framework.Game
+    public class Game : Microsoft.Xna.Framework.Game, StateMachine<GameState>
     {
         GraphicsDeviceManager graphics;
         SpriteBatch           spriteBatch;
@@ -59,14 +59,6 @@ namespace SpaceFist
             get {
                 return spriteBatch;
             }
-        }
-
-        public void SetState(GameState state)
-        {
-            currentState.ExitingState();
-            state.EnteringState();
-
-            currentState = state;
         }
 
         public Game()
@@ -134,7 +126,7 @@ namespace SpaceFist
 
         protected override void Update(GameTime gameTime)
         {
-            currentState.Update(gameTime);
+            currentState.Update();
             base.Update(gameTime);
         }
 
@@ -148,6 +140,20 @@ namespace SpaceFist
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public GameState State
+        {
+            get
+            {
+                return currentState;
+            }
+            set
+            {
+                currentState.ExitingState();
+                value.EnteringState();
+                currentState = value;
+            }
         }
     }
 }

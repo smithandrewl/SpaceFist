@@ -28,7 +28,7 @@ namespace SpaceFist.Entities
             Velocity = new Vector2(0, -Speed);
         }
 
-        public override void Update(GameTime gameTime) {
+        public override void Update() {
             var sound = (Sound) this.sound;
             if (!soundPlayed)
             {
@@ -36,7 +36,7 @@ namespace SpaceFist.Entities
                 soundPlayed = true;
             }
 
-            base.Update(gameTime);
+            base.Update();
         }
     }
 }

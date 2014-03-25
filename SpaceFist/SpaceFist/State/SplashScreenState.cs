@@ -35,7 +35,7 @@ namespace SpaceFist.State
             enteredAt = DateTime.Now;
         }
 
-        public void Update(Microsoft.Xna.Framework.GameTime time)
+        public void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState();
 
@@ -44,7 +44,7 @@ namespace SpaceFist.State
             {
                 if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
                 {
-                    game.SetState(game.InPlayState);
+                    game.State = game.InPlayState;
                 }
             }
         }

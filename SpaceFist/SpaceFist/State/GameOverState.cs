@@ -27,13 +27,13 @@ namespace SpaceFist.State
 
         }
 
-        public void Update(Microsoft.Xna.Framework.GameTime time)
+        public void Update()
         {
             KeyboardState keys = Keyboard.GetState();
 
             if (keys.IsKeyDown(Keys.Enter))
             {
-                game.SetState(game.SplashScreenState);
+                game.State = game.SplashScreenState;
             }
         }
 

@@ -5,5 +5,10 @@ using System.Text;
 
 namespace SpaceFist.State.Abstract
 {
-    public interface ShipState : State { }
+    public interface State
+    {
+        void Update();
+        void EnteringState();
+        void ExitingState();
+    }
 }

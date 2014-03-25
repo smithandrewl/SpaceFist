@@ -73,22 +73,22 @@ namespace SpaceFist
 
         }
 
-        public virtual void Update(GameTime time)
+        public virtual void Update()
         {
             if (Alive)
             {
-                graphics.Update(game, this, time);
-                input.Update(game, this, time);
-                physics.Update(game, this, time);
-                sound.Update(game, this, time);
+                graphics.Update(game, this);
+                input.Update(game, this);
+                physics.Update(game, this);
+                sound.Update(game, this);
             }
         }
 
-        public virtual void Draw(GameTime time)
+        public virtual void Draw()
         {
             if (Alive)
             {
-                graphics.Draw(game, this, time);
+                graphics.Draw(game, this);
             }
         }
     }

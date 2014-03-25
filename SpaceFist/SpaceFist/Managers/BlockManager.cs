@@ -51,19 +51,19 @@ namespace SpaceFist.Managers
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
              //  Update blocks
             foreach (var block in blocks.Where(block => block.Alive))
             {
-                block.Update(gameTime);
+                block.Update();
                 WrapOffScreen(block);
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw()
         {
-            blocks.ForEach(block => block.Draw(gameTime));
+            blocks.ForEach(block => block.Draw());
         }
 
         // If the specified game object has left the screen,

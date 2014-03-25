@@ -26,13 +26,13 @@ namespace SpaceFist.Managers
             this.explosionManager = explosionManager;
         }
         
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             HandleLaserRockCollisions();
             HandleShipRockCollisions();
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw()
         {
         }
 

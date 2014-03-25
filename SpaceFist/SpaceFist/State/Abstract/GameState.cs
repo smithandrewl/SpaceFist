@@ -6,12 +6,9 @@ using System.Text;
 
 namespace SpaceFist.State.Abstract
 {
-    public interface GameState
+    public interface GameState : State
     {
         void LoadContent();
-        void EnteringState();
-        void Update(GameTime time);
         void Draw(GameTime time);
-        void ExitingState();
     }
 }

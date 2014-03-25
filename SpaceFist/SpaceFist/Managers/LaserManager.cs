@@ -28,14 +28,14 @@ namespace SpaceFist.Managers
             return GetEnumerator();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
-            lasers.ForEach(laser => laser.Update(gameTime));
+            lasers.ForEach(laser => laser.Update());
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw()
         {
-            lasers.ForEach(laser => laser.Draw(gameTime));
+            lasers.ForEach(laser => laser.Draw());
         }
 
         public void fireLaser(int x, int y)

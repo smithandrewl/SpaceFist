@@ -24,7 +24,7 @@ namespace SpaceFist.Components
             soundEffect.Play();
         }
 
-        public void Update(Game game, GameObject obj, Microsoft.Xna.Framework.GameTime time)
+        public void Update(Game game, GameObject obj)
         {
         }
     }

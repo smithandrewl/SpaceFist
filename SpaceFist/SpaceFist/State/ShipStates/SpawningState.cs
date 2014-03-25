@@ -35,7 +35,7 @@ namespace SpaceFist.State.ShipStates
 
             if (elapsed > SpawnTime)
             {
-                Ship.setState(new NormalState(Ship));
+                Ship.State = new NormalState(Ship);
             }
         }
 
@@ -43,7 +43,6 @@ namespace SpaceFist.State.ShipStates
         {
 
             SpawnedAt = DateTime.Now;
-            Console.WriteLine("Entered Spawning state");
             Ship.Tint = Color.Transparent;
         }
 

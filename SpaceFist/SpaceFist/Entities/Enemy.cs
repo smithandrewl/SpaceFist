@@ -47,7 +47,7 @@ namespace SpaceFist.Entities
 
            return xIsNear && yIsNear;
        }
-       public override void Update(GameTime time)
+       public override void Update()
        {
            
            if (wayPoints.Count != 0)
@@ -88,7 +88,7 @@ namespace SpaceFist.Entities
                    }
                }
            }
-           base.Update(time);
+           base.Update();
        }
            
     }

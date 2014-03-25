@@ -54,20 +54,20 @@ namespace SpaceFist.Managers
             ship.Initialize();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             if (ship.Alive)
             {
-                ship.Update(gameTime);
+                ship.Update();
 
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw()
         {
             if (ship.Alive)
             {
-                ship.Draw(gameTime);
+                ship.Draw();
             }
         }
 

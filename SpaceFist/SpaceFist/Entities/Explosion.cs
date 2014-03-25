@@ -31,7 +31,7 @@ namespace SpaceFist.Entities
             Velocity = new Vector2(0, 0);
         }
 
-        public override void Update(GameTime time)
+        public override void Update()
         {
             var indexedSprite = (IndexedSprite) graphics;
 
@@ -50,7 +50,7 @@ namespace SpaceFist.Entities
                 Alive = false;
             }
 
-            base.Update(time);
+            base.Update();
         }
     }
 }

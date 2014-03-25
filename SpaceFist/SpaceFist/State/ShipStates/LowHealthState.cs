@@ -22,7 +22,7 @@ namespace SpaceFist.State.ShipStates
 
             if (Ship.Health <= 0)
             {
-                Ship.setState(new SpawningState(Ship));
+                Ship.State = new SpawningState(Ship);
             }
         }
 
