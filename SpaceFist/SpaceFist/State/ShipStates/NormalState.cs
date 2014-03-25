@@ -10,7 +10,7 @@ namespace SpaceFist.State.ShipStates
 
     class NormalState : ShipState
     {
-        private const float LowHealthThreshold = .20f;
+        private const float LowHealthThreshold = .40f;
 
         private Ship ship { get; set; }
 
@@ -21,7 +21,7 @@ namespace SpaceFist.State.ShipStates
 
         public void Update()
         {
-            if (ship.Health < LowHealthThreshold)
+            if (ship.Health <= LowHealthThreshold)
             {
                 ship.setState(new LowHealthState(ship));
             } 
