@@ -20,7 +20,8 @@ namespace SpaceFist
 
         public void setState(ShipState state)
         {
-            state.ExitingState();
+            State.ExitingState();
+
             state.EnteringState();
             this.State = state;
         }
@@ -59,7 +60,9 @@ namespace SpaceFist
             indexedSprite = (IndexedSprite) graphics;
             HealthPoints = 100;
 
-            setState(new SpawningState(this));
+            
+            State = new SpawningState(this);
+            State.EnteringState();
         }
 
         public override void Update(GameTime time)

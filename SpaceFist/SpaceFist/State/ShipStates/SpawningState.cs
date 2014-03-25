@@ -9,7 +9,7 @@ namespace SpaceFist.State.ShipStates
 {
     class SpawningState : ShipState
     {
-        private const int SpawnTime = 30;
+        private const int SpawnTime = 2;
 
         private Ship Ship { get; set; }
 
