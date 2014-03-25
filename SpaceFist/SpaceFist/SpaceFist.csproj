@@ -46,6 +46,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>false</XnaCompressContent>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>SpaceFistRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -91,6 +93,7 @@
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Entities\SpaceBlock.cs" />
     <Compile Include="FuzzyLogicEnabled.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Managers\BlockManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\ExplosionManager.cs" />
@@ -101,6 +104,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="State\Abstract\GameState.cs" />
     <Compile Include="State\Abstract\ShipState.cs" />
+    <Compile Include="State\Abstract\State.cs" />
+    <Compile Include="State\Abstract\StateMachine.cs" />
     <Compile Include="State\GameOverState.cs" />
     <Compile Include="State\InPlayState.cs" />
     <Compile Include="State\ShipStates\LowHealthState.cs" />

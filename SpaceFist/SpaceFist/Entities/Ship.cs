@@ -10,21 +10,27 @@ using SpaceFist.State.ShipStates;
 
 namespace SpaceFist  
 {
-    public class Ship : GameObject
+    public class Ship : GameObject, StateMachine<ShipState>
     {
-        private ShipState State { get; set; }
+        private ShipState state;
 
         private const int maxHealthPoints = 100;
-        
-        public int HealthPoints { get; set; }
 
-        public void setState(ShipState state)
+        public ShipState State
         {
-            State.ExitingState();
-
-            state.EnteringState();
-            this.State = state;
+            get
+            {
+                return state;
+            }
+            set
+            {
+                state.ExitingState();
+                value.EnteringState();
+                state = value;
+            }
         }
+
+        public int HealthPoints { get; set; }
 
         public float Health
         {
@@ -61,14 +67,14 @@ namespace SpaceFist
             HealthPoints = 100;
 
             
-            State = new SpawningState(this);
-            State.EnteringState();
+            state = new SpawningState(this);
+            state.EnteringState();
         }
 
-        public override void Update(GameTime time)
+        public override void Update()
         {
             State.Update();
-            base.Update(time);
+            base.Update();
         }
         public void Fire()
         {

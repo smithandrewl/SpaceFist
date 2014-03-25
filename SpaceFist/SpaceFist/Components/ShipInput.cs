@@ -15,7 +15,7 @@ namespace SpaceFist.Components
         private bool aDown     = false;
         private bool dDown     = false;
 
-        public void Update(Game game, GameObject obj, Microsoft.Xna.Framework.GameTime time)
+        public void Update(Game game, GameObject obj)
         {
             var ship = (Ship) obj;
             KeyboardState keys = Keyboard.GetState();

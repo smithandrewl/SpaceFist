@@ -22,7 +22,7 @@ namespace SpaceFist.State
         BlockManager     blockManager;
         LaserManager     laserManager;
         ExplosionManager explosionManager;
-        PlayerManager      shipManager;
+        PlayerManager    shipManager;
         CollisionManager collisionManager;
 
         public InPlayState(Game game)
@@ -56,7 +56,7 @@ namespace SpaceFist.State
             shipManager.Initialize();
         }
 
-        public void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public void Update()
         {
             if (shipManager.Alive)
             {
@@ -76,18 +76,15 @@ namespace SpaceFist.State
 
                 WrapOffScreen(shipManager.Ship);
 
-                laserManager.Update(gameTime);
-                blockManager.Update(gameTime);
-                explosionManager.Update(gameTime);
-
-
-                collisionManager.Update(gameTime);
-
-                shipManager.Update(gameTime);
+                laserManager.Update();
+                blockManager.Update();
+                explosionManager.Update();
+                collisionManager.Update();
+                shipManager.Update();
             }
             else
             {
-                game.SetState(game.GameOverState);
+                game.State = game.GameOverState;
             }
         }
 
@@ -109,12 +106,12 @@ namespace SpaceFist.State
             var color = Color.Ivory;
 
              // Draw the entities
-            explosionManager.Draw(gameTime);
-            blockManager.Draw(gameTime);
-            laserManager.Draw(gameTime);
-            collisionManager.Draw(gameTime);
+            explosionManager.Draw();
+            blockManager.Draw();
+            laserManager.Draw();
+            collisionManager.Draw();
 
-            shipManager.Draw(gameTime);
+            shipManager.Draw();
             // Write the score to the screen
             game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
             game.SpriteBatch.Draw(game.HudTexture, new Rectangle(0, 0, game.HudTexture.Width, game.HudTexture.Height), Color.White);        }

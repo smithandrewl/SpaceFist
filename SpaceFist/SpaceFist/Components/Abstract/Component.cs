@@ -8,6 +8,6 @@ namespace SpaceFist.Components.Abstract
 {
     public interface Component
     {
-        void Update(Game game, GameObject obj, GameTime time);
+        void Update(Game game, GameObject obj);
     }
 }

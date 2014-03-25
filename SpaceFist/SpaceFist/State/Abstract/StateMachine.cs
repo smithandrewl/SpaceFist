@@ -5,5 +5,8 @@ using System.Text;
 
 namespace SpaceFist.State.Abstract
 {
-    public interface ShipState : State { }
+    public interface StateMachine<T>
+    {
+        T State { get; set; }
+    }
 }
