@@ -33,7 +33,7 @@ namespace SpaceFist.State
 
             if (keys.IsKeyDown(Keys.Enter))
             {
-                game.State = game.SplashScreenState;
+                game.CurrentState = game.SplashScreenState;
             }
         }
 

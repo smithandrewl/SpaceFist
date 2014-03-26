@@ -10,13 +10,21 @@ using SpaceFist.State.ShipStates;
 
 namespace SpaceFist  
 {
-    public class Ship : GameObject, StateMachine<ShipState>
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Ship : Entity, StateMachine<ShipState>
     {
+        /// <summary>
+        /// The current behavior of the ship
+        /// 
+        /// The current states are spawning, normal and low health
+        /// </summary>
         private ShipState state;
 
         private const int maxHealthPoints = 100;
 
-        public ShipState State
+        public ShipState CurrentState
         {
             get
             {
@@ -29,9 +37,14 @@ namespace SpaceFist
                 state = value;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int HealthPoints { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public float Health
         {
             get
@@ -49,11 +62,17 @@ namespace SpaceFist
 
         private IndexedSprite indexedSprite;
 
+        // The predefined velocities to use when changing position
         private Vector2 LeftVelocity     = new Vector2(-1, 0); 
         private Vector2 RightVelocity    = new Vector2(1, 0);
         private Vector2 ForwardVelocity  = new Vector2(0, -1);
         private Vector2 BackwardVelocity = new Vector2(0, 1);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="position"></param>
         public Ship(Game game, Vector2 position)
             : base(game, 
                    new Rectangle((int)position.X, (int)position.Y, Width, Height),
@@ -71,23 +90,36 @@ namespace SpaceFist
             state.EnteringState();
         }
 
+        /// <summary>
+        /// Updates the ship
+        /// </summary>
         public override void Update()
         {
-            State.Update();
+            CurrentState.Update();
             base.Update();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void Fire()
         {
             Game.InPlayState.fireLaser((int) (X + (Width / 2) - (20 * game.ScreenScale)), (int) ((Y - (35 * game.ScreenScale))));  
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Reset()
         {
+            // This causes the ship to be drawn in its default state (not turning left or right)
             indexedSprite.Index = AtRestIndex;
         }
 
-        // Changes the velocity by "velocity" and then clamps the value between the minimum and maximum velocities
-        // allowed
+        /// <summary>
+        /// Changes the velocity by "velocity" and then clamps the value between the minimum and maximum velocities
+        /// allowed.
+        /// </summary>
         private void IncrementVelocity(Vector2 velocity)
         {
             var xVel = MathHelper.Clamp(Velocity.X + velocity.X, -MaxVelocity, MaxVelocity);
@@ -96,27 +128,51 @@ namespace SpaceFist
             Velocity = new Vector2(xVel, yVel);
         }
 
+        /// <summary>
+        /// Causes the ship to move to the left.
+        /// </summary>
         public void Left()
         {
+            // This tells indexedSprite to draw the ship turning left
             indexedSprite.Index = LeftIndex;
+
+            // Change to a left moving velocity
             IncrementVelocity(LeftVelocity);
         }
 
+        /// <summary>
+        /// Causes the ship to move to the right.
+        /// </summary>
         public void Right()
         {
+            // This tells indexedSprite to draw the ship turning right
             indexedSprite.Index = RightIndex;
-            IncrementVelocity(RightVelocity); ;
+
+            // Change to a right moving velocity
+            IncrementVelocity(RightVelocity);
         }
 
+        /// <summary>
+        /// Causes the ship to move forward
+        /// </summary>
         public void Forward()
         {
+            // This tells indexedSprite to draw the ship normally (not turning)
             indexedSprite.Index = AtRestIndex;
+
+            // Change to a forward moving velocity
             IncrementVelocity(ForwardVelocity);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Backward()
         {
+            // This tells indexedSprite to draw the ship normally (not turning)
             indexedSprite.Index = AtRestIndex;
+
+            // Change to a backwards moving velocity
             IncrementVelocity(BackwardVelocity);
         }
     }

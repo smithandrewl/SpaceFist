@@ -46,7 +46,7 @@ namespace SpaceFist.Managers
             lasers.Add(laser);
         }
 
-        public IEnumerable<Laser> Collisions(GameObject obj)
+        public IEnumerable<Laser> Collisions(Entity obj)
         {
             var collisions = 
                 from  laser in lasers

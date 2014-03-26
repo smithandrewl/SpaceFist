@@ -22,12 +22,12 @@ namespace SpaceFist
             image = texture;
         }
 
-        public void Update(Game game, GameObject obj) 
+        public void Update(Game game, Entity obj) 
         {
             
         }
 
-        public void Draw(Game game, GameObject obj) 
+        public void Draw(Game game, Entity obj) 
         {
             var spriteBatch = game.SpriteBatch;
 

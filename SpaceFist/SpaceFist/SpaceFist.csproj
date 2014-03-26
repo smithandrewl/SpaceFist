@@ -86,7 +86,7 @@
     <Compile Include="Components\Sound.cs" />
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Explosion.cs" />
-    <Compile Include="Entities\GameObject.cs" />
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Components\Physics.cs" />
     <Compile Include="Entities\Laser.cs" />
     <Compile Include="Entities\Ship.cs" />
@@ -156,7 +156,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <None Include="Diagrams\Components.cd" />
+    <None Include="Diagrams\GameStates.cd" />
+    <None Include="Diagrams\Overview.dgml" />
+    <None Include="Diagrams\Managers.cd" />
+    <None Include="Diagrams\ShipStates.cd" />
+    <None Include="Diagrams\StateMachineInterfaces.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

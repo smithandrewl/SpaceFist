@@ -24,7 +24,7 @@ namespace SpaceFist.Components
             soundEffect.Play();
         }
 
-        public void Update(Game game, GameObject obj)
+        public void Update(Game game, Entity obj)
         {
         }
     }

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="BlockManager" Bounds="585.552805392997,-110.142619628344,95.6199999999999,25.96" />
+    <Node Id="CollisionManager" Bounds="460.867319349703,1.77739761408788,112.296666666667,25.96" />
+    <Node Id="Component" Bounds="369.392364664266,252.184916771441,82.7541060874739,25.9600000025708" Label="Component" />
+    <Node Id="Components" Bounds="349.392364664266,100.19199603298,449.902639612342,421.952829453421" Group="Expanded" LayoutSettings="LeftToRight" UseManualLocation="True" />
+    <Node Id="Enemy" Bounds="15.187282387729,-112.79991935308,55.28,25.96" />
+    <Node Id="Entities" Bounds="-54.224878867154,-152.813515611958,254.383241177134,199.604547675063" Group="Expanded" LayoutSettings="ForceDirected" UseManualLocation="True" />
+    <Node Id="EntityManagers" Bounds="440.867319349703,-150.142820659872,287.014085693359,197.880224871826" Group="Expanded" Label="Entity Managers" LayoutSettings="LeftToRight" UseManualLocation="True" />
+    <Node Id="Explosion" Bounds="-34.2068407405263,-56.6170275073769,70.3866666666668,25.96" />
+    <Node Id="ExplosionManager" Bounds="590.286305962659,-54.1823992914297,117.683333333333,25.96" />
+    <Node Id="GameObject" Bounds="66.1437496728852,-56.8622820239785,50,25.96" Label="Entity" />
+    <Node Id="GameOverState" Bounds="180.080362040202,191.725359611835,103.086666666667,25.96" />
+    <Node Id="GameState" Bounds="65.4570297749837,247.725359611835,77.8433333333334,25.96" />
+    <Node Id="GraphicsComponent" Bounds="482.132701602859,420.181323327902,128.703333333333,25.96" Label="GraphicsComponent" />
+    <Node Id="InPlayState" Bounds="192.417043965658,247.725359611835,78.4133333333333,25.96" />
+    <Node Id="IndexedSprite" Bounds="663.530834130529,476.181323327902,93.0266666666666,25.9599999999999" Label="IndexedSprite" />
+    <Node Id="InputComponent" Bounds="491.140841454747,308.184924402121,110.696666666667,25.96" Label="InputComponent" />
+    <Node Id="Laser" Bounds="108.230663735385,-0.902275310111293,50,25.96" />
+    <Node Id="LaserManager" Bounds="460.956104139742,-110.142627257738,94.5966666666666,25.96" />
+    <Node Id="LowHealthState" Bounds="180.168680114746,415.725359611835,102.91,25.96" />
+    <Node Id="NormalState" Bounds="188.413687744141,359.725359611835,86.4200000000001,25.96" />
+    <Node Id="NullInputComponent" Bounds="643.913036278966,364.184954919699,132.276666666667,25.96" Label="NullInputComponent" />
+    <Node Id="NullSoundComponent" Bounds="640.848771549149,140.19209603298,138.433333333333,25.96" Label="NullSoundComponent" />
+    <Node Id="Physics" Bounds="681.08190509407,252.188494958761,57.9533333333334,25.9600000000001" Label="Physics" />
+    <Node Id="PhysicsComponent" Bounds="486.115449609044,252.186702051047,120.756666666667,25.9600000000001" Label="PhysicsComponent" />
+    <Node Id="PlayerManager" Bounds="460.955556044039,-54.1826129144766,99.2866666666669,25.96" />
+    <Node Id="Ship" Bounds="28.262829262729,0.833442463326207,50,25.96" />
+    <Node Id="ShipInput" Bounds="674.547156152013,308.186709680441,71.0166666666667,25.96" />
+    <Node Id="ShipState" Bounds="69.3720412190755,303.725359611835,70.0133333333333,25.96" />
+    <Node Id="Sound" Bounds="683.036379377925,196.19031075466,54.05,25.96" Label="Sound" />
+    <Node Id="SoundComponent" Bounds="488.071877017898,196.188517846945,116.853333333333,25.96" Label="SoundComponent" />
+    <Node Id="SpaceBlock" Bounds="100.375911945021,-112.79991935308,79.6766666666667,25.96" />
+    <Node Id="SpawningState" Bounds="182.298687744141,303.725359611835,98.6500000000001,25.96" />
+    <Node Id="SplashScreenState" Bounds="173.300362040202,135.725359611835,116.646666666667,25.96" />
+    <Node Id="Sprite" Bounds="684.622371809565,420.183123865011,50.8499999999999,25.96" Label="Sprite" />
+    <Node Id="State" Bounds="-14.54296875,247.72535198244,50,25.96" />
+    <Node Id="StateMachine" Bounds="-136.622977294922,247.72535198244,92.0799999999999,25.96" />
+    <Node Id="States" Bounds="-156.622966625508,95.7252569531064,466.57,365.9602" Group="Expanded" LayoutSettings="LeftToRight" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="Component" Target="GraphicsComponent" Bounds="421.249206542969,278.148345947266,109.108581542969,135.039154052734" />
+    <Link Source="Component" Target="InputComponent" Bounds="442.224273681641,278.148345947266,64.4944763183594,26.6073913574219" />
+    <Link Source="Component" Target="PhysicsComponent" Bounds="452.142181396484,265.168365478516,24.9754028320313,0" />
+    <Link Source="Component" Target="SoundComponent" Bounds="442.224273681641,225.581008911133,64.4944763183594,26.6073760986328" />
+    <Link Source="Components" Target="Component" Category="Contains" />
+    <Link Source="Components" Target="GraphicsComponent" Category="Contains" />
+    <Link Source="Components" Target="IndexedSprite" Category="Contains" />
+    <Link Source="Components" Target="InputComponent" Category="Contains" />
+    <Link Source="Components" Target="NullInputComponent" Category="Contains" />
+    <Link Source="Components" Target="NullSoundComponent" Category="Contains" />
+    <Link Source="Components" Target="Physics" Category="Contains" />
+    <Link Source="Components" Target="PhysicsComponent" Category="Contains" />
+    <Link Source="Components" Target="ShipInput" Category="Contains" />
+    <Link Source="Components" Target="Sound" Category="Contains" />
+    <Link Source="Components" Target="SoundComponent" Category="Contains" />
+    <Link Source="Components" Target="Sprite" Category="Contains" />
+    <Link Source="Entities" Target="Enemy" Category="Contains" />
+    <Link Source="Entities" Target="Explosion" Category="Contains" />
+    <Link Source="Entities" Target="GameObject" Category="Contains" />
+    <Link Source="Entities" Target="Laser" Category="Contains" />
+    <Link Source="Entities" Target="Ship" Category="Contains" />
+    <Link Source="Entities" Target="SpaceBlock" Category="Contains" />
+    <Link Source="EntityManagers" Target="BlockManager" Category="Contains" />
+    <Link Source="EntityManagers" Target="CollisionManager" Category="Contains" />
+    <Link Source="EntityManagers" Target="ExplosionManager" Category="Contains" />
+    <Link Source="EntityManagers" Target="LaserManager" Category="Contains" />
+    <Link Source="EntityManagers" Target="PlayerManager" Category="Contains" />
+    <Link Source="GameObject" Target="Enemy" Bounds="59.9116024361489,-80.0501167238322,20.0503861934449,23.187955777659" />
+    <Link Source="GameObject" Target="Explosion" Bounds="45.165654733325,-43.8187723978445,21.0086132668654,0.0545038345707951" />
+    <Link Source="GameObject" Target="Laser" Bounds="100.956149989243,-30.9051540788948,17.1711929357649,22.8061122035326" />
+    <Link Source="GameObject" Target="Ship" Bounds="66.750056265539,-30.9051540788948,15.90701176227,24.2103877308771" />
+    <Link Source="GameObject" Target="SpaceBlock" Bounds="102.581380466349,-80.0953156575334,20.4020891773092,23.2331547113602" />
+    <Link Source="GameState" Target="GameOverState" Bounds="133.872268676758,221.310668945313,60.0203094482422,26.4146881103516" />
+    <Link Source="GameState" Target="InPlayState" Bounds="143.300369262695,260.705352783203,40.1166687011719,0" />
+    <Link Source="GameState" Target="SplashScreenState" Bounds="117.606201171875,167.049087524414,89.30126953125,80.67626953125" />
+    <Link Source="GraphicsComponent" Target="IndexedSprite" Bounds="584.417724609375,446.148223876953,79.2345581054688,27.1247863769531" />
+    <Link Source="GraphicsComponent" Target="Sprite" Bounds="610.858764648438,433.168212890625,64.797119140625,0" />
+    <Link Source="InputComponent" Target="NullInputComponent" Bounds="584.417724609375,334.148315429688,79.2345581054688,27.1248168945313" />
+    <Link Source="InputComponent" Target="ShipInput" Bounds="601.854736328125,321.168334960938,63.7169799804688,0" />
+    <Link Source="PhysicsComponent" Target="Physics" Bounds="606.885131835938,265.168365478516,65.2188110351563,0" />
+    <Link Source="ShipState" Target="LowHealthState" Bounds="119.12548828125,329.685363769531,90.9956512451172,80.0935974121094" />
+    <Link Source="ShipState" Target="NormalState" Bounds="133.872268676758,329.685363769531,60.0203094482422,26.4146728515625" />
+    <Link Source="ShipState" Target="SpawningState" Bounds="139.385360717773,316.705352783203,33.9133453369141,0" />
+    <Link Source="SoundComponent" Target="NullSoundComponent" Bounds="584.417724609375,169.063613891602,79.2345581054688,27.1248168945313" />
+    <Link Source="SoundComponent" Target="Sound" Bounds="604.933288574219,209.168426513672,69.1224365234375,0" />
+    <Link Source="State" Target="GameState" Bounds="35.4570350646973,260.705352783203,21,0" />
+    <Link Source="State" Target="ShipState" Bounds="32.226734161377,273.685363769531,42.652042388916,25.430908203125" />
+    <Link Source="StateMachine" Target="State" Bounds="-44.5429649353027,260.705352783203,20.9999980926514,0" />
+    <Link Source="States" Target="GameOverState" Category="Contains" />
+    <Link Source="States" Target="GameState" Category="Contains" />
+    <Link Source="States" Target="InPlayState" Category="Contains" />
+    <Link Source="States" Target="LowHealthState" Category="Contains" />
+    <Link Source="States" Target="NormalState" Category="Contains" />
+    <Link Source="States" Target="ShipState" Category="Contains" />
+    <Link Source="States" Target="SpawningState" Category="Contains" />
+    <Link Source="States" Target="SplashScreenState" Category="Contains" />
+    <Link Source="States" Target="State" Category="Contains" />
+    <Link Source="States" Target="StateMachine" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LayoutSettings" DataType="Microsoft.VisualStudio.Diagrams.View.GroupLayoutStyle" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>

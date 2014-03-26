@@ -142,7 +142,7 @@ namespace SpaceFist
             base.Draw(gameTime);
         }
 
-        public GameState State
+        public GameState CurrentState
         {
             get
             {

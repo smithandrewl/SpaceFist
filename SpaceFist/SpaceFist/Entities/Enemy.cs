@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SpaceFist.Entities
 {
-    public class Enemy : GameObject
+    public class Enemy : Entity
     {
        
        public  const int WIDTH       = 60;

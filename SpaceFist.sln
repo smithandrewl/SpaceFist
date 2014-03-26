@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceFistContent", "SpaceFi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4EB4EAF7-4DAC-4EBE-90FE-8E8A81E33997}"
 	ProjectSection(SolutionItems) = preProject
+		SpaceFist\Overview.docx = SpaceFist\Overview.docx
 		Performance1.psess = Performance1.psess
 		Todo.txt = Todo.txt
 	EndProjectSection

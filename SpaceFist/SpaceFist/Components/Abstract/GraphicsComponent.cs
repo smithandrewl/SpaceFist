@@ -8,6 +8,6 @@ namespace SpaceFist.Components.Abstract
 {
     public interface GraphicsComponent : Component
     {
-        void Draw(Game game, GameObject obj);
+        void Draw(Game game, Entity obj);
     }
 }

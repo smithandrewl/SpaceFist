@@ -23,7 +23,7 @@ namespace SpaceFist.State.ShipStates
         {
             if (ship.Health <= LowHealthThreshold)
             {
-                ship.State = new LowHealthState(ship);
+                ship.CurrentState = new LowHealthState(ship);
             } 
         }
 

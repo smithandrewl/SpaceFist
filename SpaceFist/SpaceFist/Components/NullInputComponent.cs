@@ -9,7 +9,7 @@ namespace SpaceFist.Components
     // For use by entities that do not use input
     public class NullInputComponent : InputComponent
     {
-        public void Update(Game game, GameObject obj)
+        public void Update(Game game, Entity obj)
         {
         }
     }

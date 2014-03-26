@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Ship is a state machine.  Its current state is obtained or set using the State property.  Its states must be implement ShipState.">
+    <Position X="0.906" Y="1.312" Height="1.427" Width="1.919" />
+  </Comment>
+  <Comment CommentText="The starting state is SpawningState.  Each state can operate on the ship or switch to another state.">
+    <Position X="3.177" Y="2.427" Height="0.75" Width="3.085" />
+  </Comment>
+  <Comment CommentText="During the spawning state the ship will fade-in from invisible to visible.  After two seconds, the state will switch to the Normal State">
+    <Position X="2.396" Y="6.688" Height="0.833" Width="2.523" />
+  </Comment>
+  <Comment CommentText="During the normal state the ship waits until its health is low and then switches to the low health state.">
+    <Position X="5.25" Y="6.677" Height="1.042" Width="2.242" />
+  </Comment>
+  <Comment CommentText="During the low health state the ship will flash red.">
+    <Position X="7.698" Y="6.052" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="SpaceFist.State.ShipStates.LowHealthState" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>State\ShipStates\LowHealthState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceFist.State.ShipStates.SpawningState" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAwAAAAAAAA=</HashCode>
+      <FileName>State\ShipStates\SpawningState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceFist.Ship" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <AssociationLine Name="state" Type="SpaceFist.State.Abstract.ShipState">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.897" Y="0.6" Height="0.182" Width="0.583" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAwACACARgCgDAAAAAAAAGAAAgAEgAAECACAAQAwAAI=</HashCode>
+      <FileName>Entities\Ship.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="state" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.State.ShipStates.NormalState">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAACAAAAAAAAAAAAgAgAAAAAAAA=</HashCode>
+      <FileName>State\ShipStates\NormalState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="SpaceFist.State.Abstract.ShipState" Collapsed="true">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\Abstract\ShipState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SpaceFist.State.Abstract.State">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>State\Abstract\State.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -44,7 +44,7 @@ namespace SpaceFist.State
             {
                 if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
                 {
-                    game.State = game.InPlayState;
+                    game.CurrentState = game.InPlayState;
                 }
             }
         }

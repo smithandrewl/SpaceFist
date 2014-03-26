@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SpaceFist.Entities
 {
-    class Laser : GameObject
+    class Laser : Entity
     {
         private const int Width  = 26;
         private const int Height = 47;

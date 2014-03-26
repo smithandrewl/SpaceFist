@@ -35,7 +35,7 @@ namespace SpaceFist.State.ShipStates
 
             if (elapsed > SpawnTime)
             {
-                Ship.State = new NormalState(Ship);
+                Ship.CurrentState = new NormalState(Ship);
             }
         }
 

@@ -15,7 +15,7 @@ namespace SpaceFist.State
     {
         Random rand = new Random();
 
-        // GameObject Derived 
+        // Entity Derived 
         Game game;
 
         // Entity Managers
@@ -84,7 +84,7 @@ namespace SpaceFist.State
             }
             else
             {
-                game.State = game.GameOverState;
+                game.CurrentState = game.GameOverState;
             }
         }
 
@@ -127,7 +127,7 @@ namespace SpaceFist.State
 
         // If the specified game object has left the screen,
         // wrap it around
-        private void WrapOffScreen(GameObject obj)
+        private void WrapOffScreen(Entity obj)
         {
             var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
 

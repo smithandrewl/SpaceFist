@@ -26,7 +26,7 @@ namespace SpaceFist.Components
         }
 
         
-        public void Draw(Game game, GameObject obj)
+        public void Draw(Game game, Entity obj)
         {
             var sourceRect  = new Rectangle(Index * width, 0, width, height);
             var spriteBatch = game.SpriteBatch;
@@ -39,7 +39,7 @@ namespace SpaceFist.Components
                              game.ScreenScale, SpriteEffects.None, 0);
         }
 
-        public void Update(Game game, GameObject obj)
+        public void Update(Game game, Entity obj)
         {
 
         }

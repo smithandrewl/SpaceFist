@@ -68,7 +68,7 @@ namespace SpaceFist.Managers
 
         // If the specified game object has left the screen,
         // wrap it around
-        private void WrapOffScreen(GameObject obj)
+        private void WrapOffScreen(Entity obj)
         {
 
             if (obj.X > screen.Width) obj.X = 0;
@@ -99,7 +99,7 @@ namespace SpaceFist.Managers
 
         }
 
-        public IEnumerable<SpaceBlock> collisions(GameObject obj)
+        public IEnumerable<SpaceBlock> collisions(Entity obj)
         {
             var collisions = 
                 from   block in blocks 

@@ -8,7 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceFist.Entities
 {
-    public class SpaceBlock : GameObject
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SpaceBlock : Entity
     {
         private const int Width  = 80;
         private const int Height = 60;

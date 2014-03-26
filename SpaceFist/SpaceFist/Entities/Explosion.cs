@@ -10,7 +10,7 @@ namespace SpaceFist.Entities
     // Represents an explosion
     // Draws an animation using an IndexedSprite and sprite sheet
     // The object is killed after the animation finishes
-    class Explosion : GameObject
+    class Explosion : Entity
     {
         private const int height = 122;
         private const int width  = 122;
