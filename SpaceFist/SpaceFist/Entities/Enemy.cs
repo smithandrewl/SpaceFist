@@ -10,12 +10,16 @@ namespace SpaceFist.Entities
     public class Enemy : Entity
     {
        
+       // The dimensions of the enemy
        public  const int WIDTH       = 60;
-       public  const int HEIGHT      = 133;
+       public const int HEIGHT       = 133;
+
+       // The frames to use from the spritesheet
        private const int LeftIndex   = 0;
        private const int AtRestIndex = 4;
        private const int RightIndex  = 7;
 
+       // A list of waypoints to follow (hardcoded for now)
        protected List<Vector2> wayPoints = new List<Vector2> { 
            new Vector2(100, 100), 
            new Vector2(150, 150), 
@@ -54,26 +58,36 @@ namespace SpaceFist.Entities
            {
                var wayPoint = wayPoints[0];
               
+               // If the enemy is close to the waypoint, remove the way point
+               // and draw the enemy at rest.
                if(Near(X, Y, (int) wayPoint.X, (int) wayPoint.Y)) {
                    wayPoints.Remove(wayPoint);
                    ((IndexedSprite)graphics).Index = AtRestIndex;
                }
                else
                {
+
+                   // The line of sight vector
                    var direction = (wayPoint - new Vector2(X, Y));
 
+                   // The rotation of the ship needed for it to face in the direction of the next waypoint
                    var destRotation = (float) -(Math.Atan(direction.Y / direction.X));
 
+                   // rotate to the line of sight
                    if (Rotation < destRotation)
                        Rotation += .03f;
                    else if (Rotation > destRotation)
                        Rotation-= .03f;
 
+                   // Convert the direction to a unit vector
                    direction.Normalize();
 
+                   // Calculate a velocity to move along the line of sight at a magnitude of 5
                    Velocity = direction * 5;
 
                    var indexedSprite = (IndexedSprite) graphics;
+
+                   // Draw the enemy ship according to how it is moving
                    if (direction.X < 0)
                    {
                        indexedSprite.Index = LeftIndex;

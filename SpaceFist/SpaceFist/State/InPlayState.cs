@@ -15,10 +15,9 @@ namespace SpaceFist.State
     {
         Random rand = new Random();
 
-        // Entity Derived 
         Game game;
 
-        // Entity Managers
+        // The entity managers used by this state (all of them)
         BlockManager     blockManager;
         LaserManager     laserManager;
         ExplosionManager explosionManager;
@@ -46,11 +45,14 @@ namespace SpaceFist.State
         {
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
-            // Start the ship at the bottom in the center of the screen
+            // Tell the ship manager to spawn the ship
             shipManager.Spawn();
+
+            // Since the game states are reused, clear the score and lives
             shipManager.ResetLives();
             shipManager.ResetScore();
 
+            // Spawn blocks to the screen
             blockManager.SpawnBlocks(35);
 
             shipManager.Initialize();
@@ -68,14 +70,9 @@ namespace SpaceFist.State
                 }
 
                 var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
-
-
-                var blocksToRemove = new List<SpaceBlock>();
-
-                blocksToRemove.ForEach(block => blockManager.Remove(block));
-
                 WrapOffScreen(shipManager.Ship);
 
+                // Tell the entity managers to update
                 laserManager.Update();
                 blockManager.Update();
                 explosionManager.Update();

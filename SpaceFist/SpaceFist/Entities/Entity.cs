@@ -27,7 +27,6 @@ namespace SpaceFist
     /// itself in multiple ways (each frame of the explosion or when the ship turns).
     /// 
     /// As much as possible, the Entity class contains data about the entity, while the components operate on the data.
-    /// 
     /// </summary>
     public class Entity
     {
@@ -38,9 +37,6 @@ namespace SpaceFist
         protected GraphicsComponent  graphics;
         protected SoundComponent     sound;
 
-        /// <summary>
-        /// 
-        /// </summary>
         public Vector2 Velocity { get; set; }
         
         /// <summary>
@@ -84,17 +80,11 @@ namespace SpaceFist
             set { rectangle = value; }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public Game Game
         {
             get { return game; }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="game"></param>
         /// <param name="rectangle"></param>
         /// <param name="physics">The physics component to use</param>
@@ -123,16 +113,13 @@ namespace SpaceFist
             Tint = Color.White;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public virtual void Initialize()
         {
 
         }
 
         /// <summary>
-        /// 
+        /// If the ship is alive, update all of its components
         /// </summary>
         public virtual void Update()
         {
@@ -146,7 +133,7 @@ namespace SpaceFist
         }
 
         /// <summary>
-        /// 
+        /// If the ship is alive, call draw on its graphics component
         /// </summary>
         public virtual void Draw()
         {

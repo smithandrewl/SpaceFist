@@ -10,6 +10,7 @@ using SpaceFist.Components.Abstract;
 
 namespace SpaceFist.Components
 {
+    // Simple component to play a sound
     class Sound : SoundComponent
     {
         SoundEffect soundEffect;

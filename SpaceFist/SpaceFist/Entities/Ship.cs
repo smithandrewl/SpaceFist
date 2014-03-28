@@ -53,11 +53,18 @@ namespace SpaceFist
             }
         }
 
+        // The dimensions of the ship
         private const int Width       = 60;
         private const int Height      = 133;
+
+        // The frame of the sprite sheet (ShipSheet.png) to draw
+        // Frame 0 is the ship turning left
+        // Frame 4 is the ship in its normal state
+        // Frame 7 is the ship turning right
         private const int LeftIndex   = 0;
         private const int AtRestIndex = 4;
         private const int RightIndex  = 7;
+
         private const int MaxVelocity = 20;
 
         private IndexedSprite indexedSprite;
@@ -85,7 +92,7 @@ namespace SpaceFist
             indexedSprite = (IndexedSprite) graphics;
             HealthPoints = 100;
 
-            
+            // Start the ship in the spawning state
             state = new SpawningState(this);
             state.EnteringState();
         }
@@ -99,17 +106,11 @@ namespace SpaceFist
             base.Update();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Fire()
         {
             Game.InPlayState.fireLaser((int) (X + (Width / 2) - (20 * game.ScreenScale)), (int) ((Y - (35 * game.ScreenScale))));  
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Reset()
         {
             // This causes the ship to be drawn in its default state (not turning left or right)
@@ -164,9 +165,6 @@ namespace SpaceFist
             IncrementVelocity(ForwardVelocity);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Backward()
         {
             // This tells indexedSprite to draw the ship normally (not turning)

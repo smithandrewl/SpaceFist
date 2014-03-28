@@ -9,6 +9,9 @@ namespace SpaceFist.Managers
 {
     class CollisionManager
     {
+        // These are references to existing managers,
+        // this class needs to get information about the explosions, blocks, lasers and the player
+        // in order to determine if a collision has occurred.
         private ExplosionManager explosionManager;
         private BlockManager     blockManager;
         private LaserManager     laserManager;
@@ -38,6 +41,7 @@ namespace SpaceFist.Managers
 
         public void HandleLaserRockCollisions()
         {
+            // Blocks which have collided with a laser
             var blocksToRemove = new List<SpaceBlock>();
             foreach (var laser in laserManager)
             {
@@ -60,11 +64,13 @@ namespace SpaceFist.Managers
 
                 }
             }
+            // Tell the block manager to remove the blocks involved in the collision.
             blocksToRemove.ForEach(block => blockManager.Remove(block));
         }
 
         public void HandleShipRockCollisions()
         {
+            // Blocks which have collided with the ship
             var blocksToRemove = new List<SpaceBlock>();
 
             //  Update blocks
@@ -74,11 +80,14 @@ namespace SpaceFist.Managers
                 if (shipManager.Alive)
                 {
                     var ship = shipManager.Ship;
+
                     // Create an explosion at the coordinates of the block
                     explosionManager.add(block.X, block.Y);
 
+                    // Notify the ship manager that the ship has been hit
                     shipManager.ShipHit();
 
+                    // If the ship died, add an explosion where the ship was
                     if (!shipManager.Alive)
                     {
                         explosionManager.add(ship.X, ship.Y);
@@ -90,6 +99,7 @@ namespace SpaceFist.Managers
                 }
             }
 
+            // Tell the block manager to remove the blocks involved in the collision
             blocksToRemove.ForEach(block => blockManager.Remove(block));
         }
     }
