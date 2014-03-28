@@ -9,12 +9,19 @@ using System.Text;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// When the game is in the splash screen state
+    /// it draws the splash screen and waits for the player to press enter.
+    /// 
+    /// When the player presses enter the game switchs to the in-play state which is the state
+    /// where the game play takes place.
+    /// </summary>
     public class SplashScreenState : GameState
     {
         Game      game;
         Texture2D overlayTexture;
         Rectangle overlayRect;
-        DateTime enteredAt;
+        DateTime  enteredAt;
 
         public SplashScreenState(Game game)
         {
@@ -39,7 +46,8 @@ namespace SpaceFist.State
         {
             KeyboardState keyboardState = Keyboard.GetState();
 
-
+            // This waits 300 milliseconds after the splash screen state has been entered
+            // before processing input.             
             if(keyboardState.IsKeyDown(Keys.Enter))
             {
                 if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)

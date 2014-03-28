@@ -8,6 +8,9 @@ using System.Text;
 
 namespace SpaceFist.State
 {
+    // GameOverState draws the game over message until the player
+    // hits enter.  When the player hits enter, the player is taken to to the
+    // starting splash screen.
     public class GameOverState : GameState
     {
         private Game game;
@@ -39,6 +42,7 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
+            // Draw the game over image
             game.SpriteBatch.Draw(game.GameOverTexture, game.BackgroundRect, Color.White);
         }
 

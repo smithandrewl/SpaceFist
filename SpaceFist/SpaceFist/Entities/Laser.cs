@@ -28,6 +28,7 @@ namespace SpaceFist.Entities
             Velocity = new Vector2(0, -Speed);
         }
 
+        // Plays a firing noise on the first update
         public override void Update() {
             var sound = (Sound) this.sound;
             if (!soundPlayed)

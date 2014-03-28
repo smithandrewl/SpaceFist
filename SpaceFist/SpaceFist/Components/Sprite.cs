@@ -26,13 +26,13 @@ namespace SpaceFist
         {
             
         }
-
         public void Draw(Game game, Entity obj) 
         {
             var spriteBatch = game.SpriteBatch;
 
             var origin = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
 
+            // Draw the texture at the location of the Entity obj
             spriteBatch.Draw(image, new Vector2(obj.X, obj.Y) + origin, 
                              null, obj.Tint, 
                              obj.Rotation, origin, 
