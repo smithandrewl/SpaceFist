@@ -60,7 +60,7 @@ namespace SpaceFist
         private const String GameOverAsset           = @"Images\Backgrounds\GameOver";
         private const String BlockImageAsset         = @"Images\Sprites\Block";
         private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
-        private const String EnemeySheetAsset        = @"Images\Sprites\EnemySheet";
+        private const String EnemeySheetAsset        = @"Images\Sprites\ShipSheet";
         private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
         private const String HUDAsset                = @"Images\UI\Hud";
 

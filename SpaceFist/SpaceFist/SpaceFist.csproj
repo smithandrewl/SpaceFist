@@ -96,6 +96,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Managers\BlockManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
+    <Compile Include="Managers\EnemyManager.cs" />
     <Compile Include="Managers\ExplosionManager.cs" />
     <Compile Include="Managers\LaserManager.cs" />
     <Compile Include="Managers\PlayerManager.cs" />
