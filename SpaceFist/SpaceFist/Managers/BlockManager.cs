@@ -23,6 +23,29 @@ namespace SpaceFist.Managers
             rand = new Random();
         }
 
+        public void RespawnBlocks()
+        {
+            foreach(var block in blocks) {
+                var position = randomPos();
+
+                block.X = (int)position.X;
+                block.Y = (int)position.Y;
+                block.Velocity = randomVel();
+
+                block.Alive = true;
+            }
+        }
+
+        private Vector2 randomPos()
+        {
+            return new Vector2(rand.Next(screen.Width), rand.Next(screen.Height / 4));
+        }
+
+        private Vector2 randomVel()
+        {
+            return new Vector2(rand.Next(4) - 2, rand.Next(7));
+        }
+
         public void SpawnBlocks(int count)
         {
             blocks.Clear();
@@ -30,19 +53,16 @@ namespace SpaceFist.Managers
             for (int i = 0; i < count; i++)
             {
                 // Generate a random position on-screen
-                var randX = rand.Next(screen.Width);
-                var randY = rand.Next(screen.Height);
-
-                // Generate a random velocity of between -5 and 5d 
-                var randXVel = rand.Next(10) - 5;
-                var randYVel = rand.Next(10) - 5;
+                
+                var randPos = randomPos();
+                var randVel = randomVel();
 
                 // Construct the block
                 var block =
                     new SpaceBlock(game,
                         game.BlockTexture,
-                        new Vector2(randX, randY),
-                        new Vector2(randXVel, randYVel));
+                        randomPos(),
+                        randomVel());
 
                 // Initialize and the block to the list
 
@@ -53,6 +73,13 @@ namespace SpaceFist.Managers
 
         public void Update()
         {
+            // If there are no blocks on screen,
+            // respawn more
+            if (blocks.All(block => block.Alive == false))
+            {
+                RespawnBlocks();
+            }
+
              //  Update blocks
             foreach (var block in blocks.Where(block => block.Alive))
             {
@@ -103,7 +130,7 @@ namespace SpaceFist.Managers
         {
             var collisions = 
                 from   block in blocks 
-                where  block.Rectangle.Intersects(obj.Rectangle) 
+                where  block.Alive && block.Rectangle.Intersects(obj.Rectangle)
                 select block;
 
             return collisions;

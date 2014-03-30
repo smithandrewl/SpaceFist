@@ -14,6 +14,9 @@ namespace SpaceFist.Managers
         private int lives = 2;
         private Ship ship;
 
+        // Damage the ship takes per hit
+        private const int HitDamage = 100;
+
         public int Score
         {
             get
@@ -94,13 +97,12 @@ namespace SpaceFist.Managers
             {
                 ship.Alive = false;
             }
-            
         }
 
         internal void ShipHit()
         {
 
-            ship.HealthPoints -= 10;
+            ship.HealthPoints -= HitDamage;
 
             if (ship.HealthPoints <= 0)
             {

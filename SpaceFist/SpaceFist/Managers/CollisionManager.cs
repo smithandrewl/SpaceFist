@@ -59,20 +59,14 @@ namespace SpaceFist.Managers
 
                         // Kill the block
                         block.Destroy();
-                        blocksToRemove.Add(block);
                     }
 
                 }
             }
-            // Tell the block manager to remove the blocks involved in the collision.
-            blocksToRemove.ForEach(block => blockManager.Remove(block));
         }
 
         public void HandleShipRockCollisions()
         {
-            // Blocks which have collided with the ship
-            var blocksToRemove = new List<SpaceBlock>();
-
             //  Update blocks
             foreach (var block in blockManager.collisions(shipManager.Ship))
             {
@@ -95,12 +89,8 @@ namespace SpaceFist.Managers
 
                     // Notify the block that it has been hit
                     block.Thump();
-                    blocksToRemove.Add(block);
                 }
             }
-
-            // Tell the block manager to remove the blocks involved in the collision
-            blocksToRemove.ForEach(block => blockManager.Remove(block));
         }
     }
 }
