@@ -18,19 +18,9 @@ namespace SpaceFist.Entities
        private const int LeftIndex   = 0;
        private const int AtRestIndex = 4;
        private const int RightIndex  = 7;
-
+        
        // A list of waypoints to follow (hardcoded for now)
-       protected List<Vector2> wayPoints = new List<Vector2> { 
-           new Vector2(100, 100), 
-           new Vector2(150, 150), 
-           new Vector2(200, 200),
-           new Vector2(250, 250),
-           new Vector2(300, 300),
-           new Vector2(350, 350),
-           new Vector2(400, 400),
-           new Vector2(450, 450)
-       };
-
+       protected List<Vector2> wayPoints = new List<Vector2>();
        public Enemy(Game game, Vector2 position) : 
            base(game, 
                 new Rectangle((int) position.X, (int) position.Y, WIDTH, HEIGHT),
@@ -39,7 +29,7 @@ namespace SpaceFist.Entities
                 new IndexedSprite(game.EnemySheet, WIDTH, HEIGHT, AtRestIndex), 
                 new NullSoundComponent(), game.ScreenScale)
        {
-
+           Rotation = (float) ((3 * Math.PI) / 2);
        }
 
        private bool Near(int x1, int y1, int x2, int y2)
@@ -51,6 +41,7 @@ namespace SpaceFist.Entities
 
            return xIsNear && yIsNear;
        }
+
        public override void Update()
        {
            
@@ -66,19 +57,13 @@ namespace SpaceFist.Entities
                }
                else
                {
-
                    // The line of sight vector
                    var direction = (wayPoint - new Vector2(X, Y));
-
                    // The rotation of the ship needed for it to face in the direction of the next waypoint
-                   var destRotation = (float) -(Math.Atan(direction.Y / direction.X));
+                   var destRotation = (float) MathHelper.ToDegrees((float)(Math.Atan2(direction.Y, direction.X))) + 90;
 
-                   // rotate to the line of sight
-                   if (Rotation < destRotation)
-                       Rotation += .03f;
-                   else if (Rotation > destRotation)
-                       Rotation-= .03f;
-
+                   Rotation = MathHelper.ToRadians(destRotation);
+                   
                    // Convert the direction to a unit vector
                    direction.Normalize();
 
@@ -86,20 +71,6 @@ namespace SpaceFist.Entities
                    Velocity = direction * 5;
 
                    var indexedSprite = (IndexedSprite) graphics;
-
-                   // Draw the enemy ship according to how it is moving
-                   if (direction.X < 0)
-                   {
-                       indexedSprite.Index = LeftIndex;
-                   }
-                   else if (direction.X == 0)
-                   {
-                       indexedSprite.Index = AtRestIndex;
-                   }
-                   else
-                   {
-                       indexedSprite.Index = RightIndex;
-                   }
                }
            }
            base.Update();

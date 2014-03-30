@@ -24,6 +24,7 @@ namespace SpaceFist.State
         ExplosionManager explosionManager;
         PlayerManager    shipManager;
         CollisionManager collisionManager;
+        private EnemyManager enemyManager;
 
         public InPlayState(Game game)
         {
@@ -40,6 +41,7 @@ namespace SpaceFist.State
             explosionManager = new ExplosionManager(game);
             shipManager      = new PlayerManager(game);
             collisionManager = new CollisionManager(blockManager, shipManager, laserManager, explosionManager);
+            enemyManager = new EnemyManager(game, resolution);
         }
 
         public void EnteringState()
@@ -56,6 +58,7 @@ namespace SpaceFist.State
             // Spawn blocks to the screen
             blockManager.SpawnBlocks(NumBlocks);
 
+            // Spawn the players ship
             shipManager.Initialize();
         }
 
@@ -79,6 +82,7 @@ namespace SpaceFist.State
                 explosionManager.Update();
                 collisionManager.Update();
                 shipManager.Update();
+                enemyManager.Update();
             }
             else
             {
@@ -110,6 +114,8 @@ namespace SpaceFist.State
             collisionManager.Draw();
 
             shipManager.Draw();
+            enemyManager.Draw();
+
             // Write the score to the screen
             game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
             game.SpriteBatch.Draw(game.HudTexture, new Rectangle(0, 0, game.HudTexture.Width, game.HudTexture.Height), Color.White);        }
