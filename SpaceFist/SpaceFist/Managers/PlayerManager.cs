@@ -15,7 +15,7 @@ namespace SpaceFist.Managers
         private Ship ship;
 
         // Damage the ship takes per hit
-        private const int HitDamage = 100;
+        private const int HitDamage = 60;
 
         public int Score
         {

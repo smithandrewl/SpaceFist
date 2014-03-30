@@ -17,7 +17,7 @@ namespace SpaceFist.State.ShipStates
     {
         // The number of seconds to wait for the ship to load.
         // This gives the ship time to fully fade-in from transparent to opaque.
-        private const int SpawnTime = 2;
+        private const int SpawnTime = 1;
 
         private Ship Ship { get; set; }
 
