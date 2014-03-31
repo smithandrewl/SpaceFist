@@ -10,22 +10,18 @@ namespace SpaceFist.Entities
 {
     public class Projectile : Entity
     {
-        private const int Width  = 26;
-        private const int Height = 47;
-        private const int Speed  = 10;
-
         private bool soundPlayed = false;
 
-        public Projectile(Game game, Texture2D texture, Vector2 position) : 
+        public Projectile(Game game, Texture2D texture, Vector2 position, int speed) : 
             base(game, 
-                 new Rectangle((int)position.X, (int)position.Y, Width, Height), 
+                 new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height), 
                  new Physics(), 
                  new NullInputComponent(), 
                  new Sprite(texture),
                  new Sound(game.LaserSound),
                  game.ScreenScale)
         {
-            Velocity = new Vector2(0, -Speed);
+            Velocity = new Vector2(0, -speed);
         }
 
         // Plays a firing noise on the first update

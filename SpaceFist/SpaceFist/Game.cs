@@ -46,7 +46,8 @@ namespace SpaceFist
         public Texture2D   ExplosionTexture { get; set; }
         public Texture2D   HudTexture       { get; set; } // The image of the
                                                           // purple transparent window where the score is drawn.
-        
+        public Texture2D SamplePickup { get; set; }
+        public Texture2D SampleProjectileTexture { get; set; }
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
@@ -63,6 +64,8 @@ namespace SpaceFist
         private const String EnemeySheetAsset        = @"Images\Sprites\ShipSheet";
         private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
         private const String HUDAsset                = @"Images\UI\Hud";
+        private const String SampleWeaponAsset = @"Images\Sprites\SampleProjectile";
+        private const String SamplePickupAsset = @"Images\Sprites\SamplePickup";
 
         private const String ExplosionSoundAsset     = @"Sound\explosion";
         private const String ThumpSoundAsset         = @"Sound\thump";
@@ -127,6 +130,9 @@ namespace SpaceFist
             EnemySheet       = Content.Load<Texture2D>(EnemeySheetAsset);
             ExplosionTexture = Content.Load<Texture2D>(ExplosionAnimationAsset);
             HudTexture       = Content.Load<Texture2D>(HUDAsset);
+            SampleProjectileTexture = Content.Load<Texture2D>(SampleWeaponAsset);
+
+            SamplePickup = Content.Load<Texture2D>(SamplePickupAsset);
 
             // Sounds
             ExplosionSound = Content.Load<SoundEffect>(ExplosionSoundAsset);

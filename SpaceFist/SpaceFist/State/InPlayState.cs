@@ -24,6 +24,7 @@ namespace SpaceFist.State
         ExplosionManager  explosionManager;
         PlayerManager     shipManager;
         CollisionManager  collisionManager;
+        PickUpManager     pickupManager;
 
         public ProjectileManager ProjectileManager
         {
@@ -48,7 +49,8 @@ namespace SpaceFist.State
             projectileManager     = new ProjectileManager(game);
             explosionManager = new ExplosionManager(game);
             shipManager      = new PlayerManager(game);
-            collisionManager = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager);
+            pickupManager = new PickUpManager(game, resolution);
+            collisionManager = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager);
             enemyManager = new EnemyManager(game, resolution);
         }
 
@@ -68,6 +70,8 @@ namespace SpaceFist.State
 
             // Spawn the players ship
             shipManager.Initialize();
+
+            pickupManager.SpawnExamplePickup(400, 300);
         }
 
         public void Update()
@@ -91,6 +95,7 @@ namespace SpaceFist.State
                 collisionManager.Update();
                 shipManager.Update();
                 enemyManager.Update();
+                pickupManager.Update();
             }
             else
             {
@@ -119,10 +124,10 @@ namespace SpaceFist.State
             explosionManager.Draw();
             blockManager.Draw();
             projectileManager.Draw();
-            collisionManager.Draw();
 
             shipManager.Draw();
             enemyManager.Draw();
+            pickupManager.Draw();
 
             // Write the score to the screen
             game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);

@@ -41,8 +41,14 @@ namespace SpaceFist.Managers
         public void fireLaser(int x, int y)
         {
             // Place a new active laser at x, y
-            Projectile projectile = new Projectile(game, game.LaserTexture, new Vector2(x, y));
+            Projectile projectile = new Projectile(game, game.LaserTexture, new Vector2(x, y), 10);
 
+            projectiles.Add(projectile);
+        }
+
+        public void fireSampleWeapon(int x, int y)
+        {
+            Projectile projectile = new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), 40);
             projectiles.Add(projectile);
         }
 

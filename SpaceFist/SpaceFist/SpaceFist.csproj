@@ -88,6 +88,7 @@
     <Compile Include="Entities\Explosion.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Components\Physics.cs" />
+    <Compile Include="Entities\Pickup.cs" />
     <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Entities\Ship.cs" />
     <Compile Include="Components\Sprite.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\EnemyManager.cs" />
     <Compile Include="Managers\ExplosionManager.cs" />
+    <Compile Include="Managers\PickUpManager.cs" />
     <Compile Include="Managers\ProjectileManager.cs" />
     <Compile Include="Managers\PlayerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="State\SplashScreenState.cs" />
     <Compile Include="Weapons\Abstract\Weapon.cs" />
     <Compile Include="Weapons\LaserWeapon.cs" />
+    <Compile Include="Weapons\SampleWeapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets.txt" />
