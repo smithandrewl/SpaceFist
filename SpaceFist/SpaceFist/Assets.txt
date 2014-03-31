@@ -24,3 +24,6 @@ dklon
 explosion.png
 http://spritefx.blogspot.com/2013/04/sprites-explosions-2.html
 
+SampleProjectile.png
+http://opengameart.org/content/agm-65-maverick-missile
+Author is Mystic Mike (Mike Hosker)
