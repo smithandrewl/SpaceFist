@@ -88,7 +88,7 @@
     <Compile Include="Entities\Explosion.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Components\Physics.cs" />
-    <Compile Include="Entities\Laser.cs" />
+    <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Entities\Ship.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Entities\SpaceBlock.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\EnemyManager.cs" />
     <Compile Include="Managers\ExplosionManager.cs" />
-    <Compile Include="Managers\LaserManager.cs" />
+    <Compile Include="Managers\ProjectileManager.cs" />
     <Compile Include="Managers\PlayerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
@@ -113,6 +113,8 @@
     <Compile Include="State\ShipStates\NormalState.cs" />
     <Compile Include="State\ShipStates\SpawningState.cs" />
     <Compile Include="State\SplashScreenState.cs" />
+    <Compile Include="Weapons\Abstract\Weapon.cs" />
+    <Compile Include="Weapons\LaserWeapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets.txt" />

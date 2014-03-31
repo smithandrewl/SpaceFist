@@ -14,13 +14,13 @@ namespace SpaceFist.Managers
         // in order to determine if a collision has occurred.
         private ExplosionManager explosionManager;
         private BlockManager     blockManager;
-        private LaserManager     laserManager;
+        private ProjectileManager     laserManager;
         private PlayerManager      shipManager;
 
         public CollisionManager(
             BlockManager     blockManager, 
             PlayerManager      shipManager, 
-            LaserManager     laserManager, 
+            ProjectileManager     laserManager, 
             ExplosionManager explosionManager)
         {
             this.blockManager     = blockManager;

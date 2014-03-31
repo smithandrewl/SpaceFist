@@ -7,6 +7,7 @@ using SpaceFist.Components.Abstract;
 using SpaceFist.Components;
 using SpaceFist.State.Abstract;
 using SpaceFist.State.ShipStates;
+using SpaceFist.Weapons;
 
 namespace SpaceFist  
 {
@@ -23,6 +24,8 @@ namespace SpaceFist
         private ShipState state;
 
         private const int maxHealthPoints = 100;
+
+        public Weapon Weapon { get; set; }
 
         public ShipState CurrentState
         {
@@ -92,6 +95,9 @@ namespace SpaceFist
             indexedSprite = (IndexedSprite) graphics;
             HealthPoints = 100;
 
+            // Start out with the laser weapon
+            Weapon = new LaserWeapon(game, this);
+
             // Start the ship in the spawning state
             state = new SpawningState(this);
             state.EnteringState();
@@ -108,7 +114,7 @@ namespace SpaceFist
 
         public void Fire()
         {
-            Game.InPlayState.fireLaser((int) (X + (Width / 2) - (20 * game.ScreenScale)), (int) ((Y - (35 * game.ScreenScale))));  
+            Weapon.fire();
         }
 
         public void Reset()

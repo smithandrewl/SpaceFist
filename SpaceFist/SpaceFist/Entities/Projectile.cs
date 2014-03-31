@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SpaceFist.Entities
 {
-    class Laser : Entity
+    class Projectile : Entity
     {
         private const int Width  = 26;
         private const int Height = 47;
@@ -16,7 +16,7 @@ namespace SpaceFist.Entities
 
         private bool soundPlayed = false;
 
-        public Laser(Game game, Texture2D texture, Vector2 position) : 
+        public Projectile(Game game, Texture2D texture, Vector2 position) : 
             base(game, 
                  new Rectangle((int)position.X, (int)position.Y, Width, Height), 
                  new Physics(), 
