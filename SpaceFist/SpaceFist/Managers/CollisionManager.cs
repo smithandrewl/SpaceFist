@@ -14,29 +14,39 @@ namespace SpaceFist.Managers
         // in order to determine if a collision has occurred.
         private ExplosionManager explosionManager;
         private BlockManager     blockManager;
-        private LaserManager     laserManager;
+        private ProjectileManager     laserManager;
         private PlayerManager      shipManager;
+        private PickUpManager pickupManager;
 
         public CollisionManager(
             BlockManager     blockManager, 
             PlayerManager      shipManager, 
-            LaserManager     laserManager, 
-            ExplosionManager explosionManager)
+            ProjectileManager     laserManager, 
+            ExplosionManager explosionManager,
+            PickUpManager    pickupManager)
         {
             this.blockManager     = blockManager;
             this.shipManager      = shipManager;
             this.laserManager     = laserManager;
             this.explosionManager = explosionManager;
+            this.pickupManager = pickupManager;
         }
         
         public void Update()
         {
             HandleLaserRockCollisions();
             HandleShipRockCollisions();
+            HandleShipPickupCollisions();
         }
 
-        public void Draw()
+        public void HandleShipPickupCollisions()
         {
+            foreach(var pickup in pickupManager.Collisions(shipManager.Ship)) {
+                if (pickup.PickedUp(shipManager.Ship))
+                {
+                    pickup.Alive = false;
+                }
+            }
         }
 
         public void HandleLaserRockCollisions()

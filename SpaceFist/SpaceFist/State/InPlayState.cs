@@ -19,11 +19,20 @@ namespace SpaceFist.State
         Game game;
 
         // The entity managers used by this state (all of them)
-        BlockManager     blockManager;
-        LaserManager     laserManager;
-        ExplosionManager explosionManager;
-        PlayerManager    shipManager;
-        CollisionManager collisionManager;
+        BlockManager      blockManager;
+        ProjectileManager projectileManager;
+        ExplosionManager  explosionManager;
+        PlayerManager     shipManager;
+        CollisionManager  collisionManager;
+        PickUpManager     pickupManager;
+
+        public ProjectileManager ProjectileManager
+        {
+            get
+            {
+                return projectileManager;
+            }
+        }
         private EnemyManager enemyManager;
 
         public InPlayState(Game game)
@@ -37,10 +46,11 @@ namespace SpaceFist.State
 
             var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
             blockManager     = new BlockManager(game, screenRect);
-            laserManager     = new LaserManager(game);
+            projectileManager     = new ProjectileManager(game);
             explosionManager = new ExplosionManager(game);
             shipManager      = new PlayerManager(game);
-            collisionManager = new CollisionManager(blockManager, shipManager, laserManager, explosionManager);
+            pickupManager = new PickUpManager(game, resolution);
+            collisionManager = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager);
             enemyManager = new EnemyManager(game, resolution);
         }
 
@@ -60,6 +70,8 @@ namespace SpaceFist.State
 
             // Spawn the players ship
             shipManager.Initialize();
+
+            pickupManager.SpawnExamplePickup(400, 300);
         }
 
         public void Update()
@@ -77,12 +89,13 @@ namespace SpaceFist.State
                 WrapOffScreen(shipManager.Ship);
 
                 // Tell the entity managers to update
-                laserManager.Update();
+                projectileManager.Update();
                 blockManager.Update();
                 explosionManager.Update();
                 collisionManager.Update();
                 shipManager.Update();
                 enemyManager.Update();
+                pickupManager.Update();
             }
             else
             {
@@ -110,19 +123,15 @@ namespace SpaceFist.State
              // Draw the entities
             explosionManager.Draw();
             blockManager.Draw();
-            laserManager.Draw();
-            collisionManager.Draw();
+            projectileManager.Draw();
 
             shipManager.Draw();
             enemyManager.Draw();
+            pickupManager.Draw();
 
             // Write the score to the screen
             game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
-            game.SpriteBatch.Draw(game.HudTexture, new Rectangle(0, 0, game.HudTexture.Width, game.HudTexture.Height), Color.White);        }
-
-        public void fireLaser(int x, int y)
-        {
-            laserManager.fireLaser(x, y);
+            game.SpriteBatch.Draw(game.HudTexture, new Rectangle(0, 0, game.HudTexture.Width, game.HudTexture.Height), Color.White);        
         }
 
         public void ExitingState()
