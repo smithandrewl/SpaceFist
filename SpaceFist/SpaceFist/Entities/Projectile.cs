@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SpaceFist.Entities
 {
-    class Projectile : Entity
+    public class Projectile : Entity
     {
         private const int Width  = 26;
         private const int Height = 47;

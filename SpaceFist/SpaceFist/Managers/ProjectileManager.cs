@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SpaceFist.Managers
 {
-    class ProjectileManager : IEnumerable<Projectile>
+    public class ProjectileManager : IEnumerable<Projectile>
     {
         List<Projectile> projectiles;
         Game game;
