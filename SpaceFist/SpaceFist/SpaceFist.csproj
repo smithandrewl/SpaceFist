@@ -74,6 +74,8 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\ShipEnemyInfo.cs" />
+    <Compile Include="AI\ShipInfo.cs" />
     <Compile Include="Components\Abstract\Component.cs" />
     <Compile Include="Components\Abstract\GraphicsComponent.cs" />
     <Compile Include="Components\Abstract\InputComponent.cs" />

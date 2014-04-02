@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SpaceFist.Managers
 {
-    class EnemyManager : IEnumerable<Enemy>
+    public class EnemyManager : IEnumerable<Enemy>
     {
         private Random      rand;
         private List<Enemy> enemies;

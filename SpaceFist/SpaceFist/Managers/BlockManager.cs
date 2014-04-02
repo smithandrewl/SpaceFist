@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SpaceFist.Managers
 {
-    class BlockManager : IEnumerable<SpaceBlock>
+    public class BlockManager : IEnumerable<SpaceBlock>
     {
         List<SpaceBlock> blocks = new List<SpaceBlock>();
         
