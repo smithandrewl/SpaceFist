@@ -28,9 +28,9 @@ namespace SpaceFist
         // The states of the game
         // these properties are used when switching states to avoid creating 
         // a new instance of the state (the old splash screen can be reused for example).
-        public InPlayState InPlayState { get; set; }
+        public InPlayState       InPlayState       { get; set; }
         public SplashScreenState SplashScreenState { get; set; }
-        public GameOverState GameOverState { get; set; }
+        public GameOverState     GameOverState     { get; set; }
 
         // ========================== The game assets ===============
         // -------------- ----------- Font(s) -----------------------
@@ -46,8 +46,10 @@ namespace SpaceFist
         public Texture2D   ExplosionTexture { get; set; }
         public Texture2D   HudTexture       { get; set; } // The image of the
                                                           // purple transparent window where the score is drawn.
-        public Texture2D SamplePickup { get; set; }
+        
+        public Texture2D SamplePickup            { get; set; }
         public Texture2D SampleProjectileTexture { get; set; }
+        
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
@@ -64,9 +66,8 @@ namespace SpaceFist
         private const String EnemeySheetAsset        = @"Images\Sprites\ShipSheet";
         private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
         private const String HUDAsset                = @"Images\UI\Hud";
-        private const String SampleWeaponAsset = @"Images\Sprites\SampleProjectile";
-        private const String SamplePickupAsset = @"Images\Sprites\SamplePickup";
-
+        private const String SampleWeaponAsset       = @"Images\Sprites\SampleProjectile";
+        private const String SamplePickupAsset       = @"Images\Sprites\SamplePickup";
         private const String ExplosionSoundAsset     = @"Sound\explosion";
         private const String ThumpSoundAsset         = @"Sound\thump";
         private const String LaserSoundAsset         = @"Sound\laser";
@@ -111,15 +112,13 @@ namespace SpaceFist
             // Draw the background image with the dimensions of the screen
             BackgroundRect = new Rectangle(0, 0, titleSafe.Width, titleSafe.Height);
 
-            var viewPort = GraphicsDevice.Viewport;
-
             ScreenScale = .60f;
             
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch      = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // ----------------------------- Load the games assets -----------
-            Font             = Content.Load<SpriteFont>(SpriteFontAsset);
+            Font = Content.Load<SpriteFont>(SpriteFontAsset);
             
             // Textures
             Background       = Content.Load<Texture2D>(BackgroundAsset);
@@ -130,9 +129,9 @@ namespace SpaceFist
             EnemySheet       = Content.Load<Texture2D>(EnemeySheetAsset);
             ExplosionTexture = Content.Load<Texture2D>(ExplosionAnimationAsset);
             HudTexture       = Content.Load<Texture2D>(HUDAsset);
-            SampleProjectileTexture = Content.Load<Texture2D>(SampleWeaponAsset);
+            SamplePickup     = Content.Load<Texture2D>(SamplePickupAsset);
 
-            SamplePickup = Content.Load<Texture2D>(SamplePickupAsset);
+            SampleProjectileTexture = Content.Load<Texture2D>(SampleWeaponAsset);
 
             // Sounds
             ExplosionSound = Content.Load<SoundEffect>(ExplosionSoundAsset);

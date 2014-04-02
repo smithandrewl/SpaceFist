@@ -17,6 +17,7 @@ namespace SpaceFist.State.ShipStates
         {
             Ship = ship;   
         }
+
         public void Update()
         {
             // Fade the ship from invisible to visible while also fading between its 

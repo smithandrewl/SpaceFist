@@ -48,7 +48,9 @@ namespace SpaceFist.Managers
 
         public void fireSampleWeapon(int x, int y)
         {
-            Projectile projectile = new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), 40);
+            Projectile projectile = 
+                new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), 40);
+            
             projectiles.Add(projectile);
         }
 

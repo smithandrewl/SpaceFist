@@ -26,6 +26,7 @@ namespace SpaceFist
         {
             
         }
+
         public void Draw(Game game, Entity obj) 
         {
             var spriteBatch = game.SpriteBatch;

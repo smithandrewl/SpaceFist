@@ -19,8 +19,7 @@ namespace SpaceFist.State.ShipStates
         // This gives the ship time to fully fade-in from transparent to opaque.
         private const int SpawnTime = 1;
 
-        private Ship Ship { get; set; }
-
+        private Ship     Ship      { get; set; }
         private DateTime SpawnedAt { get; set; }
 
         public SpawningState(Ship ship)
@@ -53,7 +52,6 @@ namespace SpaceFist.State.ShipStates
 
         public void EnteringState()
         {
-
             SpawnedAt = DateTime.Now;
 
             // Set the color to transparent so that it can fade into full visibility

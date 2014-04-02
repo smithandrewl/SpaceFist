@@ -10,17 +10,17 @@ namespace SpaceFist.Managers
     class BlockManager : IEnumerable<SpaceBlock>
     {
         List<SpaceBlock> blocks = new List<SpaceBlock>();
-        Random rand;
-        Game game;
-
+        
+        Random    rand;
+        Game      game;
         Rectangle screen;
 
         public BlockManager(Game game, Rectangle screen)
         {
-            this.game = game;
+            this.game   = game;
             this.screen = screen;
             this.blocks = new List<SpaceBlock>();
-            rand = new Random();
+            rand        = new Random();
         }
 
         public void RespawnBlocks()
@@ -28,11 +28,10 @@ namespace SpaceFist.Managers
             foreach(var block in blocks) {
                 var position = randomPos();
 
-                block.X = (int)position.X;
-                block.Y = (int)position.Y;
+                block.X        = (int)position.X;
+                block.Y        = (int)position.Y;
                 block.Velocity = randomVel();
-
-                block.Alive = true;
+                block.Alive    = true;
             }
         }
 
@@ -49,11 +48,11 @@ namespace SpaceFist.Managers
         public void SpawnBlocks(int count)
         {
             blocks.Clear();
+
             // Spawn space blocks
             for (int i = 0; i < count; i++)
             {
                 // Generate a random position on-screen
-                
                 var randPos = randomPos();
                 var randVel = randomVel();
 
@@ -65,7 +64,6 @@ namespace SpaceFist.Managers
                         randomVel());
 
                 // Initialize and the block to the list
-
                 block.Initialize();
                 blocks.Add(block);
             }
@@ -97,7 +95,6 @@ namespace SpaceFist.Managers
         // wrap it around
         private void WrapOffScreen(Entity obj)
         {
-
             if (obj.X > screen.Width) obj.X = 0;
             if (obj.X < 0) obj.X = screen.Width;
 
@@ -123,7 +120,6 @@ namespace SpaceFist.Managers
         public void Remove(SpaceBlock block)
         {
             blocks.Remove(block);
-
         }
 
         public IEnumerable<SpaceBlock> collisions(Entity obj)

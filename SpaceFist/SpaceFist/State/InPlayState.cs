@@ -14,6 +14,7 @@ namespace SpaceFist.State
     public class InPlayState : GameState
     {
         private const int NumBlocks = 20;
+
         Random rand = new Random();
 
         Game game;
@@ -25,6 +26,7 @@ namespace SpaceFist.State
         PlayerManager     shipManager;
         CollisionManager  collisionManager;
         PickUpManager     pickupManager;
+        EnemyManager      enemyManager;
 
         public ProjectileManager ProjectileManager
         {
@@ -33,7 +35,6 @@ namespace SpaceFist.State
                 return projectileManager;
             }
         }
-        private EnemyManager enemyManager;
 
         public InPlayState(Game game)
         {
@@ -42,16 +43,16 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var resolution = game.GraphicsDevice.Viewport.Bounds;
-
+            var resolution   = game.GraphicsDevice.Viewport.Bounds;
             var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
-            blockManager     = new BlockManager(game, screenRect);
-            projectileManager     = new ProjectileManager(game);
-            explosionManager = new ExplosionManager(game);
-            shipManager      = new PlayerManager(game);
-            pickupManager = new PickUpManager(game, resolution);
-            collisionManager = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager);
-            enemyManager = new EnemyManager(game, resolution);
+            
+            blockManager      = new BlockManager(game, screenRect);
+            projectileManager = new ProjectileManager(game);
+            explosionManager  = new ExplosionManager(game);
+            shipManager       = new PlayerManager(game);
+            pickupManager     = new PickUpManager(game, resolution);
+            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager);
+            enemyManager      = new EnemyManager(game, resolution);
         }
 
         public void EnteringState()
@@ -86,6 +87,7 @@ namespace SpaceFist.State
                 }
 
                 var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
+                
                 WrapOffScreen(shipManager.Ship);
 
                 // Tell the entity managers to update
@@ -124,14 +126,33 @@ namespace SpaceFist.State
             explosionManager.Draw();
             blockManager.Draw();
             projectileManager.Draw();
-
             shipManager.Draw();
             enemyManager.Draw();
             pickupManager.Draw();
 
             // Write the score to the screen
-            game.SpriteBatch.DrawString(game.Font, scoreDisplay, scorePosition, color, 0f, new Vector2(0, 0), game.ScreenScale, SpriteEffects.None, 0);
-            game.SpriteBatch.Draw(game.HudTexture, new Rectangle(0, 0, game.HudTexture.Width, game.HudTexture.Height), Color.White);        
+            game.SpriteBatch.DrawString(
+                game.Font, 
+                scoreDisplay, 
+                scorePosition, 
+                color, 
+                0f, 
+                new Vector2(0, 0), 
+                game.ScreenScale, 
+                SpriteEffects.None, 
+                0
+            );
+            
+            game.SpriteBatch.Draw(
+                game.HudTexture, 
+                new Rectangle(
+                    0, 
+                    0, 
+                    game.HudTexture.Width, 
+                    game.HudTexture.Height
+                ), 
+                Color.White
+            );        
         }
 
         public void ExitingState()

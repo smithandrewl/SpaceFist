@@ -11,8 +11,8 @@ namespace SpaceFist.Entities
     {
        
        // The dimensions of the enemy
-       public  const int WIDTH       = 60;
-       public const int HEIGHT       = 133;
+       public  const int WIDTH = 60;
+       public const int HEIGHT = 133;
 
        // The frames to use from the spritesheet
        private const int LeftIndex   = 0;
@@ -44,7 +44,6 @@ namespace SpaceFist.Entities
 
        public override void Update()
        {
-           
            if (wayPoints.Count != 0)
            {
                var wayPoint = wayPoints[0];
@@ -59,6 +58,7 @@ namespace SpaceFist.Entities
                {
                    // The line of sight vector
                    var direction = (wayPoint - new Vector2(X, Y));
+        
                    // The rotation of the ship needed for it to face in the direction of the next waypoint
                    var destRotation = (float) MathHelper.ToDegrees((float)(Math.Atan2(direction.Y, direction.X))) + 90;
 

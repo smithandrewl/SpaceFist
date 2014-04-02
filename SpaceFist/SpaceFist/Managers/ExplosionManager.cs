@@ -10,13 +10,12 @@ namespace SpaceFist.Managers
     class ExplosionManager : IEnumerable<Explosion>
     {
         List<Explosion> explosions;
-
         Game game;
-
+        
         public ExplosionManager(Game game)
         {
             explosions = new List<Explosion>();
-            this.game = game;
+            this.game  = game;
         }
 
         public IEnumerator<Explosion> GetEnumerator()

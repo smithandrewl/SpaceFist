@@ -43,7 +43,7 @@ namespace SpaceFist
         /// Whether the entity is in play or not. The default Update and Draw methods
         /// only update and draw when the entity is Alive.
         /// </summary>
-        public bool    Alive    { get; set; }
+        public bool Alive { get; set; }
 
         /// <summary>
         /// A hue which can be used by a graphics component when drawning the entity.
@@ -93,14 +93,14 @@ namespace SpaceFist
         /// <param name="sound">The sound component to use</param>
         /// <param name="scale">The scale / size of the entity</param>
         /// <param name="rotation">The rotation of the entity.  The default rotation is 0 degrees.</param>
-        public Entity(Game              game, 
+        public Entity(Game                  game, 
                           Rectangle         rectangle, 
                           PhysicsComponent  physics, 
                           InputComponent    input, 
                           GraphicsComponent graphics,
                           SoundComponent    sound,
                           float             scale,
-                          float rotation = 0)
+                          float             rotation = 0)
         {
             Alive          = true;
             this.game      = game;

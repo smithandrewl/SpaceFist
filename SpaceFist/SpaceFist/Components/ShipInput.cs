@@ -18,6 +18,7 @@ namespace SpaceFist.Components
         public void Update(Game game, Entity obj)
         {
             var ship = (Ship) obj;
+
             KeyboardState keys = Keyboard.GetState();
 
             if (keys.IsKeyDown(Keys.W))

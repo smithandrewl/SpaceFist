@@ -9,6 +9,7 @@ namespace SpaceFist.Weapons
     class SampleWeapon : Weapon
     {
         private ProjectileManager projectileManager;
+
         private Ship ship;
         private Game game;
 
@@ -16,12 +17,16 @@ namespace SpaceFist.Weapons
         {
             this.game = game;
             this.ship = ship;
+        
             projectileManager = game.InPlayState.ProjectileManager;
         }
 
         public void fire()
         {
-            projectileManager.fireSampleWeapon((int)(ship.X + (ship.Rectangle.Width / 2) - (20 * game.ScreenScale)), (int)((ship.Y - (35 * game.ScreenScale))));  
+            int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) - (20 * game.ScreenScale));
+            int projectileY = (int)((ship.Y - (35 * game.ScreenScale)));
+
+            projectileManager.fireSampleWeapon(projectileX, projectileY);  
         }
     }
 }
