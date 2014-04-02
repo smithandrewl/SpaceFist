@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SpaceFist.AI;
+using SpaceFist.AI.DummyAI;
 
 namespace SpaceFist.Entities
 {
@@ -18,6 +20,8 @@ namespace SpaceFist.Entities
        private const int LeftIndex   = 0;
        private const int AtRestIndex = 4;
        private const int RightIndex  = 7;
+
+       public EnemyAI AI {get; set;}
         
        // A list of waypoints to follow (hardcoded for now)
        protected List<Vector2> wayPoints = new List<Vector2>();
@@ -30,6 +34,8 @@ namespace SpaceFist.Entities
                 new NullSoundComponent(), game.ScreenScale)
        {
            Rotation = (float) ((3 * Math.PI) / 2);
+
+           AI = new DummyAI();
        }
 
        private bool Near(int x1, int y1, int x2, int y2)
@@ -73,6 +79,8 @@ namespace SpaceFist.Entities
                    var indexedSprite = (IndexedSprite) graphics;
                }
            }
+
+           AI.Update();
            base.Update();
        }
            

@@ -74,6 +74,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\Abstract\EnemyAI.cs" />
+    <Compile Include="AI\DummyAI\DummyAI.cs" />
+    <Compile Include="AI\DummyAI\DummyAIDummyState.cs" />
     <Compile Include="AI\ShipEnemyInfo.cs" />
     <Compile Include="AI\ShipInfo.cs" />
     <Compile Include="Components\Abstract\Component.cs" />
@@ -107,6 +110,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="AI\Abstract\EnemyAIState.cs" />
     <Compile Include="State\Abstract\GameState.cs" />
     <Compile Include="State\Abstract\ShipState.cs" />
     <Compile Include="State\Abstract\State.cs" />

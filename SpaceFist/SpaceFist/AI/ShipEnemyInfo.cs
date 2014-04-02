@@ -39,8 +39,6 @@ namespace SpaceFist.AI
         public Vector2 InterceptVelocity { get; set; }
         public Vector2 InterceptPoint    { get; set; }
 
-
-
         public override void Update()
         {
             throw new NotImplementedException();
