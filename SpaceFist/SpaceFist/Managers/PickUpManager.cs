@@ -31,6 +31,7 @@ namespace SpaceFist.Managers
         {
             pickups.Remove(pickup);
         }
+
         public IEnumerable<Pickup> Collisions(Entity entity)
         {
             var collisions =

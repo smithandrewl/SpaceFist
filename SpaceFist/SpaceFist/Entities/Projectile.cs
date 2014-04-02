@@ -27,6 +27,7 @@ namespace SpaceFist.Entities
         // Plays a firing noise on the first update
         public override void Update() {
             var sound = (Sound) this.sound;
+            
             if (!soundPlayed)
             {
                 sound.play();

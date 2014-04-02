@@ -40,6 +40,7 @@ namespace SpaceFist
                 state = value;
             }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -93,7 +94,7 @@ namespace SpaceFist
                    game.ScreenScale)
         {
             indexedSprite = (IndexedSprite) graphics;
-            HealthPoints = 100;
+            HealthPoints  = 100;
 
             // Start out with the laser weapon
             Weapon = new LaserWeapon(game, this);

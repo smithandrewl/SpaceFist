@@ -9,17 +9,17 @@ namespace SpaceFist.Managers
 {
     class EnemyManager : IEnumerable<Enemy>
     {
-        private Random rand;
+        private Random      rand;
         private List<Enemy> enemies;
-        private Game game;
-        private Rectangle screen;
+        private Game        game;
+        private Rectangle   screen;
 
         public EnemyManager(Game game, Rectangle screen)
         {
-            rand = new Random();
-            this.game = game;
+            rand        = new Random();
+            this.game   = game;
             this.screen = screen;
-            enemies = new List<Enemy>();
+            enemies     = new List<Enemy>();
         }
 
         public void Spawn(int x, int y)
@@ -30,15 +30,13 @@ namespace SpaceFist.Managers
         public void Spawn(int count){
             for (int i = 0; i < count; i++)
             {
-                int randX      = rand.Next(0, screen.Width);
-                int randY = rand.Next(0, 15);
+                int   randX    = rand.Next(0, screen.Width);
+                int   randY    = rand.Next(0, 15);
                 float rotation = MathHelper.ToRadians(180);
-
-                Enemy enemy = new Enemy(game, new Vector2(randX, randY));
+                Enemy enemy    = new Enemy(game, new Vector2(randX, randY));
+                
                 enemy.Rotation = rotation;
-
                 enemies.Add(enemy);
-
             }
         }
 
@@ -59,8 +57,5 @@ namespace SpaceFist.Managers
         {
             return GetEnumerator();
         }
-
     }
-
-
 }

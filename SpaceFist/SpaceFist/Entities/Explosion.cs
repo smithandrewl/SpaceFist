@@ -36,7 +36,7 @@ namespace SpaceFist.Entities
                  game.ScreenScale)
         {
             startTime = System.DateTime.Now.Ticks;
-            Velocity = new Vector2(0, 0);
+            Velocity  = new Vector2(0, 0);
         }
 
         public override void Update()

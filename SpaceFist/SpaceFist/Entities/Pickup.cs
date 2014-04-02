@@ -12,11 +12,17 @@ namespace SpaceFist.Entities
 {
     public class Pickup : Entity
     {
-        private Sound pickupSound;
+        private Sound         pickupSound;
         private PickupHandler pickupHandler;
+
         public delegate bool PickupHandler(Ship ship);
  
-        public Pickup(Game game, Texture2D texture, SoundEffect sound, Vector2 position, Vector2 velocity, PickupHandler pickupHandler) :
+        public Pickup(Game          game, 
+                      Texture2D     texture, 
+                      SoundEffect   sound, 
+                      Vector2       position, 
+                      Vector2       velocity, 
+                      PickupHandler pickupHandler) :
             base(
                 game, 
                 new Rectangle((int)position.X, (int) position.Y, texture.Width, texture.Height),

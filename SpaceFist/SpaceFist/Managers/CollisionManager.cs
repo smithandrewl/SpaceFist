@@ -12,24 +12,24 @@ namespace SpaceFist.Managers
         // These are references to existing managers,
         // this class needs to get information about the explosions, blocks, lasers and the player
         // in order to determine if a collision has occurred.
-        private ExplosionManager explosionManager;
-        private BlockManager     blockManager;
-        private ProjectileManager     laserManager;
-        private PlayerManager      shipManager;
-        private PickUpManager pickupManager;
+        private ExplosionManager  explosionManager;
+        private BlockManager      blockManager;
+        private ProjectileManager laserManager;
+        private PlayerManager     shipManager;
+        private PickUpManager     pickupManager;
 
         public CollisionManager(
-            BlockManager     blockManager, 
-            PlayerManager      shipManager, 
-            ProjectileManager     laserManager, 
-            ExplosionManager explosionManager,
-            PickUpManager    pickupManager)
+            BlockManager      blockManager, 
+            PlayerManager     shipManager, 
+            ProjectileManager laserManager, 
+            ExplosionManager  explosionManager,
+            PickUpManager     pickupManager)
         {
             this.blockManager     = blockManager;
             this.shipManager      = shipManager;
             this.laserManager     = laserManager;
             this.explosionManager = explosionManager;
-            this.pickupManager = pickupManager;
+            this.pickupManager    = pickupManager;
         }
         
         public void Update()
@@ -53,6 +53,7 @@ namespace SpaceFist.Managers
         {
             // Blocks which have collided with a laser
             var blocksToRemove = new List<SpaceBlock>();
+
             foreach (var laser in laserManager)
             {
                 // Only process lasers that are still in play
