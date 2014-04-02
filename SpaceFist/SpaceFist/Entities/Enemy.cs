@@ -23,8 +23,10 @@ namespace SpaceFist.Entities
 
        public EnemyAI AI {get; set;}
         
+
+       public List<Vector2> WayPoints { get; set; }
        // A list of waypoints to follow (hardcoded for now)
-       protected List<Vector2> wayPoints = new List<Vector2>();
+
        public Enemy(Game game, Vector2 position) : 
            base(game, 
                 new Rectangle((int) position.X, (int) position.Y, WIDTH, HEIGHT),
@@ -33,9 +35,8 @@ namespace SpaceFist.Entities
                 new IndexedSprite(game.EnemySheet, WIDTH, HEIGHT, AtRestIndex), 
                 new NullSoundComponent(), game.ScreenScale)
        {
+           WayPoints = new List<Vector2>();
            Rotation = (float) ((3 * Math.PI) / 2);
-
-           AI = new DummyAI();
        }
 
        private bool Near(int x1, int y1, int x2, int y2)
@@ -50,14 +51,14 @@ namespace SpaceFist.Entities
 
        public override void Update()
        {
-           if (wayPoints.Count != 0)
+           if (WayPoints.Count != 0)
            {
-               var wayPoint = wayPoints[0];
+               var wayPoint = WayPoints[0];
               
                // If the enemy is close to the waypoint, remove the way point
                // and draw the enemy at rest.
                if(Near(X, Y, (int) wayPoint.X, (int) wayPoint.Y)) {
-                   wayPoints.Remove(wayPoint);
+                   WayPoints.Remove(wayPoint);
                    ((IndexedSprite)graphics).Index = AtRestIndex;
                }
                else

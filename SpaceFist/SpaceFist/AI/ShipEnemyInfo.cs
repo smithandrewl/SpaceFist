@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using SpaceFist.Entities;
 
 namespace SpaceFist.AI
 {
-    class ShipEnemyInfo : FuzzyLogicEnabled
+    public class ShipEnemyInfo : FuzzyLogicEnabled
     {
+
+        public ShipEnemyInfo(Enemy enemy, Ship ship)
+        {
+            this.Enemy = enemy;
+            this.Ship = ship;
+        }
+
         // Distance
         private int distance;
 
@@ -41,7 +49,16 @@ namespace SpaceFist.AI
 
         public override void Update()
         {
-            throw new NotImplementedException();
+            // update distance
+            int xDiff = Ship.X - Enemy.X;
+            int yDiff = Ship.Y - Enemy.Y;
+
+            distance = (int) Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
+
+            // update rotation
         }
+
+        public Enemy Enemy { get; set; }
+        public Ship Ship   { get; set; }
     }
 }

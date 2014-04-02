@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SpaceFist.State.Abstract;
+using SpaceFist.Entities;
+using SpaceFist.Managers;
 
 namespace SpaceFist.AI.DummyAI
 {
@@ -10,9 +12,13 @@ namespace SpaceFist.AI.DummyAI
     {
         public State.Abstract.EnemyAIState State { get; set; }
 
-        public DummyAI()
+        public DummyAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
         {
-            State = new DummyAIDummyState();
+
+            ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship);
+            ShipInfo = new AI.ShipInfo(game, ship, enemyManager);
+
+            State = new DummyAIDummyState(this);
             State.EnteringState();
         }
 
@@ -20,5 +26,8 @@ namespace SpaceFist.AI.DummyAI
         {
             State.Update();
         }
+
+        public ShipEnemyInfo ShipEnemyInfo { get; set; }
+        public ShipInfo ShipInfo {get; set; }
     }
 }

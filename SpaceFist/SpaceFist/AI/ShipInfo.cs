@@ -75,13 +75,10 @@ namespace SpaceFist.AI
         public double MovingQuickly { get; set; }
         public double TopSpeed      { get; set; }
 
-        public ShipInfo(Game game, Ship ship, EnemyManager enemyManager, BlockManager blockManager, ProjectileManager projectileManager)
+        public ShipInfo(Game game, Ship ship, EnemyManager enemyManager)
         {
             this.game = game;
-
-            this.enemyManager      = enemyManager;
-            this.blockManager      = blockManager;
-            this.projectileManager = projectileManager;
+            this.enemyManager = enemyManager;
         }
 
         public override void Update()

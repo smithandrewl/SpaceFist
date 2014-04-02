@@ -18,6 +18,13 @@ namespace SpaceFist.State
         Random rand = new Random();
 
         Game game;
+        public Ship ship
+        {
+            get
+            {
+                return shipManager.Ship;
+            }
+        }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -27,6 +34,8 @@ namespace SpaceFist.State
         CollisionManager  collisionManager;
         PickUpManager     pickupManager;
         EnemyManager      enemyManager;
+
+        public EnemyManager EnemyManager { get { return EnemyManager; }}
 
         public ProjectileManager ProjectileManager
         {
@@ -67,7 +76,7 @@ namespace SpaceFist.State
             shipManager.ResetScore();
 
             // Spawn blocks to the screen
-            blockManager.SpawnBlocks(NumBlocks);
+           blockManager.SpawnBlocks(NumBlocks);
 
             // Spawn the players ship
             shipManager.Initialize();
