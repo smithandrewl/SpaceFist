@@ -70,7 +70,7 @@ namespace SpaceFist.Entities
                    var destRotation = (float) MathHelper.ToDegrees((float)(Math.Atan2(direction.Y, direction.X))) + 90;
 
                    Rotation = MathHelper.ToRadians(destRotation);
-                   
+
                    // Convert the direction to a unit vector
                    direction.Normalize();
 
@@ -84,6 +84,5 @@ namespace SpaceFist.Entities
            AI.Update();
            base.Update();
        }
-           
     }
 }
