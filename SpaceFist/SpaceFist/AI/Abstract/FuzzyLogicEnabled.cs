@@ -10,36 +10,64 @@ namespace SpaceFist
     // http://www.dma.fi.upm.es/java/fuzzy/fuzzyinf/funpert_en.htm
     public abstract class FuzzyLogicEnabled
     {
-        protected float Triangle(float x, float a, float b, float m)
+        protected float Grade(float val, float lowerSupportlimit, float lowerLimit)
         {
-            if (x <= a) return 0;
-            if (x <= m) return (x - a) / (m - a);
-            if (x < b)  return (b - x) / (b - m);
+            if (val < lowerLimit)       return 0;
+            if (val <lowerSupportlimit) return (val - lowerLimit) /(lowerSupportlimit - lowerLimit);
 
+            return 1;
+        }
+
+        protected float ReverseGrade(float val, float upperSupportLimit, float upperLimit)
+        {
+            if (val > upperLimit)         return 0;
+            if (val >= upperSupportLimit) return (upperLimit - val) / (upperLimit - upperSupportLimit);
+            
+            return 1;
+        }
+
+        protected float Triangle(float val, float lowerLimit, float upperLimit, float middle)
+        {
+            if (val <= lowerLimit) return 0; 
+            if (val <= middle)     return (val - lowerLimit) / (middle - lowerLimit);
+            if (val < upperLimit)  return (upperLimit - val) / (upperLimit - middle);
+            
             return 0;
         }
 
-        protected float Trapezoid(float x, float a, float b, float c, float d)
+        protected float Trapezoid(
+            float val, 
+            float lowerLimit, 
+            float lowerSupportLimit, 
+            float upperSupportLimit, 
+            float upperLimit
+        )
         {
-            if      ((x < a) || (x > d))   return 0;
-            else if ((x >= a) && (x <= b)) return (x - a) / (b - a);
-            else if ((x >= b) && (x <= c)) return 1;
-            else                           return (d - x) / (d - c);
+            var outOfBounds   = (val <  lowerLimit)        || (val > upperLimit);
+            var inLowRange    = (val >= lowerLimit)        && (val <= lowerSupportLimit);
+            var inMiddleRange = (val >= lowerSupportLimit) && (val <= upperSupportLimit);
+
+            if (outOfBounds)   return 0;
+            if (inLowRange)    return (val - lowerLimit) / (lowerSupportLimit - lowerLimit);            
+            if (inMiddleRange) return 1;            
+            
+            // inUpperRange
+            return (upperLimit - val) / (upperLimit - upperSupportLimit);
         }
 
-        protected float And(float a, float b)
+        protected float And(float first, float second)
         {
-            return Math.Min(a, b);
+            return Math.Min(first, second);
         }
 
-        protected float Or(float a, float b)
+        protected float Or(float first, float second)
         {
-            return Math.Max(a, b);
+            return Math.Max(first, second);
         }
 
-        protected float Not(float a)
+        protected float Not(float val)
         {
-            return 1 - a;
+            return 1 - val;
         }
 
         public abstract void Update();

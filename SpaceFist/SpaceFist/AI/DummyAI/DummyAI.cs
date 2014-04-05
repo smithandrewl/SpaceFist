@@ -14,9 +14,8 @@ namespace SpaceFist.AI.DummyAI
 
         public DummyAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
         {
-
-            ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship);
-            ShipInfo = new AI.ShipInfo(game, ship, enemyManager);
+            ShipInfo      = new AI.ShipInfo(game, ship, enemyManager);
+            ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship, ShipInfo);
 
             State = new DummyAIDummyState(this);
             State.EnteringState();
@@ -28,6 +27,6 @@ namespace SpaceFist.AI.DummyAI
         }
 
         public ShipEnemyInfo ShipEnemyInfo { get; set; }
-        public ShipInfo ShipInfo {get; set; }
+        public ShipInfo      ShipInfo      { get; set; }
     }
 }

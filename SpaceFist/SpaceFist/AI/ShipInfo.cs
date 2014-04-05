@@ -31,49 +31,62 @@ namespace SpaceFist.AI
         // fuzzy values
         
         // The players health
-        public double VeryLowHealth { get; set; }
-        public double LowHealth     { get; set; }
-        public double MediumHealth  { get; set; }
-        public double HighHealth    { get; set; }
-        public double FullHealth    { get; set; }
+        public float NoHealth       { get; set; }
+        public float VeryLowHealth  { get; set; }
+        public float LowHealth      { get; set; }
+        public float MediumHealth   { get; set; }
+        public float HighHealth     { get; set; }
+        public float VeryHighHealth { get; set; }
+        public float FullHealth     { get; set; }
 
-        
-        public double VeryLowAcc { get; set; }
-        public double LowAcc     { get; set; }
-        public double MediumAcc  { get; set; }
-        public double HighAcc    { get; set; }
-        public double PerfectAcc { get; set; }
+
+        public float NoAcc       { get; set; }
+        public float VeryLowAcc  { get; set; }
+        public float LowAcc      { get; set; }
+        public float MediumAcc   { get; set; }
+        public float HighAcc     { get; set; }
+        public float VeryHighAcc { get; set; }
+        public float PerfectAcc  { get; set; }
 
         // How often the player shoots
-        public double NeverShoots    { get; set; }
-        public double SometimeShoots { get; set; }
-        public double TriggerHappy   { get; set; }
-        public double Maniac         { get; set; }
+        public float NeverShoots    { get; set; }
+        public float RarelyShoots   { get; set; }
+        public float SometimeShoots { get; set; }
+        public float Normal         { get; set; }
+        public float ShootsOften    { get; set; }
+        public float TriggerHappy   { get; set; }
+        public float Maniac         { get; set; }
 
         // Weapon Strength
-        public double WeakWeapon     { get; set; }
-        public double NormalWeapon   { get; set; }
-        public double PowerfulWeapon { get; set; }
+        public float WeakWeapon     { get; set; }
+        public float NormalWeapon   { get; set; }
+        public float PowerfulWeapon { get; set; }
 
-        public double NoKills       { get; set; }
-        public double SomeKills     { get; set; }
-        public double ManyKills     { get; set; }
-        public double VeryManyKills { get; set; }
-
+        public float NoKills       { get; set; }
+        public float FewKills      { get; set; }
+        public float SomeKills     { get; set; }
+        public float NormalKills   { get; set; }
+        public float ManyKills     { get; set; }
+        public float VeryManyKills { get; set; }
+        public float TooManyKills  { get; set; }
+        
         // perfect, some hits, normal, many hits, bumper cars
-        public double NoBumps     { get; set; }
-        public double SomeBumps   { get; set; }
-        public double NormalBumps { get; set; }
-        public double ManyBumps   { get; set; }
-        public double BumperCars  { get; set; }
-
+        public float NoBumps       { get; set; }
+        public float FewBumps      { get; set; }
+        public float SomeBumps     { get; set; }
+        public float NormalBumps   { get; set; }
+        public float ManyBumps     { get; set; }
+        public float VeryManyBumps { get; set; }
+        public float BumperCars    { get; set; }
 
         // stationary, moving slowly, moving quickly, top speed
-        public double NotMoving     { get; set; }
-        public double MovingSlowly  { get; set; }
-        public double Moving        { get; set; }
-        public double MovingQuickly { get; set; }
-        public double TopSpeed      { get; set; }
+        public float NotMoving         { get; set; }
+        public float BarelyMoving      { get; set; }
+        public float MovingSlowly      { get; set; }
+        public float Moving            { get; set; }
+        public float MovingQuickly     { get; set; }
+        public float MovingVeryQuickly { get; set; }
+        public float TopSpeed          { get; set; }
 
         public ShipInfo(Game game, Ship ship, EnemyManager enemyManager)
         {
