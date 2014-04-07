@@ -41,8 +41,7 @@ namespace SpaceFist.AI
             get
             {
                 // reverse grade
-                And(Or(ShipFacingAway, ShipFacingElseWhere), ShipInfo.MovingVeryQuickly);
-                return 0;
+                return And(Or(ShipFacingAway, ShipFacingElseWhere), ShipInfo.MovingVeryQuickly);
             }
         }
 
@@ -50,8 +49,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                And(Or(ShipFacingAway, ShipFacingElseWhere), ShipInfo.MovingQuickly);
-                return 0;
+                return And(Or(ShipFacingAway, ShipFacingElseWhere), ShipInfo.MovingQuickly);
             }
         }
 
@@ -84,8 +82,6 @@ namespace SpaceFist.AI
         {
             get
             {
-                
-                // trap
                 return And(ShipFacingUs, ShipInfo.MovingQuickly);
             }
         }
@@ -99,13 +95,61 @@ namespace SpaceFist.AI
         }
 
         // Distance
-        public float ShipExtremelyClose { get; set; }
-        public float ShipVeryClose      { get; set; }
-        public float ShipClose          { get; set; }
-        public float ShipAway           { get; set; }
-        public float ShipFar            { get; set; }
-        public float ShipVeryFar        { get; set; }
-        public float ShipExtremelyFar   { get; set; }
+        public float ShipExtremelyClose
+        {
+            get
+            {
+                return ReverseGrade(distance, 5, 20); 
+            }
+        }
+
+        public float ShipVeryClose
+        {
+            get
+            {
+                return Trapezoid(distance, 5, 20, 65, 80);
+            }
+        }
+
+        public float ShipClose
+        {
+            get
+            {
+                return Trapezoid(distance, 65, 80, 125, 140);
+            }
+        }
+
+        public float ShipAway
+        {
+            get
+            {
+                return Triangle(distance, 125, 185, 155);
+            }
+        }
+
+        public float ShipFar
+        {
+            get
+            {
+                return Trapezoid(distance, 170, 185, 230, 245);
+            }
+        }
+
+        public float ShipVeryFar
+        {
+            get
+            {
+                return Trapezoid(distance, 230, 245, 290, 305);
+            }
+        }
+        
+        public float ShipExtremelyFar
+        {
+            get
+            {
+                return Grade(distance, 290, 305);
+            }
+        }
 
         // visible
         public bool ShipVisible { get; set; }

@@ -22,31 +22,115 @@ namespace SpaceFist.AI
         private float   weaponDamage;
         private int     powerUpsUsed;
         private int     score;
+        private int     totalKills;
         private int     killsAMinute;
         private int     collisionsPerMinute;
         private int     speed;
 
         private Entity possibleTarget;
-
-        // fuzzy values
         
-        // The players health
-        public float NoHealth       { get; set; }
-        public float VeryLowHealth  { get; set; }
-        public float LowHealth      { get; set; }
-        public float MediumHealth   { get; set; }
-        public float HighHealth     { get; set; }
-        public float VeryHighHealth { get; set; }
-        public float FullHealth     { get; set; }
+        public float NoHealth { 
+            get 
+            {
+                return ReverseGrade(health, 0, 5); 
+            } 
+        }
 
+        public float VeryLowHealth  
+        {
+            get
+            {
+                return Trapezoid(health, 0, 5, 20, 25);
+            }
+        }
+        public float LowHealth
+        {
+            get {
+                return Trapezoid(health, 20, 25, 40, 45);
+            }
+        }
+        public float MediumHealth
+        {
+            get
+            {
+                return Triangle(health, 40, 60, 50);
+            }
+        }
+        public float HighHealth
+        {
+            get
+            {
+                return Trapezoid(health, 55, 60, 75, 80);
+            }
+        }
 
-        public float NoAcc       { get; set; }
-        public float VeryLowAcc  { get; set; }
-        public float LowAcc      { get; set; }
-        public float MediumAcc   { get; set; }
-        public float HighAcc     { get; set; }
-        public float VeryHighAcc { get; set; }
-        public float PerfectAcc  { get; set; }
+        public float VeryHighHealth
+        {
+            get
+            {
+                return Trapezoid(health, 75, 80, 95, 100);
+            }
+        }
+
+        public float FullHealth
+        {
+            get
+            {
+                return Grade(health, 95, 100);
+            }
+        }
+
+        public float NoAcc
+        {
+            get
+            {
+                return ReverseGrade(acc, 0, 0.05f);
+            }
+        }
+        public float VeryLowAcc
+        {
+            get
+            {
+                return Trapezoid(acc, 0, 0.05f, 0.2f, 0.25f);
+            }
+        }
+        public float LowAcc
+        {
+            get
+            {
+                return Trapezoid(acc, 0.2f, 0.25f, 0.4f, 0.45f);
+            }
+        }
+        public float MediumAcc
+        {
+            get
+            {
+                return Triangle(acc, 0.4f, 0.6f, 0.5f);
+            }
+        }
+        public float HighAcc
+        {
+            get
+            {
+                return Trapezoid(acc, 0.55f, 0.6f, 0.75f, 0.8f);
+            }
+        }
+
+        public float VeryHighAcc
+        {
+            get
+            {
+                return Trapezoid(acc, 0.75f, 0.8f, 0.95f, 1);
+            }
+        }
+
+        public float PerfectAcc
+        {
+            get
+            {
+                return Grade(acc, 0.95f, 1);
+            }
+        }
 
         // How often the player shoots
         public float NeverShoots    { get; set; }
@@ -62,31 +146,108 @@ namespace SpaceFist.AI
         public float NormalWeapon   { get; set; }
         public float PowerfulWeapon { get; set; }
 
-        public float NoKills       { get; set; }
-        public float FewKills      { get; set; }
-        public float SomeKills     { get; set; }
-        public float NormalKills   { get; set; }
-        public float ManyKills     { get; set; }
-        public float VeryManyKills { get; set; }
-        public float TooManyKills  { get; set; }
+        public float NoKills
+        {
+            get
+            {
+                return ReverseGrade(totalKills, 0, 10);
+            }
+        }
+        public float FewKills
+        {
+            get
+            {
+                return Trapezoid(totalKills, 0, 10, 40, 50);
+            }
+        }
+        public float SomeKills
+        {
+            get
+            {
+                return Trapezoid(totalKills, 40, 50, 80, 90);
+            }
+        }
+        public float NormalKills
+        {
+            get
+            {
+                return Triangle(totalKills, 80, 120, 100);
+            }
+        }
         
-        // perfect, some hits, normal, many hits, bumper cars
-        public float NoBumps       { get; set; }
-        public float FewBumps      { get; set; }
-        public float SomeBumps     { get; set; }
-        public float NormalBumps   { get; set; }
-        public float ManyBumps     { get; set; }
-        public float VeryManyBumps { get; set; }
-        public float BumperCars    { get; set; }
+        public float ManyKills
+        {
+            get
+            {
+                return Trapezoid(totalKills, 110, 120, 150, 160);
+            }
+        }
 
+        public float VeryManyKills
+        {
+            get
+            {
+                return Trapezoid(totalKills, 150, 160, 190, 200);
+            }
+        }
+        public float TooManyKills
+        {
+            get
+            {
+                return Grade(totalKills, 190, 200);
+            }
+        }
+        
         // stationary, moving slowly, moving quickly, top speed
-        public float NotMoving         { get; set; }
-        public float BarelyMoving      { get; set; }
-        public float MovingSlowly      { get; set; }
-        public float Moving            { get; set; }
-        public float MovingQuickly     { get; set; }
-        public float MovingVeryQuickly { get; set; }
-        public float TopSpeed          { get; set; }
+        public float NotMoving
+        {
+            get
+            {
+                return ReverseGrade(speed, 0, 1);
+            }
+        }
+        public float BarelyMoving
+        {
+            get
+            {
+                return Trapezoid(speed, 0, 1, 4, 5);
+            }
+        }
+        public float MovingSlowly
+        {
+            get
+            {
+                return Trapezoid(speed, 4, 5, 8, 9);
+            }
+        }
+        public float Moving
+        {
+            get
+            {
+                return Triangle(speed, 8, 12, 10);
+            }
+        }
+        public float MovingQuickly
+        {
+            get
+            {
+                return Trapezoid(speed, 11, 12, 15, 16);
+            }
+        }
+        public float MovingVeryQuickly
+        {
+            get
+            {
+                return Trapezoid(speed, 15, 16, 19, 20);
+            }
+        }
+        public float TopSpeed
+        {
+            get
+            {
+                return Grade(speed, 19, 20);
+            }
+        }
 
         public ShipInfo(Game game, Ship ship, EnemyManager enemyManager)
         {
