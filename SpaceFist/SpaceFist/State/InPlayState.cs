@@ -13,7 +13,7 @@ namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks = 20;
+        private const int NumBlocks = 10;
 
         Random rand = new Random();
 
@@ -76,8 +76,8 @@ namespace SpaceFist.State
             shipManager.ResetScore();
 
             // Spawn blocks to the screen
-           blockManager.SpawnBlocks(NumBlocks);
-
+            blockManager.SpawnBlocks(NumBlocks);
+            enemyManager.Spawn(2);
             // Spawn the players ship
             shipManager.Initialize();
 

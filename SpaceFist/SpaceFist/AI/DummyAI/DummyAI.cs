@@ -23,6 +23,8 @@ namespace SpaceFist.AI.DummyAI
 
         public void Update()
         {
+            ShipInfo.Update();
+            ShipEnemyInfo.Update();
             State.Update();
         }
 

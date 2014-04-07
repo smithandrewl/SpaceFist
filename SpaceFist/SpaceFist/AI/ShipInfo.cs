@@ -13,6 +13,7 @@ namespace SpaceFist.AI
         private EnemyManager      enemyManager;
         private BlockManager      blockManager;
         private ProjectileManager projectileManager;
+        private DateTime LastPrint = DateTime.Now;
 
         // raw data
         private Vector2 heading;
@@ -28,6 +29,7 @@ namespace SpaceFist.AI
         private int     speed;
 
         private Entity possibleTarget;
+        private Ship ship;
         
         public float NoHealth { 
             get 
@@ -203,6 +205,7 @@ namespace SpaceFist.AI
         {
             get
             {
+                
                 return ReverseGrade(speed, 0, 1);
             }
         }
@@ -253,11 +256,23 @@ namespace SpaceFist.AI
         {
             this.game = game;
             this.enemyManager = enemyManager;
+            this.ship = ship;
         }
 
         public override void Update()
         {
-            throw new NotImplementedException();
-        }
+            speed = (int) ship.Velocity.Length();
+
+            if ((DateTime.Now - LastPrint).Seconds >= 1)
+            {
+               
+
+                Console.WriteLine("Speed: {0}, {1:P}, {2:P}, {3:P}, {4:P}, {5:P}, {6:P}, {7:P}", speed, NotMoving, BarelyMoving, MovingSlowly, Moving, MovingQuickly, MovingVeryQuickly, TopSpeed);
+                Console.WriteLine("Health: {0}, {1:P}, {2:P}, {3:P}, {4:P}, {5:P}, {6:P}, {7:P}",health,  this.NoHealth, this.VeryLowHealth, this.LowHealth, MediumHealth, HighHealth, VeryHighHealth, FullHealth);
+                Console.WriteLine();
+                LastPrint = DateTime.Now;
+            }
+
+           }
     }
 }

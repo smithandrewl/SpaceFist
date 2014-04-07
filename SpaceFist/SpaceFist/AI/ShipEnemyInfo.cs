@@ -9,18 +9,14 @@ namespace SpaceFist.AI
 {
     public class ShipEnemyInfo : FuzzyLogicEnabled
     {
-        // Seven sets per variable
-        // overlap of 25%
-        // grade and reverse grade on the sides
-        // trapezoid in the middle
-        // triangle in the center
-
         public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo)
         {
             this.Enemy = enemy;
             this.Ship = ship;
             this.ShipInfo = shipInfo;
         }
+
+        private DateTime lastPrint = DateTime.Now;
 
         //-------------- Crisp input ----------------- 
         // Distance
@@ -94,12 +90,25 @@ namespace SpaceFist.AI
             }
         }
 
-        // Distance
+        /*
+// Distance
+
+
+
+
+
+
+
+);
+
+
+         */
+
         public float ShipExtremelyClose
         {
             get
             {
-                return ReverseGrade(distance, 5, 20); 
+                return ReverseGrade(distance, 5, 26.43f); 
             }
         }
 
@@ -107,7 +116,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return Trapezoid(distance, 5, 20, 65, 80);
+                return Trapezoid(distance, 5, 26.43f, 47.86f, 69.29f);
             }
         }
 
@@ -115,7 +124,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return Trapezoid(distance, 65, 80, 125, 140);
+                return Trapezoid(distance, 47.86f, 69.29f, 90.71f, 112.14f);
             }
         }
 
@@ -123,7 +132,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return Triangle(distance, 125, 185, 155);
+                return Triangle(distance, 90.71f, 133.57f, 112.14f);
             }
         }
 
@@ -131,7 +140,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return Trapezoid(distance, 170, 185, 230, 245);
+                return Trapezoid(distance, 112.14f, 133.57f, 155, 176.43f);
             }
         }
 
@@ -139,15 +148,15 @@ namespace SpaceFist.AI
         {
             get
             {
-                return Trapezoid(distance, 230, 245, 290, 305);
+                return Trapezoid(distance, 155, 176.43f, 197.86f, 219.29f);
             }
         }
-        
+
         public float ShipExtremelyFar
         {
             get
             {
-                return Grade(distance, 290, 305);
+                return Grade(distance, 197.86f, 219.29f);
             }
         }
 
@@ -172,7 +181,15 @@ namespace SpaceFist.AI
 
             distance = (int) Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
-            // update rotation
+            
+            speed      = (int) Ship.Velocity.Length();
+
+            if ((DateTime.Now - lastPrint).Seconds >= 1)
+            {
+                Console.WriteLine("Distance: {0}, {1:P3}, {2:P3}, {3:P3}, {4:P3}, {5:P3}, {6:P3}, {7:P3}",distance, this.ShipExtremelyFar, ShipVeryFar, ShipFar, ShipAway, ShipClose, ShipVeryClose, ShipExtremelyClose);
+
+                lastPrint = DateTime.Now;
+            }
         }
 
         public Enemy Enemy { get; set; }

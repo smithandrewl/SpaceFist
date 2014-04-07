@@ -3,13 +3,13 @@
 open System
 
 let generateFuzzySet (comment: String, low: float, high: float): Unit =
-    let overlap: float = (high / 5.0) * 0.25 
-    let offset:  float = (high / 5.0) - overlap
-
-    let gradeFormat        = "return Grade(value, {0}, {1});"
-    let reverseGradeFormat = "return ReverseGrade(value, {0}, {1});"
-    let trapezoidFormat    = "return Trapezoid(value, {0}, {1}, {2}, {3});"
-    let triangleFormat     = "return Triangle(value, {0}, {1}, {2});"
+    let overlap: float = (high / 7.0) * 0.50
+    let offset:  float = (high / 7.0) - overlap
+    
+    let gradeFormat        = "return Grade(value, {0:F}, {1:F});"
+    let reverseGradeFormat = "return ReverseGrade(value, {0:F}, {1:F});"
+    let trapezoidFormat    = "return Trapezoid(value, {0:F}, {1:F}, {2:F}, {3:F});"
+    let triangleFormat     = "return Triangle(value, {0:F}, {1:F}, {2:F});"
     
     Console.WriteLine("// {0}", comment)
     Console.WriteLine(reverseGradeFormat, low, (low + overlap))
