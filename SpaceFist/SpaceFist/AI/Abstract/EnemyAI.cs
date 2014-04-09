@@ -11,7 +11,6 @@ namespace SpaceFist.AI
     {
         ShipEnemyInfo ShipEnemyInfo { get; set; }
         ShipInfo      ShipInfo      { get; set; }
-        EnemyAIState  State         { get; set; }
 
         void Update();
     }

@@ -10,22 +10,20 @@ namespace SpaceFist.AI.DummyAI
 {
     class DummyAI : EnemyAI
     {
-        public State.Abstract.EnemyAIState State { get; set; }
-
+        private DummyAIDummyState dummyState;
         public DummyAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
         {
             ShipInfo      = new AI.ShipInfo(game, ship, enemyManager);
             ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship, ShipInfo);
 
-            State = new DummyAIDummyState(this);
-            State.EnteringState();
+            dummyState = new DummyAIDummyState(this);
         }
 
         public void Update()
         {
             ShipInfo.Update();
             ShipEnemyInfo.Update();
-            State.Update();
+            dummyState.Update();
         }
 
         public ShipEnemyInfo ShipEnemyInfo { get; set; }

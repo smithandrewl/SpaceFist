@@ -37,10 +37,10 @@ let generateFuzzySet (name: String, low: float, high: float): Unit =
 
 [<EntryPoint>]
 let main argv = 
-    generateFuzzySet("Health", 0.0, 100.0)
-    generateFuzzySet("Acc", 0.0, 1.0)
-    generateFuzzySet("Kills", 0.0, 200.0)
-    generateFuzzySet("Speed", 0.0, 20.0)
-    generateFuzzySet("Distance", 5.0, 300.0)
+    //generateFuzzySet("Health", 0.0, 100.0)
+    //generateFuzzySet("Acc", 0.0, 1.0)
+    //generateFuzzySet("Kills", 0.0, 200.0)
+    //generateFuzzySet("Speed", 0.0, 20.0)
+    generateFuzzySet("Distance", 0.0, 600.0)
     Console.ReadLine()
     0 // return an integer exit code

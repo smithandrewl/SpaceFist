@@ -53,7 +53,7 @@ namespace SpaceFist.Managers
 
             if (alive == 0)
             {
-                Spawn(rand.Next(1, 5));
+                Spawn(rand.Next(1, 2));
             }
         }
         

@@ -32,7 +32,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return ReverseGrade(distance, 5, 147.5f);
+                return ReverseGrade(distance, 0, 300);
             }
         }
 
@@ -40,7 +40,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return Triangle(distance, 5, 147.5f, 300);
+                return Triangle(distance, 0, 300, 600);
             }
         }
 
@@ -48,9 +48,11 @@ namespace SpaceFist.AI
         {
             get
             {
-                return Grade(distance, 147.5f, 300);
+                return Grade(distance, 300, 600);
             }
         }
+
+
 
         // visible
         public bool ShipVisible { get; set; }

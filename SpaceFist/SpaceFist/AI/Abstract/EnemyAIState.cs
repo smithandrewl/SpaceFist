@@ -5,7 +5,8 @@ using System.Text;
 
 namespace SpaceFist.State.Abstract
 {
-    public interface EnemyAIState : State
+    public interface EnemyAIState
     {
+        void Update();
     }
 }
