@@ -11,39 +11,12 @@ namespace SpaceFist.AI
     {
         private Game              game;
         private EnemyManager      enemyManager;
-        private BlockManager      blockManager;
-        private ProjectileManager projectileManager;
         private DateTime LastPrint = DateTime.Now;
 
         // raw data
-        private Vector2 heading;
         private float   health;
-        private float   acc;
-        private float   shotsPerMin;
-        private float   weaponDamage;
-        private int     powerUpsUsed;
-        private int     score;
-        private int     totalKills;
-        private int     killsAMinute;
-        private int     collisionsPerMinute;
         private int     speed;
-
-        private Entity possibleTarget;
         private Ship ship;
-
-        // How often the player shoots
-        public float NeverShoots    { get; set; }
-        public float RarelyShoots   { get; set; }
-        public float SometimeShoots { get; set; }
-        public float Normal         { get; set; }
-        public float ShootsOften    { get; set; }
-        public float TriggerHappy   { get; set; }
-        public float Maniac         { get; set; }
-
-        // Weapon Strength
-        public float WeakWeapon     { get; set; }
-        public float NormalWeapon   { get; set; }
-        public float PowerfulWeapon { get; set; }
 
         // Speed
         public float LowSpeed

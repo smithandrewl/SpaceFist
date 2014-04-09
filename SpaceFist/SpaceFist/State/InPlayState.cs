@@ -60,8 +60,8 @@ namespace SpaceFist.State
             explosionManager  = new ExplosionManager(game);
             shipManager       = new PlayerManager(game);
             pickupManager     = new PickUpManager(game, resolution);
-            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager);
             enemyManager      = new EnemyManager(game, resolution);
+            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager);
         }
 
         public void EnteringState()
@@ -77,7 +77,8 @@ namespace SpaceFist.State
 
             // Spawn blocks to the screen
             blockManager.SpawnBlocks(NumBlocks);
-            enemyManager.Spawn(2);
+
+            enemyManager.Spawn(5);
             // Spawn the players ship
             shipManager.Initialize();
 

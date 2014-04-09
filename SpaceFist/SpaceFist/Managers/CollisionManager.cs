@@ -17,19 +17,22 @@ namespace SpaceFist.Managers
         private ProjectileManager laserManager;
         private PlayerManager     shipManager;
         private PickUpManager     pickupManager;
+        private EnemyManager      enemyManager;
 
         public CollisionManager(
             BlockManager      blockManager, 
             PlayerManager     shipManager, 
             ProjectileManager laserManager, 
             ExplosionManager  explosionManager,
-            PickUpManager     pickupManager)
+            PickUpManager     pickupManager,
+            EnemyManager      enemyManager)
         {
             this.blockManager     = blockManager;
             this.shipManager      = shipManager;
             this.laserManager     = laserManager;
             this.explosionManager = explosionManager;
             this.pickupManager    = pickupManager;
+            this.enemyManager     = enemyManager;
         }
         
         public void Update()
@@ -37,6 +40,20 @@ namespace SpaceFist.Managers
             HandleLaserRockCollisions();
             HandleShipRockCollisions();
             HandleShipPickupCollisions();
+            HandleEnemyLaserCollisions();
+        }
+
+        public void HandleEnemyLaserCollisions()
+        {
+            foreach (var laser in laserManager)
+            {
+                foreach (var enemy in enemyManager.Collisions(laser))
+                {
+                    explosionManager.add(enemy.X, enemy.Y);
+                    enemy.Alive = false;
+                    shipManager.Scored();
+                }
+            }
         }
 
         public void HandleShipPickupCollisions()

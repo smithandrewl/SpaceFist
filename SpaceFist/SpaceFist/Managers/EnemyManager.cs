@@ -30,10 +30,13 @@ namespace SpaceFist.Managers
         }
 
         public void Spawn(int count){
+
+            enemies.Clear();
+
             for (int i = 0; i < count; i++)
             {
                 int   randX    = rand.Next(0, screen.Width);
-                int   randY    = rand.Next(0, 15);
+                int   randY    = rand.Next(0, (int) (screen.Height * .25f));
                 float rotation = MathHelper.ToRadians(180);
                 Enemy enemy    = new Enemy(game, new Vector2(randX, randY));
 
@@ -45,6 +48,13 @@ namespace SpaceFist.Managers
 
         public void Update(){
             enemies.ForEach(enemy => enemy.Update());
+
+            var alive = enemies.Count(enemy => enemy.Alive);
+
+            if (alive == 0)
+            {
+                Spawn(rand.Next(1, 5));
+            }
         }
         
         public void Draw() {
@@ -59,6 +69,17 @@ namespace SpaceFist.Managers
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public IEnumerable<Entity> Collisions(Entity entity)
+        {
+            var res =
+                from enemy in enemies
+                where enemy.Alive && (enemy != entity) && enemy.Rectangle.Intersects(entity.Rectangle)
+                select enemy;
+
+
+            return res;
         }
     }
 }

@@ -15,9 +15,12 @@ namespace SpaceFist.AI.DummyAI
         public Ship Ship { get; set; }
 
         private DateTime lastUpdate;
+        private Random random;
 
         public DummyAIDummyState(EnemyAI ai)
         {
+            random = new Random();
+
             AI = ai;
             Ship = ai.ShipEnemyInfo.Ship;
             Enemy = ai.ShipEnemyInfo.Enemy;
@@ -33,7 +36,11 @@ namespace SpaceFist.AI.DummyAI
             {
                 if (Enemy.WayPoints.Count < 30)
                 {
-                    var shipLocation = new Microsoft.Xna.Framework.Vector2(Ship.X, Ship.Y);
+                    
+                    int randX = random.Next(-25, 25);
+                    int randY = random.Next(-25, 25);
+
+                    var shipLocation = new Microsoft.Xna.Framework.Vector2(Ship.X + randX, Ship.Y + randY);
 
                     if (!Enemy.WayPoints.Contains(shipLocation))
                     {

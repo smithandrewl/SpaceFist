@@ -21,10 +21,6 @@ namespace SpaceFist.AI
         //-------------- Crisp input ----------------- 
         // Distance
         private int distance;
-
-        // Rotation Difference
-        private int rotationTo;
-
         private int speed;
 
         // ------------- Crisp Input -----------------
