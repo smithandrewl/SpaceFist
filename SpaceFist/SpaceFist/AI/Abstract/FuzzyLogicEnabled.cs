@@ -10,10 +10,10 @@ namespace SpaceFist
     // http://www.dma.fi.upm.es/java/fuzzy/fuzzyinf/funpert_en.htm
     public abstract class FuzzyLogicEnabled
     {
-        protected float Grade(float val, float lowerSupportlimit, float lowerLimit)
+        protected float Grade(float val, float lowerLimit, float lowerSupportlimit)
         {
             if (val < lowerLimit)       return 0;
-            if (val <lowerSupportlimit) return (val - lowerLimit) /(lowerSupportlimit - lowerLimit);
+            if ((val >= lowerLimit) && (val <= lowerSupportlimit)) return (val - lowerLimit) / (lowerSupportlimit - lowerLimit);
 
             return 1;
         }
@@ -21,12 +21,12 @@ namespace SpaceFist
         protected float ReverseGrade(float val, float upperSupportLimit, float upperLimit)
         {
             if (val > upperLimit)         return 0;
-            if (val >= upperSupportLimit) return (upperLimit - val) / (upperLimit - upperSupportLimit);
+            if ((val >= upperSupportLimit) && (val <= upperLimit)) return (upperLimit - val) / (upperLimit - upperSupportLimit);
             
             return 1;
         }
 
-        protected float Triangle(float val, float lowerLimit, float upperLimit, float middle)
+        protected float Triangle(float val, float lowerLimit, float middle, float upperLimit)
         {
             if (val <= lowerLimit) return 0; 
             if (val <= middle)     return (val - lowerLimit) / (middle - lowerLimit);

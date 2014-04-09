@@ -2,34 +2,37 @@
 // See the 'F# Tutorial' project for more help.
 open System
 
-let generateFuzzySet (comment: String, low: float, high: float): Unit =
-    let overlap: float = (high / 7.0) * 0.50
-    let offset:  float = (high / 7.0) - overlap
+let generateFuzzySet (name: String, low: float, high: float): Unit =
+    let med:float = (high - low) / 2.0
+    let div:float = (high - low) / 3.0
+    let overlap:float = div * 0.25
+
+    let gradeFormat = 
+        "public float {0}{1} {{\n" +
+         "    get {{\n" +
+         "        return Grade(value, {2}, {3});\n" +
+         "    }}\n"+
+         "}}\n"
+
+    let reverseGradeFormat = 
+        "public float {0}{1} {{\n" +
+        "    get {{\n" +
+        "        return ReverseGrade(value, {2}, {3});\n" +
+        "    }}\n" +
+        "}}\n" 
     
-    let gradeFormat        = "return Grade(value, {0:F}, {1:F});"
-    let reverseGradeFormat = "return ReverseGrade(value, {0:F}, {1:F});"
-    let trapezoidFormat    = "return Trapezoid(value, {0:F}, {1:F}, {2:F}, {3:F});"
-    let triangleFormat     = "return Triangle(value, {0:F}, {1:F}, {2:F});"
+    let triangleFormat = 
+        "public float {0}{1} {{\n" +
+        "    get {{\n" +
+        "        return Triangle(value, {2}, {3}, {4});\n" +
+        "    }}\n" +
+        "}}\n"
+
+    Console.WriteLine("// {0}", name)
     
-    Console.WriteLine("// {0}", comment)
-    Console.WriteLine(reverseGradeFormat, low, (low + overlap))
-    Console.WriteLine(trapezoidFormat, low, low + overlap, low + offset + overlap, low + offset + (2.0 * overlap))
-    Console.WriteLine(trapezoidFormat, low + overlap + offset, low + offset + (2.0 * overlap), low + (2.0 * offset) + (2.0 * overlap), low + (2.0 * offset) + (3.0 * overlap))
-
-    let triangleLower: float  = low + (2.0 * overlap) + (2.0 * offset)
-    let triangleUpper: float  = low + (3.0 * overlap) + (3.0 * offset)
-    let triangleMiddle: float = triangleLower + ((triangleUpper - triangleLower) / 2.0)
-
-    Console.WriteLine(triangleFormat, triangleLower, triangleUpper, triangleMiddle)
-    Console.WriteLine(trapezoidFormat, triangleUpper - overlap, triangleUpper, triangleUpper + offset, triangleUpper + offset + overlap)
-
-    let last: float = triangleUpper + offset + overlap
-
-    Console.WriteLine(trapezoidFormat, last - overlap, last, last + offset, last + offset + overlap)
-
-    let last: float = last + offset + overlap
-
-    Console.WriteLine(gradeFormat, last - overlap, last)
+    Console.WriteLine(reverseGradeFormat, "Low", name, low, med);
+    Console.WriteLine(triangleFormat, "Medium", name, low, med, high);
+    Console.WriteLine(gradeFormat, "High", name, med, high);
 
 
 [<EntryPoint>]
@@ -41,6 +44,3 @@ let main argv =
     generateFuzzySet("Distance", 5.0, 300.0)
     Console.ReadLine()
     0 // return an integer exit code
-
-
-

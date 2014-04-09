@@ -31,132 +31,28 @@ namespace SpaceFist.AI
 
 
 
-        // ship movement in relation to the enemy
-        public float ShipSpeedingAway
+        // Distance
+        public float LowDistance
         {
             get
             {
-                // reverse grade
-                return And(Or(ShipFacingAway, ShipFacingElseWhere), ShipInfo.MovingVeryQuickly);
+                return ReverseGrade(distance, 5, 147.5f);
             }
         }
 
-        public float ShipMovingQuicklyAway
+        public float MediumDistance
         {
             get
             {
-                return And(Or(ShipFacingAway, ShipFacingElseWhere), ShipInfo.MovingQuickly);
+                return Triangle(distance, 5, 147.5f, 300);
             }
         }
 
-        public float ShipMovingAway
+        public float HighDistance
         {
             get
             {
-                return And(Or(ShipFacingAway, ShipFacingElseWhere), ShipInfo.Moving);
-            }
-        }
-
-        public float ShipNotMoving
-        {
-            get
-            {
-                return Not(ShipInfo.Moving);
-            }
-        }
-
-
-        public float ShipMovingTowards
-        {
-            get
-            {
-                return And(ShipFacingUs, ShipInfo.Moving);
-            }
-        }
-
-        public float ShipMovingQuicklyTowards
-        {
-            get
-            {
-                return And(ShipFacingUs, ShipInfo.MovingQuickly);
-            }
-        }
-        
-        public float ShipSpeedingTowards
-        {
-            get
-            {
-                return And(ShipFacingUs, ShipInfo.MovingVeryQuickly);
-            }
-        }
-
-        /*
-// Distance
-
-
-
-
-
-
-
-);
-
-
-         */
-
-        public float ShipExtremelyClose
-        {
-            get
-            {
-                return ReverseGrade(distance, 5, 26.43f); 
-            }
-        }
-
-        public float ShipVeryClose
-        {
-            get
-            {
-                return Trapezoid(distance, 5, 26.43f, 47.86f, 69.29f);
-            }
-        }
-
-        public float ShipClose
-        {
-            get
-            {
-                return Trapezoid(distance, 47.86f, 69.29f, 90.71f, 112.14f);
-            }
-        }
-
-        public float ShipAway
-        {
-            get
-            {
-                return Triangle(distance, 90.71f, 133.57f, 112.14f);
-            }
-        }
-
-        public float ShipFar
-        {
-            get
-            {
-                return Trapezoid(distance, 112.14f, 133.57f, 155, 176.43f);
-            }
-        }
-
-        public float ShipVeryFar
-        {
-            get
-            {
-                return Trapezoid(distance, 155, 176.43f, 197.86f, 219.29f);
-            }
-        }
-
-        public float ShipExtremelyFar
-        {
-            get
-            {
-                return Grade(distance, 197.86f, 219.29f);
+                return Grade(distance, 147.5f, 300);
             }
         }
 
@@ -186,7 +82,7 @@ namespace SpaceFist.AI
 
             if ((DateTime.Now - lastPrint).Seconds >= 1)
             {
-                Console.WriteLine("Distance: {0}, {1:P3}, {2:P3}, {3:P3}, {4:P3}, {5:P3}, {6:P3}, {7:P3}",distance, this.ShipExtremelyFar, ShipVeryFar, ShipFar, ShipAway, ShipClose, ShipVeryClose, ShipExtremelyClose);
+                Console.WriteLine("Distance: {0}, {1:P3}, {2:P3}, {3:P3}", distance, LowDistance, MediumDistance, HighDistance);
 
                 lastPrint = DateTime.Now;
             }

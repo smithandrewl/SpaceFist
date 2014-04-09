@@ -30,109 +30,6 @@ namespace SpaceFist.AI
 
         private Entity possibleTarget;
         private Ship ship;
-        
-        public float NoHealth { 
-            get 
-            {
-                return ReverseGrade(health, 0, 5); 
-            } 
-        }
-
-        public float VeryLowHealth  
-        {
-            get
-            {
-                return Trapezoid(health, 0, 5, 20, 25);
-            }
-        }
-        public float LowHealth
-        {
-            get {
-                return Trapezoid(health, 20, 25, 40, 45);
-            }
-        }
-        public float MediumHealth
-        {
-            get
-            {
-                return Triangle(health, 40, 60, 50);
-            }
-        }
-        public float HighHealth
-        {
-            get
-            {
-                return Trapezoid(health, 55, 60, 75, 80);
-            }
-        }
-
-        public float VeryHighHealth
-        {
-            get
-            {
-                return Trapezoid(health, 75, 80, 95, 100);
-            }
-        }
-
-        public float FullHealth
-        {
-            get
-            {
-                return Grade(health, 95, 100);
-            }
-        }
-
-        public float NoAcc
-        {
-            get
-            {
-                return ReverseGrade(acc, 0, 0.05f);
-            }
-        }
-        public float VeryLowAcc
-        {
-            get
-            {
-                return Trapezoid(acc, 0, 0.05f, 0.2f, 0.25f);
-            }
-        }
-        public float LowAcc
-        {
-            get
-            {
-                return Trapezoid(acc, 0.2f, 0.25f, 0.4f, 0.45f);
-            }
-        }
-        public float MediumAcc
-        {
-            get
-            {
-                return Triangle(acc, 0.4f, 0.6f, 0.5f);
-            }
-        }
-        public float HighAcc
-        {
-            get
-            {
-                return Trapezoid(acc, 0.55f, 0.6f, 0.75f, 0.8f);
-            }
-        }
-
-        public float VeryHighAcc
-        {
-            get
-            {
-                return Trapezoid(acc, 0.75f, 0.8f, 0.95f, 1);
-            }
-        }
-
-        public float PerfectAcc
-        {
-            get
-            {
-                return Grade(acc, 0.95f, 1);
-            }
-        }
 
         // How often the player shoots
         public float NeverShoots    { get; set; }
@@ -148,107 +45,53 @@ namespace SpaceFist.AI
         public float NormalWeapon   { get; set; }
         public float PowerfulWeapon { get; set; }
 
-        public float NoKills
+        // Speed
+        public float LowSpeed
         {
             get
             {
-                return ReverseGrade(totalKills, 0, 10);
-            }
-        }
-        public float FewKills
-        {
-            get
-            {
-                return Trapezoid(totalKills, 0, 10, 40, 50);
-            }
-        }
-        public float SomeKills
-        {
-            get
-            {
-                return Trapezoid(totalKills, 40, 50, 80, 90);
-            }
-        }
-        public float NormalKills
-        {
-            get
-            {
-                return Triangle(totalKills, 80, 120, 100);
-            }
-        }
-        
-        public float ManyKills
-        {
-            get
-            {
-                return Trapezoid(totalKills, 110, 120, 150, 160);
+                return ReverseGrade(speed, 0, 10);
             }
         }
 
-        public float VeryManyKills
+        public float MediumSpeed
         {
             get
             {
-                return Trapezoid(totalKills, 150, 160, 190, 200);
+                return Triangle(speed, 0, 10, 20);
             }
         }
-        public float TooManyKills
+
+        public float HighSpeed
         {
             get
             {
-                return Grade(totalKills, 190, 200);
+                return Grade(speed, 10, 20);
             }
         }
-        
-        // stationary, moving slowly, moving quickly, top speed
-        public float NotMoving
+
+        // Health
+        public float LowHealth
         {
             get
             {
-                
-                return ReverseGrade(speed, 0, 1);
+                return ReverseGrade(health, 0, 0.5f);
             }
         }
-        public float BarelyMoving
+
+        public float MediumHealth
         {
             get
             {
-                return Trapezoid(speed, 0, 1, 4, 5);
+                return Triangle(health, 0, 0.5f, 1);
             }
         }
-        public float MovingSlowly
+
+        public float HighHealth
         {
             get
             {
-                return Trapezoid(speed, 4, 5, 8, 9);
-            }
-        }
-        public float Moving
-        {
-            get
-            {
-                return Triangle(speed, 8, 12, 10);
-            }
-        }
-        public float MovingQuickly
-        {
-            get
-            {
-                return Trapezoid(speed, 11, 12, 15, 16);
-            }
-        }
-        public float MovingVeryQuickly
-        {
-            get
-            {
-                return Trapezoid(speed, 15, 16, 19, 20);
-            }
-        }
-        public float TopSpeed
-        {
-            get
-            {
-                return Grade(speed, 19, 20);
+                return Grade(health, .5f, 1);
             }
         }
 
@@ -262,13 +105,12 @@ namespace SpaceFist.AI
         public override void Update()
         {
             speed = (int) ship.Velocity.Length();
+            health = ship.Health;
 
             if ((DateTime.Now - LastPrint).Seconds >= 1)
             {
-               
-
-                Console.WriteLine("Speed: {0}, {1:P}, {2:P}, {3:P}, {4:P}, {5:P}, {6:P}, {7:P}", speed, NotMoving, BarelyMoving, MovingSlowly, Moving, MovingQuickly, MovingVeryQuickly, TopSpeed);
-                Console.WriteLine("Health: {0}, {1:P}, {2:P}, {3:P}, {4:P}, {5:P}, {6:P}, {7:P}",health,  this.NoHealth, this.VeryLowHealth, this.LowHealth, MediumHealth, HighHealth, VeryHighHealth, FullHealth);
+                Console.WriteLine("Speed: {0}, {1:P}, {2:P}, {3:P}", speed, LowSpeed, MediumSpeed, HighSpeed);
+                Console.WriteLine("Health: {0}, {1:P}, {2:P}, {3:P}",health,  LowHealth, MediumHealth, HighHealth);
                 Console.WriteLine();
                 LastPrint = DateTime.Now;
             }
