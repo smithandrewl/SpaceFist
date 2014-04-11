@@ -14,45 +14,30 @@ namespace SpaceFist.AI
             this.Enemy = enemy;
             this.Ship = ship;
             this.ShipInfo = shipInfo;
+
+            fuzzyDistance = new FuzzyVariable { Name = "Distance" };
         }
+
+        private FuzzyVariable fuzzyDistance;
 
         private DateTime lastPrint = DateTime.Now;
 
         //-------------- Crisp input ----------------- 
         // Distance
         private int distance;
-        private int speed;
 
         // ------------- Crisp Input -----------------
 
 
 
         // Distance
-        public float LowDistance
+        public FuzzyVariable Distance
         {
             get
             {
-                return ReverseGrade(distance, 0, 300);
+                return grade(distance, 0, 600, fuzzyDistance);
             }
         }
-
-        public float MediumDistance
-        {
-            get
-            {
-                return Triangle(distance, 0, 300, 600);
-            }
-        }
-
-        public float HighDistance
-        {
-            get
-            {
-                return Grade(distance, 300, 600);
-            }
-        }
-
-
 
         // visible
         public bool ShipVisible { get; set; }
@@ -75,12 +60,14 @@ namespace SpaceFist.AI
 
             distance = (int) Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
-            
-            speed      = (int) Ship.Velocity.Length();
+            PrintDebuggingInfo();
+        }
 
+        private void PrintDebuggingInfo()
+        {
             if ((DateTime.Now - lastPrint).Seconds >= 1)
             {
-                Console.WriteLine("Distance: {0}, {1:P3}, {2:P3}, {3:P3}", distance, LowDistance, MediumDistance, HighDistance);
+                Console.WriteLine(Distance);
 
                 lastPrint = DateTime.Now;
             }

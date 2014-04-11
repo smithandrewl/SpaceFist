@@ -45,7 +45,7 @@ namespace SpaceFist.AI
         // TriggerHappy
         public FuzzyVariable TriggerHappy {
             get {
-                return grade(roundData.ShotsPerPeriod, 0,25, fuzzyTriggerHappy);
+                return grade(roundData.ShotsPerPeriod, 0, 60, fuzzyTriggerHappy);
             }
         }
 
@@ -61,7 +61,6 @@ namespace SpaceFist.AI
             fuzzyTriggerHappy = new FuzzyVariable { Name = "Trigger Happy" };
         }
 
-        
         public override void Update()
         {
             speed = (int) ship.Velocity.Length();

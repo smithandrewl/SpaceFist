@@ -44,7 +44,7 @@ namespace SpaceFist.AI.DummyAI
 
         public override void Update()
         {
-            membership = Or(AI.ShipEnemyInfo.LowDistance, AI.ShipEnemyInfo.MediumDistance);
+            membership = Or(AI.ShipEnemyInfo.Distance.Low, AI.ShipEnemyInfo.Distance.Med);
 
             var millisecondsPassed = (DateTime.Now - lastUpdate).Milliseconds;
 
