@@ -13,7 +13,7 @@ namespace SpaceFist.AI.DummyAI
         private DummyAIDummyState dummyState;
         public DummyAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
         {
-            ShipInfo      = new AI.ShipInfo(game, ship, enemyManager);
+            ShipInfo      = new AI.ShipInfo(game, ship, enemyManager, game.InPlayState.RoundData);
             ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship, ShipInfo);
 
             dummyState = new DummyAIDummyState(this);

@@ -17,6 +17,7 @@ namespace SpaceFist.AI
         private float   health;
         private int     speed;
         private Ship ship;
+        private RoundData roundData;
 
         // Speed
         public float LowSpeed
@@ -68,11 +69,38 @@ namespace SpaceFist.AI
             }
         }
 
-        public ShipInfo(Game game, Ship ship, EnemyManager enemyManager)
+        // TriggerHappy
+        public float LowTriggerHappy
+        {
+            get
+            {
+                return ReverseGrade(roundData.ShotsPerPeriod, 0, 12.5f);
+            }
+        }
+
+        public float MediumTriggerHappy
+        {
+            get
+            {
+                return Triangle(roundData.ShotsPerPeriod, 0, 12.5f, 25);
+            }
+        }
+
+        public float HighTriggerHappy
+        {
+            get
+            {
+                return Grade(roundData.ShotsPerPeriod, 12.5f, 25);
+            }
+        }
+
+        public ShipInfo(Game game, Ship ship, EnemyManager enemyManager, RoundData roundData)
         {
             this.game = game;
             this.enemyManager = enemyManager;
             this.ship = ship;
+            this.roundData = roundData;
+            
         }
 
         public override void Update()
@@ -84,6 +112,7 @@ namespace SpaceFist.AI
             {
                 Console.WriteLine("Speed: {0}, {1:P}, {2:P}, {3:P}", speed, LowSpeed, MediumSpeed, HighSpeed);
                 Console.WriteLine("Health: {0}, {1:P}, {2:P}, {3:P}",health,  LowHealth, MediumHealth, HighHealth);
+                Console.WriteLine("TriggerHappy: {0}, {1:P}, {2:P}, {3:P}", roundData.ShotsPerPeriod, LowTriggerHappy, MediumTriggerHappy, HighTriggerHappy);
                 Console.WriteLine();
                 LastPrint = DateTime.Now;
             }

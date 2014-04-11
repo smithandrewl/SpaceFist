@@ -40,6 +40,7 @@ namespace SpaceFist.Managers
 
         public void fireLaser(int x, int y)
         {
+            game.InPlayState.RoundData.ShotsFired++;
             // Place a new active laser at x, y
             Projectile projectile = new Projectile(game, game.LaserTexture, new Vector2(x, y), 10);
 
@@ -48,6 +49,7 @@ namespace SpaceFist.Managers
 
         public void fireSampleWeapon(int x, int y)
         {
+            game.InPlayState.RoundData.ShotsFired++;
             Projectile projectile = 
                 new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), 40);
             

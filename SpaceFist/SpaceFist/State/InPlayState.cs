@@ -13,7 +13,9 @@ namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks = 0;
+        private const int NumBlocks = 10;
+
+        public RoundData RoundData { get; set; }
 
         Random rand = new Random();
 
@@ -48,6 +50,7 @@ namespace SpaceFist.State
         public InPlayState(Game game)
         {
             this.game = game;
+            RoundData = new RoundData();
         }
 
         public void LoadContent()
@@ -61,11 +64,13 @@ namespace SpaceFist.State
             shipManager       = new PlayerManager(game);
             pickupManager     = new PickUpManager(game, resolution);
             enemyManager      = new EnemyManager(game, resolution);
-            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager);
+            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
         }
 
         public void EnteringState()
         {
+            RoundData = new RoundData();
+
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
             // Tell the ship manager to spawn the ship

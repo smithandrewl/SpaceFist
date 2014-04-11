@@ -41,6 +41,7 @@ let main argv =
     //generateFuzzySet("Acc", 0.0, 1.0)
     //generateFuzzySet("Kills", 0.0, 200.0)
     //generateFuzzySet("Speed", 0.0, 20.0)
-    generateFuzzySet("Distance", 0.0, 600.0)
+    //generateFuzzySet("Distance", 0.0, 600.0)
+    generateFuzzySet("TriggerHappy", 0.0, 25.0)
     Console.ReadLine()
     0 // return an integer exit code
