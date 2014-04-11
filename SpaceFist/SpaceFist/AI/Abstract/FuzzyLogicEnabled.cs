@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaceFist.AI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,18 @@ namespace SpaceFist
             
             // inUpperRange
             return (upperLimit - val) / (upperLimit - upperSupportLimit);
+        }
+
+        protected FuzzyVariable grade(float val, float low, float high, FuzzyVariable fuzzyVariable)
+        {
+                float med = (high - low) / 2.0f;
+
+                fuzzyVariable.Value = val;
+                fuzzyVariable.Low   = ReverseGrade(val, low, med);
+                fuzzyVariable.Med   = Triangle(val, low, med, high);
+                fuzzyVariable.High  = Grade(val, med, high);
+
+                return fuzzyVariable;
         }
 
         protected float And(float first, float second)

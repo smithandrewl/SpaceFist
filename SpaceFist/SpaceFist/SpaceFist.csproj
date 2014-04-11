@@ -78,6 +78,7 @@
     <Compile Include="AI\Abstract\FuzzyLogicEnabled.cs" />
     <Compile Include="AI\DummyAI\DummyAI.cs" />
     <Compile Include="AI\DummyAI\DummyAIDummyState.cs" />
+    <Compile Include="AI\FuzzyVariable.cs" />
     <Compile Include="AI\ShipEnemyInfo.cs" />
     <Compile Include="AI\ShipInfo.cs" />
     <Compile Include="Components\Abstract\Component.cs" />

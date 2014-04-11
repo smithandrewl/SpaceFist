@@ -17,80 +17,35 @@ namespace SpaceFist.AI
         private float   health;
         private int     speed;
         private Ship ship;
+
         private RoundData roundData;
 
+        private FuzzyVariable fuzzySpeed;
+        private FuzzyVariable fuzzyHealth;
+        private FuzzyVariable fuzzyTriggerHappy;
+
         // Speed
-        public float LowSpeed
+        public FuzzyVariable Speed
         {
             get
             {
-                return ReverseGrade(speed, 0, 10);
-            }
-        }
-
-        public float MediumSpeed
-        {
-            get
-            {
-                return Triangle(speed, 0, 10, 20);
-            }
-        }
-
-        public float HighSpeed
-        {
-            get
-            {
-                return Grade(speed, 10, 20);
+                return grade(speed, 0, 20, fuzzySpeed);
             }
         }
 
         // Health
-        public float LowHealth
+        public FuzzyVariable Health
         {
             get
             {
-                return ReverseGrade(health, 0, 0.5f);
-            }
-        }
-
-        public float MediumHealth
-        {
-            get
-            {
-                return Triangle(health, 0, 0.5f, 1);
-            }
-        }
-
-        public float HighHealth
-        {
-            get
-            {
-                return Grade(health, .5f, 1);
+                return grade(health, 0, 1, fuzzyHealth);
             }
         }
 
         // TriggerHappy
-        public float LowTriggerHappy
-        {
-            get
-            {
-                return ReverseGrade(roundData.ShotsPerPeriod, 0, 12.5f);
-            }
-        }
-
-        public float MediumTriggerHappy
-        {
-            get
-            {
-                return Triangle(roundData.ShotsPerPeriod, 0, 12.5f, 25);
-            }
-        }
-
-        public float HighTriggerHappy
-        {
-            get
-            {
-                return Grade(roundData.ShotsPerPeriod, 12.5f, 25);
+        public FuzzyVariable TriggerHappy {
+            get {
+                return grade(roundData.ShotsPerPeriod, 0,25, fuzzyTriggerHappy);
             }
         }
 
@@ -100,23 +55,35 @@ namespace SpaceFist.AI
             this.enemyManager = enemyManager;
             this.ship = ship;
             this.roundData = roundData;
-            
+
+            fuzzyHealth       = new FuzzyVariable { Name = "Health" };
+            fuzzySpeed        = new FuzzyVariable { Name = "Speed" };
+            fuzzyTriggerHappy = new FuzzyVariable { Name = "Trigger Happy" };
         }
 
+        
         public override void Update()
         {
             speed = (int) ship.Velocity.Length();
             health = ship.Health;
 
+            PrintDebugInfo();
+
+        }
+
+        private void PrintDebugInfo()
+        {
             if ((DateTime.Now - LastPrint).Seconds >= 1)
             {
-                Console.WriteLine("Speed: {0}, {1:P}, {2:P}, {3:P}", speed, LowSpeed, MediumSpeed, HighSpeed);
-                Console.WriteLine("Health: {0}, {1:P}, {2:P}, {3:P}",health,  LowHealth, MediumHealth, HighHealth);
-                Console.WriteLine("TriggerHappy: {0}, {1:P}, {2:P}, {3:P}", roundData.ShotsPerPeriod, LowTriggerHappy, MediumTriggerHappy, HighTriggerHappy);
+                Console.WriteLine(Speed);
+                Console.WriteLine(Health);
+                Console.WriteLine(TriggerHappy);
                 Console.WriteLine();
+
                 LastPrint = DateTime.Now;
             }
+        }
 
-           }
+
     }
 }
