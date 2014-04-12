@@ -16,7 +16,7 @@ namespace SpaceFist
         {
             get
             {
-                return EnemiesShot / ShotsFired;
+                 return (EnemiesShot + BlocksShot) / (float) ShotsFired;
             }
         }
 
@@ -45,6 +45,16 @@ namespace SpaceFist
             {
                 return (float) BlocksBumped / (TimeElapsed.Seconds / PERIOD_IN_SECONDS);
             }
-        } 
+        }
+
+        public void Reset()
+        {
+            BlocksBumped = 0;
+            BlocksShot   = 0;
+            EnemiesShot  = 0;
+            ShotsFired   = 0;
+
+            roundStart = DateTime.Now;
+        }
     }
 }

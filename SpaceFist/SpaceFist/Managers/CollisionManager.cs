@@ -88,7 +88,7 @@ namespace SpaceFist.Managers
 
                         // Update the score
                         shipManager.Scored();
-                        roundData.BlocksShot++;
+                        roundData.BlocksShot = roundData.BlocksShot++;
 
                         // Kill the block
                         block.Destroy();

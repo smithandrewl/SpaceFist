@@ -23,6 +23,7 @@ namespace SpaceFist.AI
         private FuzzyVariable fuzzySpeed;
         private FuzzyVariable fuzzyHealth;
         private FuzzyVariable fuzzyTriggerHappy;
+        private FuzzyVariable fuzzyAccuracy;
 
         // Speed
         public FuzzyVariable Speed
@@ -49,6 +50,14 @@ namespace SpaceFist.AI
             }
         }
 
+        public FuzzyVariable Accuracy
+        {
+            get
+            {
+                return grade(roundData.acc, 0, 1, fuzzyAccuracy);
+            }
+        }
+
         public ShipInfo(Game game, Ship ship, EnemyManager enemyManager, RoundData roundData)
         {
             this.game = game;
@@ -56,9 +65,10 @@ namespace SpaceFist.AI
             this.ship = ship;
             this.roundData = roundData;
 
-            fuzzyHealth       = new FuzzyVariable { Name = "Health" };
-            fuzzySpeed        = new FuzzyVariable { Name = "Speed" };
+            fuzzyHealth       = new FuzzyVariable { Name = "Health"        };
+            fuzzySpeed        = new FuzzyVariable { Name = "Speed"         };
             fuzzyTriggerHappy = new FuzzyVariable { Name = "Trigger Happy" };
+            fuzzyAccuracy     = new FuzzyVariable { Name = "Accuracy"      };
         }
 
         public override void Update()
@@ -74,9 +84,11 @@ namespace SpaceFist.AI
         {
             if ((DateTime.Now - LastPrint).Seconds >= 1)
             {
+                Console.WriteLine("Ship Info:");
                 Console.WriteLine(Speed);
                 Console.WriteLine(Health);
                 Console.WriteLine(TriggerHappy);
+                Console.WriteLine(Accuracy);
                 Console.WriteLine();
 
                 LastPrint = DateTime.Now;

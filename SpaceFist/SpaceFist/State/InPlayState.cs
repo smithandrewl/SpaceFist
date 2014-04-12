@@ -69,7 +69,7 @@ namespace SpaceFist.State
 
         public void EnteringState()
         {
-            RoundData = new RoundData();
+            RoundData.Reset();
 
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
