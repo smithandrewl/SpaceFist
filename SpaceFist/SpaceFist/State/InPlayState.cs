@@ -13,7 +13,8 @@ namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks = 10;
+        private const int NumBlocks  = 0;
+        private const int NumEnemies = 10;
 
         public RoundData RoundData { get; set; }
 
@@ -83,7 +84,7 @@ namespace SpaceFist.State
             // Spawn blocks to the screen
             blockManager.SpawnBlocks(NumBlocks);
 
-            enemyManager.Spawn(2);
+            enemyManager.Spawn(NumEnemies);
             // Spawn the players ship
             shipManager.Initialize();
 

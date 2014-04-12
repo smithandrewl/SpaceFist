@@ -54,8 +54,8 @@ namespace SpaceFist.AI.DummyAI
                 if (WayPoints.Count < 3)
                 {
 
-                    int randX = random.Next(-25, 25);
-                    int randY = random.Next(-25, 25);
+                    int randX = random.Next(-10, 10);
+                    int randY = random.Next(-10, 10);
 
                     var shipLocation = new Microsoft.Xna.Framework.Vector2(Ship.X + randX, Ship.Y + randY);
 
@@ -75,7 +75,9 @@ namespace SpaceFist.AI.DummyAI
                         var newPoint = shipLocation - lastPoint;
                         newPoint.Normalize();
 
-                        newPoint = lastPoint + (newPoint * 15);
+                        newPoint = lastPoint + (newPoint * 15 * membership);
+                        
+
                         WayPoints.Add(newPoint);
                     }
                 }
