@@ -11,8 +11,8 @@ namespace SpaceFist.AI
     {
         public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo)
         {
-            this.Enemy = enemy;
-            this.Ship = ship;
+            this.Enemy    = enemy;
+            this.Ship     = ship;
             this.ShipInfo = shipInfo;
 
             fuzzyDistance = new FuzzyVariable { Name = "Distance" };
@@ -28,8 +28,6 @@ namespace SpaceFist.AI
 
         // ------------- Crisp Input -----------------
 
-
-
         // Distance
         public FuzzyVariable Distance
         {
@@ -39,7 +37,6 @@ namespace SpaceFist.AI
             }
         }
 
-        // visible
         public bool ShipVisible { get; set; }
 
         public float ShipFacingAway      { get; set; }
@@ -75,9 +72,8 @@ namespace SpaceFist.AI
             }
         }
 
-        public Enemy Enemy { get; set; }
-        public Ship Ship   { get; set; }
-
+        public Enemy    Enemy    { get; set; }
+        public Ship     Ship     { get; set; }
         public ShipInfo ShipInfo { get; set; }
     }
 }

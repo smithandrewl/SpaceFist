@@ -9,14 +9,15 @@ namespace SpaceFist.AI
 {
     public class ShipInfo : FuzzyLogicEnabled
     {
-        private Game              game;
-        private EnemyManager      enemyManager;
+        private Game         game;
+        private EnemyManager enemyManager;
+
         private DateTime LastPrint = DateTime.Now;
 
         // raw data
-        private float   health;
-        private int     speed;
-        private Ship ship;
+        private float health;
+        private int   speed;
+        private Ship  ship;
 
         private RoundData roundData;
 
@@ -60,10 +61,10 @@ namespace SpaceFist.AI
 
         public ShipInfo(Game game, Ship ship, EnemyManager enemyManager, RoundData roundData)
         {
-            this.game = game;
+            this.game         = game;
             this.enemyManager = enemyManager;
-            this.ship = ship;
-            this.roundData = roundData;
+            this.ship         = ship;
+            this.roundData    = roundData;
 
             fuzzyHealth       = new FuzzyVariable { Name = "Health"        };
             fuzzySpeed        = new FuzzyVariable { Name = "Speed"         };
@@ -73,7 +74,7 @@ namespace SpaceFist.AI
 
         public override void Update()
         {
-            speed = (int) ship.Velocity.Length();
+            speed  = (int) ship.Velocity.Length();
             health = ship.Health;
 
             PrintDebugInfo();
@@ -94,7 +95,5 @@ namespace SpaceFist.AI
                 LastPrint = DateTime.Now;
             }
         }
-
-
     }
 }

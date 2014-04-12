@@ -12,21 +12,21 @@ namespace SpaceFist.AI.DummyAI
     {
         public List<Vector2> WayPoints { get; set; }
 
-        public EnemyAI AI {get; set;}
-        public Enemy Enemy {get; set;}
-        public Ship Ship { get; set; }
+        public EnemyAI AI    { get; set; }
+        public Enemy   Enemy { get; set; }
+        public Ship    Ship  { get; set; }
 
         private DateTime lastUpdate;
-        private Random random;
-        private float membership;
+        private Random   random;
+        private float    membership;
 
         public DummyAIDummyState(EnemyAI ai)
         {
             random = new Random();
 
-            AI = ai;
-            Ship = ai.ShipEnemyInfo.Ship;
-            Enemy = ai.ShipEnemyInfo.Enemy;
+            AI        = ai;
+            Ship      = ai.ShipEnemyInfo.Ship;
+            Enemy     = ai.ShipEnemyInfo.Enemy;
             WayPoints = new List<Vector2>();
 
             lastUpdate = DateTime.Now;
