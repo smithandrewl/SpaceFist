@@ -50,11 +50,6 @@ namespace SpaceFist.Managers
             enemies.ForEach(enemy => enemy.Update());
 
             var alive = enemies.Count(enemy => enemy.Alive);
-
-            if (alive == 0)
-            {
-                Spawn(rand.Next(1, 2));
-            }
         }
         
         public void Draw() {

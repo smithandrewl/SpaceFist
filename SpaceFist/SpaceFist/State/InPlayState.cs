@@ -83,7 +83,6 @@ namespace SpaceFist.State
             // Spawn blocks to the screen
             blockManager.SpawnBlocks(NumBlocks);
 
-            enemyManager.Spawn(2);
             // Spawn the players ship
             shipManager.Initialize();
 
