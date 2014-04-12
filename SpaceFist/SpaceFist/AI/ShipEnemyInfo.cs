@@ -67,7 +67,9 @@ namespace SpaceFist.AI
         {
             if ((DateTime.Now - lastPrint).Seconds >= 1)
             {
+                Console.WriteLine("Ship/Enemy Info:");
                 Console.WriteLine(Distance);
+                Console.WriteLine();
 
                 lastPrint = DateTime.Now;
             }
