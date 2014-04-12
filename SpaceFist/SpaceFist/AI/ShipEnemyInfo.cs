@@ -9,6 +9,9 @@ namespace SpaceFist.AI
 {
     public class ShipEnemyInfo : FuzzyLogicEnabled
     {
+        private const float DistanceHigh = 600;
+        private const float DistanceLow  = 0;
+
         public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo)
         {
             this.Enemy    = enemy;
@@ -33,7 +36,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return grade(distance, 0, 600, fuzzyDistance);
+                return grade(distance, DistanceLow, DistanceHigh, fuzzyDistance);
             }
         }
 

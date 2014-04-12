@@ -9,6 +9,15 @@ namespace SpaceFist.AI
 {
     public class ShipInfo : FuzzyLogicEnabled
     {
+        private const float SpeedHigh        = 20;
+        private const float SpeedLow         = 0;
+        private const float TriggerHappyHigh = 60;
+        private const float TriggerHappyLow  = 0;
+        private const float AccuracyHigh     = 1;
+        private const float AccuracyLow      = 0;
+        private const float HealthLow        = 0;
+        private const float HealthHigh       = 100;
+
         private Game         game;
         private EnemyManager enemyManager;
 
@@ -31,7 +40,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return grade(speed, 0, 20, fuzzySpeed);
+                return grade(speed, SpeedLow, SpeedHigh, fuzzySpeed);
             }
         }
 
@@ -40,14 +49,14 @@ namespace SpaceFist.AI
         {
             get
             {
-                return grade(health, 0, 1, fuzzyHealth);
+                return grade(health, HealthLow, HealthHigh, fuzzyHealth);
             }
         }
 
         // TriggerHappy
         public FuzzyVariable TriggerHappy {
             get {
-                return grade(roundData.ShotsPerPeriod, 0, 60, fuzzyTriggerHappy);
+                return grade(roundData.ShotsPerPeriod, TriggerHappyLow, TriggerHappyHigh, fuzzyTriggerHappy);
             }
         }
 
@@ -55,7 +64,7 @@ namespace SpaceFist.AI
         {
             get
             {
-                return grade(roundData.acc, 0, 1, fuzzyAccuracy);
+                return grade(roundData.acc, AccuracyLow, AccuracyHigh, fuzzyAccuracy);
             }
         }
 
@@ -78,7 +87,6 @@ namespace SpaceFist.AI
             health = ship.Health;
 
             PrintDebugInfo();
-
         }
 
         private void PrintDebugInfo()
