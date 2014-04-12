@@ -17,19 +17,25 @@ namespace SpaceFist.Managers
         private ProjectileManager laserManager;
         private PlayerManager     shipManager;
         private PickUpManager     pickupManager;
+        private EnemyManager      enemyManager;
+        private RoundData roundData;
 
         public CollisionManager(
             BlockManager      blockManager, 
             PlayerManager     shipManager, 
             ProjectileManager laserManager, 
             ExplosionManager  explosionManager,
-            PickUpManager     pickupManager)
+            PickUpManager     pickupManager,
+            EnemyManager      enemyManager,
+            RoundData         roundData)
         {
             this.blockManager     = blockManager;
             this.shipManager      = shipManager;
             this.laserManager     = laserManager;
             this.explosionManager = explosionManager;
             this.pickupManager    = pickupManager;
+            this.enemyManager     = enemyManager;
+            this.roundData        = roundData;
         }
         
         public void Update()
@@ -37,6 +43,21 @@ namespace SpaceFist.Managers
             HandleLaserRockCollisions();
             HandleShipRockCollisions();
             HandleShipPickupCollisions();
+            HandleEnemyLaserCollisions();
+        }
+
+        public void HandleEnemyLaserCollisions()
+        {
+            foreach (var laser in laserManager)
+            {
+                foreach (var enemy in enemyManager.Collisions(laser))
+                {
+                    explosionManager.add(enemy.X, enemy.Y);
+                    enemy.Alive = false;
+                    shipManager.Scored();
+                    roundData.EnemiesShot++;
+                }
+            }
         }
 
         public void HandleShipPickupCollisions()
@@ -67,6 +88,7 @@ namespace SpaceFist.Managers
 
                         // Update the score
                         shipManager.Scored();
+                        roundData.BlocksShot = roundData.BlocksShot++;
 
                         // Kill the block
                         block.Destroy();
@@ -84,6 +106,7 @@ namespace SpaceFist.Managers
                 // Ignore the collision if the ship is not alive
                 if (shipManager.Alive)
                 {
+                    roundData.BlocksBumped++;
                     var ship = shipManager.Ship;
 
                     // Create an explosion at the coordinates of the block

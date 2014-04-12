@@ -13,11 +13,20 @@ namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks = 20;
+        private const int NumBlocks = 10;
+
+        public RoundData RoundData { get; set; }
 
         Random rand = new Random();
 
         Game game;
+        public Ship ship
+        {
+            get
+            {
+                return shipManager.Ship;
+            }
+        }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -27,6 +36,8 @@ namespace SpaceFist.State
         CollisionManager  collisionManager;
         PickUpManager     pickupManager;
         EnemyManager      enemyManager;
+
+        public EnemyManager EnemyManager { get { return EnemyManager; }}
 
         public ProjectileManager ProjectileManager
         {
@@ -39,6 +50,7 @@ namespace SpaceFist.State
         public InPlayState(Game game)
         {
             this.game = game;
+            RoundData = new RoundData();
         }
 
         public void LoadContent()
@@ -51,12 +63,14 @@ namespace SpaceFist.State
             explosionManager  = new ExplosionManager(game);
             shipManager       = new PlayerManager(game);
             pickupManager     = new PickUpManager(game, resolution);
-            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager);
             enemyManager      = new EnemyManager(game, resolution);
+            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
         }
 
         public void EnteringState()
         {
+            RoundData.Reset();
+
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
             // Tell the ship manager to spawn the ship
@@ -69,6 +83,7 @@ namespace SpaceFist.State
             // Spawn blocks to the screen
             blockManager.SpawnBlocks(NumBlocks);
 
+            enemyManager.Spawn(2);
             // Spawn the players ship
             shipManager.Initialize();
 

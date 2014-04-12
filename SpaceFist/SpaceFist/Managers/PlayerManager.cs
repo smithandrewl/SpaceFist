@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SpaceFist.State.ShipStates;
 
 namespace SpaceFist.Managers
 {
@@ -82,8 +83,21 @@ namespace SpaceFist.Managers
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
             // Start the ship at the bottom in the center of the screen
-           ship = new Ship(game, new Vector2((float)(resolution.Width / 2),
-                                             (float)(resolution.Height * .80)));
+
+            if (ship != null)
+            {
+                ship.CurrentState = new SpawningState(ship);
+
+                ship.X = resolution.Width / 2;
+                ship.Y = (int)(resolution.Height * .80);
+                ship.Alive = true;
+                ship.Velocity = Vector2.Zero;
+            }
+            else
+            {
+                ship = new Ship(game, new Vector2((float) resolution.Width / 2, (float) (resolution.Height * .80)));
+            }
+
            return ship;
         }
 
