@@ -9,7 +9,9 @@ namespace SpaceFist.AI
 {
     public class ShipEnemyInfo : FuzzyLogicEnabled
     {
-        private const float DistanceHigh = 600;
+        private const bool DisplayDebug = false;
+
+        private const float DistanceHigh = 950;
         private const float DistanceLow  = 0;
 
         public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo)
@@ -60,7 +62,10 @@ namespace SpaceFist.AI
 
             distance = (int) Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
-            PrintDebuggingInfo();
+            if (DisplayDebug)
+            {
+                PrintDebuggingInfo();
+            }
         }
 
         private void PrintDebuggingInfo()

@@ -37,12 +37,16 @@ namespace SpaceFist.Managers
 
         private Vector2 randomPos()
         {
-            return new Vector2(rand.Next(screen.Width), rand.Next(screen.Height / 4));
+
+            int randX = rand.Next(0, game.InPlayState.World.Width);
+            int randY = rand.Next(0, (int)game.InPlayState.World.Height);
+
+            return new Vector2(randX, randY);
         }
 
         private Vector2 randomVel()
         {
-            return new Vector2(rand.Next(4) - 2, rand.Next(7));
+            return new Vector2(rand.Next(4) - 2, rand.Next(4));
         }
 
         public void SpawnBlocks(int count)
@@ -52,7 +56,7 @@ namespace SpaceFist.Managers
             // Spawn space blocks
             for (int i = 0; i < count; i++)
             {
-                // Generate a random position on-screen
+                // Generate a random position in the world
                 var randPos = randomPos();
                 var randVel = randomVel();
 
@@ -71,7 +75,7 @@ namespace SpaceFist.Managers
 
         public void Update()
         {
-            // If there are no blocks on screen,
+            // If there are no blocks in the world,
             // respawn more
             if (blocks.All(block => block.Alive == false))
             {
@@ -82,7 +86,7 @@ namespace SpaceFist.Managers
             foreach (var block in blocks.Where(block => block.Alive))
             {
                 block.Update();
-                WrapOffScreen(block);
+                KeepOnWorld(block);
             }
         }
 
@@ -91,15 +95,15 @@ namespace SpaceFist.Managers
             blocks.ForEach(block => block.Draw());
         }
 
-        // If the specified game object has left the screen,
-        // wrap it around
-        private void WrapOffScreen(Entity obj)
+        // Keep the specified entity on world
+        private void KeepOnWorld(Entity obj)
         {
-            if (obj.X > screen.Width) obj.X = 0;
-            if (obj.X < 0) obj.X = screen.Width;
-
-            if (obj.Y > screen.Height) obj.Y = 0;
-            if (obj.Y < 0) obj.Y = screen.Height;
+            var world = game.InPlayState.World;
+            if ((obj.X > world.Width)  || (obj.X < 0) ||
+                (obj.Y > world.Height) || (obj.Y < 0))
+            {
+                obj.Velocity *= -1;
+            }
         }
 
         public IEnumerator<SpaceBlock> GetEnumerator()

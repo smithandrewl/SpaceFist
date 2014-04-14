@@ -9,6 +9,9 @@ namespace SpaceFist.AI
 {
     public class ShipInfo : FuzzyLogicEnabled
     {
+
+        private const bool DisplayDebug = false;
+
         private const float SpeedHigh        = 20;
         private const float SpeedLow         = 0;
         private const float TriggerHappyHigh = 60;
@@ -86,7 +89,10 @@ namespace SpaceFist.AI
             speed  = (int) ship.Velocity.Length();
             health = ship.Health;
 
-            PrintDebugInfo();
+            if (DisplayDebug)
+            {
+                PrintDebugInfo();
+            }
         }
 
         private void PrintDebugInfo()

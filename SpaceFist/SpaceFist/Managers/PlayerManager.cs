@@ -17,7 +17,7 @@ namespace SpaceFist.Managers
         private Ship ship;
 
         // Damage the ship takes per hit
-        private const int HitDamage = 60;
+        private const int HitDamage = 10;
 
         public int Score
         {
@@ -81,21 +81,25 @@ namespace SpaceFist.Managers
         public Ship Spawn()
         {
             var resolution = game.GraphicsDevice.Viewport.Bounds;
+            var camera = game.InPlayState.Camera;
 
-            // Start the ship at the bottom in the center of the screen
+            // Start the ship at the bottom  in the center of the screen
+
+            var startX = (int)((resolution.Width / 2) + camera.X);
+            var startY = (int)((resolution.Height * .75) + camera.Y);
 
             if (ship != null)
             {
                 ship.CurrentState = new SpawningState(ship);
 
-                ship.X = resolution.Width / 2;
-                ship.Y = (int)(resolution.Height * .80);
+                ship.X = startX;
+                ship.Y = startY;
                 ship.Alive = true;
                 ship.Velocity = Vector2.Zero;
             }
             else
             {
-                ship = new Ship(game, new Vector2((float) resolution.Width / 2, (float) (resolution.Height * .80)));
+                ship = new Ship(game, new Vector2(startX, startY));
             }
 
            return ship;

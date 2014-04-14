@@ -35,8 +35,8 @@ namespace SpaceFist.Managers
 
             for (int i = 0; i < count; i++)
             {
-                int   randX    = rand.Next(0, screen.Width);
-                int   randY    = rand.Next(0, (int) (screen.Height * .25f));
+                int   randX    = rand.Next(0, game.InPlayState.World.Width);
+                int   randY    = rand.Next(0, (int) game.InPlayState.World.Height);
                 float rotation = MathHelper.ToRadians(180);
                 Enemy enemy    = new Enemy(game, new Vector2(randX, randY));
 

@@ -20,6 +20,8 @@ namespace SpaceFist.AI.DummyAI
         private Random   random;
         private float    membership;
 
+        private const int Speed = 6;
+
         public DummyAIDummyState(EnemyAI ai)
         {
             random = new Random();
@@ -112,7 +114,7 @@ namespace SpaceFist.AI.DummyAI
                     direction.Normalize();
 
                     // Calculate a velocity to move along the line of sight at a magnitude of 5
-                    Enemy.Velocity = (direction * 8) * membership;
+                    Enemy.Velocity = (direction * Speed) * membership;
 
 //                    var indexedSprite = (IndexedSprite)graphics;
                 }

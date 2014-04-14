@@ -8,12 +8,13 @@ using System.Text;
 
 namespace SpaceFist.Managers
 {
-    // Keeps track of the pickups on the screen
+    // Keeps track of the pickups in the world
     public class PickUpManager : IEnumerable<Pickup>
     {
         private Game         game;
         private Rectangle    screen;
         private List<Pickup> pickups;
+        private Random rand = new Random();
 
         public PickUpManager(Game game, Rectangle screen)
         {
@@ -55,6 +56,19 @@ namespace SpaceFist.Managers
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        public void SpawnExamplePickups(int count)
+        {
+            var world = game.InPlayState.World;
+
+            for (int i = 0; i < count; i++)
+            {
+                int randX = rand.Next(0, world.Width);
+                int randY = rand.Next(0, world.Height);
+
+                SpawnExamplePickup(randX, randY);
+            }
         }
 
         public void SpawnExamplePickup(int x, int y)

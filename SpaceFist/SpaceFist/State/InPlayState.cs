@@ -13,8 +13,9 @@ namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks  = 0;
-        private const int NumEnemies = 10;
+        private const int NumBlocks  = 20;
+        private const int NumEnemies = 40;
+        private const float ScrollSpeed = 1.5f;
 
         public RoundData RoundData { get; set; }
 
@@ -28,6 +29,9 @@ namespace SpaceFist.State
                 return shipManager.Ship;
             }
         }
+
+        public Rectangle World  { get; set; }
+        public Vector2   Camera { get; set; }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -66,6 +70,8 @@ namespace SpaceFist.State
             pickupManager     = new PickUpManager(game, resolution);
             enemyManager      = new EnemyManager(game, resolution);
             collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
+
+            World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
         }
 
         public void EnteringState()
@@ -74,6 +80,8 @@ namespace SpaceFist.State
 
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
+            Camera = new Vector2(0, World.Height - resolution.Height);
+
             // Tell the ship manager to spawn the ship
             shipManager.Spawn();
 
@@ -81,14 +89,14 @@ namespace SpaceFist.State
             shipManager.ResetLives();
             shipManager.ResetScore();
 
-            // Spawn blocks to the screen
+            // Spawn blocks to the world
             blockManager.SpawnBlocks(NumBlocks);
 
             enemyManager.Spawn(NumEnemies);
             // Spawn the players ship
             shipManager.Initialize();
 
-            pickupManager.SpawnExamplePickup(400, 300);
+            pickupManager.SpawnExamplePickups(5);
         }
 
         public void Update()
@@ -104,7 +112,7 @@ namespace SpaceFist.State
 
                 var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
                 
-                WrapOffScreen(shipManager.Ship);
+                KeepOnScreen(shipManager.Ship);
 
                 // Tell the entity managers to update
                 projectileManager.Update();
@@ -114,6 +122,11 @@ namespace SpaceFist.State
                 shipManager.Update();
                 enemyManager.Update();
                 pickupManager.Update();
+
+                if (Camera.Y >= World.Y)
+                {
+                    Camera = new Vector2(Camera.X, Camera.Y - ScrollSpeed);
+                }
             }
             else
             {
@@ -175,17 +188,46 @@ namespace SpaceFist.State
         {
         }
 
-        // If the specified game object has left the screen,
-        // wrap it around
-        private void WrapOffScreen(Entity obj)
+        // Keep the player on the screen
+        private void KeepOnScreen(Entity obj)
         {
-            var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
+            var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
+            var world  = game.InPlayState.World;
 
-            if (obj.X > viewPort.Width) obj.X = 0;
-            if (obj.X < 0) obj.X = viewPort.Width;
+            int farRight   = (int) Camera.X + screen.Width;
+            int Bottom     = (int)Camera.Y + screen.Height;
+            int halfHeight = obj.Rectangle.Height / 2;
+            
+            float velDecrease = .125f;
 
-            if (obj.Y > viewPort.Height) obj.Y = 0;
-            if (obj.Y < 0) obj.Y = viewPort.Height;
-        } 
+            bool offScreenRight  = obj.X > farRight;
+            bool offScreenLeft   = obj.X < Camera.X;
+            bool offscreenTop    = obj.Y + halfHeight > Bottom;
+            bool offscreenBottom = obj.Y < Camera.Y;
+
+            bool offScreen = offScreenRight || offScreenLeft || offscreenTop || offscreenBottom;
+
+            if (offScreen)
+            {
+                if (offScreenRight)
+                {
+                    obj.X = (int)farRight - obj.Rectangle.Width;
+                }
+                else if (offScreenLeft)
+                {
+                    obj.X = (int)Camera.X;
+                }
+                else if (offscreenTop)
+                {
+                    obj.Y = (int)Bottom - obj.Rectangle.Height;
+                }
+                else if (offscreenBottom)
+                {
+                    obj.Y = (int)Camera.Y + (obj.Rectangle.Height / 16);
+                }
+               
+                obj.Velocity *= -1 * velDecrease;
+            }
+        }
     }
 }

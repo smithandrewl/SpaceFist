@@ -44,18 +44,34 @@ namespace SpaceFist.Managers
             HandleShipRockCollisions();
             HandleShipPickupCollisions();
             HandleEnemyLaserCollisions();
+            HandleEnemyShipCollisions();
         }
+
+        public void HandleEnemyShipCollisions()
+        {
+            foreach (var enemy in enemyManager.Collisions(shipManager.Ship))
+            {
+                explosionManager.add(enemy.X, enemy.Y);
+                enemy.Alive = false;
+                shipManager.ShipHit();
+            }
+        }
+     
 
         public void HandleEnemyLaserCollisions()
         {
             foreach (var laser in laserManager)
             {
-                foreach (var enemy in enemyManager.Collisions(laser))
+                if (laser.Alive)
                 {
-                    explosionManager.add(enemy.X, enemy.Y);
-                    enemy.Alive = false;
-                    shipManager.Scored();
-                    roundData.EnemiesShot++;
+                    foreach (var enemy in enemyManager.Collisions(laser))
+                    {
+                        laser.Alive = false;
+                        explosionManager.add(enemy.X, enemy.Y);
+                        enemy.Alive = false;
+                        shipManager.Scored();
+                        roundData.EnemiesShot++;
+                    }
                 }
             }
         }
@@ -83,6 +99,7 @@ namespace SpaceFist.Managers
                     // If an alive laser hits a block
                     foreach (var block in blockManager.collisions(laser))
                     {
+                        laser.Alive = false;
                         // Create and add a new explosion
                         explosionManager.add(block.X, block.Y);
 

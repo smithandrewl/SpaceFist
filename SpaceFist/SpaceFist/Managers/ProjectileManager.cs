@@ -30,7 +30,24 @@ namespace SpaceFist.Managers
 
         public void Update()
         {
-            projectiles.ForEach(projectile => projectile.Update());
+
+            foreach (var projectile in projectiles)
+            {
+                var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
+                var rect = new Rectangle((int)game.InPlayState.Camera.X, (int)game.InPlayState.Camera.Y, screen.Width, screen.Height);
+
+                if (projectile.Alive)
+                {
+                    if (rect.Contains(projectile.Rectangle))
+                    {
+                        projectile.Update();
+                    }
+                    else
+                    {
+                        projectile.Alive = false;
+                    }
+                }
+            }
         }
 
         public void Draw()
