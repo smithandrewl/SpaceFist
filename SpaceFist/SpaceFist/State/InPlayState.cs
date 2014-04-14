@@ -126,7 +126,7 @@ namespace SpaceFist.State
                 if (Camera.Y >= World.Y)
                 {
                     Camera = new Vector2(Camera.X, Camera.Y - ScrollSpeed);
-                }
+            }
             }
             else
             {
@@ -225,9 +225,9 @@ namespace SpaceFist.State
                 {
                     obj.Y = (int)Camera.Y + (obj.Rectangle.Height / 16);
                 }
-               
+
                 obj.Velocity *= -1 * velDecrease;
             }
-        }
+        } 
     }
 }
