@@ -104,6 +104,12 @@ namespace SpaceFist
             state.EnteringState();
         }
 
+        public void ResetState()
+        {
+            CurrentState = new NormalState(this);
+            Reset();
+        }
+
         /// <summary>
         /// Updates the ship
         /// </summary>

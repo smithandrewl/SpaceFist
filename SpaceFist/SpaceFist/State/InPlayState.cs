@@ -97,6 +97,7 @@ namespace SpaceFist.State
             shipManager.Initialize();
 
             pickupManager.SpawnExamplePickups(5);
+            pickupManager.SpawnHealthPickups(5);
         }
 
         public void Update()
