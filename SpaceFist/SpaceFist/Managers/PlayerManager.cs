@@ -11,30 +11,12 @@ namespace SpaceFist.Managers
     public class PlayerManager
     {
         Game game;
-
-        private int score = 0;
-        private int lives = 2;
+        RoundData roundData;
 
         private Ship ship;
 
         // Damage the ship takes per hit
         private const int HitDamage = 10;
-
-        public int Score
-        {
-            get
-            {
-                return score;
-            }
-        }
-
-        public int Lives
-        {
-            get
-            {
-                return lives;
-            }
-        }
 
         public Boolean Alive
         {
@@ -47,6 +29,7 @@ namespace SpaceFist.Managers
         public PlayerManager(Game game)
         {
             this.game = game;
+            roundData = game.InPlayState.RoundData;
         }
 
         public Ship Ship
@@ -108,9 +91,9 @@ namespace SpaceFist.Managers
 
         public void HandleDeath()
         {
-            if (lives > 0)
+            if (roundData.Lives > 0)
             {
-                lives--;
+                roundData.Lives--;
                 ship.HealthPoints = 100;
 
                 Spawn();
@@ -136,17 +119,17 @@ namespace SpaceFist.Managers
 
         internal void Scored()
         {
-            score += 10;
+            roundData.Score += 10;
         }
 
         internal void ResetScore()
         {
-            score = 0;
+            roundData.Score = 0;
         }
 
         internal void ResetLives()
         {
-            lives = 2;
+            roundData.Lives = 2;
         }
     }
 }
