@@ -47,8 +47,10 @@ namespace SpaceFist
         public Texture2D   HudTexture       { get; set; } // The image of the
                                                           // purple transparent window where the score is drawn.
         
-        public Texture2D SamplePickup            { get; set; }
         public Texture2D SampleProjectileTexture { get; set; }
+        public Texture2D HealthPickupTexture     { get; set; }
+        public Texture2D ExtraLifePickupTexture  { get; set; }
+        public Texture2D WeaponPickupTexture     { get; set; }
         
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
@@ -61,6 +63,9 @@ namespace SpaceFist
         private const String LaserImageAsset         = @"Images\Sprites\Laser";
         private const String BackgroundAsset         = @"Images\Backgrounds\Purple";
         private const String GameOverAsset           = @"Images\Backgrounds\GameOver";
+        private const String HealthPickupAsset       = @"Images\Sprites\HealthPickup";
+        private const String ExtraLifePickupAsset    = @"Images\Sprites\ExtraLifePickup";
+        private const String WeaponPickupAsset       = @"Images\Sprites\WeaponPickup";
         private const String BlockImageAsset         = @"Images\Sprites\Block";
         private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
         private const String EnemeySheetAsset        = @"Images\Sprites\ShipSheet";
@@ -129,7 +134,10 @@ namespace SpaceFist
             EnemySheet       = Content.Load<Texture2D>(EnemeySheetAsset);
             ExplosionTexture = Content.Load<Texture2D>(ExplosionAnimationAsset);
             HudTexture       = Content.Load<Texture2D>(HUDAsset);
-            SamplePickup     = Content.Load<Texture2D>(SamplePickupAsset);
+
+            HealthPickupTexture    = Content.Load<Texture2D>(HealthPickupAsset);
+            ExtraLifePickupTexture = Content.Load<Texture2D>(ExtraLifePickupAsset);
+            WeaponPickupTexture    = Content.Load<Texture2D>(WeaponPickupAsset);
 
             SampleProjectileTexture = Content.Load<Texture2D>(SampleWeaponAsset);
 

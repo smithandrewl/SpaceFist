@@ -81,7 +81,7 @@ namespace SpaceFist.Managers
             var pickup =
                 new Pickup(
                     game,
-                    game.SamplePickup,
+                    game.WeaponPickupTexture,
                     game.ExplosionSound,
                     new Vector2(x, y),
                     Vector2.Zero,
@@ -89,8 +89,6 @@ namespace SpaceFist.Managers
                         ship.Weapon = new SampleWeapon(game, ship);
                         return true;
                     });
-
-            pickup.Tint = Color.Red;
 
             pickups.Add(pickup);
         }
@@ -105,7 +103,7 @@ namespace SpaceFist.Managers
             var pickup =
                 new Pickup(
                     game,
-                    game.SamplePickup,
+                    game.HealthPickupTexture,
                     game.ExplosionSound,
                     new Vector2(x, y),
                     Vector2.Zero,
@@ -119,8 +117,6 @@ namespace SpaceFist.Managers
                         return false;
                         
                     });
-
-            pickup.Tint = Color.Pink;
 
             pickups.Add(pickup);
         }

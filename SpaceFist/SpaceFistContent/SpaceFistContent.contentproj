@@ -132,13 +132,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprites\SamplePickup.png">
-      <Name>SamplePickup</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Images\Sprites\SampleProjectile.png">
       <Name>SampleProjectile</Name>
       <Importer>TextureImporter</Importer>
@@ -146,8 +139,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprites\icons-pow-up.png">
-      <Name>icons-pow-up</Name>
+    <Compile Include="Images\Sprites\ExtraLifePickup.png">
+      <Name>ExtraLifePickup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\HealthPickup.png">
+      <Name>HealthPickup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\WeaponPickup.png">
+      <Name>WeaponPickup</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
