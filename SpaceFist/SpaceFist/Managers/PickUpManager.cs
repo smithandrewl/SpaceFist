@@ -147,5 +147,10 @@ namespace SpaceFist.Managers
 
             pickups.Add(pickup);
         }
+
+        internal void Reset()
+        {
+            pickups.Clear();
+        }
     }
 }
