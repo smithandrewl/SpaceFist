@@ -15,12 +15,15 @@ namespace SpaceFist.Managers
         private Rectangle    screen;
         private List<Pickup> pickups;
         private Random rand = new Random();
+        private RoundData roundData;
 
         public PickUpManager(Game game, Rectangle screen)
         {
             this.game    = game;
             this.screen  = screen;
             this.pickups = new List<Pickup>();
+
+            roundData = game.InPlayState.RoundData;
         }
 
         public void Update()
@@ -116,6 +119,30 @@ namespace SpaceFist.Managers
 
                         return false;
                         
+                    });
+
+            pickups.Add(pickup);
+        }
+
+
+        public void SpawnExtraLifePickups(int count)
+        {
+            SpawnPickups(count, SpawnExtraLifePickup);
+        }
+
+        public void SpawnExtraLifePickup(int x, int y)
+        {
+            var pickup =
+                new Pickup(
+                    game,
+                    game.ExtraLifePickupTexture,
+                    game.ExplosionSound,
+                    new Vector2(x, y),
+                    Vector2.Zero,
+                    (ship) =>
+                    {
+                        roundData.Lives++;
+                        return true;
                     });
 
             pickups.Add(pickup);
