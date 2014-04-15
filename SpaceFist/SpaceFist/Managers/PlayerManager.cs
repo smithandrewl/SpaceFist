@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SpaceFist.State.ShipStates;
+using SpaceFist.Weapons;
 
 namespace SpaceFist.Managers
 {
@@ -118,6 +119,8 @@ namespace SpaceFist.Managers
             {
                 ship.Alive = false;
             }
+
+            ship.Weapon = new LaserWeapon(game, ship);
         }
 
         internal void ShipHit()
