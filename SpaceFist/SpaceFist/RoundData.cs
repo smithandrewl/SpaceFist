@@ -20,6 +20,8 @@ namespace SpaceFist
             }
         }
 
+        public int Lives        { get; set; }
+        public int Score        { get; set; }
         public int EnemiesShot  { get; set; }
         public int BlocksShot   { get; set; }
         public int BlocksBumped { get; set; }

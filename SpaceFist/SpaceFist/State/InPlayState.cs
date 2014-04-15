@@ -97,6 +97,7 @@ namespace SpaceFist.State
             shipManager.Initialize();
 
             pickupManager.SpawnExamplePickups(5);
+            pickupManager.SpawnHealthPickups(5);
         }
 
         public void Update()
@@ -142,7 +143,7 @@ namespace SpaceFist.State
                 new Vector2(game.GraphicsDevice.Viewport.Width  * .01f,
                             game.GraphicsDevice.Viewport.Height * .01f);
 
-            var scoreDisplay = String.Format("Score: {0} | Health: {1:P0} | Lives: {2}", shipManager.Score, shipManager.Ship.Health, shipManager.Lives);
+            var scoreDisplay = String.Format("Score: {0} | Health: {1:P0} | Lives: {2}", RoundData.Score, shipManager.Ship.Health, RoundData.Lives);
 
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
