@@ -96,8 +96,10 @@ namespace SpaceFist.State
             // Spawn the players ship
             shipManager.Initialize();
 
+            pickupManager.Reset();
+            pickupManager.SpawnExtraLifePickups(3);
             pickupManager.SpawnExamplePickups(5);
-            pickupManager.SpawnHealthPickups(5);
+            pickupManager.SpawnHealthPickups(4);
         }
 
         public void Update()
