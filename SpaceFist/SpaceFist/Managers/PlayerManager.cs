@@ -17,7 +17,9 @@ namespace SpaceFist.Managers
 
         // Damage the ship takes per hit
         private const int HitDamage = 30;
-
+        
+        private Vector2 StartingVelocity = new Vector2(0, -2);
+        
         public Boolean Alive
         {
             get
@@ -70,7 +72,7 @@ namespace SpaceFist.Managers
             // Start the ship at the bottom  in the center of the screen
 
             var startX = (int)((resolution.Width / 2) + camera.X);
-            var startY = (int)((resolution.Height * .75) + camera.Y);
+            var startY = (int)((resolution.Height * .85) + camera.Y);
 
             if (ship != null)
             {
@@ -79,12 +81,13 @@ namespace SpaceFist.Managers
                 ship.X = startX;
                 ship.Y = startY;
                 ship.Alive = true;
-                ship.Velocity = Vector2.Zero;
             }
             else
             {
                 ship = new Ship(game, new Vector2(startX, startY));
             }
+
+            ship.Velocity = StartingVelocity;
 
            return ship;
         }
