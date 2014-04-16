@@ -8,20 +8,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks  = 20;
+        private const int NumBlocks = 20;
+
         private const int NumEnemies = 40;
         private const float ScrollSpeed = 1.5f;
-
         public RoundData RoundData { get; set; }
 
         Random rand = new Random();
 
         Game game;
+
         public Ship ship
         {
             get
@@ -30,8 +32,8 @@ namespace SpaceFist.State
             }
         }
 
-        public Rectangle World  { get; set; }
-        public Vector2   Camera { get; set; }
+        public Rectangle World { get; set; }
+        public Vector2 Camera { get; set; }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -41,8 +43,10 @@ namespace SpaceFist.State
         CollisionManager  collisionManager;
         PickUpManager     pickupManager;
         EnemyManager      enemyManager;
+        // It is used to measure playtime.
+        Stopwatch stopwatch = new Stopwatch();
 
-        public EnemyManager EnemyManager { get { return EnemyManager; }}
+        public EnemyManager EnemyManager { get { return EnemyManager; } }
 
         public ProjectileManager ProjectileManager
         {
@@ -72,6 +76,7 @@ namespace SpaceFist.State
             collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
 
             World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
+
         }
 
         public void EnteringState()
@@ -100,6 +105,9 @@ namespace SpaceFist.State
             pickupManager.SpawnExtraLifePickups(3);
             pickupManager.SpawnExamplePickups(5);
             pickupManager.SpawnHealthPickups(4);
+
+            stopwatch.Reset();
+            stopwatch.Start();
         }
 
         public void Update()
@@ -124,8 +132,7 @@ namespace SpaceFist.State
                 collisionManager.Update();
                 shipManager.Update();
                 enemyManager.Update();
-                pickupManager.Update();
-
+                pickupManager.Update(); 
                 if (Camera.Y >= World.Y)
                 {
                     Camera = new Vector2(Camera.X, Camera.Y - ScrollSpeed);
@@ -133,7 +140,14 @@ namespace SpaceFist.State
             }
             else
             {
+                
                 game.CurrentState = game.GameOverState;
+
+                //send gameData(playtime and score)
+                stopwatch.Stop();
+                game.gameData.finalScore = RoundData.Score;
+                game.gameData.ConvertToSecond(stopwatch.ElapsedMilliseconds);
+
             }
         }
 
@@ -154,7 +168,7 @@ namespace SpaceFist.State
             // red otherwise
             var color = Color.Ivory;
 
-            // Draw the entities
+             // Draw the entities
             explosionManager.Draw();
             blockManager.Draw();
             projectileManager.Draw();
@@ -163,8 +177,6 @@ namespace SpaceFist.State
             pickupManager.Draw();
 
             DrawLevelMarkers();
-
-
             // Write the score to the screen
             game.SpriteBatch.DrawString(
                 game.Font, 
@@ -226,21 +238,21 @@ namespace SpaceFist.State
         {
         }
 
-        // Keep the player on the screen
+       // Keep the player on the screen
         private void KeepOnScreen(Entity obj)
         {
             var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
-            var world  = game.InPlayState.World;
+            var world = game.InPlayState.World;
 
-            int farRight   = (int) Camera.X + screen.Width;
-            int Bottom     = (int)Camera.Y + screen.Height;
+            int farRight = (int)Camera.X + screen.Width;
+            int Bottom = (int)Camera.Y + screen.Height;
             int halfHeight = obj.Rectangle.Height / 2;
-            
+
             float velDecrease = .125f;
 
-            bool offScreenRight  = obj.X > farRight;
-            bool offScreenLeft   = obj.X < Camera.X;
-            bool offscreenTop    = obj.Y + halfHeight > Bottom;
+            bool offScreenRight = obj.X > farRight;
+            bool offScreenLeft = obj.X < Camera.X;
+            bool offscreenTop = obj.Y + halfHeight > Bottom;
             bool offscreenBottom = obj.Y < Camera.Y;
 
             bool offScreen = offScreenRight || offScreenLeft || offscreenTop || offscreenBottom;
@@ -266,6 +278,6 @@ namespace SpaceFist.State
 
                 obj.Velocity *= -1 * velDecrease;
             }
-        } 
+        }
     }
 }
