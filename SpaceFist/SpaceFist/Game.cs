@@ -92,6 +92,8 @@ namespace SpaceFist
         private const String HealthPickupSoundAsset = @"Sound\HealthPickup";
         private const String WeaponPickupSoundAsset = @"Sound\WeaponPickup";
 
+        public GameData gameData { get; set; }
+
         // -------------------------------------------------------------
 
         public SpriteBatch SpriteBatch {
@@ -114,6 +116,7 @@ namespace SpaceFist
             currentState = SplashScreenState;
             
             Content.RootDirectory = "Content";
+            gameData = new GameData();
         }
        
         protected override void Initialize()
