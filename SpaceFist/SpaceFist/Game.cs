@@ -60,6 +60,11 @@ namespace SpaceFist
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
         public SoundEffect ThumpSound      { get; set; }
+
+        public SoundEffect ExtraLifeSound    { get; set; }
+        public SoundEffect HealthPickupSound { get; set; }
+        public SoundEffect WeaponPickupSound { get; set; }
+
         // ==================== End game assets ====================
 
         //---------------- The paths to the game assets -----------------
@@ -82,6 +87,11 @@ namespace SpaceFist
         private const String LaserSoundAsset         = @"Sound\laser";
         private const String LevelStartAsset         = @"Images\Backgrounds\LevelStart";
         private const String LevelEndAsset           = @"Images\Backgrounds\LevelEnd";
+
+        private const String ExtraLifeSoundAsset = @"Sound\ExtraLife";
+        private const String HealthPickupSoundAsset = @"Sound\HealthPickup";
+        private const String WeaponPickupSoundAsset = @"Sound\WeaponPickup";
+
         // -------------------------------------------------------------
 
         public SpriteBatch SpriteBatch {
@@ -151,9 +161,12 @@ namespace SpaceFist
             LevelEndTexture = Content.Load<Texture2D>(LevelEndAsset);
 
             // Sounds
-            ExplosionSound = Content.Load<SoundEffect>(ExplosionSoundAsset);
-            ThumpSound     = Content.Load<SoundEffect>(ThumpSoundAsset);
-            LaserSound     = Content.Load<SoundEffect>(LaserSoundAsset);
+            ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);
+            ThumpSound        = Content.Load<SoundEffect>(ThumpSoundAsset);
+            LaserSound        = Content.Load<SoundEffect>(LaserSoundAsset);
+            ExtraLifeSound    = Content.Load<SoundEffect>(ExtraLifeSoundAsset);
+            HealthPickupSound = Content.Load<SoundEffect>(HealthPickupSoundAsset);
+            WeaponPickupSound = Content.Load<SoundEffect>(WeaponPickupSoundAsset);
 
             SplashScreenState.LoadContent();
             InPlayState.LoadContent();

@@ -31,3 +31,18 @@ Author is Mystic Mike (Mike Hosker)
 Pickups
 http://opengameart.org/content/power-up-icons
 Author is TRBRY
+
+Extra Life Sound
+http://opengameart.org/content/collaboration-sound-effects-fx-010
+User is jalastram
+Composer: Jesús Lastra
+
+Health Pickup Sound
+http://opengameart.org/content/collaboration-sound-effects-fx-009
+User is jalastram
+Composer: Jesús Lastra
+
+Weapon Sound Pickup
+http://opengameart.org/content/collaboration-sound-effects-fx-005
+User is jalastram
+Composer: Jesús Lastra
