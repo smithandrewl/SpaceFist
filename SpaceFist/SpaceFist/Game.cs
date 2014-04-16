@@ -42,7 +42,7 @@ namespace SpaceFist
         public Texture2D   BlockTexture     { get; set; }
         public Texture2D   GameOverTexture  { get; set; }
         public Texture2D   ShipSheet        { get; set; }
-        public Texture2D   EnemySheet       { get; set; }
+        public Texture2D   EnemyTexture     { get; set; }
         public Texture2D   ExplosionTexture { get; set; }
         public Texture2D   HudTexture       { get; set; } // The image of the
                                                           // purple transparent window where the score is drawn.
@@ -77,7 +77,7 @@ namespace SpaceFist
         private const String WeaponPickupAsset       = @"Images\Sprites\WeaponPickup";
         private const String BlockImageAsset         = @"Images\Sprites\Block";
         private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
-        private const String EnemeySheetAsset        = @"Images\Sprites\ShipSheet";
+        private const String EnemyAsset              = @"Images\Sprites\Enemy";
         private const String ExplosionAnimationAsset = @"Images\Animations\explosion";
         private const String HUDAsset                = @"Images\UI\Hud";
         private const String SampleWeaponAsset       = @"Images\Sprites\SampleProjectile";
@@ -142,14 +142,14 @@ namespace SpaceFist
             Font = Content.Load<SpriteFont>(SpriteFontAsset);
             
             // Textures
-            Background       = Content.Load<Texture2D>(BackgroundAsset);
-            GameOverTexture  = Content.Load<Texture2D>(GameOverAsset);
-            LaserTexture     = Content.Load<Texture2D>(LaserImageAsset);
-            BlockTexture     = Content.Load<Texture2D>(BlockImageAsset);
-            ShipSheet        = Content.Load<Texture2D>(ShipSheetAsset);
-            EnemySheet       = Content.Load<Texture2D>(EnemeySheetAsset);
-            ExplosionTexture = Content.Load<Texture2D>(ExplosionAnimationAsset);
-            HudTexture       = Content.Load<Texture2D>(HUDAsset);
+            Background         = Content.Load<Texture2D>(BackgroundAsset);
+            GameOverTexture    = Content.Load<Texture2D>(GameOverAsset);
+            LaserTexture       = Content.Load<Texture2D>(LaserImageAsset);
+            BlockTexture       = Content.Load<Texture2D>(BlockImageAsset);
+            ShipSheet          = Content.Load<Texture2D>(ShipSheetAsset);
+            EnemyTexture       = Content.Load<Texture2D>(EnemyAsset);
+            ExplosionTexture   = Content.Load<Texture2D>(ExplosionAnimationAsset);
+            HudTexture         = Content.Load<Texture2D>(HUDAsset);
 
             HealthPickupTexture    = Content.Load<Texture2D>(HealthPickupAsset);
             ExtraLifePickupTexture = Content.Load<Texture2D>(ExtraLifePickupAsset);
