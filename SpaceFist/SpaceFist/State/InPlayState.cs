@@ -146,7 +146,7 @@ namespace SpaceFist.State
                             game.GraphicsDevice.Viewport.Height * .01f);
 
             var scoreDisplay = String.Format("Score: {0} | Health: {1:P0} | Lives: {2}", RoundData.Score, shipManager.Ship.Health, RoundData.Lives);
-
+            
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
 
