@@ -44,7 +44,14 @@ namespace SpaceFist.Entities
         // The pickup handler returns true if the pickup should be removed
         public bool PickedUp(Ship ship)
         {
-            return pickupHandler(ship);
+            var pickedUp = pickupHandler(ship);
+            
+            if (pickedUp)
+            {
+                pickupSound.play();
+            }
+            
+            return pickedUp;
         }
     }
 }

@@ -85,7 +85,7 @@ namespace SpaceFist.Managers
                 new Pickup(
                     game,
                     game.WeaponPickupTexture,
-                    game.ExplosionSound,
+                    game.WeaponPickupSound,
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -107,7 +107,7 @@ namespace SpaceFist.Managers
                 new Pickup(
                     game,
                     game.HealthPickupTexture,
-                    game.ExplosionSound,
+                    game.HealthPickupSound,
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -136,11 +136,12 @@ namespace SpaceFist.Managers
                 new Pickup(
                     game,
                     game.ExtraLifePickupTexture,
-                    game.ExplosionSound,
+                    game.ExtraLifeSound,
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
                     {
+                        
                         roundData.Lives++;
                         return true;
                     });
