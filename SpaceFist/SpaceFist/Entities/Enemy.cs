@@ -13,13 +13,8 @@ namespace SpaceFist.Entities
     {
        
        // The dimensions of the enemy
-       public  const int WIDTH = 60;
-       public const int HEIGHT = 133;
-
-       // The frames to use from the spritesheet
-       private const int LeftIndex   = 0;
-       private const int AtRestIndex = 4;
-       private const int RightIndex  = 7;
+       public  const int WIDTH = 91;
+       public const int HEIGHT = 190;
 
        public EnemyAI AI {get; set;}
 
@@ -28,7 +23,7 @@ namespace SpaceFist.Entities
                 new Rectangle((int) position.X, (int) position.Y, WIDTH, HEIGHT),
                 new Physics(), 
                 new NullInputComponent(), 
-                new IndexedSprite(game.EnemySheet, WIDTH, HEIGHT, AtRestIndex), 
+                new Sprite(game.EnemyTexture),
                 new NullSoundComponent(), game.ScreenScale)
        {
            Rotation = (float) ((3 * Math.PI) / 2);
