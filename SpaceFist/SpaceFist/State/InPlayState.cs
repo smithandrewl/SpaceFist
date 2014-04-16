@@ -150,8 +150,6 @@ namespace SpaceFist.State
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
 
-            DrawLevelMarkers();
-
             // Draw the score green if the user has a non-negative score
             // red otherwise
             var color = Color.Ivory;
@@ -163,6 +161,9 @@ namespace SpaceFist.State
             shipManager.Draw();
             enemyManager.Draw();
             pickupManager.Draw();
+
+            DrawLevelMarkers();
+
 
             // Write the score to the screen
             game.SpriteBatch.DrawString(
