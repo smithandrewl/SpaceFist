@@ -51,7 +51,11 @@ namespace SpaceFist
         public Texture2D HealthPickupTexture     { get; set; }
         public Texture2D ExtraLifePickupTexture  { get; set; }
         public Texture2D WeaponPickupTexture     { get; set; }
-        
+
+        public Texture2D LevelStartTexture { get; set; }
+        public Texture2D LevelEndTexture { get; set; }
+
+
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
@@ -76,6 +80,8 @@ namespace SpaceFist
         private const String ExplosionSoundAsset     = @"Sound\explosion";
         private const String ThumpSoundAsset         = @"Sound\thump";
         private const String LaserSoundAsset         = @"Sound\laser";
+        private const String LevelStartAsset         = @"Images\Backgrounds\LevelStart";
+        private const String LevelEndAsset           = @"Images\Backgrounds\LevelEnd";
         // -------------------------------------------------------------
 
         public SpriteBatch SpriteBatch {
@@ -140,6 +146,9 @@ namespace SpaceFist
             WeaponPickupTexture    = Content.Load<Texture2D>(WeaponPickupAsset);
 
             SampleProjectileTexture = Content.Load<Texture2D>(SampleWeaponAsset);
+
+            LevelStartTexture = Content.Load<Texture2D>(LevelStartAsset);
+            LevelEndTexture = Content.Load<Texture2D>(LevelEndAsset);
 
             // Sounds
             ExplosionSound = Content.Load<SoundEffect>(ExplosionSoundAsset);
