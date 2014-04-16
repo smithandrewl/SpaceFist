@@ -111,13 +111,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprites\EnemySheet.png">
-      <Name>EnemySheet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Images\UI\Hud.png">
       <Name>Hud</Name>
       <Importer>TextureImporter</Importer>
