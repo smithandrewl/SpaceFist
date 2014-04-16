@@ -148,11 +148,13 @@ namespace SpaceFist.State
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
 
+            DrawLevelMarkers();
+
             // Draw the score green if the user has a non-negative score
             // red otherwise
             var color = Color.Ivory;
 
-             // Draw the entities
+            // Draw the entities
             explosionManager.Draw();
             blockManager.Draw();
             projectileManager.Draw();
@@ -183,6 +185,38 @@ namespace SpaceFist.State
                 ), 
                 Color.White
             );        
+        }
+
+        private void DrawLevelMarkers()
+        {
+
+            int halfWidth = (int)((World.Width / 2) - Camera.X);
+            int nearBottom = (int)((World.Bottom * .98) - Camera.Y);
+            int nearTop = (int)((World.Top * .02) - Camera.Y);
+
+            // Draw the level markers
+            game.SpriteBatch.Draw(
+                game.LevelStartTexture,
+                new Rectangle(
+                    (int)halfWidth - (game.LevelStartTexture.Width / 2),
+                    (int)nearBottom - game.LevelStartTexture.Height,
+                    game.LevelStartTexture.Width,
+                    game.LevelStartTexture.Height
+                ),
+                Color.White
+            );
+
+            game.SpriteBatch.Draw(
+                game.LevelEndTexture,
+                new Rectangle(
+                    (int)halfWidth - (game.LevelEndTexture.Width / 2),
+                    (int)nearTop + game.LevelEndTexture.Height,
+                    game.LevelEndTexture.Width,
+                    game.LevelEndTexture.Height
+
+                    ),
+                    Color.White
+                );
         }
 
         public void ExitingState()
