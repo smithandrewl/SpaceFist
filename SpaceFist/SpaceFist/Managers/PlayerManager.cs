@@ -66,6 +66,8 @@ namespace SpaceFist.Managers
 
         public Ship Spawn()
         {
+            game.PlayerSpawn.Play();
+
             var resolution = game.GraphicsDevice.Viewport.Bounds;
             var camera = game.InPlayState.Camera;
 
@@ -94,6 +96,8 @@ namespace SpaceFist.Managers
 
         public void HandleDeath()
         {
+            ship.OnDeath();
+
             if (roundData.Lives > 0)
             {
                 roundData.Lives--;

@@ -49,10 +49,11 @@ namespace SpaceFist.Managers
 
         public void HandleEnemyShipCollisions()
         {
-            foreach (var enemy in enemyManager.Collisions(shipManager.Ship))
+            foreach (Enemy enemy in enemyManager.Collisions(shipManager.Ship))
             {
                 explosionManager.add(enemy.X, enemy.Y);
                 enemy.Alive = false;
+                enemy.OnDeath();
                 shipManager.ShipHit();
             }
         }
@@ -64,11 +65,12 @@ namespace SpaceFist.Managers
             {
                 if (laser.Alive)
                 {
-                    foreach (var enemy in enemyManager.Collisions(laser))
+                    foreach (Enemy enemy in enemyManager.Collisions(laser))
                     {
                         laser.Alive = false;
                         explosionManager.add(enemy.X, enemy.Y);
                         enemy.Alive = false;
+                        enemy.OnDeath();
                         shipManager.Scored();
                         roundData.EnemiesShot++;
                     }

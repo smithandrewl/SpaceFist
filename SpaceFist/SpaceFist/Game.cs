@@ -65,6 +65,10 @@ namespace SpaceFist
         public SoundEffect HealthPickupSound { get; set; }
         public SoundEffect WeaponPickupSound { get; set; }
 
+        public SoundEffect EnemyExplosion { get; set; }
+        public SoundEffect PlayerDeath    { get; set; }
+        public SoundEffect PlayerSpawn    { get; set; }
+
         public Song TitleScreenSong { get; set; }
         public Song InPlaySong      { get; set; }
         public Song GameOverSong    { get; set; }
@@ -99,6 +103,10 @@ namespace SpaceFist
         private const String TitleScreenSongAsset = @"Sound\Space 1990-B";
         private const String InPlaySongAsset      = @"Sound\Blown Away";
         private const String GameOverSongAsset    = @"Sound\Local Forecast";
+
+        private const String EnemyExplosionAsset = @"Sound\EnemyExplosion";
+        private const String PlayerDeathAsset    = @"Sound\PlayerDeath";
+        private const String PlayerSpawnAsset         = @"Sound\Spawn";
 
         public GameData gameData { get; set; }
 
@@ -178,6 +186,9 @@ namespace SpaceFist
             ExtraLifeSound    = Content.Load<SoundEffect>(ExtraLifeSoundAsset);
             HealthPickupSound = Content.Load<SoundEffect>(HealthPickupSoundAsset);
             WeaponPickupSound = Content.Load<SoundEffect>(WeaponPickupSoundAsset);
+            EnemyExplosion    = Content.Load<SoundEffect>(EnemyExplosionAsset);
+            PlayerDeath       = Content.Load<SoundEffect>(PlayerDeathAsset);
+            PlayerSpawn       = Content.Load<SoundEffect>(PlayerSpawnAsset);
 
             TitleScreenSong = Content.Load<Song>(TitleScreenSongAsset);
             InPlaySong      = Content.Load<Song>(InPlaySongAsset);
