@@ -46,3 +46,15 @@ Weapon Sound Pickup
 http://opengameart.org/content/collaboration-sound-effects-fx-005
 User is jalastram
 Composer: Jesús Lastra
+
+In Game Music
+http://incompetech.com/music/royalty-free/index.html
+Blown Away - Kevin MacLeod (incompetech.com)
+
+Title Screen Music
+http://incompetech.com/music/royalty-free/index.html
+Space 1990-B - Kevin MacLeod (incompetech.com)
+
+Game Over Screen Music
+http://incompetech.com/music/royalty-free/index.html
+Local Forecast - Kevin MacLeod (incompetech.com)

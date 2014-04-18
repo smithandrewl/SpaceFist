@@ -65,6 +65,10 @@ namespace SpaceFist
         public SoundEffect HealthPickupSound { get; set; }
         public SoundEffect WeaponPickupSound { get; set; }
 
+        public Song TitleScreenSong { get; set; }
+        public Song InPlaySong      { get; set; }
+        public Song GameOverSong    { get; set; }
+
         // ==================== End game assets ====================
 
         //---------------- The paths to the game assets -----------------
@@ -88,9 +92,13 @@ namespace SpaceFist
         private const String LevelStartAsset         = @"Images\Backgrounds\LevelStart";
         private const String LevelEndAsset           = @"Images\Backgrounds\LevelEnd";
 
-        private const String ExtraLifeSoundAsset = @"Sound\ExtraLife";
+        private const String ExtraLifeSoundAsset    = @"Sound\ExtraLife";
         private const String HealthPickupSoundAsset = @"Sound\HealthPickup";
         private const String WeaponPickupSoundAsset = @"Sound\WeaponPickup";
+
+        private const String TitleScreenSongAsset = @"Sound\Space 1990-B";
+        private const String InPlaySongAsset      = @"Sound\Blown Away";
+        private const String GameOverSongAsset    = @"Sound\Local Forecast";
 
         public GameData gameData { get; set; }
 
@@ -170,6 +178,10 @@ namespace SpaceFist
             ExtraLifeSound    = Content.Load<SoundEffect>(ExtraLifeSoundAsset);
             HealthPickupSound = Content.Load<SoundEffect>(HealthPickupSoundAsset);
             WeaponPickupSound = Content.Load<SoundEffect>(WeaponPickupSoundAsset);
+
+            TitleScreenSong = Content.Load<Song>(TitleScreenSongAsset);
+            InPlaySong      = Content.Load<Song>(InPlaySongAsset);
+            GameOverSong    = Content.Load<Song>(GameOverSongAsset);
 
             SplashScreenState.LoadContent();
             InPlayState.LoadContent();

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Media;
 
 namespace SpaceFist.State
 {
@@ -82,6 +83,9 @@ namespace SpaceFist.State
         public void EnteringState()
         {
             RoundData.Reset();
+
+            MediaPlayer.Play(game.InPlaySong);
+            MediaPlayer.IsRepeating = true;
 
             var resolution = game.GraphicsDevice.Viewport.Bounds;
 
@@ -236,6 +240,7 @@ namespace SpaceFist.State
 
         public void ExitingState()
         {
+            MediaPlayer.Stop();
         }
 
        // Keep the player on the screen
