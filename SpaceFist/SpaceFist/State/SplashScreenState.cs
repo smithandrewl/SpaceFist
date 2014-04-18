@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using SpaceFist.State.Abstract;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,9 @@ namespace SpaceFist.State
         public void EnteringState()
         {
             enteredAt = DateTime.Now;
+
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(game.TitleScreenSong);
         }
 
         public void Update()
@@ -65,6 +69,7 @@ namespace SpaceFist.State
 
         public void ExitingState()
         {
+            MediaPlayer.Stop();
         }
     }
 }
