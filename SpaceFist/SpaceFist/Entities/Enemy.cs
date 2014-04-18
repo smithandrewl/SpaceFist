@@ -24,7 +24,7 @@ namespace SpaceFist.Entities
                 new Physics(), 
                 new NullInputComponent(), 
                 new Sprite(game.EnemyTexture),
-                new NullSoundComponent(), game.ScreenScale)
+                new Sound(game.EnemyExplosion), game.ScreenScale)
        {
            Rotation = (float) ((3 * Math.PI) / 2);
        }
@@ -33,6 +33,11 @@ namespace SpaceFist.Entities
        {
            AI.Update();
            base.Update();
+       }
+
+       public void OnDeath()
+       {
+           ((Sound)sound).play();
        }
     }
 }

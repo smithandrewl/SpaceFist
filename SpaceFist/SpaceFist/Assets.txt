@@ -18,6 +18,8 @@ http://opengameart.org/content/space-blocks
 boom4(explosion)
 boom5(laser)
 boom6(thump)
+boom7(player death)
+boom9(enemy explosion)
 http://opengameart.org/content/boom-pack-1
 dklon
 
@@ -43,6 +45,11 @@ User is jalastram
 Composer: Jesús Lastra
 
 Weapon Sound Pickup
+http://opengameart.org/content/collaboration-sound-effects-fx-005
+User is jalastram
+Composer: Jesús Lastra
+
+Player Spawn Sound
 http://opengameart.org/content/collaboration-sound-effects-fx-005
 User is jalastram
 Composer: Jesús Lastra

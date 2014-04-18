@@ -90,7 +90,7 @@ namespace SpaceFist
                    new Physics(), 
                    new ShipInput(), 
                    new IndexedSprite(game.ShipSheet, Width, Height, 4),
-                   new NullSoundComponent(),
+                   new Sound(game.PlayerDeath),
                    game.ScreenScale)
         {
             indexedSprite = (IndexedSprite) graphics;
@@ -102,6 +102,10 @@ namespace SpaceFist
             // Start the ship in the spawning state
             state = new SpawningState(this);
             state.EnteringState();
+        }
+        public void OnDeath()
+        {
+            ((Sound)sound).play();
         }
 
         public void ResetState()
