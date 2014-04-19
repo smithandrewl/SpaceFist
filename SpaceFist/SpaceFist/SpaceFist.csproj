@@ -102,6 +102,7 @@
     <Compile Include="Entities\SpaceBlock.cs" />
     <Compile Include="GameData.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Hud.cs" />
     <Compile Include="Managers\BlockManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\EnemyManager.cs" />

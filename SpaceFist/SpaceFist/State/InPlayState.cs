@@ -24,6 +24,7 @@ namespace SpaceFist.State
         Random rand = new Random();
 
         Game game;
+        private Hud hud;
 
         public Ship ship
         {
@@ -78,6 +79,7 @@ namespace SpaceFist.State
 
             World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
 
+            hud = new Hud(game, shipManager);
         }
 
         public void EnteringState()
@@ -136,11 +138,12 @@ namespace SpaceFist.State
                 collisionManager.Update();
                 shipManager.Update();
                 enemyManager.Update();
-                pickupManager.Update(); 
+                pickupManager.Update();
+ 
                 if (Camera.Y >= World.Y)
                 {
                     Camera = new Vector2(Camera.X, Camera.Y - ScrollSpeed);
-            }
+                }
             }
             else
             {
@@ -153,26 +156,16 @@ namespace SpaceFist.State
                 game.gameData.ConvertToSecond(stopwatch.ElapsedMilliseconds);
 
             }
+
+            hud.Update();
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime gameTime)
-        {
-            // Calculate the position that the score should be written to
-            // It is the upper left with a padding of one percent
-            Vector2 scorePosition =
-                new Vector2(game.GraphicsDevice.Viewport.Width  * .01f,
-                            game.GraphicsDevice.Viewport.Height * .01f);
-
-            var scoreDisplay = String.Format("Score: {0} | Health: {1:P0} | Lives: {2}", RoundData.Score, shipManager.Ship.Health, RoundData.Lives);
-            
+        {     
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
 
-            // Draw the score green if the user has a non-negative score
-            // red otherwise
-            var color = Color.Ivory;
-
-             // Draw the entities
+            // Draw the entities
             explosionManager.Draw();
             blockManager.Draw();
             projectileManager.Draw();
@@ -181,29 +174,8 @@ namespace SpaceFist.State
             pickupManager.Draw();
 
             DrawLevelMarkers();
-            // Write the score to the screen
-            game.SpriteBatch.DrawString(
-                game.Font, 
-                scoreDisplay, 
-                scorePosition, 
-                color, 
-                0f, 
-                new Vector2(0, 0), 
-                game.ScreenScale, 
-                SpriteEffects.None, 
-                0
-            );
-            
-            game.SpriteBatch.Draw(
-                game.HudTexture, 
-                new Rectangle(
-                    0, 
-                    0, 
-                    game.HudTexture.Width, 
-                    game.HudTexture.Height
-                ), 
-                Color.White
-            );        
+
+            hud.Draw();
         }
 
         private void DrawLevelMarkers()

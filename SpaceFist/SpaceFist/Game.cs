@@ -76,7 +76,7 @@ namespace SpaceFist
         // ==================== End game assets ====================
 
         //---------------- The paths to the game assets -----------------
-        private const String SpriteFontAsset         = @"Fonts\SpriteFont";
+        private const String SpriteFontAsset         = @"Fonts\Raised";
         private const String LaserImageAsset         = @"Images\Sprites\Laser";
         private const String BackgroundAsset         = @"Images\Backgrounds\Purple";
         private const String GameOverAsset           = @"Images\Backgrounds\GameOver";
