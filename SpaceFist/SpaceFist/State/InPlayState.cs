@@ -16,9 +16,10 @@ namespace SpaceFist.State
     public class InPlayState : GameState
     {
         private const int NumBlocks = 20;
-
         private const int NumEnemies = 40;
+
         private const float ScrollSpeed = 1.5f;
+        
         public RoundData RoundData { get; set; }
 
         Random rand = new Random();
@@ -47,6 +48,9 @@ namespace SpaceFist.State
         EnemyManager      enemyManager;
         // It is used to measure playtime.
         Stopwatch stopwatch = new Stopwatch();
+
+        private Rectangle StartOfLevelMarkerPos { get; set; }
+        private Rectangle EndOfLevelMarkerPos   { get; set; }
 
         public EnemyManager EnemyManager { get { return EnemyManager; } }
 
@@ -144,10 +148,14 @@ namespace SpaceFist.State
                 {
                     Camera = new Vector2(Camera.X, Camera.Y - ScrollSpeed);
                 }
+
+                if (ship.Rectangle.Intersects(EndOfLevelMarkerPos))
+                {
+                    game.CurrentState = new EndOfGameState(game, RoundData);
+                }
             }
             else
             {
-                
                 game.CurrentState = game.GameOverState;
 
                 //send gameData(playtime and score)
@@ -180,34 +188,37 @@ namespace SpaceFist.State
 
         private void DrawLevelMarkers()
         {
-
             int halfWidth = (int)((World.Width / 2) - Camera.X);
             int nearBottom = (int)((World.Bottom * .98) - Camera.Y);
             int nearTop = (int)((World.Top * .02) - Camera.Y);
 
-            // Draw the level markers
-            game.SpriteBatch.Draw(
-                game.LevelStartTexture,
-                new Rectangle(
+            StartOfLevelMarkerPos = new Rectangle(
                     (int)halfWidth - (game.LevelStartTexture.Width / 2),
                     (int)nearBottom - game.LevelStartTexture.Height,
                     game.LevelStartTexture.Width,
                     game.LevelStartTexture.Height
-                ),
-                Color.White
-            );
+                );
 
-            game.SpriteBatch.Draw(
-                game.LevelEndTexture,
-                new Rectangle(
+            EndOfLevelMarkerPos = new Rectangle(
                     (int)halfWidth - (game.LevelEndTexture.Width / 2),
                     (int)nearTop + game.LevelEndTexture.Height,
                     game.LevelEndTexture.Width,
                     game.LevelEndTexture.Height
 
-                    ),
-                    Color.White
-                );
+                    );
+
+            // Draw the level markers
+            game.SpriteBatch.Draw(
+                game.LevelStartTexture,
+                StartOfLevelMarkerPos,
+                Color.White
+            );
+
+            game.SpriteBatch.Draw(
+                game.LevelEndTexture,
+                EndOfLevelMarkerPos,
+                Color.White
+            );
         }
 
         public void ExitingState()

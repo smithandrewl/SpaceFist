@@ -55,6 +55,7 @@ namespace SpaceFist
         public Texture2D LevelStartTexture { get; set; }
         public Texture2D LevelEndTexture { get; set; }
 
+        public Texture2D EndOfGameTexture { get; set; }
 
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
@@ -72,6 +73,7 @@ namespace SpaceFist
         public Song TitleScreenSong { get; set; }
         public Song InPlaySong      { get; set; }
         public Song GameOverSong    { get; set; }
+        public Song EndOfGameSong   { get; set; }
 
         // ==================== End game assets ====================
 
@@ -107,6 +109,9 @@ namespace SpaceFist
         private const String EnemyExplosionAsset = @"Sound\EnemyExplosion";
         private const String PlayerDeathAsset    = @"Sound\PlayerDeath";
         private const String PlayerSpawnAsset         = @"Sound\Spawn";
+
+        private const String EndOfGameAsset     = @"Images\Backgrounds\vortex_0";
+        private const String EndOfGameSongAsset = @"Sound\There It Is";
 
         public GameData gameData { get; set; }
 
@@ -179,6 +184,9 @@ namespace SpaceFist
             LevelStartTexture = Content.Load<Texture2D>(LevelStartAsset);
             LevelEndTexture = Content.Load<Texture2D>(LevelEndAsset);
 
+            EndOfGameTexture = Content.Load<Texture2D>(EndOfGameAsset);
+
+
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);
             ThumpSound        = Content.Load<SoundEffect>(ThumpSoundAsset);
@@ -193,10 +201,12 @@ namespace SpaceFist
             TitleScreenSong = Content.Load<Song>(TitleScreenSongAsset);
             InPlaySong      = Content.Load<Song>(InPlaySongAsset);
             GameOverSong    = Content.Load<Song>(GameOverSongAsset);
+            EndOfGameSong   = Content.Load<Song>(EndOfGameSongAsset);
 
             SplashScreenState.LoadContent();
             InPlayState.LoadContent();
             GameOverState.LoadContent();
+
 
             currentState.EnteringState();
         }
