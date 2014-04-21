@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SpaceFist.AI.DummyAI;
+using SpaceFist.Entities.Enemies;
 
 namespace SpaceFist.Managers
 {
@@ -25,8 +26,7 @@ namespace SpaceFist.Managers
 
         public void Spawn(int x, int y)
         {
-            Enemy enemy = new Enemy(game, new Vector2(x, y));
-            enemy.AI = new DummyAI(game, enemy, game.InPlayState.ship, this);
+            Enemy enemy = new DummyEnemy(game, new Vector2(x, y));
         }
 
         public void Spawn(int count){
@@ -38,7 +38,7 @@ namespace SpaceFist.Managers
                 int   randX    = rand.Next(0, game.InPlayState.World.Width);
                 int   randY    = rand.Next(0, (int) game.InPlayState.World.Height);
                 float rotation = MathHelper.ToRadians(180);
-                Enemy enemy    = new Enemy(game, new Vector2(randX, randY));
+                Enemy enemy    = new DummyEnemy(game, new Vector2(randX, randY));
 
                 enemy.AI = new DummyAI(game, enemy, game.InPlayState.ship, this);
                 enemy.Rotation = rotation;

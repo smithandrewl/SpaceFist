@@ -11,6 +11,7 @@ namespace SpaceFist.AI.DummyAI
     class DummyAI : EnemyAI
     {
         private DummyAIDummyState dummyState;
+      
         public DummyAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
         {
             ShipInfo      = new AI.ShipInfo(game, ship, enemyManager, game.InPlayState.RoundData);

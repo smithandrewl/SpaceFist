@@ -46,13 +46,14 @@ namespace SpaceFist.State
         CollisionManager  collisionManager;
         PickUpManager     pickupManager;
         EnemyManager      enemyManager;
+
         // It is used to measure playtime.
         Stopwatch stopwatch = new Stopwatch();
 
         private Rectangle StartOfLevelMarkerPos { get; set; }
         private Rectangle EndOfLevelMarkerPos   { get; set; }
 
-        public EnemyManager EnemyManager { get { return EnemyManager; } }
+        public EnemyManager EnemyManager { get { return enemyManager; } }
 
         public ProjectileManager ProjectileManager
         {
