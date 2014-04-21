@@ -13,7 +13,7 @@ namespace SpaceFist.Entities.Enemies
             : base(game, game.EnemyFighterTexture, game.ExplosionSound, position)
         {
 
-            this.AI = new DummyAI(game, this, game.InPlayState.ship, game.InPlayState.EnemyManager);
+            this.AI = new AggressiveAI(game, this, game.InPlayState.ship, game.InPlayState.EnemyManager);
         }
     }
 }

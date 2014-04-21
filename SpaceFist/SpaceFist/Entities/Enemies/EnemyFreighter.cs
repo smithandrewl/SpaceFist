@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SpaceFist.AI.DefensiveAI;
 using SpaceFist.AI.DummyAI;
 using SpaceFist.Entities;
 using System;
@@ -13,7 +14,7 @@ namespace SpaceFist.Managers
         public EnemyFreighter(Game game, Vector2 position):
             base(game, game.EnemyFreighterTexture, game.ExplosionSound, position)
         {
-            AI = new DummyAI(game, this, game.InPlayState.ship, game.InPlayState.EnemyManager);
+            AI = new DefensiveAI(game, this);
         }
     }
 }

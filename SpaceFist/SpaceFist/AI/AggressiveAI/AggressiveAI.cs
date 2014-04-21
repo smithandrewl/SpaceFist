@@ -8,23 +8,23 @@ using SpaceFist.Managers;
 
 namespace SpaceFist.AI.DummyAI
 {
-    class DummyAI : EnemyAI
+    class AggressiveAI : EnemyAI
     {
-        private DummyAIDummyState dummyState;
+        private RamState ramState;
       
-        public DummyAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
+        public AggressiveAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
         {
             ShipInfo      = new AI.ShipInfo(game, ship, enemyManager, game.InPlayState.RoundData);
             ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship, ShipInfo);
 
-            dummyState = new DummyAIDummyState(this);
+            ramState = new RamState(this);
         }
 
         public void Update()
         {
             ShipInfo.Update();
             ShipEnemyInfo.Update();
-            dummyState.Update();
+            ramState.Update();
         }
 
         public ShipEnemyInfo ShipEnemyInfo { get; set; }

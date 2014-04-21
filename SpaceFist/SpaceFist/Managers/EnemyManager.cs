@@ -38,7 +38,7 @@ namespace SpaceFist.Managers
             for (int i = 0; i < count; i++)
             {
                 int randX = rand.Next(0, game.InPlayState.World.Width);
-                int randY = rand.Next(0, (int)game.InPlayState.World.Height);
+                int randY = rand.Next(0, (int)MathHelper.Max(game.InPlayState.World.Height * .9f, game.GraphicsDevice.Viewport.Height / 2));
                 float rotation = MathHelper.ToRadians(180);
                 Enemy enemy = func(new Vector2(randX, randY));
                 enemy.Rotation = rotation;

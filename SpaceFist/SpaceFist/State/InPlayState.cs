@@ -16,7 +16,7 @@ namespace SpaceFist.State
     public class InPlayState : GameState
     {
         private const int NumBlocks = 20;
-        private const int NumEnemies = 40;
+        private const int NumEnemies = 64;
 
         private const float ScrollSpeed = 1.5f;
         
@@ -109,8 +109,8 @@ namespace SpaceFist.State
             blockManager.SpawnBlocks(NumBlocks);
 
             enemyManager.Clear();
-            enemyManager.SpawnEnemyFighters(NumEnemies / 2);
-            enemyManager.SpawnEnemyFreighters(NumEnemies / 2);
+            enemyManager.SpawnEnemyFighters((int) (NumEnemies * (2/3f)));
+            enemyManager.SpawnEnemyFreighters((int) (NumEnemies * (1/3f)));
 
             // Spawn the players ship
             shipManager.Initialize();

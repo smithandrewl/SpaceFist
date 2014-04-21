@@ -11,7 +11,7 @@ namespace SpaceFist.AI
     {
         private const bool DisplayDebug = false;
 
-        private const float DistanceHigh = 950;
+        private const float DistanceHigh = 1000;
         private const float DistanceLow  = 0;
 
         public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo)
