@@ -76,8 +76,10 @@
   <ItemGroup>
     <Compile Include="AI\Abstract\EnemyAI.cs" />
     <Compile Include="AI\Abstract\FuzzyLogicEnabled.cs" />
-    <Compile Include="AI\DummyAI\DummyAI.cs" />
-    <Compile Include="AI\DummyAI\DummyAIDummyState.cs" />
+    <Compile Include="AI\AggressiveAI\AggressiveAI.cs" />
+    <Compile Include="AI\AggressiveAI\RamState.cs" />
+    <Compile Include="AI\DefensiveAI\DefendState.cs" />
+    <Compile Include="AI\DefensiveAI\DefensiveAI.cs" />
     <Compile Include="AI\FuzzyVariable.cs" />
     <Compile Include="AI\ShipEnemyInfo.cs" />
     <Compile Include="AI\ShipInfo.cs" />
@@ -91,8 +93,8 @@
     <Compile Include="Components\NullSoundComponent.cs" />
     <Compile Include="Components\ShipInput.cs" />
     <Compile Include="Components\Sound.cs" />
-    <Compile Include="Entities\Enemies\DummyEnemy.cs" />
     <Compile Include="Entities\Enemies\Enemy.cs" />
+    <Compile Include="Entities\Enemies\EnemyFighter.cs" />
     <Compile Include="Entities\Explosion.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Components\Physics.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Hud.cs" />
     <Compile Include="Managers\BlockManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
+    <Compile Include="Entities\Enemies\EnemyFreighter.cs" />
     <Compile Include="Managers\EnemyManager.cs" />
     <Compile Include="Managers\ExplosionManager.cs" />
     <Compile Include="Managers\PickUpManager.cs" />

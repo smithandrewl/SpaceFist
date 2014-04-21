@@ -24,23 +24,23 @@ namespace SpaceFist.Managers
             enemies     = new List<Enemy>();
         }
 
-        public void Spawn(int x, int y)
+        public void SpawnEnemyFighters(int count)
         {
-            Enemy enemy = new DummyEnemy(game, new Vector2(x, y));
+            SpawnEnemies(count, position => new EnemyFighter(game, position));
         }
 
-        public void Spawn(int count){
+        public void SpawnEnemyFreighters(int count)
+        {
+            SpawnEnemies(count, position => new EnemyFreighter(game, position));
+        }
 
-            enemies.Clear();
-
+        private void SpawnEnemies(int count, Func<Vector2, Enemy> func){
             for (int i = 0; i < count; i++)
             {
-                int   randX    = rand.Next(0, game.InPlayState.World.Width);
-                int   randY    = rand.Next(0, (int) game.InPlayState.World.Height);
+                int randX = rand.Next(0, game.InPlayState.World.Width);
+                int randY = rand.Next(0, (int)MathHelper.Max(game.InPlayState.World.Height * .9f, game.GraphicsDevice.Viewport.Height / 2));
                 float rotation = MathHelper.ToRadians(180);
-                Enemy enemy    = new DummyEnemy(game, new Vector2(randX, randY));
-
-                enemy.AI = new DummyAI(game, enemy, game.InPlayState.ship, this);
+                Enemy enemy = func(new Vector2(randX, randY));
                 enemy.Rotation = rotation;
                 enemies.Add(enemy);
             }
@@ -75,6 +75,11 @@ namespace SpaceFist.Managers
 
 
             return res;
+        }
+
+        public void Clear()
+        {
+            enemies.Clear();
         }
     }
 }

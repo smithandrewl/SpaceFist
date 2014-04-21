@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceFist.AI.DummyAI
 {
-    class DummyAIDummyState : FuzzyLogicEnabled, EnemyAIState
+    class RamState : FuzzyLogicEnabled, EnemyAIState
     {
         public List<Vector2> WayPoints { get; set; }
 
@@ -22,7 +22,7 @@ namespace SpaceFist.AI.DummyAI
 
         private const int Speed = 6;
 
-        public DummyAIDummyState(EnemyAI ai)
+        public RamState(EnemyAI ai)
         {
             random = new Random();
 
@@ -46,7 +46,12 @@ namespace SpaceFist.AI.DummyAI
 
         public override void Update()
         {
-            membership = Or(AI.ShipEnemyInfo.Distance.Low, AI.ShipEnemyInfo.Distance.Med);
+            membership = Or(
+                    // If the player is doing too well
+                    And(AI.ShipInfo.Accuracy.High, AI.ShipInfo.Health.High),
+                    // If the player is not too far away
+                    Not(AI.ShipEnemyInfo.Distance.High));
+
 
             var millisecondsPassed = (DateTime.Now - lastUpdate).Milliseconds;
 
