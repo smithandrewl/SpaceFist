@@ -91,7 +91,8 @@
     <Compile Include="Components\NullSoundComponent.cs" />
     <Compile Include="Components\ShipInput.cs" />
     <Compile Include="Components\Sound.cs" />
-    <Compile Include="Entities\Enemy.cs" />
+    <Compile Include="Entities\Enemies\DummyEnemy.cs" />
+    <Compile Include="Entities\Enemies\Enemy.cs" />
     <Compile Include="Entities\Explosion.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Components\Physics.cs" />

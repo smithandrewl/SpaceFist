@@ -6,25 +6,22 @@ using System.Linq;
 using System.Text;
 using SpaceFist.AI;
 using SpaceFist.AI.DummyAI;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace SpaceFist.Entities
 {
     public class Enemy : Entity
     {
-       
-       // The dimensions of the enemy
-       public  const int WIDTH = 91;
-       public const int HEIGHT = 190;
+       public EnemyAI AI { get; set; }
 
-       public EnemyAI AI {get; set;}
-
-       public Enemy(Game game, Vector2 position) : 
+       public Enemy(Game game, Texture2D enemyTexture, SoundEffect sound, Vector2 position) : 
            base(game, 
-                new Rectangle((int) position.X, (int) position.Y, WIDTH, HEIGHT),
+                new Rectangle((int) position.X, (int) position.Y, enemyTexture.Width, enemyTexture.Height),
                 new Physics(), 
                 new NullInputComponent(), 
-                new Sprite(game.EnemyTexture),
-                new Sound(game.EnemyExplosion), game.ScreenScale)
+                new Sprite(enemyTexture),
+                new Sound(sound), game.ScreenScale)
        {
            Rotation = (float) ((3 * Math.PI) / 2);
        }
