@@ -19,8 +19,10 @@ namespace SpaceFist.Managers
         private PickUpManager     pickupManager;
         private EnemyManager      enemyManager;
         private RoundData roundData;
+        private Game game;
 
         public CollisionManager(
+            Game game,
             BlockManager      blockManager, 
             PlayerManager     shipManager, 
             ProjectileManager laserManager, 
@@ -29,6 +31,7 @@ namespace SpaceFist.Managers
             EnemyManager      enemyManager,
             RoundData         roundData)
         {
+            this.game             = game;
             this.blockManager     = blockManager;
             this.shipManager      = shipManager;
             this.laserManager     = laserManager;
@@ -45,6 +48,7 @@ namespace SpaceFist.Managers
             HandleShipPickupCollisions();
             HandleEnemyLaserCollisions();
             HandleEnemyShipCollisions();
+            HandleEnemyRockCollisions();
         }
 
         public void HandleEnemyShipCollisions()
@@ -84,6 +88,34 @@ namespace SpaceFist.Managers
                 if (pickup.PickedUp(shipManager.Ship))
                 {
                     pickup.Alive = false;
+                }
+            }
+        }
+
+        public void HandleEnemyRockCollisions()
+        {
+            var resolution = game.GraphicsDevice.Viewport;
+            var cameraRect = new Rectangle((int) game.InPlayState.Camera.X, (int)game.InPlayState.Camera.Y, resolution.Width, resolution.Height);
+
+            // Only process onscreen collisions
+            foreach (var enemy in enemyManager)
+            {
+                if (enemy.Alive && cameraRect.Contains(enemy.Rectangle))
+                {
+                    foreach (var block in blockManager.collisions(enemy))
+                    {
+
+                        if (cameraRect.Contains(block.Rectangle))
+                        {
+                            enemy.Alive = false;
+                            enemy.OnDeath();
+
+                            explosionManager.add(block.X, block.Y);
+                            explosionManager.add(enemy.X, enemy.Y);
+
+                            block.Destroy();
+                        }
+                    }
                 }
             }
         }

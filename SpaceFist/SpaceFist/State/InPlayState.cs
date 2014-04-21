@@ -15,7 +15,7 @@ namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks = 20;
+        private const int NumBlocks  = 20;
         private const int NumEnemies = 64;
 
         private const float ScrollSpeed = 1.5f;
@@ -80,7 +80,7 @@ namespace SpaceFist.State
             shipManager       = new PlayerManager(game);
             pickupManager     = new PickUpManager(game, resolution);
             enemyManager      = new EnemyManager(game, resolution);
-            collisionManager  = new CollisionManager(blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
+            collisionManager  = new CollisionManager(game, blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
 
             World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
 
