@@ -37,14 +37,16 @@ namespace SpaceFist
         public SpriteFont  Font             { get; set; }
 
         // -------------------------- Textures ----------------------
-        public Texture2D   Background       { get; set; }
-        public Texture2D   LaserTexture     { get; set; }
-        public Texture2D   BlockTexture     { get; set; }
-        public Texture2D   GameOverTexture  { get; set; }
-        public Texture2D   ShipSheet        { get; set; }
-        public Texture2D   EnemyTexture     { get; set; }
-        public Texture2D   ExplosionTexture { get; set; }
-        public Texture2D   HudTexture       { get; set; } // The image of the
+        public Texture2D   Background            { get; set; }
+        public Texture2D   LaserTexture          { get; set; }
+        public Texture2D   BlockTexture          { get; set; }
+        public Texture2D   GameOverTexture       { get; set; }
+        public Texture2D   ShipSheet             { get; set; }
+        public Texture2D   EnemyTexture          { get; set; }
+        public Texture2D   EnemyFighterTexture   { get; set; }
+        public Texture2D   EnemyFreighterTexture { get; set; }
+        public Texture2D   ExplosionTexture      { get; set; }
+        public Texture2D   HudTexture            { get; set; } // The image of the
                                                           // purple transparent window where the score is drawn.
         
         public Texture2D SampleProjectileTexture { get; set; }
@@ -106,12 +108,15 @@ namespace SpaceFist
         private const String InPlaySongAsset      = @"Sound\Blown Away";
         private const String GameOverSongAsset    = @"Sound\Local Forecast";
 
-        private const String EnemyExplosionAsset = @"Sound\EnemyExplosion";
-        private const String PlayerDeathAsset    = @"Sound\PlayerDeath";
+        private const String EnemyExplosionAsset      = @"Sound\EnemyExplosion";
+        private const String PlayerDeathAsset         = @"Sound\PlayerDeath";
         private const String PlayerSpawnAsset         = @"Sound\Spawn";
 
         private const String EndOfGameAsset     = @"Images\Backgrounds\vortex_0";
         private const String EndOfGameSongAsset = @"Sound\There It Is";
+
+        private const String EnemyFighterAsset   = @"Images\Sprites\Ship4";
+        private const String EnemyFreighterAsset = @"Images\Sprites\Enemy";
 
         public GameData gameData { get; set; }
 
@@ -171,9 +176,12 @@ namespace SpaceFist
             LaserTexture       = Content.Load<Texture2D>(LaserImageAsset);
             BlockTexture       = Content.Load<Texture2D>(BlockImageAsset);
             ShipSheet          = Content.Load<Texture2D>(ShipSheetAsset);
-            EnemyTexture       = Content.Load<Texture2D>(EnemyAsset);
-            ExplosionTexture   = Content.Load<Texture2D>(ExplosionAnimationAsset);
-            HudTexture         = Content.Load<Texture2D>(HUDAsset);
+            
+            EnemyTexture          = Content.Load<Texture2D>(EnemyAsset);
+            EnemyFighterTexture   = Content.Load<Texture2D>(EnemyFighterAsset);
+            EnemyFreighterTexture = Content.Load<Texture2D>(EnemyFreighterAsset);
+            ExplosionTexture      = Content.Load<Texture2D>(ExplosionAnimationAsset);
+            HudTexture            = Content.Load<Texture2D>(HUDAsset);
 
             HealthPickupTexture    = Content.Load<Texture2D>(HealthPickupAsset);
             ExtraLifePickupTexture = Content.Load<Texture2D>(ExtraLifePickupAsset);
@@ -182,7 +190,7 @@ namespace SpaceFist
             SampleProjectileTexture = Content.Load<Texture2D>(SampleWeaponAsset);
 
             LevelStartTexture = Content.Load<Texture2D>(LevelStartAsset);
-            LevelEndTexture = Content.Load<Texture2D>(LevelEndAsset);
+            LevelEndTexture   = Content.Load<Texture2D>(LevelEndAsset);
 
             EndOfGameTexture = Content.Load<Texture2D>(EndOfGameAsset);
 
