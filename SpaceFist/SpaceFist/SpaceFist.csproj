@@ -126,6 +126,8 @@
     <Compile Include="State\EndOfGameState.cs" />
     <Compile Include="State\GameOverState.cs" />
     <Compile Include="State\InPlayState.cs" />
+    <Compile Include="State\LogoState.cs" />
+    <Compile Include="State\MenuState.cs" />
     <Compile Include="State\ShipStates\LowHealthState.cs" />
     <Compile Include="State\ShipStates\NormalState.cs" />
     <Compile Include="State\ShipStates\SpawningState.cs" />
