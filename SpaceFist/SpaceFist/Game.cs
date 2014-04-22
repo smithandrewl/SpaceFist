@@ -31,6 +31,8 @@ namespace SpaceFist
         public InPlayState       InPlayState       { get; set; }
         public SplashScreenState SplashScreenState { get; set; }
         public GameOverState     GameOverState     { get; set; }
+        public MenuState         MenuState         { get; set; }
+        public LogoState         LogoState         { get; set; }
 
         // ========================== The game assets ===============
         // -------------- ----------- Font(s) -----------------------
@@ -38,6 +40,8 @@ namespace SpaceFist
 
         // -------------------------- Textures ----------------------
         public Texture2D   Background            { get; set; }
+        public Texture2D   BackgroundRed         { get; set; }
+        public Texture2D   Menu                  { get; set; }
         public Texture2D   LaserTexture          { get; set; }
         public Texture2D   BlockTexture          { get; set; }
         public Texture2D   GameOverTexture       { get; set; }
@@ -58,6 +62,8 @@ namespace SpaceFist
         public Texture2D LevelEndTexture { get; set; }
 
         public Texture2D EndOfGameTexture { get; set; }
+
+        public Texture2D LogoTexture { get; set; }
 
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
@@ -83,6 +89,8 @@ namespace SpaceFist
         private const String SpriteFontAsset         = @"Fonts\Raised";
         private const String LaserImageAsset         = @"Images\Sprites\Laser";
         private const String BackgroundAsset         = @"Images\Backgrounds\Purple";
+        private const String BackgroundRedAsset      = @"Images\Backgrounds\BackgroundRed";
+        private const String MenuAsset               = @"Images\Backgrounds\Menu";
         private const String GameOverAsset           = @"Images\Backgrounds\GameOver";
         private const String HealthPickupAsset       = @"Images\Sprites\HealthPickup";
         private const String ExtraLifePickupAsset    = @"Images\Sprites\ExtraLifePickup";
@@ -118,6 +126,8 @@ namespace SpaceFist
         private const String EnemyFighterAsset   = @"Images\Sprites\Ship4";
         private const String EnemyFreighterAsset = @"Images\Sprites\Enemy";
 
+        private const String LogoAsset = @"Images\Backgrounds\Logo";
+
         public GameData gameData { get; set; }
 
         // -------------------------------------------------------------
@@ -135,12 +145,14 @@ namespace SpaceFist
             SplashScreenState = new SplashScreenState(this);
             InPlayState       = new InPlayState(this);
             GameOverState     = new GameOverState(this);
+            MenuState         = new MenuState(this);
+            LogoState         = new LogoState(this);
 
-            graphics = new GraphicsDeviceManager(this);
+            graphics          = new GraphicsDeviceManager(this);
             
             // Set the first state of the game to be displaying the splash screen.
-            currentState = SplashScreenState;
-            
+            currentState = LogoState;
+           
             Content.RootDirectory = "Content";
             gameData = new GameData();
         }
@@ -172,6 +184,8 @@ namespace SpaceFist
             
             // Textures
             Background         = Content.Load<Texture2D>(BackgroundAsset);
+            BackgroundRed      = Content.Load<Texture2D>(BackgroundRedAsset);
+            Menu               = Content.Load<Texture2D>(MenuAsset);
             GameOverTexture    = Content.Load<Texture2D>(GameOverAsset);
             LaserTexture       = Content.Load<Texture2D>(LaserImageAsset);
             BlockTexture       = Content.Load<Texture2D>(BlockImageAsset);
@@ -193,7 +207,7 @@ namespace SpaceFist
             LevelEndTexture   = Content.Load<Texture2D>(LevelEndAsset);
 
             EndOfGameTexture = Content.Load<Texture2D>(EndOfGameAsset);
-
+            LogoTexture = Content.Load<Texture2D>(LogoAsset);
 
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);
@@ -214,7 +228,8 @@ namespace SpaceFist
             SplashScreenState.LoadContent();
             InPlayState.LoadContent();
             GameOverState.LoadContent();
-
+            MenuState.LoadContent();
+            LogoState.LoadContent();
 
             currentState.EnteringState();
         }
@@ -233,7 +248,7 @@ namespace SpaceFist
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
             // Tell the current state to draw itself

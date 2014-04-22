@@ -42,21 +42,34 @@ namespace SpaceFist.State
         {
             enteredAt = DateTime.Now;
 
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.TitleScreenSong);
+            game.IsMouseVisible = true;
         }
 
         public void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState();
+            MouseState mouseState = Mouse.GetState();
+            var timeDiff = DateTime.Now.Subtract(enteredAt);
+            
+            if (timeDiff.Seconds > 3)
+            {
+                game.CurrentState = game.MenuState;
+            }
 
             // This waits 300 milliseconds after the splash screen state has been entered
-            // before processing input.             
-            if(keyboardState.IsKeyDown(Keys.Enter))
+            // before processing input.          
+            else if ( timeDiff.Milliseconds > 300)
             {
-                if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
+                if (keyboardState.IsKeyDown(Keys.Enter))
                 {
-                    game.CurrentState = game.InPlayState;
+
+                    game.CurrentState = game.MenuState;
+
+                }
+
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    game.CurrentState = game.MenuState;
                 }
             }
         }
@@ -69,7 +82,7 @@ namespace SpaceFist.State
 
         public void ExitingState()
         {
-            MediaPlayer.Stop();
+            game.IsMouseVisible = false;
         }
     }
 }
