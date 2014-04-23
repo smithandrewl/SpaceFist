@@ -77,6 +77,7 @@
     <Compile Include="AI\Abstract\EnemyAI.cs" />
     <Compile Include="AI\Abstract\FuzzyLogicEnabled.cs" />
     <Compile Include="AI\AggressiveAI\AggressiveAI.cs" />
+    <Compile Include="AI\DefensiveAI\FireState.cs" />
     <Compile Include="AI\AggressiveAI\RamState.cs" />
     <Compile Include="AI\DefensiveAI\DefendState.cs" />
     <Compile Include="AI\DefensiveAI\DefensiveAI.cs" />

@@ -15,7 +15,7 @@ namespace SpaceFist.AI.DummyAI
         public AggressiveAI(Game game, Enemy enemy, Ship ship, EnemyManager enemyManager)
         {
             ShipInfo      = new AI.ShipInfo(game, ship, enemyManager, game.InPlayState.RoundData);
-            ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship, ShipInfo);
+            ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship, ShipInfo, game);
 
             ramState = new RamState(this);
         }
