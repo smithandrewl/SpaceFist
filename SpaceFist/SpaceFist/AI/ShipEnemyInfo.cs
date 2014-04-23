@@ -14,18 +14,22 @@ namespace SpaceFist.AI
         private const float DistanceHigh = 1000;
         private const float DistanceLow  = 0;
 
-        public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo)
+        public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo, Game game)
         {
             this.Enemy    = enemy;
             this.Ship     = ship;
             this.ShipInfo = shipInfo;
-
+            this.game = game;
+            
             fuzzyDistance = new FuzzyVariable { Name = "Distance" };
         }
 
         private FuzzyVariable fuzzyDistance;
 
         private DateTime lastPrint = DateTime.Now;
+
+
+        private Game game;
 
         //-------------- Crisp input ----------------- 
         // Distance
@@ -42,7 +46,21 @@ namespace SpaceFist.AI
             }
         }
 
-        public bool ShipVisible { get; set; }
+        public bool EnemyVisible 
+        {
+            get
+            {
+                if (Enemy.Alive)
+                {
+                    return game.InPlayState.OnScreenWorld.Contains(new Point(Enemy.X, Enemy.Y));
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        
+        }
 
         public float ShipFacingAway      { get; set; }
         public float ShipFacingElseWhere { get; set; }
@@ -50,7 +68,21 @@ namespace SpaceFist.AI
 
         // Interception information
         public int     TimeToIntercept   { get; set; }
-        public Vector2 LineOfSight       { get; set; }
+
+        public Vector2 LineOfSight { 
+            get 
+            {
+                var shipPos = new Vector2(Ship.X, Ship.Y);
+                var enemyPos = new Vector2(Enemy.X, Enemy.Y);
+
+                var diff = (shipPos - enemyPos);
+
+                diff.Normalize();
+
+                return diff;
+            } 
+        }
+        
         public Vector2 InterceptVelocity { get; set; }
         public Vector2 InterceptPoint    { get; set; }
 

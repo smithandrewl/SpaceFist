@@ -12,7 +12,10 @@ namespace SpaceFist.Entities
     {
         private bool soundPlayed = false;
 
-        public Projectile(Game game, Texture2D texture, Vector2 position, int speed) : 
+        public  bool EnemyProjectile { get; set; }
+
+        
+        public Projectile(Game game, Texture2D texture, Vector2 position, Vector2 unitVector, int speed, bool enemyProjectile = false) : 
             base(game, 
                  new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height), 
                  new Physics(), 
@@ -21,7 +24,10 @@ namespace SpaceFist.Entities
                  new Sound(game.LaserSound),
                  game.ScreenScale)
         {
-            Velocity = new Vector2(0, -speed);
+
+            Velocity        = unitVector * speed;
+            EnemyProjectile = enemyProjectile;
+            
         }
 
         // Plays a firing noise on the first update

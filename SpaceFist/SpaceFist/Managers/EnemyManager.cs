@@ -47,8 +47,10 @@ namespace SpaceFist.Managers
         }
 
         public void Update(){
+            
             enemies.ForEach(enemy => enemy.Update());
 
+            
             var alive = enemies.Count(enemy => enemy.Alive);
         }
         
