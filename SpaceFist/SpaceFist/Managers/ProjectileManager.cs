@@ -89,7 +89,7 @@ namespace SpaceFist.Managers
         {
             game.InPlayState.RoundData.ShotsFired++;
             Projectile projectile =
-                new Projectile(game, game.MineTexture, new Vector2(x, y), 0);
+                new Projectile(game, game.MineTexture, new Vector2(x, y), new Vector2(0, 0), 0);
 
             projectiles.Add(projectile);
         }
