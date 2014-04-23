@@ -83,6 +83,18 @@ namespace SpaceFist.Managers
             projectiles.Add(projectile);
         }
 
+
+        /*******Dongcai**********/
+        public void fireBluelaser(int x, int y)
+        {
+            game.InPlayState.RoundData.ShotsFired++;
+            Projectile projectile =
+                new Projectile(game, game.MineTexture, new Vector2(x, y), 0);
+
+            projectiles.Add(projectile);
+        }
+        /***************************************/
+
         public IEnumerable<Projectile> Collisions(Entity obj)
         {
             var collisions = 

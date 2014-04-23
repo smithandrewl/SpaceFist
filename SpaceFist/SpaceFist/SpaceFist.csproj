@@ -134,6 +134,7 @@
     <Compile Include="State\ShipStates\SpawningState.cs" />
     <Compile Include="State\SplashScreenState.cs" />
     <Compile Include="Weapons\Abstract\Weapon.cs" />
+    <Compile Include="Weapons\Bluelaser.cs" />
     <Compile Include="Weapons\LaserWeapon.cs" />
     <Compile Include="Weapons\SampleWeapon.cs" />
   </ItemGroup>
