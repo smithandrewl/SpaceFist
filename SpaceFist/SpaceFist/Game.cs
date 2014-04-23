@@ -65,6 +65,13 @@ namespace SpaceFist
 
         public Texture2D LogoTexture { get; set; }
 
+
+        /****Dongcai***/
+        public Texture2D MineTexture { get; set; }
+        public Texture2D MinePickupTexture { get; set; }
+
+        /***********/
+
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
@@ -127,6 +134,11 @@ namespace SpaceFist
         private const String EnemyFreighterAsset = @"Images\Sprites\Enemy";
 
         private const String LogoAsset = @"Images\Backgrounds\Logo";
+
+        /****Dongcai***/
+        private const String MineImageAsset = @"Images\Sprites\blue-laser";
+        private const String MinePickupAsset = @"Images\Sprites\Laser-beam-pickup";
+        /***************************/
 
         public GameData gameData { get; set; }
 
@@ -208,6 +220,11 @@ namespace SpaceFist
 
             EndOfGameTexture = Content.Load<Texture2D>(EndOfGameAsset);
             LogoTexture = Content.Load<Texture2D>(LogoAsset);
+
+            /***Dongcai********************/
+            MinePickupTexture = Content.Load<Texture2D>(MinePickupAsset);
+            MineTexture = Content.Load<Texture2D>(MineImageAsset);
+            /*************************/
 
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);
