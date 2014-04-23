@@ -65,3 +65,7 @@ Space 1990-B - Kevin MacLeod (incompetech.com)
 Game Over Screen Music
 http://incompetech.com/music/royalty-free/index.html
 Local Forecast - Kevin MacLeod (incompetech.com)
+
+Turret Image
+http://opengameart.org/content/mediumtanks
+User: chabull
