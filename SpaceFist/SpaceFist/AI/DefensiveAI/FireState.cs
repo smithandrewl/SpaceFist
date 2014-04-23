@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace SpaceFist.AI.AggressiveAI
 {
-    class FireState : EnemyAIState
+    class FireState : FuzzyLogicEnabled, EnemyAIState
     {
         private ProjectileManager projectileManager;
         private float membership;
@@ -26,14 +27,15 @@ namespace SpaceFist.AI.AggressiveAI
             this.game = game;
         }
 
-        public void Update()
+        public override void Update()
         {
+            membership = ShipEnemyInfo.Distance.High;
 
             // if the ship is in the line of sight, fire every time period
             if (AI.ShipEnemyInfo.EnemyVisible)
             {
                 var now = DateTime.Now;
-                if (now.Subtract(lastFire).Milliseconds > 500)
+                if (now.Subtract(lastFire).Milliseconds > (600 * Not(membership)))
                 {
                     int halfWidth = ShipEnemyInfo.Enemy.Rectangle.Width / 2;
                     int halfHeight = ShipEnemyInfo.Enemy.Rectangle.Height / 2;

@@ -49,6 +49,20 @@ namespace SpaceFist.Managers
             HandleEnemyLaserCollisions();
             HandleEnemyShipCollisions();
             HandleEnemyRockCollisions();
+            HandleProjectileShipCollisions();
+        }
+
+        public void HandleProjectileShipCollisions()
+        {
+            foreach (Projectile projectile in laserManager.EnemyProjectiles())
+            {
+                if(projectile.Rectangle.Intersects(shipManager.Ship.Rectangle))
+                {
+                    projectile.Alive = false;
+                    explosionManager.add(shipManager.Ship.X, shipManager.Ship.Y);
+                    shipManager.ShipHit();
+                }
+            }
         }
 
         public void HandleEnemyShipCollisions()

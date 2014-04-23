@@ -53,7 +53,8 @@ namespace SpaceFist.State
 
         public void Update()
         {
-            MouseState mouse = Mouse.GetState();
+            MouseState    mouse = Mouse.GetState();
+            KeyboardState keys  = Keyboard.GetState();
 
             Point mousePos = new Point(mouse.X, mouse.Y);
 
@@ -72,6 +73,16 @@ namespace SpaceFist.State
                 if (exitRect.Contains(mousePos))
                 {
                     game.Exit();
+                }
+            }
+            else
+            {
+                if (keys.IsKeyDown(Keys.Enter))
+                {
+                    if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
+                    {
+                        game.CurrentState = game.InPlayState;
+                    }
                 }
             }
         }

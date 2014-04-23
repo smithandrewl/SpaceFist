@@ -16,7 +16,7 @@ namespace SpaceFist.Managers
         private Ship ship;
 
         // Damage the ship takes per hit
-        private const int HitDamage = 30;
+        private const int HitDamage = 10;
         
         private Vector2 StartingVelocity = new Vector2(0, -2);
         

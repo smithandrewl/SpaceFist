@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
 
 namespace SpaceFist.State
 {
@@ -35,11 +36,12 @@ namespace SpaceFist.State
 
         public void Update()
         {
-            if (DateTime.Now.Subtract(enteredAt).Seconds > loadTime)
+            KeyboardState keys = Keyboard.GetState();
+
+            if (DateTime.Now.Subtract(enteredAt).Seconds > loadTime || (keys.IsKeyDown(Keys.Enter)))
             {
                 game.CurrentState = game.SplashScreenState;
             }
-
         }
 
         public void EnteringState()

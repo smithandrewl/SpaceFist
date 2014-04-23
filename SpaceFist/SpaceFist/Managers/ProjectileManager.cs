@@ -87,7 +87,8 @@ namespace SpaceFist.Managers
         {
             var collisions = 
                 from  projectile in projectiles
-                where projectile.Rectangle.Intersects(obj.Rectangle) select projectile;
+                where projectile.Alive && projectile.Rectangle.Intersects(obj.Rectangle) 
+                select projectile;
 
             return collisions;
         }
@@ -96,7 +97,7 @@ namespace SpaceFist.Managers
         {
             var playerProjs = 
                 from projectile in projectiles
-                where projectile.EnemyProjectile == false
+                where (projectile.EnemyProjectile == false) && projectile.Alive
                 select projectile;
 
             return playerProjs;
@@ -106,7 +107,7 @@ namespace SpaceFist.Managers
         {
             var enemyProjs =
                 from projectile in projectiles
-                where projectile.EnemyProjectile == true
+                where (projectile.EnemyProjectile == true) && projectile.Alive
                 select projectile;
 
             return enemyProjs;
