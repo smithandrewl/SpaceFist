@@ -65,7 +65,7 @@ namespace SpaceFist.Managers
 
         public void HandleEnemyLaserCollisions()
         {
-            foreach (var laser in laserManager)
+            foreach (var laser in laserManager.PlayerProjectiles())
             {
                 if (laser.Alive)
                 {

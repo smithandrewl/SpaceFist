@@ -57,18 +57,28 @@ namespace SpaceFist.Managers
 
         public void fireLaser(int x, int y)
         {
+            fireLaser(x, y, new Vector2(0, -1));
+        }
+
+        public void fireLaser(int x, int y, Vector2 direction, bool enemyLaser = false)
+        {
             game.InPlayState.RoundData.ShotsFired++;
+
+            float rotation = ((float) MathHelper.ToDegrees((float) Math.Atan2(direction.Y, direction.X)) + 90);
+
             // Place a new active laser at x, y
-            Projectile projectile = new Projectile(game, game.LaserTexture, new Vector2(x, y), 10);
+            Projectile projectile = new Projectile(game, game.LaserTexture, new Vector2(x, y), direction, 10, enemyLaser);
+            projectile.Rotation = MathHelper.ToRadians(rotation);
 
             projectiles.Add(projectile);
+
         }
 
         public void fireSampleWeapon(int x, int y)
         {
             game.InPlayState.RoundData.ShotsFired++;
             Projectile projectile = 
-                new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), 40);
+                new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), new Vector2(0, -1), 40);
             
             projectiles.Add(projectile);
         }
@@ -80,6 +90,26 @@ namespace SpaceFist.Managers
                 where projectile.Rectangle.Intersects(obj.Rectangle) select projectile;
 
             return collisions;
+        }
+
+        public IEnumerable<Projectile> PlayerProjectiles()
+        {
+            var playerProjs = 
+                from projectile in projectiles
+                where projectile.EnemyProjectile == false
+                select projectile;
+
+            return playerProjs;
+        }
+
+        public IEnumerable<Projectile> EnemyProjectiles()
+        {
+            var enemyProjs =
+                from projectile in projectiles
+                where projectile.EnemyProjectile == true
+                select projectile;
+
+            return enemyProjs;
         }
     }
 }

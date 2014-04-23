@@ -35,6 +35,17 @@ namespace SpaceFist.State
             }
         }
 
+        public Rectangle OnScreenWorld
+        {
+            get
+            {
+                var screenWidth = game.GraphicsDevice.Viewport.Width;
+                var screenHeight = game.GraphicsDevice.Viewport.Height;
+
+                return new Rectangle((int) Camera.X, (int) Camera.Y, screenWidth, screenHeight);
+            }
+        }
+
         public Rectangle World { get; set; }
         public Vector2 Camera { get; set; }
 
