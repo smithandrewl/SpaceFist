@@ -101,6 +101,33 @@ namespace SpaceFist.Managers
             SpawnPickups(count, SpawnHealthPickup);
         }
 
+
+
+        /****Dongcai***/
+        public void SpawnLaserbeamPickups(int count)
+        {
+            SpawnPickups(count, SpawnLaserbeamPickup);
+        }
+        public void SpawnLaserbeamPickup(int x, int y)
+        {
+            var pickup =
+                new Pickup(
+                    game,
+                    game.MinePickupTexture,
+                    game.WeaponPickupSound,
+                    new Vector2(x, y),
+                    Vector2.Zero,
+                    (ship) =>
+                    {
+                        ship.Weapon = new Bluelaser(game, ship);
+                        return true;
+                    });
+
+            pickups.Add(pickup);
+        }
+
+        /***********************/
+
         public void SpawnHealthPickup(int x, int y)
         {
             var pickup =

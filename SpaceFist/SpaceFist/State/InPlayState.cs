@@ -120,6 +120,8 @@ namespace SpaceFist.State
             pickupManager.SpawnExamplePickups(5);
             pickupManager.SpawnHealthPickups(4);
 
+            pickupManager.SpawnLaserbeamPickups(10);
+
             stopwatch.Reset();
             stopwatch.Start();
         }
