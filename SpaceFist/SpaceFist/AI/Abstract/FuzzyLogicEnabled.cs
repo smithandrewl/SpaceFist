@@ -11,7 +11,7 @@ namespace SpaceFist
     // http://www.dma.fi.upm.es/java/fuzzy/fuzzyinf/funpert_en.htm
     public abstract class FuzzyLogicEnabled
     {
-        protected float Grade(float val, float lowerLimit, float lowerSupportlimit)
+        protected static float Grade(float val, float lowerLimit, float lowerSupportlimit)
         {
             if (val < lowerLimit)       return 0;
             if ((val >= lowerLimit) && (val <= lowerSupportlimit)) return (val - lowerLimit) / (lowerSupportlimit - lowerLimit);
@@ -19,7 +19,7 @@ namespace SpaceFist
             return 1;
         }
 
-        protected float ReverseGrade(float val, float upperSupportLimit, float upperLimit)
+        protected static float ReverseGrade(float val, float upperSupportLimit, float upperLimit)
         {
             if (val > upperLimit)         return 0;
             if ((val >= upperSupportLimit) && (val <= upperLimit)) return (upperLimit - val) / (upperLimit - upperSupportLimit);
@@ -27,7 +27,7 @@ namespace SpaceFist
             return 1;
         }
 
-        protected float Triangle(float val, float lowerLimit, float middle, float upperLimit)
+        protected static float Triangle(float val, float lowerLimit, float middle, float upperLimit)
         {
             if (val <= lowerLimit) return 0; 
             if (val <= middle)     return (val - lowerLimit) / (middle - lowerLimit);
@@ -36,7 +36,7 @@ namespace SpaceFist
             return 0;
         }
 
-        protected float Trapezoid(
+        protected static float Trapezoid(
             float val, 
             float lowerLimit, 
             float lowerSupportLimit, 
@@ -56,7 +56,7 @@ namespace SpaceFist
             return (upperLimit - val) / (upperLimit - upperSupportLimit);
         }
 
-        protected FuzzyVariable grade(float val, float low, float high, FuzzyVariable fuzzyVariable)
+        protected static FuzzyVariable grade(float val, float low, float high, FuzzyVariable fuzzyVariable)
         {
                 float med = (high - low) / 2.0f;
 
@@ -68,17 +68,17 @@ namespace SpaceFist
                 return fuzzyVariable;
         }
 
-        protected float And(float first, float second)
+        protected static float And(float first, float second)
         {
             return Math.Min(first, second);
         }
 
-        protected float Or(float first, float second)
+        protected static float Or(float first, float second)
         {
             return Math.Max(first, second);
         }
 
-        protected float Not(float val)
+        protected static float Not(float val)
         {
             return 1 - val;
         }

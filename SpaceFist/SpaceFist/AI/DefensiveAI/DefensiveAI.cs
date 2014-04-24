@@ -15,7 +15,7 @@ namespace SpaceFist.AI.DefensiveAI
 
         public DefensiveAI(Game game, Enemy enemy)
         {
-            ShipInfo      = new ShipInfo(game, game.InPlayState.ship, game.InPlayState.EnemyManager, game.InPlayState.RoundData);
+            ShipInfo      = new ShipInfo(game.InPlayState.ship, game.InPlayState.RoundData);
             ShipEnemyInfo = new ShipEnemyInfo(enemy, game.InPlayState.ship, ShipInfo, game);
 
             defendState = new DefendState(this);

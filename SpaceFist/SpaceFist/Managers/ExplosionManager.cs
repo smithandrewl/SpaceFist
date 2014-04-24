@@ -43,10 +43,5 @@ namespace SpaceFist.Managers
             var explosion = new Explosion(game, new Vector2(x, y));
             explosions.Add(explosion);
         }
-
-        public void Remove(Explosion explosion)
-        {
-            explosions.Remove(explosion);
-        }
     }
 }

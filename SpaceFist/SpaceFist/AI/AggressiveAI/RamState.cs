@@ -34,7 +34,7 @@ namespace SpaceFist.AI.DummyAI
             lastUpdate = DateTime.Now;
         }
 
-        private bool Near(int x1, int y1, int x2, int y2)
+        private static bool Near(int x1, int y1, int x2, int y2)
         {
             int tolerance = 10;
 

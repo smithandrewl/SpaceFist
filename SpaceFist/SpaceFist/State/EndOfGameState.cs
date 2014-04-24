@@ -12,12 +12,10 @@ namespace SpaceFist.State
     public class EndOfGameState : GameState
     {
         private Game      game;
-        private RoundData roundData;
 
         public EndOfGameState(Game game, RoundData roundData)
         {
             this.game      = game;
-            this.roundData = roundData;
         } 
 
         public void LoadContent()

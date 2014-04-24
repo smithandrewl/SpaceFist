@@ -13,12 +13,10 @@ namespace SpaceFist.Managers
         
         Random    rand;
         Game      game;
-        Rectangle screen;
 
-        public BlockManager(Game game, Rectangle screen)
+        public BlockManager(Game game)
         {
             this.game   = game;
-            this.screen = screen;
             this.blocks = new List<SpaceBlock>();
             rand        = new Random();
         }
@@ -56,10 +54,6 @@ namespace SpaceFist.Managers
             // Spawn space blocks
             for (int i = 0; i < count; i++)
             {
-                // Generate a random position in the world
-                var randPos = randomPos();
-                var randVel = randomVel();
-
                 // Construct the block
                 var block =
                     new SpaceBlock(game,
@@ -116,17 +110,12 @@ namespace SpaceFist.Managers
             return GetEnumerator();
         }
 
-        public void Add(SpaceBlock block)
-        {
-
-        }
-
         public void Remove(SpaceBlock block)
         {
             blocks.Remove(block);
         }
 
-        public IEnumerable<SpaceBlock> collisions(Entity obj)
+        public IEnumerable<SpaceBlock> Collisions(Entity obj)
         {
             var collisions = 
                 from   block in blocks 

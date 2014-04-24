@@ -12,7 +12,6 @@ namespace SpaceFist.Managers
     public class PickUpManager : IEnumerable<Pickup>
     {
         private Game         game;
-        private Rectangle    screen;
         private List<Pickup> pickups;
         private Random rand = new Random();
         private RoundData roundData;
@@ -20,7 +19,6 @@ namespace SpaceFist.Managers
         public PickUpManager(Game game, Rectangle screen)
         {
             this.game    = game;
-            this.screen  = screen;
             this.pickups = new List<Pickup>();
 
             roundData = game.InPlayState.RoundData;
