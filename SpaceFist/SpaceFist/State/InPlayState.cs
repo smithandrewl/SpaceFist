@@ -22,8 +22,6 @@ namespace SpaceFist.State
         
         public RoundData RoundData { get; set; }
 
-        Random rand = new Random();
-
         Game game;
         private Hud hud;
 
@@ -85,12 +83,12 @@ namespace SpaceFist.State
             var resolution   = game.GraphicsDevice.Viewport.Bounds;
             var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
             
-            blockManager      = new BlockManager(game, screenRect);
+            blockManager      = new BlockManager(game);
             projectileManager = new ProjectileManager(game);
             explosionManager  = new ExplosionManager(game);
             shipManager       = new PlayerManager(game);
             pickupManager     = new PickUpManager(game, resolution);
-            enemyManager      = new EnemyManager(game, resolution);
+            enemyManager      = new EnemyManager(game);
             collisionManager  = new CollisionManager(game, blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
 
             World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
@@ -147,8 +145,6 @@ namespace SpaceFist.State
                 {
                     game.Exit();
                 }
-
-                var viewPort = game.GraphicsDevice.Viewport.TitleSafeArea;
                 
                 KeepOnScreen(shipManager.Ship);
 
@@ -247,7 +243,6 @@ namespace SpaceFist.State
         private void KeepOnScreen(Entity obj)
         {
             var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
-            var world = game.InPlayState.World;
 
             int farRight = (int)Camera.X + screen.Width;
             int Bottom = (int)Camera.Y + screen.Height;

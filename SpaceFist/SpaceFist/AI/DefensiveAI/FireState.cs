@@ -13,7 +13,6 @@ namespace SpaceFist.AI.AggressiveAI
         private ProjectileManager projectileManager;
         private float membership;
         private DateTime lastFire;
-        private Game game;
 
         public FireState(EnemyAI ai, Game game)
         {
@@ -24,7 +23,6 @@ namespace SpaceFist.AI.AggressiveAI
             lastFire = DateTime.Now;
 
             this.projectileManager = game.InPlayState.ProjectileManager;
-            this.game = game;
         }
 
         public override void Update()

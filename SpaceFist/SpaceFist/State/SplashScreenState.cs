@@ -31,7 +31,6 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var viewport  = game.GraphicsDevice.Viewport;
             var titleSafe = game.GraphicsDevice.Viewport.TitleSafeArea;
 
             overlayTexture = game.Content.Load<Texture2D>(@"Images\Backgrounds\TitleScreen");

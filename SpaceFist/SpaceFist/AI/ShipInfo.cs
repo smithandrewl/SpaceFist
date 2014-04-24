@@ -21,9 +21,6 @@ namespace SpaceFist.AI
         private const float HealthLow        = 0;
         private const float HealthHigh       = 100;
 
-        private Game         game;
-        private EnemyManager enemyManager;
-
         private DateTime LastPrint = DateTime.Now;
 
         // raw data
@@ -71,10 +68,8 @@ namespace SpaceFist.AI
             }
         }
 
-        public ShipInfo(Game game, Ship ship, EnemyManager enemyManager, RoundData roundData)
+        public ShipInfo(Ship ship, RoundData roundData)
         {
-            this.game         = game;
-            this.enemyManager = enemyManager;
             this.ship         = ship;
             this.roundData    = roundData;
 

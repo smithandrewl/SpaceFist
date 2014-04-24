@@ -14,13 +14,11 @@ namespace SpaceFist.Managers
         private Random      rand;
         private List<Enemy> enemies;
         private Game        game;
-        private Rectangle   screen;
 
-        public EnemyManager(Game game, Rectangle screen)
+        public EnemyManager(Game game)
         {
             rand        = new Random();
             this.game   = game;
-            this.screen = screen;
             enemies     = new List<Enemy>();
         }
 
@@ -47,11 +45,11 @@ namespace SpaceFist.Managers
         }
 
         public void Update(){
-            
-            enemies.ForEach(enemy => enemy.Update());
-
-            
-            var alive = enemies.Count(enemy => enemy.Alive);
+            foreach(var enemy in enemies) {
+                if(enemy.Alive) {
+                    enemy.Update();
+                }
+            }
         }
         
         public void Draw() {

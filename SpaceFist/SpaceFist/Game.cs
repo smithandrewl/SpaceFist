@@ -180,7 +180,6 @@ namespace SpaceFist
 
         protected override void LoadContent()
         {
-            var viewport  = GraphicsDevice.Viewport;
             var titleSafe = GraphicsDevice.Viewport.TitleSafeArea;
 
             // Draw the background image with the dimensions of the screen

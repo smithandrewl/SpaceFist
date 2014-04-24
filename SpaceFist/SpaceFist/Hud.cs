@@ -22,19 +22,12 @@ namespace SpaceFist
         private Rectangle     TopRect;
         private Rectangle     BottomRect;
 
-        private int screenWidth;
-        private int screenHeight;
-
         private Color color           = Color.LightGoldenrodYellow;
         private Color semiTransparent = new Color(255, 255, 255, .8f);
 
         public Hud(Game game, PlayerManager shipManager)
         {
-            this.game = game;
-
-            screenWidth  = game.GraphicsDevice.Viewport.Width;
-            screenHeight = game.GraphicsDevice.Viewport.Height;
-
+            this.game        = game;
             this.roundData   = game.InPlayState.RoundData;
             this.shipManager = shipManager;
 

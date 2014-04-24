@@ -116,7 +116,7 @@ namespace SpaceFist.Managers
             {
                 if (enemy.Alive && cameraRect.Contains(enemy.Rectangle))
                 {
-                    foreach (var block in blockManager.collisions(enemy))
+                    foreach (var block in blockManager.Collisions(enemy))
                     {
 
                         if (cameraRect.Contains(block.Rectangle))
@@ -136,8 +136,6 @@ namespace SpaceFist.Managers
 
         public void HandleLaserRockCollisions()
         {
-            // Blocks which have collided with a laser
-            var blocksToRemove = new List<SpaceBlock>();
 
             foreach (var laser in laserManager)
             {
@@ -145,7 +143,7 @@ namespace SpaceFist.Managers
                 if (laser.Alive)
                 {
                     // If an alive laser hits a block
-                    foreach (var block in blockManager.collisions(laser))
+                    foreach (var block in blockManager.Collisions(laser))
                     {
                         laser.Alive = false;
                         // Create and add a new explosion
@@ -166,7 +164,7 @@ namespace SpaceFist.Managers
         public void HandleShipRockCollisions()
         {
             //  Update blocks
-            foreach (var block in blockManager.collisions(shipManager.Ship))
+            foreach (var block in blockManager.Collisions(shipManager.Ship))
             {
                 // Ignore the collision if the ship is not alive
                 if (shipManager.Alive)
