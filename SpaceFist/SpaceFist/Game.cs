@@ -65,11 +65,12 @@ namespace SpaceFist
 
         public Texture2D LogoTexture { get; set; }
 
+        /****Dongcai**/
+        public Texture2D MissileTexture       { get; set; }
+        public Texture2D MissilePickupTexture { get; set; }
 
-        /****Dongcai***/
-        public Texture2D MineTexture { get; set; }
+        public Texture2D MineTexture       { get; set; }
         public Texture2D MinePickupTexture { get; set; }
-
         /***********/
 
         // ----------------------- Sounds -----------------------
@@ -136,8 +137,11 @@ namespace SpaceFist
         private const String LogoAsset = @"Images\Backgrounds\Logo";
 
         /****Dongcai***/
-        private const String MineImageAsset = @"Images\Sprites\blue-laser";
+        private const String MineImageAsset  = @"Images\Sprites\blue-laser";
         private const String MinePickupAsset = @"Images\Sprites\Laser-beam-pickup";
+
+        private const String MissileImageAsset  = @"Images\Sprites\MissileImage";
+        private const String MissilePickupAsset = @"Images\Sprites\MissilePickUp";
         /***************************/
 
         public GameData gameData { get; set; }
@@ -222,7 +226,10 @@ namespace SpaceFist
 
             /***Dongcai********************/
             MinePickupTexture = Content.Load<Texture2D>(MinePickupAsset);
-            MineTexture = Content.Load<Texture2D>(MineImageAsset);
+            MineTexture       = Content.Load<Texture2D>(MineImageAsset);
+
+            MissileTexture       = Content.Load<Texture2D>(MissileImageAsset);
+            MissilePickupTexture = Content.Load<Texture2D>(MissilePickupAsset);
             /*************************/
 
             // Sounds

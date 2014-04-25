@@ -129,8 +129,10 @@ namespace SpaceFist.State
             pickupManager.SpawnExamplePickups(5);
             pickupManager.SpawnHealthPickups(4);
 
+            /***Dongcai*/
             pickupManager.SpawnLaserbeamPickups(10);
-
+            pickupManager.SpawnMissilePickups(20);
+            /**********/
             stopwatch.Reset();
             stopwatch.Start();
         }

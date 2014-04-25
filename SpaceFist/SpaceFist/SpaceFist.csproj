@@ -136,6 +136,7 @@
     <Compile Include="Weapons\Abstract\Weapon.cs" />
     <Compile Include="Weapons\Bluelaser.cs" />
     <Compile Include="Weapons\LaserWeapon.cs" />
+    <Compile Include="Weapons\Missile.cs" />
     <Compile Include="Weapons\SampleWeapon.cs" />
   </ItemGroup>
   <ItemGroup>
