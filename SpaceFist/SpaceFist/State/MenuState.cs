@@ -67,7 +67,7 @@ namespace SpaceFist.State
 
                 if (creditsRect.Contains(mousePos))
                 {
-
+                    game.CurrentState = game.CreditsState;
                 }
 
                 if (exitRect.Contains(mousePos))
