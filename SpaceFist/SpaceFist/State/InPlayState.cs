@@ -17,10 +17,13 @@ namespace SpaceFist.State
     {
         private const int NumBlocks  = 40;
         private const int NumEnemies = 80;
+        private const int DebrisCount = 4000;
 
         private const float ScrollSpeed = 1.5f;
         
         public RoundData RoundData { get; set; }
+
+        private List<Rectangle> debrisField;
 
         Game game;
         private Hud hud;
@@ -76,6 +79,7 @@ namespace SpaceFist.State
         {
             this.game = game;
             RoundData = new RoundData();
+            debrisField = new List<Rectangle>(DebrisCount);
         }
 
         public void LoadContent()
@@ -129,9 +133,28 @@ namespace SpaceFist.State
             pickupManager.SpawnExamplePickups(5);
             pickupManager.SpawnHealthPickups(4);
 
+            /***Dongcai*/
             pickupManager.SpawnLaserbeamPickups(10);
+            pickupManager.SpawnMissilePickups(20);
+            /**********/
 
-            stopwatch.Reset();
+            Random rand = new Random();
+
+            debrisField.Clear();
+
+            // init debris field
+            for (int i = 0; i < DebrisCount; i++)
+            {
+                var maxX = World.Width;
+                var maxY = World.Height;
+                var scale = rand.Next(10, 60) * .01f;
+
+                Rectangle rect = new Rectangle(rand.Next(0, maxX), rand.Next(0, maxY), (int) (game.ParticleTexture.Width * scale), (int) (game.ParticleTexture.Height * scale));
+
+                debrisField.Add(rect);
+            }
+
+                stopwatch.Reset();
             stopwatch.Start();
         }
 
@@ -185,6 +208,21 @@ namespace SpaceFist.State
         {     
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
+
+            // Draw debris
+            foreach(var rect in debrisField)
+            {
+                game.SpriteBatch.Draw(
+                    game.ParticleTexture, 
+                    new Rectangle(
+                        rect.X - (int)Camera.X, 
+                        rect.Y - (int)Camera.Y, 
+                        rect.Width, 
+                        rect.Height
+                    ), 
+                    Color.White
+                );
+            }
 
             // Draw the entities
             explosionManager.Draw();

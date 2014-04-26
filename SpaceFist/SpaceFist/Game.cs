@@ -67,11 +67,15 @@ namespace SpaceFist
         public Texture2D LogoTexture { get; set; }
         public Texture2D CreditsTexture { get; set; }
 
-        /****Dongcai***/
-        public Texture2D MineTexture { get; set; }
-        public Texture2D MinePickupTexture { get; set; }
+        /****Dongcai**/
+        public Texture2D MissileTexture       { get; set; }
+        public Texture2D MissilePickupTexture { get; set; }
 
+        public Texture2D MineTexture       { get; set; }
+        public Texture2D MinePickupTexture { get; set; }
         /***********/
+
+        public Texture2D ParticleTexture { get; set; }
 
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
@@ -137,9 +141,14 @@ namespace SpaceFist
         private const String LogoAsset = @"Images\Backgrounds\Logo";
         private const String CreditsAsset = @"Images\Backgrounds\Credits";
         /****Dongcai***/
-        private const String MineImageAsset = @"Images\Sprites\blue-laser";
+        private const String MineImageAsset  = @"Images\Sprites\blue-laser";
         private const String MinePickupAsset = @"Images\Sprites\Laser-beam-pickup";
+
+        private const String MissileImageAsset  = @"Images\Sprites\MissileImage";
+        private const String MissilePickupAsset = @"Images\Sprites\MissilePickUp";
         /***************************/
+
+        private const String ParticleAsset = @"Images\Sprites\Particle1";
 
         public GameData gameData { get; set; }
 
@@ -224,10 +233,14 @@ namespace SpaceFist
 
             /***Dongcai********************/
             MinePickupTexture = Content.Load<Texture2D>(MinePickupAsset);
-            MineTexture = Content.Load<Texture2D>(MineImageAsset);
+            MineTexture       = Content.Load<Texture2D>(MineImageAsset);
+
+            MissileTexture       = Content.Load<Texture2D>(MissileImageAsset);
+            MissilePickupTexture = Content.Load<Texture2D>(MissilePickupAsset);
             /*************************/
 
             CreditsTexture = Content.Load<Texture2D>(CreditsAsset);
+            ParticleTexture = Content.Load<Texture2D>(ParticleAsset);
 
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);

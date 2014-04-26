@@ -93,6 +93,42 @@ namespace SpaceFist.Managers
 
             projectiles.Add(projectile);
         }
+
+        public void fireMissile(int x, int y)
+        {
+            game.InPlayState.RoundData.ShotsFired++;
+
+            Projectile projectile = new Projectile(
+                game, 
+                game.MissileTexture, 
+                new Vector2(x, y), 
+                new Vector2(0, -1), 
+                20
+            );
+
+            projectiles.Add(projectile);
+
+            Projectile projectile1 = new Projectile(
+                game, 
+                game.MissileTexture, 
+                new Vector2(x + 50, y), 
+                new Vector2(0, -1), 
+                10
+            );
+
+            projectiles.Add(projectile1);
+
+            Projectile projectile2 = new Projectile(
+                game, 
+                game.MissileTexture, 
+                new Vector2(x - 50, y), 
+                new Vector2(0, -1), 
+                10
+            );
+
+            projectiles.Add(projectile2);
+
+        }
         /***************************************/
 
         public IEnumerable<Projectile> Collisions(Entity obj)
