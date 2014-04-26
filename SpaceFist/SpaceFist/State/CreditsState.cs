@@ -33,9 +33,10 @@ namespace SpaceFist.State
             {
                 enteredAt = DateTime.Now;
 
-                MouseState mouse = Mouse.GetState();
+                MouseState    mouse = Mouse.GetState();
+                KeyboardState keys  = Keyboard.GetState();
 
-                if (mouse.LeftButton == ButtonState.Pressed)
+                if (mouse.LeftButton == ButtonState.Pressed || keys.IsKeyDown(Keys.Enter))
                 {
                     game.CurrentState = game.MenuState;
                 }
@@ -44,11 +45,13 @@ namespace SpaceFist.State
 
         public void EnteringState()
         {
+            game.IsMouseVisible = true;
             enteredAt = DateTime.Now;
         }
 
         public void ExitingState()
         {
+            game.IsMouseVisible = false;
         }
     }
 }

@@ -53,40 +53,40 @@ namespace SpaceFist.State
 
         public void Update()
         {
-            MouseState    mouse = Mouse.GetState();
-            KeyboardState keys  = Keyboard.GetState();
+            MouseState mouse = Mouse.GetState();
+            KeyboardState keys = Keyboard.GetState();
 
             Point mousePos = new Point(mouse.X, mouse.Y);
 
-            if (mouse.LeftButton == ButtonState.Pressed)
+            if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
             {
-                if (newGameRect.Contains(mousePos))
+                if (mouse.LeftButton == ButtonState.Pressed)
                 {
-                    game.CurrentState = game.InPlayState;
-                }
-
-                if (creditsRect.Contains(mousePos))
-                {
-                    game.CurrentState = game.CreditsState;
-                }
-
-                if (exitRect.Contains(mousePos))
-                {
-                    game.Exit();
-                }
-            }
-            else
-            {
-                if (keys.IsKeyDown(Keys.Enter))
-                {
-                    if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
+                    if (newGameRect.Contains(mousePos))
                     {
                         game.CurrentState = game.InPlayState;
+                    }
+
+                    if (creditsRect.Contains(mousePos))
+                    {
+                        game.CurrentState = game.CreditsState;
+                    }
+
+                    if (exitRect.Contains(mousePos))
+                    {
+                        game.Exit();
+                    }
+                }
+                else
+                {
+                    if (keys.IsKeyDown(Keys.Enter))
+                    {
+                        game.CurrentState = game.InPlayState;
+
                     }
                 }
             }
         }
-
         public void EnteringState()
         {
             enteredAt = DateTime.Now;
