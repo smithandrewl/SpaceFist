@@ -73,6 +73,8 @@ namespace SpaceFist
         public Texture2D MinePickupTexture { get; set; }
         /***********/
 
+        public Texture2D ParticleTexture { get; set; }
+
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
@@ -143,6 +145,8 @@ namespace SpaceFist
         private const String MissileImageAsset  = @"Images\Sprites\MissileImage";
         private const String MissilePickupAsset = @"Images\Sprites\MissilePickUp";
         /***************************/
+
+        private const String ParticleAsset = @"Images\Sprites\Particle1";
 
         public GameData gameData { get; set; }
 
@@ -231,6 +235,8 @@ namespace SpaceFist
             MissileTexture       = Content.Load<Texture2D>(MissileImageAsset);
             MissilePickupTexture = Content.Load<Texture2D>(MissilePickupAsset);
             /*************************/
+
+            ParticleTexture = Content.Load<Texture2D>(ParticleAsset);
 
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);
