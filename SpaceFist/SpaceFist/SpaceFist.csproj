@@ -124,6 +124,7 @@
     <Compile Include="State\Abstract\ShipState.cs" />
     <Compile Include="State\Abstract\State.cs" />
     <Compile Include="State\Abstract\StateMachine.cs" />
+    <Compile Include="State\CreditsState.cs" />
     <Compile Include="State\EndOfGameState.cs" />
     <Compile Include="State\GameOverState.cs" />
     <Compile Include="State\InPlayState.cs" />

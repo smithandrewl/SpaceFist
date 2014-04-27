@@ -271,6 +271,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Images\Backgrounds\Credits.png">
+      <Name>Credits</Name>
+    </Compile>
     <Compile Include="Images\Sprites\MissileImage.png">
       <Name>MissileImage</Name>
       <Importer>TextureImporter</Importer>

@@ -38,7 +38,9 @@ namespace SpaceFist.State
         {
             KeyboardState keys = Keyboard.GetState();
 
-            if (DateTime.Now.Subtract(enteredAt).Seconds > loadTime || (keys.IsKeyDown(Keys.Enter)))
+            if (DateTime.Now.Subtract(enteredAt).Seconds > loadTime || 
+                keys.IsKeyDown(Keys.Enter)                          || 
+                keys.IsKeyDown(Keys.Escape))
             {
                 game.CurrentState = game.SplashScreenState;
             }

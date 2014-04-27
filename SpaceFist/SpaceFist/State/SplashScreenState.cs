@@ -59,7 +59,9 @@ namespace SpaceFist.State
             // before processing input.          
             else if ( timeDiff.Milliseconds > 300)
             {
-                if (keyboardState.IsKeyDown(Keys.Enter))
+                if (keyboardState.IsKeyDown(Keys.Enter) ||
+                    keyboardState.IsKeyDown(Keys.Space) ||
+                    keyboardState.IsKeyDown(Keys.Escape))
                 {
 
                     game.CurrentState = game.MenuState;

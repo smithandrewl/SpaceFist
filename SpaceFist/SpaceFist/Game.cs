@@ -33,6 +33,7 @@ namespace SpaceFist
         public GameOverState     GameOverState     { get; set; }
         public MenuState         MenuState         { get; set; }
         public LogoState         LogoState         { get; set; }
+        public CreditsState      CreditsState      { get; set; }
 
         // ========================== The game assets ===============
         // -------------- ----------- Font(s) -----------------------
@@ -64,6 +65,7 @@ namespace SpaceFist
         public Texture2D EndOfGameTexture { get; set; }
 
         public Texture2D LogoTexture { get; set; }
+        public Texture2D CreditsTexture { get; set; }
 
         /****Dongcai**/
         public Texture2D MissileTexture       { get; set; }
@@ -137,7 +139,7 @@ namespace SpaceFist
         private const String EnemyFreighterAsset = @"Images\Sprites\Enemy";
 
         private const String LogoAsset = @"Images\Backgrounds\Logo";
-
+        private const String CreditsAsset = @"Images\Backgrounds\Credits";
         /****Dongcai***/
         private const String MineImageAsset  = @"Images\Sprites\blue-laser";
         private const String MinePickupAsset = @"Images\Sprites\Laser-beam-pickup";
@@ -167,6 +169,7 @@ namespace SpaceFist
             GameOverState     = new GameOverState(this);
             MenuState         = new MenuState(this);
             LogoState         = new LogoState(this);
+            CreditsState = new CreditsState(this);
 
             graphics          = new GraphicsDeviceManager(this);
             
@@ -236,6 +239,7 @@ namespace SpaceFist
             MissilePickupTexture = Content.Load<Texture2D>(MissilePickupAsset);
             /*************************/
 
+            CreditsTexture = Content.Load<Texture2D>(CreditsAsset);
             ParticleTexture = Content.Load<Texture2D>(ParticleAsset);
 
             // Sounds
