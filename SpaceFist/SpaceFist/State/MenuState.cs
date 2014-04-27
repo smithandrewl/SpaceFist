@@ -84,6 +84,10 @@ namespace SpaceFist.State
                         game.CurrentState = game.InPlayState;
 
                     }
+                    else if(keys.IsKeyDown(Keys.Escape))
+                    {
+                        game.Exit();
+                    }
                 }
             }
         }

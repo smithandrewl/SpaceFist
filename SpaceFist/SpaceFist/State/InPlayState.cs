@@ -164,9 +164,9 @@ namespace SpaceFist.State
             {
                 KeyboardState keys = Keyboard.GetState();
 
-                if (keys.IsKeyDown(Keys.Q))
+                if (keys.IsKeyDown(Keys.Q) || keys.IsKeyDown(Keys.Escape))
                 {
-                    game.Exit();
+                    game.CurrentState = game.MenuState;
                 }
                 
                 KeepOnScreen(shipManager.Ship);

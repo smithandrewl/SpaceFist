@@ -29,11 +29,22 @@ namespace SpaceFist.State
             var y      = (int) (0.63   * resolution.Height);
             var leftX  = (int) (0.1    * resolution.Width);
             var rightX = (int) (0.7325 * resolution.Width);
+            var centerX = (int)(0.5 * resolution.Width) - 103;
 
             game.SpriteBatch.Draw(game.CreditsTexture, game.GraphicsDevice.Viewport.Bounds, Color.White);
 
             game.SpriteBatch.DrawString(game.Font, "Dongcai Huang",     new Vector2(leftX, y),  Color.White);
+            game.SpriteBatch.DrawString(game.Font, "Programming", new Vector2(leftX, y + 30), Color.PeachPuff);
+            game.SpriteBatch.DrawString(game.Font, "Art Selection", new Vector2(leftX, y + 45), Color.PeachPuff);
+
             game.SpriteBatch.DrawString(game.Font, "Tatsuya Takahashi", new Vector2(rightX, y), Color.White);
+            game.SpriteBatch.DrawString(game.Font, "Programming", new Vector2(rightX + 40, y + 30), Color.PeachPuff);
+            
+            game.SpriteBatch.DrawString(game.Font, "Andrew Smith", new Vector2(centerX, y), Color.White);
+            game.SpriteBatch.DrawString(game.Font, "Programming / AI", new Vector2(centerX - 30, y + 30), Color.PeachPuff);
+            game.SpriteBatch.DrawString(game.Font, "Art Selection", new Vector2(centerX, y + 45), Color.PeachPuff);
+            game.SpriteBatch.DrawString(game.Font, "Sound Selection", new Vector2(centerX - 10, y + 60), Color.PeachPuff);
+
         }
 
         public void Update()
@@ -45,7 +56,9 @@ namespace SpaceFist.State
                 MouseState    mouse = Mouse.GetState();
                 KeyboardState keys  = Keyboard.GetState();
 
-                if (mouse.LeftButton == ButtonState.Pressed || keys.IsKeyDown(Keys.Enter))
+                if (mouse.LeftButton == ButtonState.Pressed || 
+                    keys.IsKeyDown(Keys.Enter)              || 
+                    keys.IsKeyDown(Keys.Escape))
                 {
                     game.CurrentState = game.MenuState;
                 }
