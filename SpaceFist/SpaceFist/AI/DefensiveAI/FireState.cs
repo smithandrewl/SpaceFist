@@ -33,7 +33,7 @@ namespace SpaceFist.AI.AggressiveAI
             if (AI.ShipEnemyInfo.EnemyVisible)
             {
                 var now = DateTime.Now;
-                if (now.Subtract(lastFire).Milliseconds > (600 * Not(membership)))
+                if (now.Subtract(lastFire).Milliseconds > Math.Max(200, (600 * Not(membership))))
                 {
                     int halfWidth = ShipEnemyInfo.Enemy.Rectangle.Width / 2;
                     int halfHeight = ShipEnemyInfo.Enemy.Rectangle.Height / 2;

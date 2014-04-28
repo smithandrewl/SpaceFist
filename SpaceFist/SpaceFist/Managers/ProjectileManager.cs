@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SpaceFist.AI.ProjectileBehaviors;
 using SpaceFist.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace SpaceFist.Managers
 {
     public class ProjectileManager : IEnumerable<Projectile>
     {
+        private Random rand = new Random();
+
         List<Projectile> projectiles;
         Game game;
 
@@ -76,11 +79,30 @@ namespace SpaceFist.Managers
 
         public void fireSampleWeapon(int x, int y)
         {
-            game.InPlayState.RoundData.ShotsFired++;
-            Projectile projectile = 
-                new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), new Vector2(0, -1), 40);
             
-            projectiles.Add(projectile);
+            var onScreen = new List<Entity>(game.InPlayState.EnemyManager.VisibleEnemies());
+            onScreen.AddRange(game.InPlayState.BlockManager.VisibleBlocks());
+
+            if (onScreen.Count != 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    var idx = rand.Next(onScreen.Count);
+                    Entity target = onScreen[idx];
+
+                    target.Tint = Color.Crimson;
+
+                    game.InPlayState.RoundData.ShotsFired++;
+                    Projectile projectile =
+                        new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), new Vector2(0, -1), 10);
+
+
+                    projectile.Behavior = new SeekingBehavior(new Vector2(0, -1), new Vector2(x, y), target);
+                    projectiles.Add(projectile);
+                }
+            }
+
+           
         }
 
 

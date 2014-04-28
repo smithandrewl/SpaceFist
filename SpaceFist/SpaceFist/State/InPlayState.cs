@@ -66,7 +66,7 @@ namespace SpaceFist.State
         private Rectangle EndOfLevelMarkerPos   { get; set; }
 
         public EnemyManager EnemyManager { get { return enemyManager; } }
-
+        public BlockManager BlockManager { get { return blockManager; } }
         public ProjectileManager ProjectileManager
         {
             get
@@ -130,12 +130,12 @@ namespace SpaceFist.State
 
             pickupManager.Reset();
             pickupManager.SpawnExtraLifePickups(3);
-            pickupManager.SpawnExamplePickups(5);
+            pickupManager.SpawnExamplePickups(4);
             pickupManager.SpawnHealthPickups(4);
 
             /***Dongcai*/
-            pickupManager.SpawnLaserbeamPickups(10);
-            pickupManager.SpawnMissilePickups(20);
+            pickupManager.SpawnLaserbeamPickups(5);
+            pickupManager.SpawnMissilePickups(3);
             /**********/
 
             Random rand = new Random();

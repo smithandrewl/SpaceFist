@@ -82,6 +82,9 @@
     <Compile Include="AI\DefensiveAI\DefendState.cs" />
     <Compile Include="AI\DefensiveAI\DefensiveAI.cs" />
     <Compile Include="AI\FuzzyVariable.cs" />
+    <Compile Include="AI\Abstract\ProjectileBehavior.cs" />
+    <Compile Include="AI\ProjectileBehaviors\NullBehavior.cs" />
+    <Compile Include="AI\ProjectileBehaviors\SeekingBehavior.cs" />
     <Compile Include="AI\ShipEnemyInfo.cs" />
     <Compile Include="AI\ShipInfo.cs" />
     <Compile Include="Components\Abstract\Component.cs" />
