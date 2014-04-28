@@ -110,6 +110,20 @@ namespace SpaceFist.Managers
             return GetEnumerator();
         }
 
+        public IEnumerable<SpaceBlock> VisibleBlocks()
+        {
+            var camera = game.InPlayState.Camera;
+            var bounds = game.BackgroundRect;
+
+            var VisibleWorldRect = new Rectangle((int) camera.X, (int) camera.Y, bounds.Width, bounds.Height);
+            var res = 
+                from block in blocks
+                where block.Alive && VisibleWorldRect.Intersects(block.Rectangle)
+                select block;
+       
+            return res;
+        }
+
         public void Remove(SpaceBlock block)
         {
             blocks.Remove(block);

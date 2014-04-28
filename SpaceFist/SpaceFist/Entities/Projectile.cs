@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SpaceFist.AI.Abstract;
+using SpaceFist.AI.ProjectileBehaviors;
 using SpaceFist.Components;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ namespace SpaceFist.Entities
     public class Projectile : Entity
     {
         private bool soundPlayed = false;
-
+        public ProjectileBehavior Behavior { get; set; }
         public  bool EnemyProjectile { get; set; }
 
         
@@ -27,7 +29,7 @@ namespace SpaceFist.Entities
 
             Velocity        = unitVector * speed;
             EnemyProjectile = enemyProjectile;
-            
+            Behavior = new NullBehavior();
         }
 
         // Plays a firing noise on the first update
@@ -39,6 +41,8 @@ namespace SpaceFist.Entities
                 sound.play();
                 soundPlayed = true;
             }
+
+            Behavior.Update(this);
 
             base.Update();
         }

@@ -86,7 +86,12 @@ namespace SpaceFist
         /// <param name="position"></param>
         public Ship(Game game, Vector2 position)
             : base(game, 
-                   new Rectangle((int)position.X, (int)position.Y, Width, Height),
+                   new Rectangle(
+                       (int)position.X, 
+                       (int)position.Y, 
+                       (int) (Width * (game.ScreenScale / 2)), 
+                       (int) (Height * (game.ScreenScale / 2))
+                   ),
                    new Physics(), 
                    new ShipInput(), 
                    new IndexedSprite(game.ShipSheet, Width, Height, 4),

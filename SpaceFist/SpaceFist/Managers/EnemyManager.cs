@@ -66,6 +66,21 @@ namespace SpaceFist.Managers
             return GetEnumerator();
         }
 
+        public IEnumerable<Enemy> VisibleEnemies()
+        {
+            var camera = game.InPlayState.Camera;
+            var backgroundRect = game.BackgroundRect;
+
+            var screenRect = new Rectangle((int)camera.X, (int)camera.Y, backgroundRect.Width, backgroundRect.Height);
+
+            var res =
+                from enemy in enemies
+                where enemy.Alive && screenRect.Intersects(enemy.Rectangle)
+                select enemy;
+
+            return res;
+        }
+
         public IEnumerable<Entity> Collisions(Entity entity)
         {
             var res =

@@ -66,7 +66,7 @@ namespace SpaceFist.State
         private Rectangle EndOfLevelMarkerPos   { get; set; }
 
         public EnemyManager EnemyManager { get { return enemyManager; } }
-
+        public BlockManager BlockManager { get { return blockManager; } }
         public ProjectileManager ProjectileManager
         {
             get
