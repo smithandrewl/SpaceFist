@@ -10,7 +10,7 @@ namespace SpaceFist.Managers
 {
     public class PlayerManager
     {
-        Game game;
+        Game      game;
         RoundData roundData;
 
         private Ship ship;
@@ -52,7 +52,6 @@ namespace SpaceFist.Managers
             if (ship.Alive)
             {
                 ship.Update();
-
             }
         }
 
@@ -69,7 +68,7 @@ namespace SpaceFist.Managers
             game.PlayerSpawn.Play();
 
             var resolution = game.GraphicsDevice.Viewport.Bounds;
-            var camera = game.InPlayState.Camera;
+            var camera     = game.InPlayState.Camera;
 
             // Start the ship at the bottom  in the center of the screen
 
@@ -80,8 +79,8 @@ namespace SpaceFist.Managers
             {
                 ship.CurrentState = new SpawningState(ship);
 
-                ship.X = startX;
-                ship.Y = startY;
+                ship.X     = startX;
+                ship.Y     = startY;
                 ship.Alive = true;
             }
             else
@@ -120,7 +119,6 @@ namespace SpaceFist.Managers
             if (ship.HealthPoints <= 0)
             {
                 HandleDeath();
-
             }
         }
 

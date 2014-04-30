@@ -13,15 +13,15 @@ namespace SpaceFist.Managers
     {
         private Game         game;
         private List<Pickup> pickups;
+        private RoundData    roundData;
+
         private Random rand = new Random();
-        private RoundData roundData;
 
         public PickUpManager(Game game, Rectangle screen)
         {
             this.game    = game;
             this.pickups = new List<Pickup>();
-
-            roundData = game.InPlayState.RoundData;
+            roundData    = game.InPlayState.RoundData;
         }
 
         public void Update()
@@ -37,8 +37,8 @@ namespace SpaceFist.Managers
         public IEnumerable<Pickup> Collisions(Entity entity)
         {
             var collisions =
-                from pickup in pickups
-                where pickup.Alive && pickup.Rectangle.Intersects(entity.Rectangle)
+                from   pickup in pickups
+                where  pickup.Alive && pickup.Rectangle.Intersects(entity.Rectangle)
                 select pickup;
 
             return collisions;
@@ -54,7 +54,6 @@ namespace SpaceFist.Managers
             return pickups.GetEnumerator();
         }
        
-
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
@@ -99,13 +98,12 @@ namespace SpaceFist.Managers
             SpawnPickups(count, SpawnHealthPickup);
         }
 
-
-
         /****Dongcai***/
         public void SpawnLaserbeamPickups(int count)
         {
             SpawnPickups(count, SpawnLaserbeamPickup);
         }
+
         public void SpawnLaserbeamPickup(int x, int y)
         {
             var pickup =
@@ -142,7 +140,6 @@ namespace SpaceFist.Managers
                     ship.Weapon = new Missile(game, ship);
 
                     return true;
-
                 }
             );
 
@@ -167,12 +164,10 @@ namespace SpaceFist.Managers
                         }
 
                         return false;
-                        
                     });
 
             pickups.Add(pickup);
         }
-
 
         public void SpawnExtraLifePickups(int count)
         {
@@ -189,8 +184,7 @@ namespace SpaceFist.Managers
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
-                    {
-                        
+                    {               
                         roundData.Lives++;
                         return true;
                     });

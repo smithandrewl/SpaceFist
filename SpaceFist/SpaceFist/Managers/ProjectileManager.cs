@@ -37,7 +37,13 @@ namespace SpaceFist.Managers
             foreach (var projectile in projectiles)
             {
                 var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
-                var rect = new Rectangle((int)game.InPlayState.Camera.X, (int)game.InPlayState.Camera.Y, screen.Width, screen.Height);
+                
+                var rect = new Rectangle(
+                    (int)game.InPlayState.Camera.X, 
+                    (int)game.InPlayState.Camera.Y, 
+                    screen.Width, 
+                    screen.Height
+                );
 
                 if (projectile.Alive)
                 {
@@ -70,7 +76,15 @@ namespace SpaceFist.Managers
             float rotation = ((float) MathHelper.ToDegrees((float) Math.Atan2(direction.Y, direction.X)) + 90);
 
             // Place a new active laser at x, y
-            Projectile projectile = new Projectile(game, game.LaserTexture, new Vector2(x, y), direction, 10, enemyLaser);
+            Projectile projectile = new Projectile(
+                game, 
+                game.LaserTexture, 
+                new Vector2(x, y), 
+                direction, 
+                10, 
+                enemyLaser
+            );
+            
             projectile.Rotation = MathHelper.ToRadians(rotation);
 
             projectiles.Add(projectile);
@@ -79,7 +93,6 @@ namespace SpaceFist.Managers
 
         public void fireSampleWeapon(int x, int y)
         {
-            
             var onScreen = new List<Entity>(game.InPlayState.EnemyManager.VisibleEnemies());
             onScreen.AddRange(game.InPlayState.BlockManager.VisibleBlocks());
 
@@ -93,25 +106,38 @@ namespace SpaceFist.Managers
                     target.Tint = Color.Crimson;
 
                     game.InPlayState.RoundData.ShotsFired++;
-                    Projectile projectile =
-                        new Projectile(game, game.SampleProjectileTexture, new Vector2(x, y), new Vector2(0, -1), 10);
 
+                    Projectile projectile = new Projectile(
+                        game,
+                        game.SampleProjectileTexture,
+                        new Vector2(x, y),
+                        new Vector2(0, -1),
+                        10
+                    );
 
-                    projectile.Behavior = new SeekingBehavior(new Vector2(0, -1), new Vector2(x, y), target);
+                    projectile.Behavior = new SeekingBehavior(
+                        new Vector2(0, -1), 
+                        new Vector2(x, y), 
+                        target
+                    );
+                    
                     projectiles.Add(projectile);
                 }
             }
-
-           
         }
-
 
         /*******Dongcai**********/
         public void fireBluelaser(int x, int y)
         {
             game.InPlayState.RoundData.ShotsFired++;
-            Projectile projectile =
-                new Projectile(game, game.MineTexture, new Vector2(x, y), new Vector2(0, 0), 0);
+         
+            Projectile projectile = new Projectile(
+                game, 
+                game.MineTexture, 
+                new Vector2(x, y), 
+                new Vector2(0, 0), 
+                0
+            );
 
             projectiles.Add(projectile);
         }
@@ -156,8 +182,8 @@ namespace SpaceFist.Managers
         public IEnumerable<Projectile> Collisions(Entity obj)
         {
             var collisions = 
-                from  projectile in projectiles
-                where projectile.Alive && projectile.Rectangle.Intersects(obj.Rectangle) 
+                from   projectile in projectiles
+                where  projectile.Alive && projectile.Rectangle.Intersects(obj.Rectangle) 
                 select projectile;
 
             return collisions;
@@ -166,8 +192,8 @@ namespace SpaceFist.Managers
         public IEnumerable<Projectile> PlayerProjectiles()
         {
             var playerProjs = 
-                from projectile in projectiles
-                where (projectile.EnemyProjectile == false) && projectile.Alive
+                from   projectile in projectiles
+                where  (projectile.EnemyProjectile == false) && projectile.Alive
                 select projectile;
 
             return playerProjs;
@@ -176,8 +202,8 @@ namespace SpaceFist.Managers
         public IEnumerable<Projectile> EnemyProjectiles()
         {
             var enemyProjs =
-                from projectile in projectiles
-                where (projectile.EnemyProjectile == true) && projectile.Alive
+                from   projectile in projectiles
+                where  (projectile.EnemyProjectile == true) && projectile.Alive
                 select projectile;
 
             return enemyProjs;

@@ -25,8 +25,6 @@ namespace SpaceFist
 
         private const int maxHealthPoints = 100;
 
-        public Weapon Weapon { get; set; }
-
         public ShipState CurrentState
         {
             get
@@ -40,6 +38,8 @@ namespace SpaceFist
                 state = value;
             }
         }
+
+        public Weapon Weapon { get; set; }
 
         /// <summary>
         /// 
@@ -58,8 +58,8 @@ namespace SpaceFist
         }
 
         // The dimensions of the ship
-        private const int Width       = 60;
-        private const int Height      = 133;
+        private const int Width  = 60;
+        private const int Height = 133;
 
         // The frame of the sprite sheet (ShipSheet.png) to draw
         // Frame 0 is the ship turning left
@@ -89,8 +89,8 @@ namespace SpaceFist
                    new Rectangle(
                        (int)position.X, 
                        (int)position.Y, 
-                       (int) (Width * (game.ScreenScale / 2)), 
-                       (int) (Height * (game.ScreenScale / 2))
+                       (int)(Width  * (game.ScreenScale / 2)), 
+                       (int)(Height * (game.ScreenScale / 2))
                    ),
                    new Physics(), 
                    new ShipInput(), 
@@ -145,8 +145,17 @@ namespace SpaceFist
         /// </summary>
         private void IncrementVelocity(Vector2 velocity)
         {
-            var xVel = MathHelper.Clamp(Velocity.X + velocity.X, -MaxVelocity, MaxVelocity);
-            var yVel = MathHelper.Clamp(Velocity.Y + velocity.Y, -MaxVelocity, MaxVelocity);
+            var xVel = MathHelper.Clamp(
+                Velocity.X + velocity.X, 
+                -MaxVelocity, 
+                MaxVelocity
+            );
+            
+            var yVel = MathHelper.Clamp(
+                Velocity.Y + velocity.Y, 
+                -MaxVelocity, 
+                MaxVelocity
+            );
 
             Velocity = new Vector2(xVel, yVel);
         }

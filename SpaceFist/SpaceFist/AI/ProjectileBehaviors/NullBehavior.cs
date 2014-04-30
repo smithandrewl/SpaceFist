@@ -8,7 +8,6 @@ namespace SpaceFist.AI.ProjectileBehaviors
 {
     public class NullBehavior : ProjectileBehavior
     {
-
         public void Update(Entities.Projectile projectile)
         {
 

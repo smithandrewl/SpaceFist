@@ -18,8 +18,9 @@ namespace SpaceFist.Managers
         private PlayerManager     shipManager;
         private PickUpManager     pickupManager;
         private EnemyManager      enemyManager;
+
         private RoundData roundData;
-        private Game game;
+        private Game      game;
 
         public CollisionManager(
             Game game,
@@ -109,7 +110,13 @@ namespace SpaceFist.Managers
         public void HandleEnemyRockCollisions()
         {
             var resolution = game.GraphicsDevice.Viewport;
-            var cameraRect = new Rectangle((int) game.InPlayState.Camera.X, (int)game.InPlayState.Camera.Y, resolution.Width, resolution.Height);
+            
+            var cameraRect = new Rectangle(
+                (int) game.InPlayState.Camera.X, 
+                (int)game.InPlayState.Camera.Y, 
+                resolution.Width, 
+                resolution.Height
+            );
 
             // Only process onscreen collisions
             foreach (var enemy in enemyManager)
@@ -136,7 +143,6 @@ namespace SpaceFist.Managers
 
         public void HandleLaserRockCollisions()
         {
-
             foreach (var laser in laserManager)
             {
                 // Only process lasers that are still in play
@@ -156,7 +162,6 @@ namespace SpaceFist.Managers
                         // Kill the block
                         block.Destroy();
                     }
-
                 }
             }
         }

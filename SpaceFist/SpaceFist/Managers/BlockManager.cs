@@ -11,8 +11,8 @@ namespace SpaceFist.Managers
     {
         List<SpaceBlock> blocks = new List<SpaceBlock>();
         
-        Random    rand;
-        Game      game;
+        Random rand;
+        Game   game;
 
         public BlockManager(Game game)
         {
@@ -35,7 +35,6 @@ namespace SpaceFist.Managers
 
         private Vector2 randomPos()
         {
-
             int randX = rand.Next(0, game.InPlayState.World.Width);
             int randY = rand.Next(0, (int)game.InPlayState.World.Height);
 
@@ -55,11 +54,12 @@ namespace SpaceFist.Managers
             for (int i = 0; i < count; i++)
             {
                 // Construct the block
-                var block =
-                    new SpaceBlock(game,
-                        game.BlockTexture,
-                        randomPos(),
-                        randomVel());
+                var block = new SpaceBlock(
+                    game,
+                    game.BlockTexture,
+                    randomPos(),
+                    randomVel()
+                );
 
                 // Initialize and the block to the list
                 block.Initialize();
@@ -93,8 +93,10 @@ namespace SpaceFist.Managers
         private void KeepOnWorld(Entity obj)
         {
             var world = game.InPlayState.World;
-            if ((obj.X > world.Width)  || (obj.X < 0) ||
-                (obj.Y > world.Height) || (obj.Y < 0))
+            if ((obj.X > world.Width)  || 
+                (obj.X < 0)            ||
+                (obj.Y > world.Height) || 
+                (obj.Y < 0))
             {
                 obj.Velocity *= -1;
             }
@@ -115,10 +117,16 @@ namespace SpaceFist.Managers
             var camera = game.InPlayState.Camera;
             var bounds = game.BackgroundRect;
 
-            var VisibleWorldRect = new Rectangle((int) camera.X, (int) camera.Y, bounds.Width, bounds.Height);
+            var VisibleWorldRect = new Rectangle(
+                (int) camera.X, 
+                (int) camera.Y, 
+                bounds.Width, 
+                bounds.Height
+            );
+            
             var res = 
-                from block in blocks
-                where block.Alive && VisibleWorldRect.Intersects(block.Rectangle)
+                from   block in blocks
+                where  block.Alive && VisibleWorldRect.Intersects(block.Rectangle)
                 select block;
        
             return res;

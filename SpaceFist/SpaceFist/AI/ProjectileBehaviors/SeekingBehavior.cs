@@ -13,14 +13,14 @@ namespace SpaceFist.AI.ProjectileBehaviors
     // http://www.red3d.com/cwr/steer/gdc99/
     class SeekingBehavior : ProjectileBehavior
     {
-        private Entity target;
+        private Entity  target;
         private Vector2 origin;
         private Vector2 origVector;
 
         public SeekingBehavior(Vector2 unitVector, Vector2 origin, Entity target)
         {
-            this.origin = origin;
-            this.target = target;
+            this.origin     = origin;
+            this.target     = target;
             this.origVector = unitVector;
         }
 
@@ -29,13 +29,12 @@ namespace SpaceFist.AI.ProjectileBehaviors
             if (target.Alive)
             {
                 int MaxSpeed = 10;
-                int minDist = 150;
+                int minDist  = 150;
 
                 var xDiff = projectile.X - origin.X;
                 var yDiff = projectile.Y - origin.Y;
 
                 var distFromOrigin = (int)Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
-
 
                 if (distFromOrigin < minDist)
                 {
@@ -43,9 +42,8 @@ namespace SpaceFist.AI.ProjectileBehaviors
                 }
                 else
                 {
-
                     var targetPos = new Vector2(target.X, target.Y);
-                    var projPos = new Vector2(projectile.X, projectile.Y);
+                    var projPos   = new Vector2(projectile.X, projectile.Y);
 
                     int timeToIntercept;
 

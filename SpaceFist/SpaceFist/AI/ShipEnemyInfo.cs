@@ -19,17 +19,15 @@ namespace SpaceFist.AI
             this.Enemy    = enemy;
             this.Ship     = ship;
             this.ShipInfo = shipInfo;
-            this.game = game;
+            this.game     = game;
             
             fuzzyDistance = new FuzzyVariable { Name = "Distance" };
         }
 
+        private Game          game;
         private FuzzyVariable fuzzyDistance;
 
         private DateTime lastPrint = DateTime.Now;
-
-
-        private Game game;
 
         //-------------- Crisp input ----------------- 
         // Distance

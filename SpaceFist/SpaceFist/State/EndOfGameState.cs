@@ -11,11 +11,11 @@ namespace SpaceFist.State
 {
     public class EndOfGameState : GameState
     {
-        private Game      game;
+        private Game game;
 
         public EndOfGameState(Game game, RoundData roundData)
         {
-            this.game      = game;
+            this.game = game;
         } 
 
         public void LoadContent()
@@ -26,7 +26,16 @@ namespace SpaceFist.State
         {
             var resolution = game.GraphicsDevice.Viewport;
 
-            game.SpriteBatch.Draw(game.EndOfGameTexture, new Rectangle(0, 0, resolution.Width, resolution.Height), Color.White);
+            game.SpriteBatch.Draw(
+                game.EndOfGameTexture, 
+                new Rectangle(
+                    0, 
+                    0, 
+                    resolution.Width, 
+                    resolution.Height
+                ), 
+                Color.White
+            );
         }
 
         public void Update()
@@ -43,7 +52,6 @@ namespace SpaceFist.State
         {
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(game.EndOfGameSong);
-
         }
 
         public void ExitingState()

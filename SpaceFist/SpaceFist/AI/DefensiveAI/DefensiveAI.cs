@@ -11,7 +11,7 @@ namespace SpaceFist.AI.DefensiveAI
     class DefensiveAI : EnemyAI
     {
         private DefendState defendState;
-        private FireState fireState;
+        private FireState   fireState;
 
         public DefensiveAI(Game game, Enemy enemy)
         {

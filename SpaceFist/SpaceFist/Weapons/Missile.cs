@@ -7,7 +7,6 @@ using System.Text;
 
 namespace SpaceFist.Weapons
 {
-
     class Missile : Weapon
     {
         private ProjectileManager projectileManager;

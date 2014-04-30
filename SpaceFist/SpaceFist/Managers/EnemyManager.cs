@@ -36,7 +36,15 @@ namespace SpaceFist.Managers
             for (int i = 0; i < count; i++)
             {
                 int randX = rand.Next(0, game.InPlayState.World.Width);
-                int randY = rand.Next(0, (int)MathHelper.Max(game.InPlayState.World.Height * .9f, game.GraphicsDevice.Viewport.Height / 2));
+
+                int randY = rand.Next(
+                    0, 
+                    (int)MathHelper.Max(
+                        game.InPlayState.World.Height * .9f, 
+                        game.GraphicsDevice.Viewport.Height / 2
+                    )
+                );
+                
                 float rotation = MathHelper.ToRadians(180);
                 Enemy enemy = func(new Vector2(randX, randY));
                 enemy.Rotation = rotation;
@@ -68,14 +76,19 @@ namespace SpaceFist.Managers
 
         public IEnumerable<Enemy> VisibleEnemies()
         {
-            var camera = game.InPlayState.Camera;
+            var camera         = game.InPlayState.Camera;
             var backgroundRect = game.BackgroundRect;
 
-            var screenRect = new Rectangle((int)camera.X, (int)camera.Y, backgroundRect.Width, backgroundRect.Height);
+            var screenRect = new Rectangle(
+                (int)camera.X, 
+                (int)camera.Y, 
+                backgroundRect.Width, 
+                backgroundRect.Height
+            );
 
             var res =
-                from enemy in enemies
-                where enemy.Alive && screenRect.Intersects(enemy.Rectangle)
+                from   enemy in enemies
+                where  enemy.Alive && screenRect.Intersects(enemy.Rectangle)
                 select enemy;
 
             return res;
@@ -84,10 +97,11 @@ namespace SpaceFist.Managers
         public IEnumerable<Entity> Collisions(Entity entity)
         {
             var res =
-                from enemy in enemies
-                where enemy.Alive && (enemy != entity) && enemy.Rectangle.Intersects(entity.Rectangle)
+                from   enemy in enemies
+                where  enemy.Alive       && 
+                       (enemy != entity) && 
+                       enemy.Rectangle.Intersects(entity.Rectangle)
                 select enemy;
-
 
             return res;
         }

@@ -53,17 +53,30 @@ namespace SpaceFist
         /// <summary>
         /// This property provides an easy way to get and set the X coordinate of the rectangle associated with this entity.
         /// </summary>
-        public int X {
-            get { return rectangle.X;  }
-            set { rectangle.X = value; } 
+        public int X 
+        {
+            get 
+            { 
+                return rectangle.X;  
+            }
+            set 
+            { 
+                rectangle.X = value; 
+            } 
         }
 
         /// <summary>
         /// This property provides an easy way to get and set the Y coordinate of the rectangle associated with this entity.
         /// </summary>
         public int Y {
-            get { return rectangle.Y;  }
-            set { rectangle.Y = value; }
+            get 
+            { 
+                return rectangle.Y;  
+            }
+            set 
+            { 
+                rectangle.Y = value; 
+            }
         }
 
         /// <summary>
@@ -76,13 +89,22 @@ namespace SpaceFist
         /// </summary>
         public Rectangle Rectangle
         {
-            get { return rectangle; }
-            set { rectangle = value; }
+            get 
+            { 
+                return rectangle; 
+            }
+            set 
+            { 
+                rectangle = value; 
+            }
         }
 
         public Game Game
         {
-            get { return game; }
+            get 
+            { 
+                return game; 
+            }
         }
 
         /// <param name="game"></param>
@@ -93,14 +115,15 @@ namespace SpaceFist
         /// <param name="sound">The sound component to use</param>
         /// <param name="scale">The scale / size of the entity</param>
         /// <param name="rotation">The rotation of the entity.  The default rotation is 0 degrees.</param>
-        public Entity(Game                  game, 
-                          Rectangle         rectangle, 
-                          PhysicsComponent  physics, 
-                          InputComponent    input, 
-                          GraphicsComponent graphics,
-                          SoundComponent    sound,
-                          float             scale,
-                          float             rotation = 0)
+        public Entity(
+            Game              game, 
+            Rectangle         rectangle, 
+            PhysicsComponent  physics, 
+            InputComponent    input, 
+            GraphicsComponent graphics,
+            SoundComponent    sound,
+            float             scale,
+            float             rotation = 0)
         {
             Alive          = true;
             this.game      = game;

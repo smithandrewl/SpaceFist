@@ -47,7 +47,8 @@ namespace SpaceFist.State
         public void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState();
-            MouseState mouseState = Mouse.GetState();
+            MouseState    mouseState    = Mouse.GetState();
+            
             var timeDiff = DateTime.Now.Subtract(enteredAt);
             
             if (timeDiff.Seconds > 3)
@@ -63,9 +64,7 @@ namespace SpaceFist.State
                     keyboardState.IsKeyDown(Keys.Space) ||
                     keyboardState.IsKeyDown(Keys.Escape))
                 {
-
                     game.CurrentState = game.MenuState;
-
                 }
 
                 if (mouseState.LeftButton == ButtonState.Pressed)

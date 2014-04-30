@@ -15,14 +15,12 @@ namespace SpaceFist.State
 {
     public class InPlayState : GameState
     {
-        private const int NumBlocks  = 40;
-        private const int NumEnemies = 80;
+        private const int NumBlocks   = 40;
+        private const int NumEnemies  = 80;
         private const int DebrisCount = 4000;
 
         private const float ScrollSpeed = 1.5f;
         
-        public RoundData RoundData { get; set; }
-
         private List<Rectangle> debrisField;
 
         Game game;
@@ -47,8 +45,9 @@ namespace SpaceFist.State
             }
         }
 
-        public Rectangle World { get; set; }
-        public Vector2 Camera { get; set; }
+        public Rectangle World     { get; set; }
+        public Vector2   Camera    { get; set; }
+        public RoundData RoundData { get; set; }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -65,8 +64,22 @@ namespace SpaceFist.State
         private Rectangle StartOfLevelMarkerPos { get; set; }
         private Rectangle EndOfLevelMarkerPos   { get; set; }
 
-        public EnemyManager EnemyManager { get { return enemyManager; } }
-        public BlockManager BlockManager { get { return blockManager; } }
+        public EnemyManager EnemyManager 
+        { 
+            get 
+            { 
+                return enemyManager; 
+            } 
+        }
+        
+        public BlockManager BlockManager 
+        { 
+            get 
+            { 
+                return blockManager; 
+            } 
+        }
+
         public ProjectileManager ProjectileManager
         {
             get
@@ -77,8 +90,8 @@ namespace SpaceFist.State
 
         public InPlayState(Game game)
         {
-            this.game = game;
-            RoundData = new RoundData();
+            this.game   = game;
+            RoundData   = new RoundData();
             debrisField = new List<Rectangle>(DebrisCount);
         }
 
@@ -93,7 +106,17 @@ namespace SpaceFist.State
             shipManager       = new PlayerManager(game);
             pickupManager     = new PickUpManager(game, resolution);
             enemyManager      = new EnemyManager(game);
-            collisionManager  = new CollisionManager(game, blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
+
+            collisionManager  = new CollisionManager(
+                game, 
+                blockManager, 
+                shipManager, 
+                projectileManager, 
+                explosionManager, 
+                pickupManager, 
+                enemyManager, 
+                RoundData
+            );
 
             World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
 
@@ -145,16 +168,21 @@ namespace SpaceFist.State
             // init debris field
             for (int i = 0; i < DebrisCount; i++)
             {
-                var maxX = World.Width;
-                var maxY = World.Height;
+                var maxX  = World.Width;
+                var maxY  = World.Height;
                 var scale = rand.Next(10, 60) * .01f;
 
-                Rectangle rect = new Rectangle(rand.Next(0, maxX), rand.Next(0, maxY), (int) (game.ParticleTexture.Width * scale), (int) (game.ParticleTexture.Height * scale));
+                Rectangle rect = new Rectangle(
+                    rand.Next(0, maxX), 
+                    rand.Next(0, maxY), 
+                    (int) (game.ParticleTexture.Width * scale), 
+                    (int) (game.ParticleTexture.Height * scale)
+                );
 
                 debrisField.Add(rect);
             }
 
-                stopwatch.Reset();
+            stopwatch.Reset();
             stopwatch.Start();
         }
 
@@ -239,24 +267,23 @@ namespace SpaceFist.State
 
         private void DrawLevelMarkers()
         {
-            int halfWidth = (int)((World.Width / 2) - Camera.X);
+            int halfWidth  = (int)((World.Width / 2) - Camera.X);
             int nearBottom = (int)((World.Bottom * .98) - Camera.Y);
-            int nearTop = (int)((World.Top * .02) - Camera.Y);
+            int nearTop    = (int)((World.Top * .02) - Camera.Y);
 
             StartOfLevelMarkerPos = new Rectangle(
-                    (int)halfWidth - (game.LevelStartTexture.Width / 2),
-                    (int)nearBottom - game.LevelStartTexture.Height,
-                    game.LevelStartTexture.Width,
-                    game.LevelStartTexture.Height
-                );
+                (int)halfWidth - (game.LevelStartTexture.Width / 2),
+                (int)nearBottom - game.LevelStartTexture.Height,
+                game.LevelStartTexture.Width,
+                game.LevelStartTexture.Height
+            );
 
             EndOfLevelMarkerPos = new Rectangle(
-                    (int)halfWidth - (game.LevelEndTexture.Width / 2),
-                    (int)nearTop + game.LevelEndTexture.Height,
-                    game.LevelEndTexture.Width,
-                    game.LevelEndTexture.Height
-
-                    );
+                (int)halfWidth - (game.LevelEndTexture.Width / 2),
+                (int)nearTop + game.LevelEndTexture.Height,
+                game.LevelEndTexture.Width,
+                game.LevelEndTexture.Height
+            );
 
             // Draw the level markers
             game.SpriteBatch.Draw(
@@ -282,18 +309,21 @@ namespace SpaceFist.State
         {
             var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
 
-            int farRight = (int)Camera.X + screen.Width;
-            int Bottom = (int)Camera.Y + screen.Height;
+            int farRight   = (int)Camera.X + screen.Width;
+            int Bottom     = (int)Camera.Y + screen.Height;
             int halfHeight = obj.Rectangle.Height / 2;
 
             float velDecrease = .125f;
-
-            bool offScreenRight = obj.X > farRight;
-            bool offScreenLeft = obj.X < Camera.X;
-            bool offscreenTop = obj.Y + halfHeight > Bottom;
+            
+            bool offScreenRight  = obj.X > farRight;
+            bool offScreenLeft   = obj.X < Camera.X;
+            bool offscreenTop    = obj.Y + halfHeight > Bottom;
             bool offscreenBottom = obj.Y < Camera.Y;
 
-            bool offScreen = offScreenRight || offScreenLeft || offscreenTop || offscreenBottom;
+            bool offScreen = offScreenRight || 
+                             offScreenLeft  || 
+                             offscreenTop   || 
+                             offscreenBottom;
 
             if (offScreen)
             {

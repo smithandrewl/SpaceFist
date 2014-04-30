@@ -8,10 +8,9 @@ namespace SpaceFist
 {
     public class GameData
     {
-        public int finalScore;
+        public int  finalScore;
         public long second;
         public long minute;
-
 
         public GameData(int finalScore=0)
         {
@@ -19,11 +18,9 @@ namespace SpaceFist
             this.second = 0;
             this.minute = 0;
         }
-
         
         public int FinalScore
         {
-
             get
             {
                 return this.finalScore;
@@ -34,23 +31,21 @@ namespace SpaceFist
                 this.finalScore = value;
             }
         }
+
         /*
-        ConvertToMS() function is used to convert playtime represented by millisecond to 
+        ConvertToSecond() function is used to convert playtime represented by millisecond to 
         seconds.
         */
         public void  ConvertToSecond(long playtime)
         {
             this.second = playtime/1000;
+
             if (this.second >= 60)
             {
                 this.minute = this.second / 60;
                 this.second = this.second - this.minute * 60;
             }
-            
-
         }
         
     }
-
-
 }
