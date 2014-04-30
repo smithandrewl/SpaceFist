@@ -22,7 +22,11 @@ namespace SpaceFist.Entities
 
         public SpaceBlock(Game game, Texture2D texture, Vector2 position, Vector2 velocity) : 
             base(game, 
-                 new Rectangle((int) position.X, (int) position.Y, Width, Height), 
+                 new Rectangle(
+                     (int) position.X, 
+                     (int) position.Y, 
+                     Width, Height
+                 ), 
                  new Physics(), 
                  new NullInputComponent(), 
                  new Sprite(texture),

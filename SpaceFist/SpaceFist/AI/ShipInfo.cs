@@ -54,8 +54,10 @@ namespace SpaceFist.AI
         }
 
         // TriggerHappy
-        public FuzzyVariable TriggerHappy {
-            get {
+        public FuzzyVariable TriggerHappy
+        {
+            get 
+            {
                 return grade(roundData.ShotsPerPeriod, TriggerHappyLow, TriggerHappyHigh, fuzzyTriggerHappy);
             }
         }

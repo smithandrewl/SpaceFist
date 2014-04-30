@@ -31,15 +31,21 @@ namespace SpaceFist
         {
             var spriteBatch = game.SpriteBatch;
 
-            var origin = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
-
+            var origin   = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
             var position = new Vector2(obj.X, obj.Y) + origin;
 
             // Draw the texture at the location of the Entity obj
-            spriteBatch.Draw(image, position - game.InPlayState.Camera, 
-                             null, obj.Tint, 
-                             obj.Rotation, origin, 
-                             game.ScreenScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(
+                image, 
+                position - game.InPlayState.Camera, 
+                null, 
+                obj.Tint, 
+                obj.Rotation, 
+                origin, 
+                game.ScreenScale, 
+                SpriteEffects.None, 
+                0f
+            );
         }
     }
 }

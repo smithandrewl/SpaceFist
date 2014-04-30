@@ -13,16 +13,22 @@ namespace SpaceFist
     {
         protected static float Grade(float val, float lowerLimit, float lowerSupportlimit)
         {
-            if (val < lowerLimit)       return 0;
-            if ((val >= lowerLimit) && (val <= lowerSupportlimit)) return (val - lowerLimit) / (lowerSupportlimit - lowerLimit);
+            if (val < lowerLimit)       
+                return 0;
+            
+            if ((val >= lowerLimit) && (val <= lowerSupportlimit)) 
+                return (val - lowerLimit) / (lowerSupportlimit - lowerLimit);
 
             return 1;
         }
 
         protected static float ReverseGrade(float val, float upperSupportLimit, float upperLimit)
         {
-            if (val > upperLimit)         return 0;
-            if ((val >= upperSupportLimit) && (val <= upperLimit)) return (upperLimit - val) / (upperLimit - upperSupportLimit);
+            if (val > upperLimit)         
+                return 0;
+            
+            if ((val >= upperSupportLimit) && (val <= upperLimit)) 
+                return (upperLimit - val) / (upperLimit - upperSupportLimit);
             
             return 1;
         }

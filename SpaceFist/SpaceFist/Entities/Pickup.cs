@@ -25,7 +25,12 @@ namespace SpaceFist.Entities
                       PickupHandler pickupHandler) :
             base(
                 game, 
-                new Rectangle((int)position.X, (int) position.Y, texture.Width, texture.Height),
+                new Rectangle(
+                    (int)position.X, 
+                    (int) position.Y, 
+                    texture.Width, 
+                    texture.Height
+                ),
                 new Physics(),
                 new NullInputComponent(),
                 new Sprite(texture),

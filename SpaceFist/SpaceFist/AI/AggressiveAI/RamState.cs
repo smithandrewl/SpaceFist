@@ -11,10 +11,9 @@ namespace SpaceFist.AI.DummyAI
     class RamState : FuzzyLogicEnabled, EnemyAIState
     {
         public List<Vector2> WayPoints { get; set; }
-
-        public EnemyAI AI    { get; set; }
-        public Enemy   Enemy { get; set; }
-        public Ship    Ship  { get; set; }
+        public EnemyAI       AI        { get; set; }
+        public Enemy         Enemy     { get; set; }
+        public Ship          Ship      { get; set; }
 
         private DateTime lastUpdate;
         private Random   random;
@@ -47,14 +46,13 @@ namespace SpaceFist.AI.DummyAI
         public override void Update()
         {
             membership = Or(
-                    // If the player is doing too well
-                    And(AI.ShipInfo.Accuracy.High, AI.ShipInfo.Health.High),
-                    // If the player is not too far away
-                    Not(AI.ShipEnemyInfo.Distance.High));
-
+                // If the player is doing too well
+                And(AI.ShipInfo.Accuracy.High, AI.ShipInfo.Health.High),
+                // If the player is not too far away
+                Not(AI.ShipEnemyInfo.Distance.High)
+            );
 
             var millisecondsPassed = (DateTime.Now - lastUpdate).Milliseconds;
-
             
             if (millisecondsPassed > 100)
             {
@@ -83,7 +81,6 @@ namespace SpaceFist.AI.DummyAI
                         newPoint.Normalize();
 
                         newPoint = lastPoint + (newPoint * 15 * membership);
-                        
 
                         WayPoints.Add(newPoint);
                     }
@@ -95,14 +92,12 @@ namespace SpaceFist.AI.DummyAI
             if (WayPoints.Count != 0)
             {
                 var wayPoint = WayPoints[0];
-
                
                 // If the enemy is close to the waypoint, remove the way point
                 // and draw the enemy at rest.
                 if (Near(Enemy.X, Enemy.Y, (int)wayPoint.X, (int)wayPoint.Y))
                 {
                     WayPoints.Remove(wayPoint);
-                    //((IndexedSprite)graphics).Index = AtRestIndex;
                 }
                 else
                 {
@@ -112,7 +107,6 @@ namespace SpaceFist.AI.DummyAI
                     // The rotation of the ship needed for it to face in the direction of the next waypoint
                     var destRotation = (float)MathHelper.ToDegrees((float)(Math.Atan2(direction.Y, direction.X))) + 90;
 
-
                     Enemy.Rotation = MathHelper.ToRadians(destRotation);
                    
                     // Convert the direction to a unit vector
@@ -120,8 +114,6 @@ namespace SpaceFist.AI.DummyAI
 
                     // Calculate a velocity to move along the line of sight at a magnitude of 5
                     Enemy.Velocity = (direction * Speed) * membership;
-
-//                    var indexedSprite = (IndexedSprite)graphics;
                 }
             }
         }

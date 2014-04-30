@@ -55,11 +55,12 @@ namespace SpaceFist.Managers
             for (int i = 0; i < count; i++)
             {
                 // Construct the block
-                var block =
-                    new SpaceBlock(game,
-                        game.BlockTexture,
-                        randomPos(),
-                        randomVel());
+                var block = new SpaceBlock(
+                    game,
+                    game.BlockTexture,
+                    randomPos(),
+                    randomVel()
+                );
 
                 // Initialize and the block to the list
                 block.Initialize();
@@ -115,7 +116,13 @@ namespace SpaceFist.Managers
             var camera = game.InPlayState.Camera;
             var bounds = game.BackgroundRect;
 
-            var VisibleWorldRect = new Rectangle((int) camera.X, (int) camera.Y, bounds.Width, bounds.Height);
+            var VisibleWorldRect = new Rectangle(
+                (int) camera.X, 
+                (int) camera.Y, 
+                bounds.Width, 
+                bounds.Height
+            );
+            
             var res = 
                 from block in blocks
                 where block.Alive && VisibleWorldRect.Intersects(block.Rectangle)

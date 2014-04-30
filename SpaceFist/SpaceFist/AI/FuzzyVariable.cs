@@ -7,10 +7,10 @@ namespace SpaceFist.AI
 {
     public class FuzzyVariable
     {
-        public string Name { get; set; }
-        public float  Low  { get; set; }
-        public float  Med  { get; set; }
-        public float  High { get; set; }
+        public string Name  { get; set; }
+        public float  Low   { get; set; }
+        public float  Med   { get; set; }
+        public float  High  { get; set; }
         public float  Value { get; set; }
 
         public override string ToString()

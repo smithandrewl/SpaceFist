@@ -17,7 +17,12 @@ namespace SpaceFist.Entities
 
        public Enemy(Game game, Texture2D enemyTexture, SoundEffect sound, Vector2 position) : 
            base(game, 
-                new Rectangle((int) position.X, (int) position.Y, enemyTexture.Width, enemyTexture.Height),
+                new Rectangle(
+                    (int) position.X, 
+                    (int) position.Y, 
+                    enemyTexture.Width, 
+                    enemyTexture.Height
+                ),
                 new Physics(), 
                 new NullInputComponent(), 
                 new Sprite(enemyTexture),

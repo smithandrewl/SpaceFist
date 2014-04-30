@@ -25,8 +25,6 @@ namespace SpaceFist
 
         private const int maxHealthPoints = 100;
 
-        public Weapon Weapon { get; set; }
-
         public ShipState CurrentState
         {
             get
@@ -40,6 +38,8 @@ namespace SpaceFist
                 state = value;
             }
         }
+
+        public Weapon Weapon { get; set; }
 
         /// <summary>
         /// 

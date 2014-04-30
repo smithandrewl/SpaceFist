@@ -13,8 +13,10 @@ namespace SpaceFist
         private const String ScoreFormat = "Score: {0} | Health: {1:P0} | Lives: {2}";
         private const String controlsMsg = "Controls: WASD to move, SPACE to fire, Q to quit";
 
+
+        private String scoreDisplay = "";
+
         private Vector2       controlsPosition;
-        private String        scoreDisplay = "";
         private Game          game;
         private RoundData     roundData;
         private PlayerManager shipManager;
