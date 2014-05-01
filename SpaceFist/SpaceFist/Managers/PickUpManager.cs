@@ -17,7 +17,7 @@ namespace SpaceFist.Managers
 
         private Random rand = new Random();
 
-        public PickUpManager(Game game, Rectangle screen)
+        public PickUpManager(Game game)
         {
             this.game    = game;
             this.pickups = new List<Pickup>();

@@ -122,7 +122,6 @@ namespace SpaceFist
             InputComponent    input, 
             GraphicsComponent graphics,
             SoundComponent    sound,
-            float             scale,
             float             rotation = 0)
         {
             Alive          = true;

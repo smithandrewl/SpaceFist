@@ -104,7 +104,7 @@ namespace SpaceFist.State
             projectileManager = new ProjectileManager(game);
             explosionManager  = new ExplosionManager(game);
             shipManager       = new PlayerManager(game);
-            pickupManager     = new PickUpManager(game, resolution);
+            pickupManager     = new PickUpManager(game);
             enemyManager      = new EnemyManager(game);
 
             collisionManager  = new CollisionManager(
@@ -215,7 +215,7 @@ namespace SpaceFist.State
 
                 if (ship.Rectangle.Intersects(EndOfLevelMarkerPos))
                 {
-                    game.CurrentState = new EndOfGameState(game, RoundData);
+                    game.CurrentState = new EndOfGameState(game);
                 }
             }
             else

@@ -13,7 +13,7 @@ namespace SpaceFist.State
     {
         private Game game;
 
-        public EndOfGameState(Game game, RoundData roundData)
+        public EndOfGameState(Game game)
         {
             this.game = game;
         } 
