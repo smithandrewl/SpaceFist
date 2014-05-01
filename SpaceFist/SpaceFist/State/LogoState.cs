@@ -32,7 +32,7 @@ namespace SpaceFist.State
         {
             game.SpriteBatch.Draw(
                 background, 
-                game.GraphicsDevice.Viewport.Bounds, 
+                game.Resolution, 
                 Color.White
             );
         }

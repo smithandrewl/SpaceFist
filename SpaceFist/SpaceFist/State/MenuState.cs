@@ -29,7 +29,7 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var resolution = game.GraphicsDevice.Viewport.Bounds;
+            var resolution = game.Resolution;
 
             backgroundRect = resolution;
             background     = game.BackgroundRed;

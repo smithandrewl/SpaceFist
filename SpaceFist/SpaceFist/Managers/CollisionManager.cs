@@ -109,7 +109,7 @@ namespace SpaceFist.Managers
 
         public void HandleEnemyRockCollisions()
         {
-            var resolution = game.GraphicsDevice.Viewport;
+            var resolution = game.Resolution;
             
             var cameraRect = new Rectangle(
                 (int) game.InPlayState.Camera.X, 

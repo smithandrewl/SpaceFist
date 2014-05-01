@@ -24,7 +24,7 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            var resolution = game.GraphicsDevice.Viewport;
+            var resolution = game.Resolution;
 
             game.SpriteBatch.Draw(
                 game.EndOfGameTexture, 

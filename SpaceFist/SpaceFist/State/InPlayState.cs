@@ -38,8 +38,8 @@ namespace SpaceFist.State
         {
             get
             {
-                var screenWidth = game.GraphicsDevice.Viewport.Width;
-                var screenHeight = game.GraphicsDevice.Viewport.Height;
+                var screenWidth = game.Resolution.Width;
+                var screenHeight = game.Resolution.Height;
 
                 return new Rectangle((int) Camera.X, (int) Camera.Y, screenWidth, screenHeight);
             }
@@ -97,7 +97,7 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var resolution   = game.GraphicsDevice.Viewport.Bounds;
+            var resolution   = game.Resolution;
             var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
             
             blockManager      = new BlockManager(game);
@@ -130,7 +130,7 @@ namespace SpaceFist.State
             MediaPlayer.Play(game.InPlaySong);
             MediaPlayer.IsRepeating = true;
 
-            var resolution = game.GraphicsDevice.Viewport.Bounds;
+            var resolution = game.Resolution;
 
             Camera = new Vector2(0, World.Height - resolution.Height);
 
@@ -307,10 +307,10 @@ namespace SpaceFist.State
        // Keep the player on the screen
         private void KeepOnScreen(Entity obj)
         {
-            var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
+            var resolution = game.Resolution;
 
-            int farRight   = (int)Camera.X + screen.Width;
-            int Bottom     = (int)Camera.Y + screen.Height;
+            int farRight   = (int)Camera.X + resolution.Width;
+            int Bottom     = (int)Camera.Y + resolution.Height;
             int halfHeight = obj.Rectangle.Height / 2;
 
             float velDecrease = .125f;

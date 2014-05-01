@@ -67,7 +67,7 @@ namespace SpaceFist.Managers
         {
             game.PlayerSpawn.Play();
 
-            var resolution = game.GraphicsDevice.Viewport.Bounds;
+            var resolution = game.Resolution;
             var camera     = game.InPlayState.Camera;
 
             // Start the ship at the bottom  in the center of the screen

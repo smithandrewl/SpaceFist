@@ -31,10 +31,10 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var titleSafe = game.GraphicsDevice.Viewport.TitleSafeArea;
+            var resolution = game.Resolution;
 
             overlayTexture = game.Content.Load<Texture2D>(@"Images\Backgrounds\TitleScreen");
-            overlayRect    = new Rectangle(0, 0, titleSafe.Width, titleSafe.Height);
+            overlayRect    = new Rectangle(0, 0, resolution.Width, resolution.Height);
         }
 
         public void EnteringState()

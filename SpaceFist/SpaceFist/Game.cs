@@ -191,10 +191,10 @@ namespace SpaceFist
 
         protected override void LoadContent()
         {
-            var titleSafe = GraphicsDevice.Viewport.TitleSafeArea;
+            this.Resolution = GraphicsDevice.Viewport.TitleSafeArea;
 
             // Draw the background image with the dimensions of the screen
-            BackgroundRect = new Rectangle(0, 0, titleSafe.Width, titleSafe.Height);
+            BackgroundRect = new Rectangle(0, 0, Resolution.Width, Resolution.Height);
 
             ScreenScale = .60f;
             
@@ -309,5 +309,7 @@ namespace SpaceFist
                 currentState = value;
             }
         }
+
+        public Rectangle Resolution { get; set; }
     }
 }

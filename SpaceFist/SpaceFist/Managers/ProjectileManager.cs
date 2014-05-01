@@ -36,13 +36,13 @@ namespace SpaceFist.Managers
 
             foreach (var projectile in projectiles)
             {
-                var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
+                var resolution = game.Resolution;
                 
                 var rect = new Rectangle(
                     (int)game.InPlayState.Camera.X, 
                     (int)game.InPlayState.Camera.Y, 
-                    screen.Width, 
-                    screen.Height
+                    resolution.Width, 
+                    resolution.Height
                 );
 
                 if (projectile.Alive)

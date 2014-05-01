@@ -41,7 +41,7 @@ namespace SpaceFist.Managers
                     0, 
                     (int)MathHelper.Max(
                         game.InPlayState.World.Height * .9f, 
-                        game.GraphicsDevice.Viewport.Height / 2
+                        game.Resolution.Height / 2
                     )
                 );
                 

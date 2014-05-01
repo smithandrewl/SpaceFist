@@ -33,9 +33,12 @@ namespace SpaceFist
             this.roundData   = game.InPlayState.RoundData;
             this.shipManager = shipManager;
 
-            controlsPosition =
-                new Vector2((game.GraphicsDevice.Viewport.Width * .5f) - (controlsMsg.Length * 5),
-                            game.GraphicsDevice.Viewport.Height * .975f);
+            var resolution = game.Resolution;
+
+            controlsPosition = new Vector2(
+                (resolution.Width * .5f) - (controlsMsg.Length * 5),
+                resolution.Height * .975f
+            );
 
             TopRect = new Rectangle(
                     0,
@@ -46,7 +49,7 @@ namespace SpaceFist
 
             BottomRect = new Rectangle(
                     0,
-                    game.GraphicsDevice.Viewport.Height - game.HudTexture.Height,
+                    game.Resolution.Height - game.HudTexture.Height,
                     game.HudTexture.Width,
                     game.HudTexture.Height
                 );
@@ -62,8 +65,8 @@ namespace SpaceFist
             );
 
             scorePosition = new Vector2(
-                (game.GraphicsDevice.Viewport.Width * .5f) - (scoreDisplay.Length * 5),
-                 game.GraphicsDevice.Viewport.Height * .001f
+                (game.Resolution.Width * .5f) - (scoreDisplay.Length * 5),
+                 game.Resolution.Height * .001f
             );
         }
 
