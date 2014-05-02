@@ -15,14 +15,19 @@ namespace SpaceFist.AI
     {
         private const bool DisplayDebug = false;
 
+        // ------------------- fuzzy variable range constants ---------
         private const float SpeedHigh        = 20;
         private const float SpeedLow         = 0;
+        
         private const float TriggerHappyHigh = 60;
         private const float TriggerHappyLow  = 0;
+        
         private const float AccuracyHigh     = 1;
         private const float AccuracyLow      = 0;
+        
         private const float HealthLow        = 0;
         private const float HealthHigh       = 100;
+        // ------------------------------------------------------------
 
         // The last time debug information was displayed
         private DateTime LastPrint = DateTime.Now;
@@ -107,6 +112,7 @@ namespace SpaceFist.AI
 
         public override void Update()
         {
+            // The ships speed is the magnitude of its velocity
             speed  = (int) ship.Velocity.Length();
             health = ship.Health;
 

@@ -33,6 +33,14 @@ namespace SpaceFist.AI.DummyAI
             lastUpdate = DateTime.Now;
         }
 
+        /// <summary>
+        /// Determines whether or not one point is near another (within 10 pixels).
+        /// </summary>
+        /// <param name="x1">The X coordinate of point 1</param>
+        /// <param name="y1">The Y coordinate of point 1</param>
+        /// <param name="x2">The X coordinate of point 2</param>
+        /// <param name="y2">The Y coordinate of point 2</param>
+        /// <returns>Returns true if the two points are within 10 pixels of each other</returns>
         private static bool Near(int x1, int y1, int x2, int y2)
         {
             int tolerance = 10;
@@ -54,11 +62,11 @@ namespace SpaceFist.AI.DummyAI
 
             var millisecondsPassed = (DateTime.Now - lastUpdate).Milliseconds;
             
+            // Keep up to 3 waypoints, updating them every 100 milliseconds
             if (millisecondsPassed > 100)
             {
                 if (WayPoints.Count < 3)
                 {
-
                     int randX = random.Next(-10, 10);
                     int randY = random.Next(-10, 10);
 
@@ -79,7 +87,9 @@ namespace SpaceFist.AI.DummyAI
                         
                         var newPoint = shipLocation - lastPoint;
                         newPoint.Normalize();
-
+                        
+                        // Using fuzzy logic, the generated way point will be more accurate
+                        // the closer the enemy is to the ship.
                         newPoint = lastPoint + (newPoint * 15 * membership);
 
                         WayPoints.Add(newPoint);

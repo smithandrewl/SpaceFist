@@ -9,8 +9,17 @@ using System.Text;
 
 namespace SpaceFist.Managers
 {
+    /// <summary>
+    ///  Represents a bulky enemy freighter that does not follow the player, but fires in its 
+    ///  direction.
+    /// </summary>
     public class EnemyFreighter : Enemy
     {
+        /// <summary>
+        /// Creates a new EnemyFreighter instance at a specified location.
+        /// </summary>
+        /// <param name="game">The game</param>
+        /// <param name="position">The location to place the freighter in the world.</param>
         public EnemyFreighter(Game game, Vector2 position):
             base(game, game.EnemyFreighterTexture, game.ExplosionSound, position)
         {

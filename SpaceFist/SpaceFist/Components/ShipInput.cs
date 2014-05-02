@@ -8,7 +8,9 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceFist.Components
 {
-    // Calls ship methods in response to user input
+    /// <summary>
+    /// Tells the ship to move in response to user input.
+    /// </summary>
     public class ShipInput : InputComponent
     {
         private bool spaceDown = false;

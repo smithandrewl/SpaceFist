@@ -12,11 +12,17 @@ using SpaceFist.Components.Abstract;
 
 namespace SpaceFist
 {
-    // Sprite represents a static image at a position on-world 
+    /// <summary>
+    /// Sprite represents a static image at a position on-world.
+    /// </summary>
     public class Sprite : GraphicsComponent
     {
         private Texture2D image;
 
+        /// <summary>
+        /// Creates a new Sprite instance from a texture
+        /// </summary>
+        /// <param name="texture">The image to draw</param>
         public Sprite(Texture2D texture)
         {
             image = texture;

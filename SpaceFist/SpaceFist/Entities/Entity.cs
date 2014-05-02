@@ -37,6 +37,9 @@ namespace SpaceFist
         protected GraphicsComponent  graphics;
         protected SoundComponent     sound;
 
+        /// <summary>
+        /// The direction and speed of the entity
+        /// </summary>
         public Vector2 Velocity { get; set; }
         
         /// <summary>
@@ -107,8 +110,8 @@ namespace SpaceFist
             }
         }
 
-        /// <param name="game"></param>
-        /// <param name="rectangle"></param>
+        /// <param name="game">The game</param>
+        /// <param name="rectangle">The size and position of the entity</param>
         /// <param name="physics">The physics component to use</param>
         /// <param name="input">The input component to use</param>
         /// <param name="graphics">The graphics component to use</param>

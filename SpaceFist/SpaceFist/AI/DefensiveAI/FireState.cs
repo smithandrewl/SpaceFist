@@ -8,13 +8,22 @@ using System.Diagnostics;
 
 namespace SpaceFist.AI.AggressiveAI
 {
+    /// <summary>
+    /// This fuzzy state fires at the ship when the enemy is on the screen.
+    /// </summary>
     class FireState : FuzzyLogicEnabled, EnemyAIState
     {
+        // The degree to which this state is active
         private float membership;
 
         private ProjectileManager projectileManager;
-        private DateTime          lastFire;
+        private DateTime          lastFire; // The last time this enemy fired at the player
 
+        /// <summary>
+        /// Creates a new FireState instance
+        /// </summary>
+        /// <param name="ai">The AI this state belongs to.</param>
+        /// <param name="game">The game</param>
         public FireState(EnemyAI ai, Game game)
         {
             this.AI            = ai;
@@ -30,11 +39,14 @@ namespace SpaceFist.AI.AggressiveAI
         {
             membership = ShipEnemyInfo.Distance.High;
 
-            // if the ship is in the line of sight, fire every time period
+            // if this enemy is on screen, fire and wait a fuzzy amount of time before
+            // firing again.
             if (AI.ShipEnemyInfo.EnemyVisible)
             {
                 var now = DateTime.Now;
 
+                // Fire at the ship every 200 to 600 milliseconds depending on how far away
+                // the ship is.  The further the ship is, the faster the enemy will fire.
                 if (now.Subtract(lastFire).Milliseconds > Math.Max(200, (600 * Not(membership))))
                 {
                     int halfWidth  = ShipEnemyInfo.Enemy.Rectangle.Width  / 2;
@@ -52,8 +64,13 @@ namespace SpaceFist.AI.AggressiveAI
             }
         }
 
+        // The AI that this state belongs to
         public EnemyAI       AI            { get; set; }
+
+        // Fuzzy information about the player
         public ShipInfo      ShipInfo      { get; set; }
+
+        // Fuzzy information about the player specific to this enemy
         public ShipEnemyInfo ShipEnemyInfo { get; set; }
     }
 }
