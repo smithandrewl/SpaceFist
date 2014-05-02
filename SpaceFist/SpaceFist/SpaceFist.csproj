@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Diagrams\AI.dgml" />
     <None Include="Diagrams\Components.cd" />
     <None Include="Diagrams\GameStates.cd" />
     <None Include="Diagrams\Overview.dgml" />
