@@ -13,7 +13,6 @@ namespace SpaceFist.AI.ProjectileBehaviors
     // http://www.red3d.com/cwr/steer/gdc99/
     class SeekingBehavior : ProjectileBehavior
     {
-<<<<<<< HEAD
         /// <summary>
         /// The entity the projectile is intercepting.
         /// </summary>
@@ -22,9 +21,6 @@ namespace SpaceFist.AI.ProjectileBehaviors
         /// <summary>
         /// The point on world that the projectile was fired.
         /// </summary>
-=======
-        private Entity  target;
->>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
         private Vector2 origin;
 
         /// <summary>
@@ -50,13 +46,9 @@ namespace SpaceFist.AI.ProjectileBehaviors
             if (target.Alive)
             {
                 int MaxSpeed = 10;
-<<<<<<< HEAD
-
                 // The minimum distance from the launching point
                 // that the projectile must be after being fired, before it will start
                 // intercepting the target.
-=======
->>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
                 int minDist  = 150;
 
                 var xDiff = projectile.X - origin.X;

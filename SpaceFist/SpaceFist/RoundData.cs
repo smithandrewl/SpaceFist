@@ -31,13 +31,9 @@ namespace SpaceFist
                 return (EnemiesShot + BlocksShot) / (float)ShotsFired;
             }
         }
-
-<<<<<<< HEAD
         /// <summary>
         /// The amount of time since the round started
         /// </summary>
-=======
->>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
         public TimeSpan TimeElapsed
         {
             get

@@ -10,7 +10,6 @@ namespace SpaceFist.AI
     /// </summary>
     public class FuzzyVariable
     {
-<<<<<<< HEAD
         /// <summary>
         /// The name of the fuzzy variable.
         /// </summary>
@@ -34,12 +33,6 @@ namespace SpaceFist.AI
         /// <summary>
         /// The crisp input for this fuzzy variable
         /// </summary>
-=======
-        public string Name  { get; set; }
-        public float  Low   { get; set; }
-        public float  Med   { get; set; }
-        public float  High  { get; set; }
->>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
         public float  Value { get; set; }
 
         /// <returns>The contents of the variable in a format suitable for display</returns>
