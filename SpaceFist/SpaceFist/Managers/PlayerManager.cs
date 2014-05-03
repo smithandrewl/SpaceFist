@@ -8,9 +8,12 @@ using SpaceFist.Weapons;
 
 namespace SpaceFist.Managers
 {
+    /// <summary>
+    /// Handles player and ship interaction with the game world.
+    /// </summary>
     public class PlayerManager
     {
-        Game game;
+        Game      game;
         RoundData roundData;
 
         private Ship ship;
@@ -18,6 +21,7 @@ namespace SpaceFist.Managers
         // Damage the ship takes per hit
         private const int HitDamage = 10;
         
+        // Start the players ship moving at a velocity greater than the camer scrolls
         private Vector2 StartingVelocity = new Vector2(0, -2);
         
         public Boolean Alive
@@ -28,6 +32,10 @@ namespace SpaceFist.Managers
             }
         }
 
+        /// <summary>
+        /// Creates a new PlayerManager instance.
+        /// </summary>
+        /// <param name="game">The game</param>
         public PlayerManager(Game game)
         {
             this.game = game;
@@ -52,7 +60,6 @@ namespace SpaceFist.Managers
             if (ship.Alive)
             {
                 ship.Update();
-
             }
         }
 
@@ -68,8 +75,8 @@ namespace SpaceFist.Managers
         {
             game.PlayerSpawn.Play();
 
-            var resolution = game.GraphicsDevice.Viewport.Bounds;
-            var camera = game.InPlayState.Camera;
+            var resolution = game.Resolution;
+            var camera     = game.InPlayState.Camera;
 
             // Start the ship at the bottom  in the center of the screen
 
@@ -80,8 +87,8 @@ namespace SpaceFist.Managers
             {
                 ship.CurrentState = new SpawningState(ship);
 
-                ship.X = startX;
-                ship.Y = startY;
+                ship.X     = startX;
+                ship.Y     = startY;
                 ship.Alive = true;
             }
             else
@@ -120,7 +127,6 @@ namespace SpaceFist.Managers
             if (ship.HealthPoints <= 0)
             {
                 HandleDeath();
-
             }
         }
 

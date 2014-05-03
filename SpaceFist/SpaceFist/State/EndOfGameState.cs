@@ -9,13 +9,16 @@ using System.Text;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// This state is shown when the player has survived to the end of the game.
+    /// </summary>
     public class EndOfGameState : GameState
     {
-        private Game      game;
+        private Game game;
 
-        public EndOfGameState(Game game, RoundData roundData)
+        public EndOfGameState(Game game)
         {
-            this.game      = game;
+            this.game = game;
         } 
 
         public void LoadContent()
@@ -24,9 +27,18 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            var resolution = game.GraphicsDevice.Viewport;
+            var resolution = game.Resolution;
 
-            game.SpriteBatch.Draw(game.EndOfGameTexture, new Rectangle(0, 0, resolution.Width, resolution.Height), Color.White);
+            game.SpriteBatch.Draw(
+                game.EndOfGameTexture, 
+                new Rectangle(
+                    0, 
+                    0, 
+                    resolution.Width, 
+                    resolution.Height
+                ), 
+                Color.White
+            );
         }
 
         public void Update()
@@ -43,7 +55,6 @@ namespace SpaceFist.State
         {
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(game.EndOfGameSong);
-
         }
 
         public void ExitingState()

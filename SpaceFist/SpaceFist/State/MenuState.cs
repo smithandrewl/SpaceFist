@@ -10,13 +10,17 @@ using System.Text;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// This state displays the main menu and handles input to 
+    /// switch to several other states.
+    /// </summary>
     public class MenuState : GameState
     {
         private Game      game;
+        private DateTime  enteredAt;
         private Texture2D background;
         private Texture2D menu;
         private Rectangle backgroundRect;
-        private DateTime enteredAt;
         private Rectangle menuRect;
         private Rectangle newGameRect;
         private Rectangle creditsRect;
@@ -26,35 +30,39 @@ namespace SpaceFist.State
         {
             this.game  = game;
         }
+
         public void LoadContent()
         {
-            var resolution = game.GraphicsDevice.Viewport.Bounds;
+            var resolution = game.Resolution;
 
             backgroundRect = resolution;
-
-            background = game.BackgroundRed;
+            background     = game.BackgroundRed;
             
             menu           = game.Menu;
-            menuRect       = new Rectangle((int) ((background.Width / 2f) - (menu.Width)), (int)((background.Height / 2f) - (menu.Height)), menu.Width, menu.Height);
 
+            menuRect = new Rectangle(
+                (int) ((background.Width / 2f) - (menu.Width)), 
+                (int)((background.Height / 2f) - (menu.Height)), 
+                menu.Width, menu.Height
+            );
+
+            // Calculate and set rectangles for each button since the buttons
+            // are part of a single image.
             newGameRect = new Rectangle(menuRect.X + 8, menuRect.Y + 12, 149, 29);
             creditsRect = new Rectangle(menuRect.X + 8, menuRect.Y + 46, 149, 29);
             exitRect    = new Rectangle(menuRect.X + 8, menuRect.Y + 82, 149, 29);
-        
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
             game.SpriteBatch.Draw(background, backgroundRect, Color.White);
-
             game.SpriteBatch.Draw(menu, menuRect, Color.White);
-
         }
 
         public void Update()
         {
-            MouseState mouse = Mouse.GetState();
-            KeyboardState keys = Keyboard.GetState();
+            MouseState    mouse = Mouse.GetState();
+            KeyboardState keys  = Keyboard.GetState();
 
             Point mousePos = new Point(mouse.X, mouse.Y);
 
@@ -91,9 +99,10 @@ namespace SpaceFist.State
                 }
             }
         }
+
         public void EnteringState()
         {
-            enteredAt = DateTime.Now;
+            enteredAt           = DateTime.Now;
             game.IsMouseVisible = true;
 
             MediaPlayer.IsRepeating = true;

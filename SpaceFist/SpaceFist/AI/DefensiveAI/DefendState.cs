@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SpaceFist.AI.DefensiveAI
 {
+    /// <summary>
+    /// The fuzzy state for a non-firing AI
+    /// </summary>
     public class DefendState : FuzzyLogicEnabled, EnemyAIState
     {
         public EnemyAI       AI            { get; set; }

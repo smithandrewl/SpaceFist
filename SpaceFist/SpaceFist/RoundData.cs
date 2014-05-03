@@ -5,27 +5,39 @@ using System.Text;
 
 namespace SpaceFist
 {
+    /// <summary>
+    /// Holds information about the current round.
+    /// </summary>
     public class RoundData
     {
         private DateTime roundStart = DateTime.Now;
+
         private const short PERIOD_IN_SECONDS = 10;
-
-        public int ShotsFired { get; set; }
-
-        public float acc
-        {
-            get
-            {
-                 return (EnemiesShot + BlocksShot) / (float) ShotsFired;
-            }
-        }
 
         public int Lives        { get; set; }
         public int Score        { get; set; }
         public int EnemiesShot  { get; set; }
         public int BlocksShot   { get; set; }
         public int BlocksBumped { get; set; }
+        public int ShotsFired   { get; set; }
 
+        /// <summary>
+        /// The players accuracy
+        /// </summary>
+        public float acc
+        {
+            get
+            {
+                return (EnemiesShot + BlocksShot) / (float)ShotsFired;
+            }
+        }
+
+<<<<<<< HEAD
+        /// <summary>
+        /// The amount of time since the round started
+        /// </summary>
+=======
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
         public TimeSpan TimeElapsed
         {
             get
@@ -34,13 +46,19 @@ namespace SpaceFist
             }
         }
 
+        /// <summary>
+        /// The number of shots that the player fires on average per time period
+        /// </summary>
         public float ShotsPerPeriod
         {
             get {
                 return (float) ShotsFired / (TimeElapsed.Seconds / PERIOD_IN_SECONDS);
             }
         } 
-
+        
+        /// <summary>
+        /// The number of bumps that the player has on average per time period
+        /// </summary>
         public float BumpsPerTimePeriod
         {
             get
@@ -49,6 +67,9 @@ namespace SpaceFist
             }
         }
 
+        /// <summary>
+        /// Resets all of the values to their default values.
+        /// </summary>
         public void Reset()
         {
             BlocksBumped = 0;

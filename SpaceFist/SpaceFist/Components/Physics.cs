@@ -7,9 +7,9 @@ using SpaceFist.Components.Abstract;
 
 namespace SpaceFist
 {
-    // Updates The game objects position using its properties. 
-    // This will use acceleration and friction at some point in the
-    // future but just uses velocity right now
+    /// <summary>
+    /// Updates The game objects position using its properties.
+    /// </summary>
     class Physics : PhysicsComponent
     {
         public Physics() 

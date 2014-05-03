@@ -6,7 +6,9 @@ using SpaceFist.Components.Abstract;
 
 namespace SpaceFist.Components
 {
-    // For use by entities that do not use input
+    /// <summary>
+    /// For use by entities that do not use input.
+    /// </summary>
     public class NullInputComponent : InputComponent
     {
         public void Update(Game game, Entity obj)

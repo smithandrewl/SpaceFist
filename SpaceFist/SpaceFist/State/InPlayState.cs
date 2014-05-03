@@ -13,16 +13,20 @@ using Microsoft.Xna.Framework.Media;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// The main state of the game.  All game play occurs in the InPlayState.
+    /// </summary>
     public class InPlayState : GameState
     {
-        private const int NumBlocks  = 40;
-        private const int NumEnemies = 80;
+        private const int NumBlocks   = 40;
+        private const int NumEnemies  = 80;
+
+        // The number of background particles to spawn
         private const int DebrisCount = 4000;
 
+        // The speed at which the camera scrolls up the map / world
         private const float ScrollSpeed = 1.5f;
         
-        public RoundData RoundData { get; set; }
-
         private List<Rectangle> debrisField;
 
         Game game;
@@ -36,19 +40,21 @@ namespace SpaceFist.State
             }
         }
 
+        // The portion of the world which is currently visible.
         public Rectangle OnScreenWorld
         {
             get
             {
-                var screenWidth = game.GraphicsDevice.Viewport.Width;
-                var screenHeight = game.GraphicsDevice.Viewport.Height;
+                var screenWidth = game.Resolution.Width;
+                var screenHeight = game.Resolution.Height;
 
                 return new Rectangle((int) Camera.X, (int) Camera.Y, screenWidth, screenHeight);
             }
         }
 
-        public Rectangle World { get; set; }
-        public Vector2 Camera { get; set; }
+        public Rectangle World     { get; set; }
+        public Vector2   Camera    { get; set; }
+        public RoundData RoundData { get; set; }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -65,8 +71,22 @@ namespace SpaceFist.State
         private Rectangle StartOfLevelMarkerPos { get; set; }
         private Rectangle EndOfLevelMarkerPos   { get; set; }
 
-        public EnemyManager EnemyManager { get { return enemyManager; } }
-        public BlockManager BlockManager { get { return blockManager; } }
+        public EnemyManager EnemyManager 
+        { 
+            get 
+            { 
+                return enemyManager; 
+            } 
+        }
+        
+        public BlockManager BlockManager 
+        { 
+            get 
+            { 
+                return blockManager; 
+            } 
+        }
+
         public ProjectileManager ProjectileManager
         {
             get
@@ -77,23 +97,33 @@ namespace SpaceFist.State
 
         public InPlayState(Game game)
         {
-            this.game = game;
-            RoundData = new RoundData();
+            this.game   = game;
+            RoundData   = new RoundData();
             debrisField = new List<Rectangle>(DebrisCount);
         }
 
         public void LoadContent()
         {
-            var resolution   = game.GraphicsDevice.Viewport.Bounds;
+            var resolution   = game.Resolution;
             var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
             
             blockManager      = new BlockManager(game);
             projectileManager = new ProjectileManager(game);
             explosionManager  = new ExplosionManager(game);
             shipManager       = new PlayerManager(game);
-            pickupManager     = new PickUpManager(game, resolution);
+            pickupManager     = new PickUpManager(game);
             enemyManager      = new EnemyManager(game);
-            collisionManager  = new CollisionManager(game, blockManager, shipManager, projectileManager, explosionManager, pickupManager, enemyManager, RoundData);
+
+            collisionManager  = new CollisionManager(
+                game, 
+                blockManager, 
+                shipManager, 
+                projectileManager, 
+                explosionManager, 
+                pickupManager, 
+                enemyManager, 
+                RoundData
+            );
 
             World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
 
@@ -102,13 +132,16 @@ namespace SpaceFist.State
 
         public void EnteringState()
         {
+            // Reset the round statistics
             RoundData.Reset();
 
+            // Start playing music on a loop
             MediaPlayer.Play(game.InPlaySong);
             MediaPlayer.IsRepeating = true;
 
-            var resolution = game.GraphicsDevice.Viewport.Bounds;
-
+            var resolution = game.Resolution;
+            
+            // Position the camera at the bottom of the world
             Camera = new Vector2(0, World.Height - resolution.Height);
 
             // Tell the ship manager to spawn the ship
@@ -121,6 +154,7 @@ namespace SpaceFist.State
             // Spawn blocks to the world
             blockManager.SpawnBlocks(NumBlocks);
 
+            // Spawn the enemies
             enemyManager.Clear();
             enemyManager.SpawnEnemyFighters((int) (NumEnemies * (7/8f)));
             enemyManager.SpawnEnemyFreighters((int) (NumEnemies * (1/8f)));
@@ -128,6 +162,7 @@ namespace SpaceFist.State
             // Spawn the players ship
             shipManager.Initialize();
 
+            // Spawn the different pickups to the world
             pickupManager.Reset();
             pickupManager.SpawnExtraLifePickups(3);
             pickupManager.SpawnExamplePickups(4);
@@ -145,16 +180,21 @@ namespace SpaceFist.State
             // init debris field
             for (int i = 0; i < DebrisCount; i++)
             {
-                var maxX = World.Width;
-                var maxY = World.Height;
+                var maxX  = World.Width;
+                var maxY  = World.Height;
                 var scale = rand.Next(10, 60) * .01f;
 
-                Rectangle rect = new Rectangle(rand.Next(0, maxX), rand.Next(0, maxY), (int) (game.ParticleTexture.Width * scale), (int) (game.ParticleTexture.Height * scale));
+                Rectangle rect = new Rectangle(
+                    rand.Next(0, maxX), 
+                    rand.Next(0, maxY), 
+                    (int) (game.ParticleTexture.Width * scale), 
+                    (int) (game.ParticleTexture.Height * scale)
+                );
 
                 debrisField.Add(rect);
             }
 
-                stopwatch.Reset();
+            stopwatch.Reset();
             stopwatch.Start();
         }
 
@@ -180,25 +220,28 @@ namespace SpaceFist.State
                 enemyManager.Update();
                 pickupManager.Update();
  
+                // Until the end of the world is reached, move the camera up the world
                 if (Camera.Y >= World.Y)
                 {
                     Camera = new Vector2(Camera.X, Camera.Y - ScrollSpeed);
                 }
 
+                // When the ship reaches the end of game marker, switch to the 
+                // end of game state.
                 if (ship.Rectangle.Intersects(EndOfLevelMarkerPos))
                 {
-                    game.CurrentState = new EndOfGameState(game, RoundData);
+                    game.CurrentState = new EndOfGameState(game);
                 }
             }
             else
             {
+                // If the player has been killed, switch to the game over state
                 game.CurrentState = game.GameOverState;
 
                 //send gameData(playtime and score)
                 stopwatch.Stop();
                 game.gameData.finalScore = RoundData.Score;
                 game.gameData.ConvertToSecond(stopwatch.ElapsedMilliseconds);
-
             }
 
             hud.Update();
@@ -239,24 +282,23 @@ namespace SpaceFist.State
 
         private void DrawLevelMarkers()
         {
-            int halfWidth = (int)((World.Width / 2) - Camera.X);
+            int halfWidth  = (int)((World.Width / 2) - Camera.X);
             int nearBottom = (int)((World.Bottom * .98) - Camera.Y);
-            int nearTop = (int)((World.Top * .02) - Camera.Y);
+            int nearTop    = (int)((World.Top * .02) - Camera.Y);
 
             StartOfLevelMarkerPos = new Rectangle(
-                    (int)halfWidth - (game.LevelStartTexture.Width / 2),
-                    (int)nearBottom - game.LevelStartTexture.Height,
-                    game.LevelStartTexture.Width,
-                    game.LevelStartTexture.Height
-                );
+                (int)halfWidth - (game.LevelStartTexture.Width / 2),
+                (int)nearBottom - game.LevelStartTexture.Height,
+                game.LevelStartTexture.Width,
+                game.LevelStartTexture.Height
+            );
 
             EndOfLevelMarkerPos = new Rectangle(
-                    (int)halfWidth - (game.LevelEndTexture.Width / 2),
-                    (int)nearTop + game.LevelEndTexture.Height,
-                    game.LevelEndTexture.Width,
-                    game.LevelEndTexture.Height
-
-                    );
+                (int)halfWidth - (game.LevelEndTexture.Width / 2),
+                (int)nearTop + game.LevelEndTexture.Height,
+                game.LevelEndTexture.Width,
+                game.LevelEndTexture.Height
+            );
 
             // Draw the level markers
             game.SpriteBatch.Draw(
@@ -280,20 +322,23 @@ namespace SpaceFist.State
        // Keep the player on the screen
         private void KeepOnScreen(Entity obj)
         {
-            var screen = game.GraphicsDevice.Viewport.TitleSafeArea;
+            var resolution = game.Resolution;
 
-            int farRight = (int)Camera.X + screen.Width;
-            int Bottom = (int)Camera.Y + screen.Height;
+            int farRight   = (int)Camera.X + resolution.Width;
+            int Bottom     = (int)Camera.Y + resolution.Height;
             int halfHeight = obj.Rectangle.Height / 2;
 
             float velDecrease = .125f;
-
-            bool offScreenRight = obj.X > farRight;
-            bool offScreenLeft = obj.X < Camera.X;
-            bool offscreenTop = obj.Y + halfHeight > Bottom;
+            
+            bool offScreenRight  = obj.X > farRight;
+            bool offScreenLeft   = obj.X < Camera.X;
+            bool offscreenTop    = obj.Y + halfHeight > Bottom;
             bool offscreenBottom = obj.Y < Camera.Y;
 
-            bool offScreen = offScreenRight || offScreenLeft || offscreenTop || offscreenBottom;
+            bool offScreen = offScreenRight || 
+                             offScreenLeft  || 
+                             offscreenTop   || 
+                             offscreenBottom;
 
             if (offScreen)
             {

@@ -10,16 +10,25 @@ using SpaceFist.Components.Abstract;
 
 namespace SpaceFist.Components
 {
-    // Simple component to play a sound
+    /// <summary>
+    /// A simple sound component that plays a sound effect.
+    /// </summary>
     class Sound : SoundComponent
     {
         SoundEffect soundEffect;
 
+        /// <summary>
+        /// Creates a new Sound instance from a SoundEffect.
+        /// </summary>
+        /// <param name="sound">The sound to play</param>
         public Sound(SoundEffect sound)
         {
             this.soundEffect = sound;
         }
         
+        /// <summary>
+        /// Plays the sound.
+        /// </summary>
         public void play()
         {
             soundEffect.Play();

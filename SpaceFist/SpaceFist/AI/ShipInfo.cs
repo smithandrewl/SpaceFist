@@ -7,35 +7,51 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceFist.AI
 {
+    /// <summary>
+    /// Provides fuzzy information about the ship and how the player
+    /// has played this current round.
+    /// </summary>
     public class ShipInfo : FuzzyLogicEnabled
     {
-
         private const bool DisplayDebug = false;
 
+        // ------------------- fuzzy variable range constants ---------
         private const float SpeedHigh        = 20;
         private const float SpeedLow         = 0;
+        
         private const float TriggerHappyHigh = 60;
         private const float TriggerHappyLow  = 0;
+        
         private const float AccuracyHigh     = 1;
         private const float AccuracyLow      = 0;
+        
         private const float HealthLow        = 0;
         private const float HealthHigh       = 100;
+        // ------------------------------------------------------------
 
+        // The last time debug information was displayed
         private DateTime LastPrint = DateTime.Now;
 
-        // raw data
+        // ======================== Crisp Input  ========================
+        // ship data
         private float health;
         private int   speed;
         private Ship  ship;
 
+        // round data
         private RoundData roundData;
+        // ===============================================================
 
+        // ======================== Fuzzy Input Variables ================
         private FuzzyVariable fuzzySpeed;
         private FuzzyVariable fuzzyHealth;
         private FuzzyVariable fuzzyTriggerHappy;
         private FuzzyVariable fuzzyAccuracy;
+        // ===============================================================
 
-        // Speed
+        /// <summary>
+        /// The degree to which the ship belongs to the low, medium and high speed sets.
+        /// </summary>
         public FuzzyVariable Speed
         {
             get
@@ -44,7 +60,9 @@ namespace SpaceFist.AI
             }
         }
 
-        // Health
+        /// <summary>
+        /// The degree to which the ship belongs to the low, medium and high health sets.
+        /// </summary>
         public FuzzyVariable Health
         {
             get
@@ -53,13 +71,25 @@ namespace SpaceFist.AI
             }
         }
 
+<<<<<<< HEAD
+        /// <summary>
+        /// The degree to which the ship belongs to the low, medium and high sets for firing often.
+        /// If the player never shoots, the membership in TriggerHappy.Low will be 100 percent.
+        /// </summary>
+=======
         // TriggerHappy
-        public FuzzyVariable TriggerHappy {
-            get {
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
+        public FuzzyVariable TriggerHappy
+        {
+            get 
+            {
                 return grade(roundData.ShotsPerPeriod, TriggerHappyLow, TriggerHappyHigh, fuzzyTriggerHappy);
             }
         }
 
+        /// <summary>
+        /// The degree to which the player has low, medium or high accuracy.
+        /// </summary>
         public FuzzyVariable Accuracy
         {
             get
@@ -68,6 +98,11 @@ namespace SpaceFist.AI
             }
         }
 
+        /// <summary>
+        /// Creates a new ShipInfo instance.
+        /// </summary>
+        /// <param name="ship">The ship to gather data from.</param>
+        /// <param name="roundData">Information about how the player has been playing.</param>
         public ShipInfo(Ship ship, RoundData roundData)
         {
             this.ship         = ship;
@@ -81,6 +116,7 @@ namespace SpaceFist.AI
 
         public override void Update()
         {
+            // The ships speed is the magnitude of its velocity
             speed  = (int) ship.Velocity.Length();
             health = ship.Health;
 
@@ -90,6 +126,9 @@ namespace SpaceFist.AI
             }
         }
 
+        /// <summary>
+        /// Displays fuzzy membership information once a second.
+        /// </summary>
         private void PrintDebugInfo()
         {
             if ((DateTime.Now - LastPrint).Seconds >= 1)

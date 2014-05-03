@@ -6,6 +6,9 @@ using System.Text;
 
 namespace SpaceFist.Weapons
 {
+    /// <summary>
+    /// The default weapon
+    /// </summary>
     class LaserWeapon : Weapon
     {
         private ProjectileManager projectileManager;
@@ -13,6 +16,11 @@ namespace SpaceFist.Weapons
         private Game game;
         private Ship ship;
 
+        /// <summary>
+        /// Creates a new LaserWeapon instance
+        /// </summary>
+        /// <param name="game">The game</param>
+        /// <param name="ship">The ship</param>
         public LaserWeapon(Game game, Ship ship)
         {
             this.game = game;

@@ -7,6 +7,9 @@ using SpaceFist.Entities;
 
 namespace SpaceFist.AI
 {
+    /// <summary>
+    /// The interface implemented by all enemy AI's.
+    /// </summary>
     public interface EnemyAI
     {
         ShipEnemyInfo ShipEnemyInfo { get; set; }

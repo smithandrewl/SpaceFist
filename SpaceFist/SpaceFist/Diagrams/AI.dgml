@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="AI" Bounds="-293.336699829102,-500.954161743164,541.426990458171,322.381117883301" Group="Expanded" />
+    <Node Id="AggressiveAI" Bounds="-253.336590950969,-420.953937057073,88.3733333333333,25.96" Label="AggressiveAI" />
+    <Node Id="DefendState" Bounds="-253.336698881471,-253.073564229924,85.47,25.96" />
+    <Node Id="DefensiveAI" Bounds="-145.836691252076,-309.033677755315,82.47,25.96" />
+    <Node Id="EnemyAI" Bounds="-273.336698881471,-460.954037057073,229.970007629395,253.840588085938" Group="Expanded" Label="Enemy AI" />
+    <Node Id="FireState" Bounds="-137.654955920859,-253.073548971135,66.1066666666667,25.96" Label="FireState" />
+    <Node Id="GeneralInformation" Bounds="-4.97637552897132,-459.386061767578,233.06666615804,88.8925120117187" Group="Expanded" Label="General AI" UseManualLocation="True" />
+    <Node Id="NullBehavior" Bounds="61.697901611328,-300.493349755859,87.49,25.96" Label="NullBehavior" UseManualLocation="True" />
+    <Node Id="RamState" Bounds="-244.404954801881,-364.993777755315,70.51,25.96" />
+    <Node Id="SeekingBehavior" Bounds="61.6979018147786,-244.533243859863,107.563333333333,25.96" Label="SeekingBehavior" UseManualLocation="True" />
+    <Node Id="ShipEnemyInfo" Bounds="108.916957295736,-416.453649755859,99.1733333333333,25.96" UseManualLocation="True" />
+    <Node Id="ShipInfo" Bounds="15.0236244710287,-419.385961767578,63.8933333333333,25.96" Label="ShipInfo" UseManualLocation="True" />
+    <Node Id="WeaponAI" Bounds="41.697901611328,-340.493449755859,147.563333536784,141.920305895996" Group="Expanded" Label="Weapon AI" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="AI" Target="EnemyAI" Category="Contains" />
+    <Link Source="AI" Target="GeneralInformation" Category="Contains" />
+    <Link Source="AI" Target="WeaponAI" Category="Contains" />
+    <Link Source="AggressiveAI" Target="RamState" Bounds="-209.158462524414,-394.994232177734,0,20.9998474121094" />
+    <Link Source="DefensiveAI" Target="DefendState" Bounds="-178.064300537109,-283.074951171875,48.8673095703125,25.798095703125" />
+    <Link Source="DefensiveAI" Target="FireState" Bounds="-104.610137939453,-283.074951171875,0,20.9998779296875" />
+    <Link Source="EnemyAI" Target="AggressiveAI" Category="Contains" />
+    <Link Source="EnemyAI" Target="DefendState" Category="Contains" />
+    <Link Source="EnemyAI" Target="DefensiveAI" Category="Contains" />
+    <Link Source="EnemyAI" Target="FireState" Category="Contains" />
+    <Link Source="EnemyAI" Target="RamState" Category="Contains" />
+    <Link Source="GeneralInformation" Target="ShipEnemyInfo" Category="Contains" />
+    <Link Source="GeneralInformation" Target="ShipInfo" Category="Contains" />
+    <Link Source="WeaponAI" Target="NullBehavior" Category="Contains" />
+    <Link Source="WeaponAI" Target="SeekingBehavior" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>

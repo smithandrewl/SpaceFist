@@ -25,8 +25,12 @@ namespace SpaceFist
 
         private const int maxHealthPoints = 100;
 
-        public Weapon Weapon { get; set; }
-
+<<<<<<< HEAD
+        /// <summary>
+        /// The current state of the ship.  
+        /// </summary>
+=======
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
         public ShipState CurrentState
         {
             get
@@ -40,9 +44,15 @@ namespace SpaceFist
                 state = value;
             }
         }
+        /// <summary>
+        /// The ships current weapon.
+        /// </summary>
+        public Weapon Weapon { get; set; }
+
+        public Weapon Weapon { get; set; }
 
         /// <summary>
-        /// 
+        /// The number of health points the ship has left.
         /// </summary>
         public int HealthPoints { get; set; }
 
@@ -58,8 +68,8 @@ namespace SpaceFist
         }
 
         // The dimensions of the ship
-        private const int Width       = 60;
-        private const int Height      = 133;
+        private const int Width  = 60;
+        private const int Height = 133;
 
         // The frame of the sprite sheet (ShipSheet.png) to draw
         // Frame 0 is the ship turning left
@@ -80,17 +90,17 @@ namespace SpaceFist
         private Vector2 BackwardVelocity = new Vector2(0, 1);
 
         /// <summary>
-        /// 
+        /// Creates a new Ship instance at the specified location.
         /// </summary>
-        /// <param name="game"></param>
-        /// <param name="position"></param>
+        /// <param name="game">The game</param>
+        /// <param name="position">The location of the ship in the game world.</param>
         public Ship(Game game, Vector2 position)
             : base(game, 
                    new Rectangle(
                        (int)position.X, 
                        (int)position.Y, 
-                       (int) (Width * (game.ScreenScale / 2)), 
-                       (int) (Height * (game.ScreenScale / 2))
+                       (int)(Width  * (game.ScreenScale / 2)), 
+                       (int)(Height * (game.ScreenScale / 2))
                    ),
                    new Physics(), 
                    new ShipInput(), 
@@ -108,11 +118,18 @@ namespace SpaceFist
             state = new SpawningState(this);
             state.EnteringState();
         }
+
+        /// <summary>
+        /// Plays the ships destruction sound effect.
+        /// </summary>
         public void OnDeath()
         {
             ((Sound)sound).play();
         }
 
+        /// <summary>
+        /// Resets the ship to the default state (drawn normally (no flashing or fading)).
+        /// </summary>
         public void ResetState()
         {
             CurrentState = new NormalState(this);
@@ -128,6 +145,9 @@ namespace SpaceFist
             base.Update();
         }
 
+        /// <summary>
+        /// Fire the active weapon
+        /// </summary>
         public void Fire()
         {
             Weapon.fire();
@@ -145,8 +165,17 @@ namespace SpaceFist
         /// </summary>
         private void IncrementVelocity(Vector2 velocity)
         {
-            var xVel = MathHelper.Clamp(Velocity.X + velocity.X, -MaxVelocity, MaxVelocity);
-            var yVel = MathHelper.Clamp(Velocity.Y + velocity.Y, -MaxVelocity, MaxVelocity);
+            var xVel = MathHelper.Clamp(
+                Velocity.X + velocity.X, 
+                -MaxVelocity, 
+                MaxVelocity
+            );
+            
+            var yVel = MathHelper.Clamp(
+                Velocity.Y + velocity.Y, 
+                -MaxVelocity, 
+                MaxVelocity
+            );
 
             Velocity = new Vector2(xVel, yVel);
         }

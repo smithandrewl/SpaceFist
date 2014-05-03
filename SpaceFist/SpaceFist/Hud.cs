@@ -8,13 +8,18 @@ using System.Text;
 
 namespace SpaceFist
 {
+    /// <summary>
+    /// Draws information about the ongoing game and the player to the screen.
+    /// </summary>
     public class Hud
     {
         private const String ScoreFormat = "Score: {0} | Health: {1:P0} | Lives: {2}";
         private const String controlsMsg = "Controls: WASD to move, SPACE to fire, Q to quit";
 
+
+        private String scoreDisplay = "";
+
         private Vector2       controlsPosition;
-        private String        scoreDisplay = "";
         private Game          game;
         private RoundData     roundData;
         private PlayerManager shipManager;
@@ -31,9 +36,12 @@ namespace SpaceFist
             this.roundData   = game.InPlayState.RoundData;
             this.shipManager = shipManager;
 
-            controlsPosition =
-                new Vector2((game.GraphicsDevice.Viewport.Width * .5f) - (controlsMsg.Length * 5),
-                            game.GraphicsDevice.Viewport.Height * .975f);
+            var resolution = game.Resolution;
+
+            controlsPosition = new Vector2(
+                (resolution.Width * .5f) - (controlsMsg.Length * 5),
+                resolution.Height * .975f
+            );
 
             TopRect = new Rectangle(
                     0,
@@ -44,7 +52,7 @@ namespace SpaceFist
 
             BottomRect = new Rectangle(
                     0,
-                    game.GraphicsDevice.Viewport.Height - game.HudTexture.Height,
+                    game.Resolution.Height - game.HudTexture.Height,
                     game.HudTexture.Width,
                     game.HudTexture.Height
                 );
@@ -60,8 +68,8 @@ namespace SpaceFist
             );
 
             scorePosition = new Vector2(
-                (game.GraphicsDevice.Viewport.Width * .5f) - (scoreDisplay.Length * 5),
-                 game.GraphicsDevice.Viewport.Height * .001f
+                (game.Resolution.Width * .5f) - (scoreDisplay.Length * 5),
+                 game.Resolution.Height * .001f
             );
         }
 

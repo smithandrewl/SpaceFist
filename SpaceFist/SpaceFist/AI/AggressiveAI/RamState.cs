@@ -8,13 +8,18 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceFist.AI.DummyAI
 {
+    /// <summary>
+    /// A fuzzy state that rams the players ship.
+    /// 
+    /// The likelyhood of ramming the players ship and the path the enemy takes are determined
+    /// by the degree that the state is active.
+    /// </summary>
     class RamState : FuzzyLogicEnabled, EnemyAIState
     {
         public List<Vector2> WayPoints { get; set; }
-
-        public EnemyAI AI    { get; set; }
-        public Enemy   Enemy { get; set; }
-        public Ship    Ship  { get; set; }
+        public EnemyAI       AI        { get; set; }
+        public Enemy         Enemy     { get; set; }
+        public Ship          Ship      { get; set; }
 
         private DateTime lastUpdate;
         private Random   random;
@@ -34,6 +39,14 @@ namespace SpaceFist.AI.DummyAI
             lastUpdate = DateTime.Now;
         }
 
+        /// <summary>
+        /// Determines whether or not one point is near another (within 10 pixels).
+        /// </summary>
+        /// <param name="x1">The X coordinate of point 1</param>
+        /// <param name="y1">The Y coordinate of point 1</param>
+        /// <param name="x2">The X coordinate of point 2</param>
+        /// <param name="y2">The Y coordinate of point 2</param>
+        /// <returns>Returns true if the two points are within 10 pixels of each other</returns>
         private static bool Near(int x1, int y1, int x2, int y2)
         {
             int tolerance = 10;
@@ -44,23 +57,25 @@ namespace SpaceFist.AI.DummyAI
             return xIsNear && yIsNear;
         }
 
+        /// <summary>
+        /// Updates the degree to which this state is active.
+        /// </summary>
         public override void Update()
         {
             membership = Or(
-                    // If the player is doing too well
-                    And(AI.ShipInfo.Accuracy.High, AI.ShipInfo.Health.High),
-                    // If the player is not too far away
-                    Not(AI.ShipEnemyInfo.Distance.High));
-
+                // If the player is doing too well
+                And(AI.ShipInfo.Accuracy.High, AI.ShipInfo.Health.High),
+                // If the player is not too far away
+                Not(AI.ShipEnemyInfo.Distance.High)
+            );
 
             var millisecondsPassed = (DateTime.Now - lastUpdate).Milliseconds;
-
             
+            // Keep up to 3 waypoints, updating them every 100 milliseconds
             if (millisecondsPassed > 100)
             {
                 if (WayPoints.Count < 3)
                 {
-
                     int randX = random.Next(-10, 10);
                     int randY = random.Next(-10, 10);
 
@@ -81,9 +96,14 @@ namespace SpaceFist.AI.DummyAI
                         
                         var newPoint = shipLocation - lastPoint;
                         newPoint.Normalize();
-
-                        newPoint = lastPoint + (newPoint * 15 * membership);
+<<<<<<< HEAD
                         
+                        // Using fuzzy logic, the generated way point will be more accurate
+                        // the closer the enemy is to the ship.
+=======
+
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
+                        newPoint = lastPoint + (newPoint * 15 * membership);
 
                         WayPoints.Add(newPoint);
                     }
@@ -95,14 +115,12 @@ namespace SpaceFist.AI.DummyAI
             if (WayPoints.Count != 0)
             {
                 var wayPoint = WayPoints[0];
-
                
                 // If the enemy is close to the waypoint, remove the way point
                 // and draw the enemy at rest.
                 if (Near(Enemy.X, Enemy.Y, (int)wayPoint.X, (int)wayPoint.Y))
                 {
                     WayPoints.Remove(wayPoint);
-                    //((IndexedSprite)graphics).Index = AtRestIndex;
                 }
                 else
                 {
@@ -112,7 +130,6 @@ namespace SpaceFist.AI.DummyAI
                     // The rotation of the ship needed for it to face in the direction of the next waypoint
                     var destRotation = (float)MathHelper.ToDegrees((float)(Math.Atan2(direction.Y, direction.X))) + 90;
 
-
                     Enemy.Rotation = MathHelper.ToRadians(destRotation);
                    
                     // Convert the direction to a unit vector
@@ -120,8 +137,6 @@ namespace SpaceFist.AI.DummyAI
 
                     // Calculate a velocity to move along the line of sight at a magnitude of 5
                     Enemy.Velocity = (direction * Speed) * membership;
-
-//                    var indexedSprite = (IndexedSprite)graphics;
                 }
             }
         }

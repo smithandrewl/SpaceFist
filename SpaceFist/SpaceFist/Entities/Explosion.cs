@@ -26,9 +26,18 @@ namespace SpaceFist.Entities
         private long startTime;
         private long TimeBetweenFrames = 400000; 
 
+        /// <summary>
+        /// Creates a new Explosion instance at a specified location.
+        /// </summary>
+        /// <param name="game">The game</param>
+        /// <param name="position">The on world location of the explosion</param>
         public Explosion(Game game, Vector2 position): 
             base(game, 
-                 new Rectangle((int)position.X, (int)position.Y, width, height), 
+                 new Rectangle(
+                     (int)position.X, 
+                     (int)position.Y, 
+                     width, height
+                 ), 
                  new Physics(), 
                  new NullInputComponent(), 
                  new IndexedSprite(game.ExplosionTexture, width, height), 

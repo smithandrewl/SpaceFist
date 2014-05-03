@@ -52,7 +52,7 @@ namespace SpaceFist
         public Texture2D   EnemyFreighterTexture { get; set; }
         public Texture2D   ExplosionTexture      { get; set; }
         public Texture2D   HudTexture            { get; set; } // The image of the
-                                                          // purple transparent window where the score is drawn.
+                                                               // purple transparent window where the score is drawn.
         
         public Texture2D SampleProjectileTexture { get; set; }
         public Texture2D HealthPickupTexture     { get; set; }
@@ -60,12 +60,11 @@ namespace SpaceFist
         public Texture2D WeaponPickupTexture     { get; set; }
 
         public Texture2D LevelStartTexture { get; set; }
-        public Texture2D LevelEndTexture { get; set; }
+        public Texture2D LevelEndTexture   { get; set; }
 
         public Texture2D EndOfGameTexture { get; set; }
-
-        public Texture2D LogoTexture { get; set; }
-        public Texture2D CreditsTexture { get; set; }
+        public Texture2D LogoTexture      { get; set; }
+        public Texture2D CreditsTexture   { get; set; }
 
         /****Dongcai**/
         public Texture2D MissileTexture       { get; set; }
@@ -128,9 +127,9 @@ namespace SpaceFist
         private const String InPlaySongAsset      = @"Sound\Blown Away";
         private const String GameOverSongAsset    = @"Sound\Local Forecast";
 
-        private const String EnemyExplosionAsset      = @"Sound\EnemyExplosion";
-        private const String PlayerDeathAsset         = @"Sound\PlayerDeath";
-        private const String PlayerSpawnAsset         = @"Sound\Spawn";
+        private const String EnemyExplosionAsset = @"Sound\EnemyExplosion";
+        private const String PlayerDeathAsset    = @"Sound\PlayerDeath";
+        private const String PlayerSpawnAsset    = @"Sound\Spawn";
 
         private const String EndOfGameAsset     = @"Images\Backgrounds\vortex_0";
         private const String EndOfGameSongAsset = @"Sound\There It Is";
@@ -138,8 +137,9 @@ namespace SpaceFist
         private const String EnemyFighterAsset   = @"Images\Sprites\Ship4";
         private const String EnemyFreighterAsset = @"Images\Sprites\Enemy";
 
-        private const String LogoAsset = @"Images\Backgrounds\Logo";
+        private const String LogoAsset    = @"Images\Backgrounds\Logo";
         private const String CreditsAsset = @"Images\Backgrounds\Credits";
+
         /****Dongcai***/
         private const String MineImageAsset  = @"Images\Sprites\blue-laser";
         private const String MinePickupAsset = @"Images\Sprites\Laser-beam-pickup";
@@ -169,7 +169,7 @@ namespace SpaceFist
             GameOverState     = new GameOverState(this);
             MenuState         = new MenuState(this);
             LogoState         = new LogoState(this);
-            CreditsState = new CreditsState(this);
+            CreditsState      = new CreditsState(this);
 
             graphics          = new GraphicsDeviceManager(this);
             
@@ -182,7 +182,7 @@ namespace SpaceFist
        
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = 1366;
+            graphics.PreferredBackBufferWidth  = 1366;
             graphics.PreferredBackBufferHeight = 768;
             graphics.ApplyChanges();
    
@@ -191,10 +191,10 @@ namespace SpaceFist
 
         protected override void LoadContent()
         {
-            var titleSafe = GraphicsDevice.Viewport.TitleSafeArea;
+            this.Resolution = GraphicsDevice.Viewport.TitleSafeArea;
 
             // Draw the background image with the dimensions of the screen
-            BackgroundRect = new Rectangle(0, 0, titleSafe.Width, titleSafe.Height);
+            BackgroundRect = new Rectangle(0, 0, Resolution.Width, Resolution.Height);
 
             ScreenScale = .60f;
             
@@ -229,7 +229,7 @@ namespace SpaceFist
             LevelEndTexture   = Content.Load<Texture2D>(LevelEndAsset);
 
             EndOfGameTexture = Content.Load<Texture2D>(EndOfGameAsset);
-            LogoTexture = Content.Load<Texture2D>(LogoAsset);
+            LogoTexture      = Content.Load<Texture2D>(LogoAsset);
 
             /***Dongcai********************/
             MinePickupTexture = Content.Load<Texture2D>(MinePickupAsset);
@@ -239,7 +239,7 @@ namespace SpaceFist
             MissilePickupTexture = Content.Load<Texture2D>(MissilePickupAsset);
             /*************************/
 
-            CreditsTexture = Content.Load<Texture2D>(CreditsAsset);
+            CreditsTexture  = Content.Load<Texture2D>(CreditsAsset);
             ParticleTexture = Content.Load<Texture2D>(ParticleAsset);
 
             // Sounds
@@ -309,5 +309,7 @@ namespace SpaceFist
                 currentState = value;
             }
         }
+
+        public Rectangle Resolution { get; set; }
     }
 }

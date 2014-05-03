@@ -11,17 +11,29 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace SpaceFist.Entities
 {
+    /// <summary>
+    /// The parent class of all game enemies.
+    /// </summary>
     public class Enemy : Entity
     {
+       /// <summary>
+       /// The AI that will control this enemy.
+       /// </summary>
        public EnemyAI AI { get; set; }
 
        public Enemy(Game game, Texture2D enemyTexture, SoundEffect sound, Vector2 position) : 
            base(game, 
-                new Rectangle((int) position.X, (int) position.Y, enemyTexture.Width, enemyTexture.Height),
+                new Rectangle(
+                    (int) position.X, 
+                    (int) position.Y, 
+                    enemyTexture.Width, 
+                    enemyTexture.Height
+                ),
                 new Physics(), 
                 new NullInputComponent(), 
                 new Sprite(enemyTexture),
-                new Sound(sound), game.ScreenScale)
+                new Sound(sound), 
+                game.ScreenScale)
        {
            Rotation = (float) ((3 * Math.PI) / 2);
        }
@@ -32,6 +44,9 @@ namespace SpaceFist.Entities
            base.Update();
        }
 
+        /// <summary>
+        /// Plays an explosion sound.
+        /// </summary>
        public void OnDeath()
        {
            ((Sound)sound).play();

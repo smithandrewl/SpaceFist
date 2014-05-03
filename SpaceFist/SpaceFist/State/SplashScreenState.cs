@@ -12,10 +12,9 @@ namespace SpaceFist.State
 {
     /// <summary>
     /// When the game is in the splash screen state
-    /// it draws the splash screen and waits for the player to press enter.
+    /// it draws the splash screen and waits for the player to press enter or click the mouse.
     /// 
-    /// When the player presses enter the game switchs to the in-play state which is the state
-    /// where the game play takes place.
+    /// When the player presses enter the game switchs to the menu state.
     /// </summary>
     public class SplashScreenState : GameState
     {
@@ -24,6 +23,10 @@ namespace SpaceFist.State
         Rectangle overlayRect;
         DateTime  enteredAt;
 
+        /// <summary>
+        /// Creates a new SplashScreenState instance.
+        /// </summary>
+        /// <param name="game">The game</param>
         public SplashScreenState(Game game)
         {
             this.game = game;
@@ -31,10 +34,10 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var titleSafe = game.GraphicsDevice.Viewport.TitleSafeArea;
+            var resolution = game.Resolution;
 
             overlayTexture = game.Content.Load<Texture2D>(@"Images\Backgrounds\TitleScreen");
-            overlayRect    = new Rectangle(0, 0, titleSafe.Width, titleSafe.Height);
+            overlayRect    = new Rectangle(0, 0, resolution.Width, resolution.Height);
         }
 
         public void EnteringState()
@@ -47,7 +50,8 @@ namespace SpaceFist.State
         public void Update()
         {
             KeyboardState keyboardState = Keyboard.GetState();
-            MouseState mouseState = Mouse.GetState();
+            MouseState    mouseState    = Mouse.GetState();
+            
             var timeDiff = DateTime.Now.Subtract(enteredAt);
             
             if (timeDiff.Seconds > 3)
@@ -63,9 +67,7 @@ namespace SpaceFist.State
                     keyboardState.IsKeyDown(Keys.Space) ||
                     keyboardState.IsKeyDown(Keys.Escape))
                 {
-
                     game.CurrentState = game.MenuState;
-
                 }
 
                 if (mouseState.LeftButton == ButtonState.Pressed)

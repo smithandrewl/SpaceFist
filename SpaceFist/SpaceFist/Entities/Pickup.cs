@@ -10,13 +10,27 @@ using System.Text;
 
 namespace SpaceFist.Entities
 {
+    /// <summary>
+    /// Represents a pickup item which runs a function when it collides with the players ship.
+    /// </summary>
     public class Pickup : Entity
     {
         private Sound         pickupSound;
         private PickupHandler pickupHandler;
 
+        // The function called on pickup can modify the ship via the passed in reference.
         public delegate bool PickupHandler(Ship ship);
  
+        /// <summary>
+        /// Creates a new Pickup instance which runs a function 
+        /// when it is picked up by the player.
+        /// </summary>
+        /// <param name="game">The game</param>
+        /// <param name="texture">The image of the pickup</param>
+        /// <param name="sound">The sound to play when picked up</param>
+        /// <param name="position">The initial location of the pickup</param>
+        /// <param name="velocity">The initial velocity of the pickup</param>
+        /// <param name="pickupHandler">The function to run on pickup</param>
         public Pickup(Game          game, 
                       Texture2D     texture, 
                       SoundEffect   sound, 
@@ -25,7 +39,12 @@ namespace SpaceFist.Entities
                       PickupHandler pickupHandler) :
             base(
                 game, 
-                new Rectangle((int)position.X, (int) position.Y, texture.Width, texture.Height),
+                new Rectangle(
+                    (int)position.X, 
+                    (int) position.Y, 
+                    texture.Width, 
+                    texture.Height
+                ),
                 new Physics(),
                 new NullInputComponent(),
                 new Sprite(texture),

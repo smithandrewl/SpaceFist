@@ -24,6 +24,13 @@ namespace SpaceFist.Components
 
         public int Index { get; set; }
 
+        /// <summary>
+        /// Provides the ability to draw the cells of a horizontal texture atlas.
+        /// </summary>
+        /// <param name="texture">The texture atlas</param>
+        /// <param name="width">The width of each frame</param>
+        /// <param name="height">The height of each frame</param>
+        /// <param name="index">The index of the currently visible frame</param>
         public IndexedSprite(Texture2D texture, int width, int height, int index = 0)
         {
             this.width   = width;
@@ -31,7 +38,6 @@ namespace SpaceFist.Components
             Index        = index;
             this.texture = texture;
         }
-
         
         public void Draw(Game game, Entity obj)
         {
@@ -41,14 +47,23 @@ namespace SpaceFist.Components
 
             // Calculate and draw the image at an offset (this causes the image to rotate around 
             // its center and not its upper left corner
+<<<<<<< HEAD
+=======
 
-            var origin = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
+            var origin   = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
             var position = new Vector2(obj.X, obj.Y) + origin;
 
-            spriteBatch.Draw(texture, position - game.InPlayState.Camera, 
-                             sourceRect,  obj.Tint,
-                             obj.Rotation, origin, 
-                             game.ScreenScale, SpriteEffects.None, 0);
+            spriteBatch.Draw(
+                texture, 
+                position - game.InPlayState.Camera, 
+                sourceRect,  
+                obj.Tint,
+                obj.Rotation, origin, 
+                game.ScreenScale, 
+                SpriteEffects.None, 
+                0
+            );
         }
 
         public void Update(Game game, Entity obj)

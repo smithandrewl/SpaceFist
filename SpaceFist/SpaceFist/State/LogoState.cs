@@ -9,13 +9,17 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// This state displays the team logo before switching
+    /// to the splash screen.
+    /// </summary>
     public class LogoState : GameState
     {
-
         Texture2D background;
-        DateTime enteredAt;
+        DateTime  enteredAt;
 
         private const int loadTime = 3;
+        
         private Game game;
 
         public LogoState(Game game)
@@ -30,8 +34,11 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            game.SpriteBatch.Draw(background, game.GraphicsDevice.Viewport.Bounds, Color.White);
-
+            game.SpriteBatch.Draw(
+                background, 
+                game.Resolution, 
+                Color.White
+            );
         }
 
         public void Update()

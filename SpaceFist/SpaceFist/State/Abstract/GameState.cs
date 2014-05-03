@@ -6,6 +6,9 @@ using System.Text;
 
 namespace SpaceFist.State.Abstract
 {
+    /// <summary>
+    /// The interface implemented by each game screen / state.
+    /// </summary>
     public interface GameState : State
     {
         void LoadContent();

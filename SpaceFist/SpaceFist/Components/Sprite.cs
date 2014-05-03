@@ -12,11 +12,17 @@ using SpaceFist.Components.Abstract;
 
 namespace SpaceFist
 {
-    // Sprite represents a static image at a position on-world 
+    /// <summary>
+    /// Sprite represents a static image at a position on-world.
+    /// </summary>
     public class Sprite : GraphicsComponent
     {
         private Texture2D image;
 
+        /// <summary>
+        /// Creates a new Sprite instance from a texture
+        /// </summary>
+        /// <param name="texture">The image to draw</param>
         public Sprite(Texture2D texture)
         {
             image = texture;
@@ -31,15 +37,21 @@ namespace SpaceFist
         {
             var spriteBatch = game.SpriteBatch;
 
-            var origin = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
-
+            var origin   = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
             var position = new Vector2(obj.X, obj.Y) + origin;
 
             // Draw the texture at the location of the Entity obj
-            spriteBatch.Draw(image, position - game.InPlayState.Camera, 
-                             null, obj.Tint, 
-                             obj.Rotation, origin, 
-                             game.ScreenScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(
+                image, 
+                position - game.InPlayState.Camera, 
+                null, 
+                obj.Tint, 
+                obj.Rotation, 
+                origin, 
+                game.ScreenScale, 
+                SpriteEffects.None, 
+                0f
+            );
         }
     }
 }
