@@ -13,12 +13,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// The main state of the game.  All game play occurs in the InPlayState.
+    /// </summary>
     public class InPlayState : GameState
     {
         private const int NumBlocks   = 40;
         private const int NumEnemies  = 80;
+
+        // The number of background particles to spawn
         private const int DebrisCount = 4000;
 
+        // The speed at which the camera scrolls up the map / world
         private const float ScrollSpeed = 1.5f;
         
         private List<Rectangle> debrisField;
@@ -34,6 +40,7 @@ namespace SpaceFist.State
             }
         }
 
+        // The portion of the world which is currently visible.
         public Rectangle OnScreenWorld
         {
             get
@@ -125,13 +132,16 @@ namespace SpaceFist.State
 
         public void EnteringState()
         {
+            // Reset the round statistics
             RoundData.Reset();
 
+            // Start playing music on a loop
             MediaPlayer.Play(game.InPlaySong);
             MediaPlayer.IsRepeating = true;
 
             var resolution = game.Resolution;
-
+            
+            // Position the camera at the bottom of the world
             Camera = new Vector2(0, World.Height - resolution.Height);
 
             // Tell the ship manager to spawn the ship
@@ -144,6 +154,7 @@ namespace SpaceFist.State
             // Spawn blocks to the world
             blockManager.SpawnBlocks(NumBlocks);
 
+            // Spawn the enemies
             enemyManager.Clear();
             enemyManager.SpawnEnemyFighters((int) (NumEnemies * (7/8f)));
             enemyManager.SpawnEnemyFreighters((int) (NumEnemies * (1/8f)));
@@ -151,6 +162,7 @@ namespace SpaceFist.State
             // Spawn the players ship
             shipManager.Initialize();
 
+            // Spawn the different pickups to the world
             pickupManager.Reset();
             pickupManager.SpawnExtraLifePickups(3);
             pickupManager.SpawnExamplePickups(4);
@@ -208,11 +220,14 @@ namespace SpaceFist.State
                 enemyManager.Update();
                 pickupManager.Update();
  
+                // Until the end of the world is reached, move the camera up the world
                 if (Camera.Y >= World.Y)
                 {
                     Camera = new Vector2(Camera.X, Camera.Y - ScrollSpeed);
                 }
 
+                // When the ship reaches the end of game marker, switch to the 
+                // end of game state.
                 if (ship.Rectangle.Intersects(EndOfLevelMarkerPos))
                 {
                     game.CurrentState = new EndOfGameState(game);
@@ -220,13 +235,13 @@ namespace SpaceFist.State
             }
             else
             {
+                // If the player has been killed, switch to the game over state
                 game.CurrentState = game.GameOverState;
 
                 //send gameData(playtime and score)
                 stopwatch.Stop();
                 game.gameData.finalScore = RoundData.Score;
                 game.gameData.ConvertToSecond(stopwatch.ElapsedMilliseconds);
-
             }
 
             hud.Update();

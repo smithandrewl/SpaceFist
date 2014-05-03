@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SpaceFist.Components.Abstract
 {
+    /// <summary>
+    /// A marker interface for physics components
+    /// </summary>
     public interface PhysicsComponent : Component
     {
     }

@@ -9,12 +9,19 @@ using SpaceFist.Entities.Enemies;
 
 namespace SpaceFist.Managers
 {
+    /// <summary>
+    /// Keeps track of all of the enemies in the world.
+    /// </summary>
     public class EnemyManager : IEnumerable<Enemy>
     {
         private Random      rand;
         private List<Enemy> enemies;
         private Game        game;
 
+        /// <summary>
+        /// Creates a new EnemyManager instance.
+        /// </summary>
+        /// <param name="game">The game</param>
         public EnemyManager(Game game)
         {
             rand        = new Random();
@@ -22,16 +29,30 @@ namespace SpaceFist.Managers
             enemies     = new List<Enemy>();
         }
 
+        /// <summary>
+        /// Spawns a number of enemy fighters to the world.
+        /// </summary>
+        /// <param name="count">The number of fighters to spawn</param>
         public void SpawnEnemyFighters(int count)
         {
             SpawnEnemies(count, position => new EnemyFighter(game, position));
         }
 
+        /// <summary>
+        /// Spawns the specified number of enemyFreighters to the world.
+        /// </summary>
+        /// <param name="count">The number of freighters to spawn</param>
         public void SpawnEnemyFreighters(int count)
         {
             SpawnEnemies(count, position => new EnemyFreighter(game, position));
         }
 
+        /// <summary>
+        /// Spawns a number of enemies to random locations on the screen
+        /// given an enemy placement method.
+        /// </summary>
+        /// <param name="count">The number of enemies to spawn</param>
+        /// <param name="func">A function to spawn a particular type of enemy</param>
         private void SpawnEnemies(int count, Func<Vector2, Enemy> func){
             for (int i = 0; i < count; i++)
             {
@@ -74,6 +95,11 @@ namespace SpaceFist.Managers
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// Returns a collection of all of the live enemies
+        /// which are visible to the player.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Enemy> VisibleEnemies()
         {
             var camera         = game.InPlayState.Camera;
@@ -94,6 +120,11 @@ namespace SpaceFist.Managers
             return res;
         }
 
+        /// <summary>
+        /// Returns a collection of all of the enemies colliding with the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity to check for enemy collisions</param>
+        /// <returns>A collection of enemies which have collided with the entity</returns>
         public IEnumerable<Entity> Collisions(Entity entity)
         {
             var res =
@@ -106,6 +137,9 @@ namespace SpaceFist.Managers
             return res;
         }
 
+        /// <summary>
+        /// Removes all enemies from the world.
+        /// </summary>
         public void Clear()
         {
             enemies.Clear();

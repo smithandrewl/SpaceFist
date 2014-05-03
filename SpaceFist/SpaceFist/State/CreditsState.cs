@@ -8,6 +8,10 @@ using System.Text;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// This state displays information about the developers of
+    /// the game.
+    /// </summary>
     public class CreditsState : GameState
     {
         private Game     game;

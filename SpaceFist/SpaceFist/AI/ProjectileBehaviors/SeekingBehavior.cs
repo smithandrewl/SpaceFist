@@ -13,10 +13,27 @@ namespace SpaceFist.AI.ProjectileBehaviors
     // http://www.red3d.com/cwr/steer/gdc99/
     class SeekingBehavior : ProjectileBehavior
     {
+        /// <summary>
+        /// The entity the projectile is intercepting.
+        /// </summary>
         private Entity  target;
+
+        /// <summary>
+        /// The point on world that the projectile was fired.
+        /// </summary>
         private Vector2 origin;
+
+        /// <summary>
+        /// The direction the ship was heading when it fired the projectile.
+        /// </summary>
         private Vector2 origVector;
 
+        /// <summary>
+        /// Creates a new SeekingBehavior instance given a target, an initial direction and an initial velocity.
+        /// </summary>
+        /// <param name="unitVector">The direction the projectile was fired.</param>
+        /// <param name="origin">The point from which the projectile was fired.</param>
+        /// <param name="target">The target entity to intercept.</param>
         public SeekingBehavior(Vector2 unitVector, Vector2 origin, Entity target)
         {
             this.origin     = origin;
@@ -29,15 +46,22 @@ namespace SpaceFist.AI.ProjectileBehaviors
             if (target.Alive)
             {
                 int MaxSpeed = 10;
+
+                // The minimum distance from the launching point
+                // that the projectile must be after being fired, before it will start
+                // intercepting the target.
                 int minDist  = 150;
 
                 var xDiff = projectile.X - origin.X;
                 var yDiff = projectile.Y - origin.Y;
 
+                // The distance of the projectile from the launch point.
                 var distFromOrigin = (int)Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
                 if (distFromOrigin < minDist)
                 {
+                    // If the minimum distance has not been reached,
+                    // continue moving in the direction fired.
                     projectile.Velocity = origVector * MaxSpeed;
                 }
                 else
@@ -52,6 +76,7 @@ namespace SpaceFist.AI.ProjectileBehaviors
 
                     timeToIntercept = (int)(positionDiff.Length() / velocityDiff.Length());
 
+                    // The point of interception
                     var poi = targetPos + (target.Velocity * timeToIntercept);
 
                     var desiredVelocity = poi - projPos;
@@ -73,6 +98,7 @@ namespace SpaceFist.AI.ProjectileBehaviors
             }
             else
             {
+                // Go away if the target dies before we reach it.
                 projectile.Alive = false;
             }
         }

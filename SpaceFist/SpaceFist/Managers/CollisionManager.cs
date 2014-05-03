@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SpaceFist.Managers
 {
+    /// <summary>
+    /// Contains methods to handle the different types of entity and player collisions.
+    /// </summary>
     class CollisionManager
     {
         // These are references to existing managers,
@@ -53,6 +56,9 @@ namespace SpaceFist.Managers
             HandleProjectileShipCollisions();
         }
 
+        /// <summary>
+        /// Handles collisions between the ship and projectiles.
+        /// </summary>
         public void HandleProjectileShipCollisions()
         {
             foreach (Projectile projectile in laserManager.EnemyProjectiles())
@@ -66,6 +72,9 @@ namespace SpaceFist.Managers
             }
         }
 
+        /// <summary>
+        /// Handles collisions between the ship and enemies.
+        /// </summary>
         public void HandleEnemyShipCollisions()
         {
             foreach (Enemy enemy in enemyManager.Collisions(shipManager.Ship))
@@ -77,7 +86,9 @@ namespace SpaceFist.Managers
             }
         }
      
-
+        /// <summary>
+        /// Handles collisions between the enemy and projectiles.
+        /// </summary>
         public void HandleEnemyLaserCollisions()
         {
             foreach (var laser in laserManager.PlayerProjectiles())
@@ -97,6 +108,9 @@ namespace SpaceFist.Managers
             }
         }
 
+        /// <summary>
+        /// Handles collisions between the ship and weapon and health pickups.
+        /// </summary>
         public void HandleShipPickupCollisions()
         {
             foreach(var pickup in pickupManager.Collisions(shipManager.Ship)) {
@@ -107,6 +121,9 @@ namespace SpaceFist.Managers
             }
         }
 
+        /// <summary>
+        /// Handles collisions between the enemy and space blocks.
+        /// </summary>
         public void HandleEnemyRockCollisions()
         {
             var resolution = game.Resolution;
@@ -141,6 +158,9 @@ namespace SpaceFist.Managers
             }
         }
 
+        /// <summary>
+        /// Handles collisions between projectiles and space blocks.
+        /// </summary>
         public void HandleLaserRockCollisions()
         {
             foreach (var laser in laserManager)
@@ -166,6 +186,9 @@ namespace SpaceFist.Managers
             }
         }
 
+        /// <summary>
+        /// Handles collisions between the ship and space blocks.
+        /// </summary>
         public void HandleShipRockCollisions()
         {
             //  Update blocks

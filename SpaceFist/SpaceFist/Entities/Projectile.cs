@@ -10,6 +10,9 @@ using System.Text;
 
 namespace SpaceFist.Entities
 {
+    /// <summary>
+    /// Represents a projectile fired by either the player or an enemy.
+    /// </summary>
     public class Projectile : Entity
     {
         private bool soundPlayed = false;

@@ -9,6 +9,9 @@ using System.Text;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// This state is shown when the player has survived to the end of the game.
+    /// </summary>
     public class EndOfGameState : GameState
     {
         private Game game;

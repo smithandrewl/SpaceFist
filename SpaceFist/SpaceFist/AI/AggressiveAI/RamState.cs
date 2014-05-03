@@ -8,6 +8,12 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceFist.AI.DummyAI
 {
+    /// <summary>
+    /// A fuzzy state that rams the players ship.
+    /// 
+    /// The likelyhood of ramming the players ship and the path the enemy takes are determined
+    /// by the degree that the state is active.
+    /// </summary>
     class RamState : FuzzyLogicEnabled, EnemyAIState
     {
         public List<Vector2> WayPoints { get; set; }
@@ -51,6 +57,9 @@ namespace SpaceFist.AI.DummyAI
             return xIsNear && yIsNear;
         }
 
+        /// <summary>
+        /// Updates the degree to which this state is active.
+        /// </summary>
         public override void Update()
         {
             membership = Or(

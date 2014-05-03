@@ -25,6 +25,9 @@ namespace SpaceFist
 
         private const int maxHealthPoints = 100;
 
+        /// <summary>
+        /// The current state of the ship.  
+        /// </summary>
         public ShipState CurrentState
         {
             get
@@ -38,11 +41,13 @@ namespace SpaceFist
                 state = value;
             }
         }
-
+        /// <summary>
+        /// The ships current weapon.
+        /// </summary>
         public Weapon Weapon { get; set; }
 
         /// <summary>
-        /// 
+        /// The number of health points the ship has left.
         /// </summary>
         public int HealthPoints { get; set; }
 
@@ -80,10 +85,10 @@ namespace SpaceFist
         private Vector2 BackwardVelocity = new Vector2(0, 1);
 
         /// <summary>
-        /// 
+        /// Creates a new Ship instance at the specified location.
         /// </summary>
-        /// <param name="game"></param>
-        /// <param name="position"></param>
+        /// <param name="game">The game</param>
+        /// <param name="position">The location of the ship in the game world.</param>
         public Ship(Game game, Vector2 position)
             : base(game, 
                    new Rectangle(
@@ -108,11 +113,18 @@ namespace SpaceFist
             state = new SpawningState(this);
             state.EnteringState();
         }
+
+        /// <summary>
+        /// Plays the ships destruction sound effect.
+        /// </summary>
         public void OnDeath()
         {
             ((Sound)sound).play();
         }
 
+        /// <summary>
+        /// Resets the ship to the default state (drawn normally (no flashing or fading)).
+        /// </summary>
         public void ResetState()
         {
             CurrentState = new NormalState(this);
@@ -128,6 +140,9 @@ namespace SpaceFist
             base.Update();
         }
 
+        /// <summary>
+        /// Fire the active weapon
+        /// </summary>
         public void Fire()
         {
             Weapon.fire();

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SpaceFist
 {
+    /// <summary>
+    /// Holds information about the current round.
+    /// </summary>
     public class RoundData
     {
         private DateTime roundStart = DateTime.Now;
@@ -18,6 +21,9 @@ namespace SpaceFist
         public int BlocksBumped { get; set; }
         public int ShotsFired   { get; set; }
 
+        /// <summary>
+        /// The players accuracy
+        /// </summary>
         public float acc
         {
             get
@@ -26,6 +32,9 @@ namespace SpaceFist
             }
         }
 
+        /// <summary>
+        /// The amount of time since the round started
+        /// </summary>
         public TimeSpan TimeElapsed
         {
             get
@@ -34,13 +43,19 @@ namespace SpaceFist
             }
         }
 
+        /// <summary>
+        /// The number of shots that the player fires on average per time period
+        /// </summary>
         public float ShotsPerPeriod
         {
             get {
                 return (float) ShotsFired / (TimeElapsed.Seconds / PERIOD_IN_SECONDS);
             }
         } 
-
+        
+        /// <summary>
+        /// The number of bumps that the player has on average per time period
+        /// </summary>
         public float BumpsPerTimePeriod
         {
             get
@@ -49,6 +64,9 @@ namespace SpaceFist
             }
         }
 
+        /// <summary>
+        /// Resets all of the values to their default values.
+        /// </summary>
         public void Reset()
         {
             BlocksBumped = 0;

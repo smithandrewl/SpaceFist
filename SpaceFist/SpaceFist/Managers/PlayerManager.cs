@@ -8,6 +8,9 @@ using SpaceFist.Weapons;
 
 namespace SpaceFist.Managers
 {
+    /// <summary>
+    /// Handles player and ship interaction with the game world.
+    /// </summary>
     public class PlayerManager
     {
         Game      game;
@@ -18,6 +21,7 @@ namespace SpaceFist.Managers
         // Damage the ship takes per hit
         private const int HitDamage = 10;
         
+        // Start the players ship moving at a velocity greater than the camer scrolls
         private Vector2 StartingVelocity = new Vector2(0, -2);
         
         public Boolean Alive
@@ -28,6 +32,10 @@ namespace SpaceFist.Managers
             }
         }
 
+        /// <summary>
+        /// Creates a new PlayerManager instance.
+        /// </summary>
+        /// <param name="game">The game</param>
         public PlayerManager(Game game)
         {
             this.game = game;

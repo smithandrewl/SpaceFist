@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SpaceFist.Weapons
 {
+    /// <summary>
+    /// Represents a cluster of three missiles.
+    /// </summary>
     class Missile : Weapon
     {
         private ProjectileManager projectileManager;
@@ -22,6 +25,9 @@ namespace SpaceFist.Weapons
             projectileManager = game.InPlayState.ProjectileManager;
         }
 
+        /// <summary>
+        /// Fires a missile in the direction the ship is facing.
+        /// </summary>
         public void fire()
         {
             int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) - (20 * game.ScreenScale));

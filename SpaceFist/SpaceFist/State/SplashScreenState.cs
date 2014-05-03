@@ -12,10 +12,9 @@ namespace SpaceFist.State
 {
     /// <summary>
     /// When the game is in the splash screen state
-    /// it draws the splash screen and waits for the player to press enter.
+    /// it draws the splash screen and waits for the player to press enter or click the mouse.
     /// 
-    /// When the player presses enter the game switchs to the in-play state which is the state
-    /// where the game play takes place.
+    /// When the player presses enter the game switchs to the menu state.
     /// </summary>
     public class SplashScreenState : GameState
     {
@@ -24,6 +23,10 @@ namespace SpaceFist.State
         Rectangle overlayRect;
         DateTime  enteredAt;
 
+        /// <summary>
+        /// Creates a new SplashScreenState instance.
+        /// </summary>
+        /// <param name="game">The game</param>
         public SplashScreenState(Game game)
         {
             this.game = game;

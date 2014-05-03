@@ -8,6 +8,9 @@ using System.Text;
 
 namespace SpaceFist
 {
+    /// <summary>
+    /// Draws information about the ongoing game and the player to the screen.
+    /// </summary>
     public class Hud
     {
         private const String ScoreFormat = "Score: {0} | Health: {1:P0} | Lives: {2}";

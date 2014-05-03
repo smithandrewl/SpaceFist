@@ -10,6 +10,10 @@ using System.Text;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// This state displays the main menu and handles input to 
+    /// switch to several other states.
+    /// </summary>
     public class MenuState : GameState
     {
         private Game      game;
@@ -42,6 +46,8 @@ namespace SpaceFist.State
                 menu.Width, menu.Height
             );
 
+            // Calculate and set rectangles for each button since the buttons
+            // are part of a single image.
             newGameRect = new Rectangle(menuRect.X + 8, menuRect.Y + 12, 149, 29);
             creditsRect = new Rectangle(menuRect.X + 8, menuRect.Y + 46, 149, 29);
             exitRect    = new Rectangle(menuRect.X + 8, menuRect.Y + 82, 149, 29);

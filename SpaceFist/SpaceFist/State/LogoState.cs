@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceFist.State
 {
+    /// <summary>
+    /// This state displays the team logo before switching
+    /// to the splash screen.
+    /// </summary>
     public class LogoState : GameState
     {
         Texture2D background;

@@ -8,10 +8,22 @@ using SpaceFist.Managers;
 
 namespace SpaceFist.AI.DummyAI
 {
+    /// <summary>
+    /// An aggressive AI which follows the ship and attempts to ram it.
+    /// </summary>
     class AggressiveAI : EnemyAI
     {
+        /// <summary>
+        /// The ram fuzzy state
+        /// </summary>
         private RamState ramState;
       
+        /// <summary>
+        /// Creates a new AggressiveAI instance.
+        /// </summary>
+        /// <param name="game">The game</param>
+        /// <param name="enemy">The enemy this AI will control</param>
+        /// <param name="ship">The players ship</param>
         public AggressiveAI(Game game, Enemy enemy, Ship ship)
         {
             ShipInfo      = new AI.ShipInfo(ship, game.InPlayState.RoundData);
