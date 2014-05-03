@@ -145,8 +145,11 @@ namespace SpaceFist.Managers
             var camera = game.InPlayState.Camera;
             var bounds = game.BackgroundRect;
 
+<<<<<<< HEAD
             // The portion of the game world being shown on
             // the screen.
+=======
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
             var VisibleWorldRect = new Rectangle(
                 (int) camera.X, 
                 (int) camera.Y, 

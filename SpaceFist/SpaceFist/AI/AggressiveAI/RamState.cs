@@ -96,9 +96,13 @@ namespace SpaceFist.AI.DummyAI
                         
                         var newPoint = shipLocation - lastPoint;
                         newPoint.Normalize();
+<<<<<<< HEAD
                         
                         // Using fuzzy logic, the generated way point will be more accurate
                         // the closer the enemy is to the ship.
+=======
+
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
                         newPoint = lastPoint + (newPoint * 15 * membership);
 
                         WayPoints.Add(newPoint);

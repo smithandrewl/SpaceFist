@@ -47,6 +47,10 @@ namespace SpaceFist.Components
 
             // Calculate and draw the image at an offset (this causes the image to rotate around 
             // its center and not its upper left corner
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
             var origin   = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
             var position = new Vector2(obj.X, obj.Y) + origin;
 

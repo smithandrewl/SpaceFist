@@ -71,10 +71,14 @@ namespace SpaceFist.AI
             }
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// The degree to which the ship belongs to the low, medium and high sets for firing often.
         /// If the player never shoots, the membership in TriggerHappy.Low will be 100 percent.
         /// </summary>
+=======
+        // TriggerHappy
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
         public FuzzyVariable TriggerHappy
         {
             get 

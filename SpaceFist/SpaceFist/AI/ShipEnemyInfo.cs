@@ -44,6 +44,7 @@ namespace SpaceFist.AI
             this.Ship     = ship;
             this.ShipInfo = shipInfo;
             this.game     = game;
+<<<<<<< HEAD
 
             fuzzyDistance = new FuzzyVariable { Name = "Distance" };
         }
@@ -51,6 +52,24 @@ namespace SpaceFist.AI
         /// <summary>
         /// The fuzzy distance from the player to the enemy.
         /// </summary>
+=======
+            
+            fuzzyDistance = new FuzzyVariable { Name = "Distance" };
+        }
+
+        private Game          game;
+        private FuzzyVariable fuzzyDistance;
+
+        private DateTime lastPrint = DateTime.Now;
+
+        //-------------- Crisp input ----------------- 
+        // Distance
+        private int distance;
+
+        // ------------- Crisp Input -----------------
+
+        // Distance
+>>>>>>> 1627f196e7707136c4f509c8182908f40de0fc5b
         public FuzzyVariable Distance
         {
             get
