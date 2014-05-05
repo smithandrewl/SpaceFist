@@ -34,7 +34,7 @@ namespace SpaceFist.Weapons
         /// </summary>
         public void fire()
         {
-            int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) - (20 * game.ScreenScale));
+            int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) + 2);
             int projectileY = (int)((ship.Y - (35 * game.ScreenScale)));
 
             projectileManager.fireSampleWeapon(projectileX, projectileY);  
