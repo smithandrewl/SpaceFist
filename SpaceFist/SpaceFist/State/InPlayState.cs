@@ -150,6 +150,7 @@ namespace SpaceFist.State
             // Since the game states are reused, clear the score and lives
             shipManager.ResetLives();
             shipManager.ResetScore();
+            shipManager.ResetWeapon();
 
             // Spawn blocks to the world
             blockManager.SpawnBlocks(NumBlocks);

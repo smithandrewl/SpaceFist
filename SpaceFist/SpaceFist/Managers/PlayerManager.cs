@@ -144,5 +144,12 @@ namespace SpaceFist.Managers
         {
             roundData.Lives = 2;
         }
+
+        // Replaces the ships current weapon
+        // with the laser weapon.
+        internal void ResetWeapon()
+        {
+            ship.Weapon = new LaserWeapon(game, ship);
+        }
     }
 }
