@@ -122,6 +122,8 @@ namespace SpaceFist.Managers
             var onScreen = new List<Entity>(game.InPlayState.EnemyManager.VisibleEnemies());
             onScreen.AddRange(game.InPlayState.BlockManager.VisibleBlocks());
 
+            onScreen = new List<Entity>(onScreen.Where(entity => entity.Y < y));
+
             if (onScreen.Count != 0)
             {
                 // Mark several onscreen entities as targets

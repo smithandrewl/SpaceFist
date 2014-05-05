@@ -85,7 +85,7 @@ namespace SpaceFist.AI.ProjectileBehaviors
 
                     var steering = desiredVelocity - projectile.Velocity;
 
-                    var newVelocity = projectile.Velocity + steering;
+                    var newVelocity = projectile.Velocity + (steering * .2f);
 
                     float direction = (MathHelper.ToDegrees((float)Math.Atan2(newVelocity.Y, newVelocity.X)) + 90);
 
