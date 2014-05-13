@@ -1,34 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+<DirectedGraph Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="AI" Bounds="-293.336699829102,-500.954161743164,541.426990458171,322.381117883301" Group="Expanded" />
-    <Node Id="AggressiveAI" Bounds="-253.336590950969,-420.953937057073,88.3733333333333,25.96" Label="AggressiveAI" />
-    <Node Id="DefendState" Bounds="-253.336698881471,-253.073564229924,85.47,25.96" />
-    <Node Id="DefensiveAI" Bounds="-145.836691252076,-309.033677755315,82.47,25.96" />
-    <Node Id="EnemyAI" Bounds="-273.336698881471,-460.954037057073,229.970007629395,253.840588085938" Group="Expanded" Label="Enemy AI" />
-    <Node Id="FireState" Bounds="-137.654955920859,-253.073548971135,66.1066666666667,25.96" Label="FireState" />
-    <Node Id="GeneralInformation" Bounds="-4.97637552897132,-459.386061767578,233.06666615804,88.8925120117187" Group="Expanded" Label="General AI" UseManualLocation="True" />
-    <Node Id="NullBehavior" Bounds="61.697901611328,-300.493349755859,87.49,25.96" Label="NullBehavior" UseManualLocation="True" />
-    <Node Id="RamState" Bounds="-244.404954801881,-364.993777755315,70.51,25.96" />
-    <Node Id="SeekingBehavior" Bounds="61.6979018147786,-244.533243859863,107.563333333333,25.96" Label="SeekingBehavior" UseManualLocation="True" />
-    <Node Id="ShipEnemyInfo" Bounds="108.916957295736,-416.453649755859,99.1733333333333,25.96" UseManualLocation="True" />
-    <Node Id="ShipInfo" Bounds="15.0236244710287,-419.385961767578,63.8933333333333,25.96" Label="ShipInfo" UseManualLocation="True" />
-    <Node Id="WeaponAI" Bounds="41.697901611328,-340.493449755859,147.563333536784,141.920305895996" Group="Expanded" Label="Weapon AI" UseManualLocation="True" />
+    <Node Id="AI" Bounds="-2101.57274658206,-2750.56514755287,474.836862792969,443.555809765627" Group="Expanded" Label="Enemy AI" UseManualLocation="True" />
+    <Node Id="Accuracy" Bounds="-1963.82009195971,-2670.56494755287,67.2466666666669,25.96" Label="Accuracy" UseManualLocation="True" />
+    <Node Id="AggressiveAI" Bounds="-1992.12770670573,-2496.00064364662,88.3733333333334,25.96" Label="AggressiveAI" UseManualLocation="True" />
+    <Node Id="And" Bounds="-2864.49120087365,-2669.34047363281,50,25.96" />
+    <Node Id="DefendState" Bounds="-1795.71608805343,-2400.04019442787,85.47,25.96" Label="DefendState" UseManualLocation="True" />
+    <Node Id="DefensiveAI" Bounds="-1849.75343261719,-2496.00162020912,82.47,25.96" Label="DefensiveAI" UseManualLocation="True" />
+    <Node Id="DistanceFromShip" Bounds="-1799.84685628258,-2667.92202020912,122.293333333333,25.96" Label="Distance From Ship" UseManualLocation="True" />
+    <Node Id="EnemyAI" Bounds="-2032.3344767253,-2536.00172020912,362.088388671876,208.992282421876" Group="Expanded" Label="Fuzzy State Machines" UseManualLocation="True" />
+    <Node Id="FireState" Bounds="-1891.8244767253,-2393.07998934974,66.1066666666668,25.96" Label="FireState" UseManualLocation="True" />
+    <Node Id="FuzzyFunctions" Bounds="-2984.49120087365,-2750.47739238281,791.42384765625,435.877195507743" Group="Expanded" Label="Fuzzy Logic" UseManualLocation="True" />
+    <Node Id="FuzzyLogicOperators" Bounds="-2964.49120087365,-2709.34106191406,170,141.920283007813" Group="Expanded" Label="Logic Operators" UseManualLocation="True" />
+    <Node Id="FuzzyStates" Bounds="-2012.3344767253,-2440.04029442787,322.088388671876,93.0307566406254" Group="Expanded" Label="Fuzzy States" UseManualLocation="True" />
+    <Node Id="GeneralInformation" Bounds="-2081.57274658206,-2710.56504755287,220.443529459636,144.56322734375" Group="Expanded" Label="Ship Information" UseManualLocation="True" />
+    <Node Id="GeneralInformation1" Bounds="-1831.12921712243,-2707.92212020912,184.393333333333,141.920300000001" Group="Expanded" Label="Enemy Specific Information" UseManualLocation="True" />
+    <Node Id="Grade" Bounds="-2488.67875295698,-2400.84938476562,51.8566666666666,25.96" Label="Grade" UseManualLocation="True" />
+    <Node Id="Grading" Bounds="-2759.94578746219,-2710.47729238281,546.878434244792,375.876995507742" Group="Expanded" LayoutSettings="TopToBottom" UseManualLocation="True" />
+    <Node Id="GradingFunctions" Bounds="-2527.66912079553,-2552.77026113281,136.5,197.880976367188" Group="Expanded" Label="Grading Functions" UseManualLocation="True" />
+    <Node Id="Health" Bounds="-2061.57271321615,-2613.52881474037,54.666666666667,25.96" Label="Health" UseManualLocation="True" />
+    <Node Id="High1" Bounds="-2309.30022431115,-2400.56049687507,50,25.96" Label="High" UseManualLocation="True" />
+    <Node Id="HighValue" Bounds="-2635.77245412886,-2393.95351074219,78.1033333333335,25.96" Label="High Value" UseManualLocation="True" />
+    <Node Id="Input" Bounds="-2610.71142578125,-2613.72444950885,50,25.96" Label="Input" UseManualLocation="True" />
+    <Node Id="LineOfSight" Bounds="-1804.54095052083,-2611.96192020912,131.216666666667,25.96" Label="Line Of Sight To Ship" UseManualLocation="True" />
+    <Node Id="Low1" Bounds="-2314.17034149865,-2512.48080195319,50,25.96" Label="Low" />
+    <Node Id="LowValue" Bounds="-2739.94578746219,-2395.76118046882,74.1733333333332,25.96" Label="Low Value" UseManualLocation="True" />
+    <Node Id="Medium1" Bounds="-2322.93401988407,-2456.52059687507,64.1533333333336,25.96" Label="Medium" UseManualLocation="True" />
+    <Node Id="Not" Bounds="-2944.49120087365,-2613.38087890625,50,25.96" />
+    <Node Id="NullBehavior" Bounds="-1551.81178271848,-2427.78063587962,87.49,25.96" Label="NullBehavior" UseManualLocation="True" />
+    <Node Id="Or" Bounds="-2944.49120087365,-2669.34096191406,50,25.96" />
+    <Node Id="Output" Bounds="-2348.06084147135,-2616.49485224323,57.8133333333335,25.96" Label="Output" UseManualLocation="True" />
+    <Node Id="Processing" Bounds="-2514.86644205729,-2614.5169299776,76.6933333333336,25.96" Label="Processing" UseManualLocation="True" />
+    <Node Id="QuickGrade" Bounds="-2545.73980794271,-2670.47725712604,134.456666666667,25.96" Label="Quick Grade Function" UseManualLocation="True" />
+    <Node Id="RamState" Bounds="-1992.3344767253,-2392.96963778724,70.5100000000002,25.96" Label="RamState" UseManualLocation="True" />
+    <Node Id="ReverseGrade" Bounds="-2505.85745412886,-2512.77016113281,92.876666666667,25.96" Label="ReverseGrade" UseManualLocation="True" />
+    <Node Id="SeekingBehavior" Bounds="-1551.81249967812,-2371.82018666087,107.563333333333,25.96" Label="SeekingBehavior" UseManualLocation="True" />
+    <Node Id="SetMembership" Bounds="-2348.6473532174,-2552.48090195319,115.58,197.880505078125" Group="Expanded" Label="Fuzzy Variable" UseManualLocation="True" />
+    <Node Id="Speed" Bounds="-2046.86675944018,-2669.48901981849,53.0466666666666,25.96" Label="Speed" UseManualLocation="True" />
+    <Node Id="Triangle" Bounds="-2493.17432261844,-2456.80971191406,62.5133333333333,25.96" Label="Triangle" UseManualLocation="True" />
+    <Node Id="TriggerHappy" Bounds="-1976.90585042318,-2611.96192020912,95.7766666666666,25.96" Label="Trigger Happy" UseManualLocation="True" />
+    <Node Id="WeaponAI" Bounds="-1571.81248191451,-2467.780596984,147.563333333333,141.92064921875" Group="Expanded" Label="Weapon AI" UseManualLocation="True" />
   </Nodes>
   <Links>
     <Link Source="AI" Target="EnemyAI" Category="Contains" />
+    <Link Source="AI" Target="FuzzyFunctions" Bounds="-2184.06747383179,-2530.44350749691,82.4947272497297,0.427094389374815" />
     <Link Source="AI" Target="GeneralInformation" Category="Contains" />
-    <Link Source="AI" Target="WeaponAI" Category="Contains" />
-    <Link Source="AggressiveAI" Target="RamState" Bounds="-209.158462524414,-394.994232177734,0,20.9998474121094" />
-    <Link Source="DefensiveAI" Target="DefendState" Bounds="-178.064300537109,-283.074951171875,48.8673095703125,25.798095703125" />
-    <Link Source="DefensiveAI" Target="FireState" Bounds="-104.610137939453,-283.074951171875,0,20.9998779296875" />
+    <Link Source="AI" Target="GeneralInformation1" Category="Contains" />
+    <Link Source="AggressiveAI" Target="RamState" Bounds="-1955.13305115227,-2470.0405078125,6.04073697451963,68.106077687838" />
+    <Link Source="DefensiveAI" Target="DefendState" Bounds="-1801.00632023711,-2470.04172851563,36.0049819768356,62.2121505129348" />
+    <Link Source="DefensiveAI" Target="FireState" Bounds="-1848.48475748591,-2470.04172851563,33.6286959571394,68.8744133828359" />
     <Link Source="EnemyAI" Target="AggressiveAI" Category="Contains" />
-    <Link Source="EnemyAI" Target="DefendState" Category="Contains" />
     <Link Source="EnemyAI" Target="DefensiveAI" Category="Contains" />
-    <Link Source="EnemyAI" Target="FireState" Category="Contains" />
-    <Link Source="EnemyAI" Target="RamState" Category="Contains" />
-    <Link Source="GeneralInformation" Target="ShipEnemyInfo" Category="Contains" />
-    <Link Source="GeneralInformation" Target="ShipInfo" Category="Contains" />
+    <Link Source="EnemyAI" Target="FuzzyStates" Category="Contains" />
+    <Link Source="FuzzyFunctions" Target="FuzzyLogicOperators" Category="Contains" />
+    <Link Source="FuzzyFunctions" Target="Grading" Category="Contains" />
+    <Link Source="FuzzyLogicOperators" Target="And" Category="Contains" />
+    <Link Source="FuzzyLogicOperators" Target="Not" Category="Contains" />
+    <Link Source="FuzzyLogicOperators" Target="Or" Category="Contains" />
+    <Link Source="FuzzyStates" Target="DefendState" Category="Contains" />
+    <Link Source="FuzzyStates" Target="FireState" Category="Contains" />
+    <Link Source="FuzzyStates" Target="RamState" Category="Contains" />
+    <Link Source="GeneralInformation" Target="Accuracy" Category="Contains" />
+    <Link Source="GeneralInformation" Target="EnemyAI" Bounds="-1929.38236243374,-2566.00182020912,12.8997417135215,22.2169363663334" />
+    <Link Source="GeneralInformation" Target="Health" Category="Contains" />
+    <Link Source="GeneralInformation" Target="Speed" Category="Contains" />
+    <Link Source="GeneralInformation" Target="TriggerHappy" Category="Contains" />
+    <Link Source="GeneralInformation1" Target="DistanceFromShip" Category="Contains" />
+    <Link Source="GeneralInformation1" Target="EnemyAI" Bounds="-1789.82630714275,-2566.00182020912,12.087850165045,22.1037398109488" />
+    <Link Source="GeneralInformation1" Target="LineOfSight" Category="Contains" />
+    <Link Source="Grade" Target="High1" Bounds="-2436.82215494792,-2387.82742023495,118.521873766816,0.191825473048539" />
+    <Link Source="Grading" Target="GradingFunctions" Category="Contains" />
+    <Link Source="Grading" Target="HighValue" Category="Contains" />
+    <Link Source="Grading" Target="Input" Category="Contains" />
+    <Link Source="Grading" Target="LowValue" Category="Contains" />
+    <Link Source="Grading" Target="Output" Category="Contains" />
+    <Link Source="Grading" Target="Processing" Category="Contains" />
+    <Link Source="Grading" Target="QuickGrade" Category="Contains" />
+    <Link Source="Grading" Target="SetMembership" Category="Contains" />
+    <Link Source="GradingFunctions" Target="Grade" Category="Contains" />
+    <Link Source="GradingFunctions" Target="ReverseGrade" Category="Contains" />
+    <Link Source="GradingFunctions" Target="Triangle" Category="Contains" />
+    <Link Source="Input" Target="HighValue" Bounds="-2595.62027063953,-2587.76450683594,9.25861567809443,184.822267538552" />
+    <Link Source="Input" Target="LowValue" Bounds="-2691.6220492043,-2587.76450683594,98.9343255906142,184.075791632006" />
+    <Link Source="Output" Target="SetMembership" Bounds="-2316.70513598006,-2590.53489257813,5.51128707194357,29.2100335341379" />
+    <Link Source="Processing" Target="GradingFunctions" Bounds="-2475.01702766734,-2588.55686523438,3.10810843695208,26.8463208338658" />
+    <Link Source="QuickGrade" Target="Input" Bounds="-2554.13703732712,-2644.51719238281,51.1076856727645,27.0569005144839" />
+    <Link Source="QuickGrade" Target="Output" Bounds="-2440.19414172529,-2644.51719238281,83.6091037533042,28.3225915018888" />
+    <Link Source="QuickGrade" Target="Processing" Bounds="-2478.04949990021,-2644.51719238281,0.7476310426091,21.0060220623895" />
+    <Link Source="ReverseGrade" Target="Low1" Bounds="-2412.98085611979,-2499.7112809815,89.8104589471018,0.152552042296065" />
+    <Link Source="SetMembership" Target="High1" Category="Contains" />
+    <Link Source="SetMembership" Target="Low1" Category="Contains" />
+    <Link Source="SetMembership" Target="Medium1" Category="Contains" />
+    <Link Source="Triangle" Target="Medium1" Bounds="-2430.66105794271,-2443.77687121651,98.7269822617041,0.166902077730811" />
     <Link Source="WeaponAI" Target="NullBehavior" Category="Contains" />
     <Link Source="WeaponAI" Target="SeekingBehavior" Category="Contains" />
   </Links>
@@ -43,6 +106,8 @@
     <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
     <Property Id="IsContainment" DataType="System.Boolean" />
     <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="LayoutSettings" DataType="Microsoft.VisualStudio.Diagrams.View.GroupLayoutStyle" />
     <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
     <Property Id="UseManualLocation" DataType="System.Boolean" />
   </Properties>
