@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SpaceFist.AI.ShipEnemyInfo">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAgAAAAASAAABACAAAAAAAECAEABIAAAAAAAAAAA=</HashCode>
+      <FileName>AI\ShipEnemyInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceFist.AI.ShipInfo">
+    <Position X="1" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAQASAABAAACQAAAAAAIAIABAAAAIQAJkBCAAEAEAIg=</HashCode>
+      <FileName>AI\ShipInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="SpaceFist.AI.EnemyAI">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <AssociationLine Name="ShipEnemyInfo" Type="SpaceFist.AI.ShipEnemyInfo" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.438" />
+        <Point X="5.688" Y="2.438" />
+        <Point X="5.688" Y="3.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>AI\Abstract\EnemyAI.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ShipEnemyInfo" />
+      <Property Name="ShipInfo" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="SpaceFist.State.Abstract.EnemyAIState">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AI\Abstract\EnemyAIState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
