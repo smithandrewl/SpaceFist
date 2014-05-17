@@ -13,8 +13,7 @@ namespace SpaceFist.AI.AggressiveAI
     /// </summary>
     class FireState : FuzzyLogicEnabled, EnemyAIState
     {
-        // The degree to which this state is active
-        private float membership;
+        private float rateOfFire = 0;
 
         private ProjectileManager projectileManager;
         private DateTime          lastFire; // The last time this enemy fired at the player
@@ -29,7 +28,6 @@ namespace SpaceFist.AI.AggressiveAI
             this.AI            = ai;
             this.ShipInfo      = AI.ShipInfo;
             this.ShipEnemyInfo = AI.ShipEnemyInfo;
-            membership         = 0;
             lastFire           = DateTime.Now;
 
             this.projectileManager = game.InPlayState.ProjectileManager;
@@ -37,7 +35,7 @@ namespace SpaceFist.AI.AggressiveAI
 
         public override void Update()
         {
-            membership = ShipEnemyInfo.Distance.High;
+            rateOfFire = ShipEnemyInfo.Distance.Defuzzify(600, 450, 200);
 
             // if this enemy is on screen, fire and wait a fuzzy amount of time before
             // firing again.
@@ -46,7 +44,7 @@ namespace SpaceFist.AI.AggressiveAI
                 var now = DateTime.Now;
                 // Fire at the ship every 200 to 600 milliseconds depending on how far away
                 // the ship is.  The further the ship is, the faster the enemy will fire.
-                if (now.Subtract(lastFire).Milliseconds > Math.Max(200, (600 * Not(membership))))
+                if (now.Subtract(lastFire).Milliseconds > rateOfFire)
                 {
                     int halfWidth  = ShipEnemyInfo.Enemy.Rectangle.Width  / 2;
                     int halfHeight = ShipEnemyInfo.Enemy.Rectangle.Height / 2;
