@@ -35,6 +35,19 @@ namespace SpaceFist.AI
         /// </summary>
         public float  Value { get; set; }
 
+        /// <summary>
+        /// Converts the fuzzy variable to a single number using a 
+        /// weighted average.
+        /// </summary>
+        /// <param name="lowWeight">The weight to apply to the low set membership</param>
+        /// <param name="medWeight">The weight to apply to the medium set membership</param>
+        /// <param name="highWeight">The weight to apply to the high set membership</param>
+        /// <returns></returns>
+        public float Defuzzify(float lowWeight, float medWeight, float highWeight)
+        {
+            return (Low * lowWeight + Med * medWeight + High * highWeight) / (Low+Med+High);
+        }
+
         /// <returns>The contents of the variable in a format suitable for display</returns>
         public override string ToString()
         {
