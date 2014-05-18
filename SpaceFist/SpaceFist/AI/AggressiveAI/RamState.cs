@@ -138,7 +138,7 @@ namespace SpaceFist.AI.DummyAI
                     Enemy.Rotation = MathHelper.ToRadians(destRotation);
 
                     // Calculate a velocity to move along the line of sight at a magnitude of 5
-                    Enemy.Velocity = (direction * Speed) * membership;
+                    Enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), Speed, .15f) * membership));
                 }
             }
         }

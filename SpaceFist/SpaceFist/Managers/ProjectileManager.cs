@@ -102,7 +102,7 @@ namespace SpaceFist.Managers
                 game.LaserTexture, 
                 new Vector2(x, y), 
                 direction, 
-                10, 
+                9, 
                 enemyLaser
             );
             
