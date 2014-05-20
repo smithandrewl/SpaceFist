@@ -11,6 +11,8 @@ using System.Text;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Media;
 
+using FuncWorks.XNA.XTiled;
+
 namespace SpaceFist.State
 {
     /// <summary>
@@ -55,6 +57,8 @@ namespace SpaceFist.State
         public Rectangle World     { get; set; }
         public Vector2   Camera    { get; set; }
         public RoundData RoundData { get; set; }
+
+        public Map Map { get; set; }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -106,7 +110,9 @@ namespace SpaceFist.State
         {
             var resolution   = game.Resolution;
             var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
-            
+
+            Map = game.Content.Load<Map>(@"Maps\01");
+
             blockManager      = new BlockManager(game);
             projectileManager = new ProjectileManager(game);
             explosionManager  = new ExplosionManager(game);
@@ -249,9 +255,12 @@ namespace SpaceFist.State
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime gameTime)
-        {     
+        {
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
+
+            // Draw the map
+            Map.Draw(game.SpriteBatch, OnScreenWorld);
 
             // Draw debris
             foreach(var rect in debrisField)
