@@ -35,7 +35,7 @@ namespace SpaceFist.AI.AggressiveAI
 
         public override void Update()
         {
-            rateOfFire = ShipEnemyInfo.Distance.Defuzzify(600, 450, 200);
+            rateOfFire = ShipEnemyInfo.Distance.Defuzzify(700, 550, 300);
 
             // if this enemy is on screen, fire and wait a fuzzy amount of time before
             // firing again.
