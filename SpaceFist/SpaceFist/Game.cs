@@ -196,7 +196,7 @@ namespace SpaceFist
             // Draw the background image with the dimensions of the screen
             BackgroundRect = new Rectangle(0, 0, Resolution.Width, Resolution.Height);
 
-            ScreenScale = .60f;
+            ScreenScale = .5f;
             
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);

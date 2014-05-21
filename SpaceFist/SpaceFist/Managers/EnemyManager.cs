@@ -47,6 +47,22 @@ namespace SpaceFist.Managers
             SpawnEnemies(count, position => new EnemyFreighter(game, position));
         }
 
+       
+        public void SpawnEnemy(int x, int y, Func<Vector2, Enemy> func)
+        {
+            float rotation = MathHelper.ToRadians(180);
+            Enemy enemy = func(new Vector2(x, y));
+            enemy.Rotation = rotation;
+            enemies.Add(enemy);
+        }
+
+        public void SpawnEnemy(int lowX, int highX, int lowY, int highY, Func<Vector2,Enemy> func)
+        {
+            int randX = rand.Next(lowX, highX);
+            int randY = rand.Next(lowY, highY);
+
+            SpawnEnemy(randX, randY, func);
+        }
         /// <summary>
         /// Spawns a number of enemies to random locations on the screen
         /// given an enemy placement method.
@@ -54,22 +70,24 @@ namespace SpaceFist.Managers
         /// <param name="count">The number of enemies to spawn</param>
         /// <param name="func">A function to spawn a particular type of enemy</param>
         private void SpawnEnemies(int count, Func<Vector2, Enemy> func){
+            SpawnEnemies(
+                count,
+                0, 
+                game.InPlayState.World.Width, 
+                0,
+                (int)MathHelper.Max(
+                    game.InPlayState.World.Height *.9f,
+                    game.Resolution.Height / 2
+                ),
+                func
+            );
+        }
+
+        public void SpawnEnemies(int count, int lowX, int highX, int lowY, int highY, Func<Vector2, Enemy> func)
+        {
             for (int i = 0; i < count; i++)
             {
-                int randX = rand.Next(0, game.InPlayState.World.Width);
-
-                int randY = rand.Next(
-                    0, 
-                    (int)MathHelper.Max(
-                        game.InPlayState.World.Height * .9f, 
-                        game.Resolution.Height / 2
-                    )
-                );
-                
-                float rotation = MathHelper.ToRadians(180);
-                Enemy enemy = func(new Vector2(randX, randY));
-                enemy.Rotation = rotation;
-                enemies.Add(enemy);
+                SpawnEnemy(lowX, highX, lowY, highY, func);
             }
         }
 

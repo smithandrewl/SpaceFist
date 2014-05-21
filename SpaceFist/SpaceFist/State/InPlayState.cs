@@ -11,6 +11,9 @@ using System.Text;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Media;
 
+using FuncWorks.XNA.XTiled;
+using SpaceFist.Entities.Enemies;
+
 namespace SpaceFist.State
 {
     /// <summary>
@@ -19,7 +22,6 @@ namespace SpaceFist.State
     public class InPlayState : GameState
     {
         private const int NumBlocks   = 40;
-        private const int NumEnemies  = 80;
 
         // The number of background particles to spawn
         private const int DebrisCount = 4000;
@@ -55,6 +57,8 @@ namespace SpaceFist.State
         public Rectangle World     { get; set; }
         public Vector2   Camera    { get; set; }
         public RoundData RoundData { get; set; }
+
+        public Map Map { get; set; }
 
         // The entity managers used by this state (all of them)
         BlockManager      blockManager;
@@ -106,7 +110,10 @@ namespace SpaceFist.State
         {
             var resolution   = game.Resolution;
             var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
-            
+
+            Map = game.Content.Load<Map>(@"Maps\01");
+            Map.InitObjectDrawing(game.GraphicsDevice);
+
             blockManager      = new BlockManager(game);
             projectileManager = new ProjectileManager(game);
             explosionManager  = new ExplosionManager(game);
@@ -157,8 +164,35 @@ namespace SpaceFist.State
 
             // Spawn the enemies
             enemyManager.Clear();
-            enemyManager.SpawnEnemyFighters((int) (NumEnemies * (7/8f)));
-            enemyManager.SpawnEnemyFreighters((int) (NumEnemies * (1/8f)));
+
+            // Empty the collection of pickups
+            pickupManager.Reset();
+
+            foreach (var fighter in Map.ObjectLayers[0].MapObjects)
+            {
+                var bounds = fighter.Bounds;
+                Func<Vector2, Enemy> func;
+
+                int count = 1;
+
+                if (fighter.Properties.ContainsKey("count"))
+                {
+                    count = fighter.Properties["count"].AsInt32 ?? 1;
+                }
+                
+                if (fighter.Type == "FighterZone")
+                {
+                    func = position => new EnemyFighter(game, position);
+
+                    enemyManager.SpawnEnemies(count, bounds.Left, bounds.Right, bounds.Top, bounds.Bottom, func);
+                }
+                else if (fighter.Type == "FreighterZone")
+                {
+                    func = position => new EnemyFreighter(game, position);
+
+                    enemyManager.SpawnEnemies(count, bounds.Left, bounds.Right, bounds.Top, bounds.Bottom, func);
+                }
+            }
 
             // Spawn the players ship
             shipManager.Initialize();
@@ -249,9 +283,12 @@ namespace SpaceFist.State
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime gameTime)
-        {     
+        {
             // Draw the background
             game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
+
+            // Draw the map
+            Map.Draw(game.SpriteBatch, OnScreenWorld);
 
             // Draw debris
             foreach(var rect in debrisField)

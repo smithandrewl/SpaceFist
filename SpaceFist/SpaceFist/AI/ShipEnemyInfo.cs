@@ -15,7 +15,7 @@ namespace SpaceFist.AI
         private const bool DisplayDebug = false;
 
         // The range for the distance fuzzy variable
-        private const float DistanceHigh = 1500;
+        private const float DistanceHigh = 1000;
         private const float DistanceLow  = 0;
 
         //-------------- Crisp input ----------------- 
