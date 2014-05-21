@@ -161,14 +161,26 @@
   </object>
   <object name="Fighter Zone" type="FighterZone" x="128" y="832" width="384" height="320">
    <properties>
-    <property name="count" value="15"/>
+    <property name="count" value="7"/>
    </properties>
    <ellipse/>
   </object>
   <object name="Fighter Zone" type="FighterZone" x="960" y="896" width="384" height="320">
    <properties>
-    <property name="count" value="15"/>
+    <property name="count" value="7"/>
    </properties>
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="640" y="320">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="640" y="448">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="576" y="384">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="704" y="384">
    <ellipse/>
   </object>
  </objectgroup>
