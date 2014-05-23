@@ -68,6 +68,7 @@ namespace SpaceFist.State
         CollisionManager  collisionManager;
         PickUpManager     pickupManager;
         EnemyManager      enemyManager;
+        EnemyMineManager  enemyMineManager;
 
         // It is used to measure playtime.
         Stopwatch stopwatch = new Stopwatch();
@@ -120,6 +121,7 @@ namespace SpaceFist.State
             shipManager       = new PlayerManager(game);
             pickupManager     = new PickUpManager(game);
             enemyManager      = new EnemyManager(game);
+            enemyMineManager  = new EnemyMineManager(game);
 
             collisionManager  = new CollisionManager(
                 game, 
@@ -129,6 +131,7 @@ namespace SpaceFist.State
                 explosionManager, 
                 pickupManager, 
                 enemyManager, 
+                enemyMineManager,
                 RoundData
             );
 
@@ -158,14 +161,12 @@ namespace SpaceFist.State
             shipManager.ResetLives();
             shipManager.ResetScore();
             shipManager.ResetWeapon();
-
+            
             // Spawn blocks to the world
             blockManager.SpawnBlocks(NumBlocks);
 
-            // Spawn the enemies
             enemyManager.Clear();
-
-            // Empty the collection of pickups
+            enemyMineManager.Clear();
             pickupManager.Reset();
 
             foreach (var fighter in Map.ObjectLayers[0].MapObjects)
@@ -191,6 +192,10 @@ namespace SpaceFist.State
                     func = position => new EnemyFreighter(game, position);
 
                     enemyManager.SpawnEnemies(count, bounds.Left, bounds.Right, bounds.Top, bounds.Bottom, func);
+                } 
+                else if (fighter.Type == "Mines")
+                {
+                    enemyMineManager.SpawnEnemyMine(bounds.Center.X, bounds.Center.Y);
                 }
             }
 
@@ -254,6 +259,7 @@ namespace SpaceFist.State
                 shipManager.Update();
                 enemyManager.Update();
                 pickupManager.Update();
+                enemyMineManager.Update();
  
                 // Until the end of the world is reached, move the camera up the world
                 if (Camera.Y >= World.Y)
@@ -312,6 +318,7 @@ namespace SpaceFist.State
             shipManager.Draw();
             enemyManager.Draw();
             pickupManager.Draw();
+            enemyMineManager.Draw();
 
             DrawLevelMarkers();
 
