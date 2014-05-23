@@ -76,6 +76,8 @@ namespace SpaceFist
 
         public Texture2D ParticleTexture { get; set; }
 
+        public Texture2D EnemyMineTexture { get; set; }
+
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
@@ -139,6 +141,8 @@ namespace SpaceFist
 
         private const String LogoAsset    = @"Images\Backgrounds\Logo";
         private const String CreditsAsset = @"Images\Backgrounds\Credits";
+
+        private const String EnemyMineAsset = @"Images\Sprites\EnemyMine";
 
         /****Dongcai***/
         private const String MineImageAsset  = @"Images\Sprites\blue-laser";
@@ -241,6 +245,8 @@ namespace SpaceFist
 
             CreditsTexture  = Content.Load<Texture2D>(CreditsAsset);
             ParticleTexture = Content.Load<Texture2D>(ParticleAsset);
+
+            EnemyMineTexture = Content.Load<Texture2D>(EnemyMineAsset);
 
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);
