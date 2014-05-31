@@ -11,37 +11,22 @@ namespace SpaceFist.Managers
     /// <summary>
     /// Keeps track of the projectiles in the world.
     /// </summary>
-    public class ProjectileManager : IEnumerable<Projectile>
+    public class ProjectileManager : Manager<Projectile>
     {
         private Random rand = new Random();
-
-        List<Projectile> projectiles;
-        Game game;
 
         /// <summary>
         /// Creates a new ProjectileManager instance
         /// </summary>
         /// <param name="game">The game</param>
-        public ProjectileManager(Game game)
+        public ProjectileManager(Game game): base(game)
         {
-            this.game = game;
-            this.projectiles = new List<Projectile>();
         }
 
-        public IEnumerator<Projectile> GetEnumerator()
-        {
-            return projectiles.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public void Update()
+        public override void Update()
         {
 
-            foreach (var projectile in projectiles)
+            foreach (var projectile in entities)
             {
                 var resolution = game.Resolution;
                 
@@ -66,11 +51,6 @@ namespace SpaceFist.Managers
                     }
                 }
             }
-        }
-
-        public void Draw()
-        {
-            projectiles.ForEach(projectile => projectile.Draw());
         }
 
         /// <summary>
@@ -108,7 +88,7 @@ namespace SpaceFist.Managers
             
             projectile.Rotation = MathHelper.ToRadians(rotation);
 
-            projectiles.Add(projectile);
+            Add(projectile);
 
         }
 
@@ -152,7 +132,7 @@ namespace SpaceFist.Managers
                         target
                     );
                     
-                    projectiles.Add(projectile);
+                    Add(projectile);
                 }
             }
         }
@@ -170,7 +150,7 @@ namespace SpaceFist.Managers
                 0
             );
 
-            projectiles.Add(projectile);
+            Add(projectile);
         }
 
         public void fireMissile(int x, int y)
@@ -185,7 +165,7 @@ namespace SpaceFist.Managers
                 20
             );
 
-            projectiles.Add(projectile);
+            Add(projectile);
 
             Projectile projectile1 = new Projectile(
                 game, 
@@ -195,7 +175,7 @@ namespace SpaceFist.Managers
                 10
             );
 
-            projectiles.Add(projectile1);
+            Add(projectile1);
 
             Projectile projectile2 = new Projectile(
                 game, 
@@ -205,26 +185,10 @@ namespace SpaceFist.Managers
                 10
             );
 
-            projectiles.Add(projectile2);
+            Add(projectile2);
 
         }
         /***************************************/
-
-        /// <summary>
-        /// Returns a collection of all of the projectiles colliding with the 
-        /// the specified entity.
-        /// </summary>
-        /// <param name="obj">The entity to check for projectile collisions</param>
-        /// <returns></returns>
-        public IEnumerable<Projectile> Collisions(Entity obj)
-        {
-            var collisions = 
-                from   projectile in projectiles
-                where  projectile.Alive && projectile.Rectangle.Intersects(obj.Rectangle) 
-                select projectile;
-
-            return collisions;
-        }
 
         /// <returns>
         /// Returns a collection of all of the live projectiles
@@ -233,7 +197,7 @@ namespace SpaceFist.Managers
         public IEnumerable<Projectile> PlayerProjectiles()
         {
             var playerProjs = 
-                from   projectile in projectiles
+                from   projectile in entities
                 where  (projectile.EnemyProjectile == false) && projectile.Alive
                 select projectile;
 
@@ -248,7 +212,7 @@ namespace SpaceFist.Managers
         public IEnumerable<Projectile> EnemyProjectiles()
         {
             var enemyProjs =
-                from   projectile in projectiles
+                from   projectile in entities
                 where  (projectile.EnemyProjectile == true) && projectile.Alive
                 select projectile;
 

@@ -12,10 +12,8 @@ namespace SpaceFist.Managers
     /// Keeps track of the pickups in the world and provides
     /// methods to operate on them.
     /// </summary>
-    public class PickUpManager : IEnumerable<Pickup>
+    public class PickUpManager : Manager<Pickup>
     {
-        private Game         game;
-        private List<Pickup> pickups;
         private RoundData    roundData;
 
         private Random rand = new Random();
@@ -24,56 +22,9 @@ namespace SpaceFist.Managers
         /// Creates a new instance of PickupManager.
         /// </summary>
         /// <param name="game">The game</param>
-        public PickUpManager(Game game)
+        public PickUpManager(Game game): base(game)
         {
-            this.game    = game;
-            this.pickups = new List<Pickup>();
             roundData    = game.InPlayState.RoundData;
-        }
-
-        public void Update()
-        {
-            pickups.ForEach(pickup => pickup.Update());
-        }
-
-        /// <summary>
-        /// Removes a pickup from the world.
-        /// </summary>
-        /// <param name="pickup">The pickup to remove</param>
-        public void Remove(Pickup pickup)
-        {
-            pickups.Remove(pickup);
-        }
-
-        /// <summary>
-        /// Returns a collection of the pickups colliding with the
-        /// specified entity.
-        /// </summary>
-        /// <param name="entity">The entity to check for pickup collisions</param>
-        /// <returns>The collection of pickups colliding with the entity</returns>
-        public IEnumerable<Pickup> Collisions(Entity entity)
-        {
-            var collisions =
-                from   pickup in pickups
-                where  pickup.Alive && pickup.Rectangle.Intersects(entity.Rectangle)
-                select pickup;
-
-            return collisions;
-        }
-
-        public void Draw()
-        {
-            pickups.ForEach(pickup => pickup.Draw());
-        }
-
-        public IEnumerator<Pickup> GetEnumerator()
-        {
-            return pickups.GetEnumerator();
-        }
-       
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
         }
 
         /// <summary>
@@ -121,7 +72,7 @@ namespace SpaceFist.Managers
                         return true;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         /// <summary>
@@ -154,7 +105,7 @@ namespace SpaceFist.Managers
                         return true;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         public void SpawnMissilePickups(int count)
@@ -178,7 +129,7 @@ namespace SpaceFist.Managers
                 }
             );
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
         /***********************/
 
@@ -207,7 +158,7 @@ namespace SpaceFist.Managers
                         return false;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         /// <summary>
@@ -239,7 +190,7 @@ namespace SpaceFist.Managers
                         return true;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         /// <summary>
@@ -247,7 +198,7 @@ namespace SpaceFist.Managers
         /// </summary>
         internal void Reset()
         {
-            pickups.Clear();
+            Clear();
         }
     }
 }

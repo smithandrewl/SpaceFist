@@ -14,22 +14,18 @@ namespace SpaceFist.Managers
     /// This class is enumerable and instances can be used
     /// in foreach loops to iterate the live blocks in the world.
     /// </summary>
-    public class BlockManager : IEnumerable<SpaceBlock>
+    public class BlockManager : Manager<SpaceBlock>
     {
-        List<SpaceBlock> blocks = new List<SpaceBlock>();
-        
         Random rand;
-        Game   game;
 
         /// <summary>
         /// Creates a new BlockManager instance.
         /// </summary>
         /// <param name="game">The game</param>
         public BlockManager(Game game)
+            : base(game)
         {
-            this.game   = game;
-            this.blocks = new List<SpaceBlock>();
-            rand        = new Random();
+            rand = new Random();
         }
 
         /// <summary>
@@ -38,13 +34,14 @@ namespace SpaceFist.Managers
         /// </summary>
         public void RespawnBlocks()
         {
-            foreach(var block in blocks) {
+            foreach (var block in this)
+            {
                 var position = randomPos();
 
-                block.X        = (int)position.X;
-                block.Y        = (int)position.Y;
+                block.X = (int)position.X;
+                block.Y = (int)position.Y;
                 block.Velocity = randomVel();
-                block.Alive    = true;
+                block.Alive = true;
             }
         }
 
@@ -70,7 +67,7 @@ namespace SpaceFist.Managers
         /// <param name="count">The number of blocks to spawn</param>
         public void SpawnBlocks(int count)
         {
-            blocks.Clear();
+            Clear();
 
             // Spawn space blocks
             for (int i = 0; i < count; i++)
@@ -85,30 +82,8 @@ namespace SpaceFist.Managers
 
                 // Initialize and the block to the list
                 block.Initialize();
-                blocks.Add(block);
+                Add(block);
             }
-        }
-
-        public void Update()
-        {
-            // If there are no blocks in the world,
-            // respawn more
-            if (blocks.All(block => block.Alive == false))
-            {
-                RespawnBlocks();
-            }
-
-             //  Update blocks
-            foreach (var block in blocks.Where(block => block.Alive))
-            {
-                block.Update();
-                KeepOnWorld(block);
-            }
-        }
-
-        public void Draw()
-        {
-            blocks.ForEach(block => block.Draw());
         }
 
         // Keep the specified entity on world causing it to "bounce"
@@ -116,23 +91,13 @@ namespace SpaceFist.Managers
         private void KeepOnWorld(Entity obj)
         {
             var world = game.InPlayState.World;
-            if ((obj.X > world.Width)  || 
-                (obj.X < 0)            ||
-                (obj.Y > world.Height) || 
+            if ((obj.X > world.Width) ||
+                (obj.X < 0) ||
+                (obj.Y > world.Height) ||
                 (obj.Y < 0))
             {
                 obj.Velocity *= -1;
             }
-        }
-
-        public IEnumerator<SpaceBlock> GetEnumerator()
-        {
-            return blocks.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
 
         /// <summary>
@@ -148,43 +113,18 @@ namespace SpaceFist.Managers
             // The portion of the game world being shown on
             // the screen.
             var VisibleWorldRect = new Rectangle(
-                (int) camera.X, 
-                (int) camera.Y, 
-                bounds.Width, 
+                (int)camera.X,
+                (int)camera.Y,
+                bounds.Width,
                 bounds.Height
             );
-            
-            var res = 
-                from   block in blocks
-                where  block.Alive && VisibleWorldRect.Intersects(block.Rectangle)
+
+            var res =
+                from block in entities
+                where block.Alive && VisibleWorldRect.Intersects(block.Rectangle)
                 select block;
-       
+
             return res;
-        }
-
-        /// <summary>
-        /// Removes a block from the world.
-        /// </summary>
-        /// <param name="block">The block to remove</param>
-        public void Remove(SpaceBlock block)
-        {
-            blocks.Remove(block);
-        }
-
-        /// <summary>
-        /// Returns a collection of the blocks which are colliding with
-        /// the specified object.
-        /// </summary>
-        /// <param name="obj">The entity to check for block collisions</param>
-        /// <returns></returns>
-        public IEnumerable<SpaceBlock> Collisions(Entity obj)
-        {
-            var collisions = 
-                from   block in blocks 
-                where  block.Alive && block.Rectangle.Intersects(obj.Rectangle)
-                select block;
-
-            return collisions;
         }
     }
 }
