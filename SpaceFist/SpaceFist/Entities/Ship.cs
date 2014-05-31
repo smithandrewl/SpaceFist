@@ -100,7 +100,7 @@ namespace SpaceFist
                    new Physics(), 
                    new ShipInput(), 
                    new IndexedSprite(game.Textures["ShipSheet"], Width, Height, 4),
-                   new Sound(game.PlayerDeath),
+                   new Sound(game.SoundEffects["PlayerDeath"]),
                    game.ScreenScale)
         {
             indexedSprite = (IndexedSprite) graphics;

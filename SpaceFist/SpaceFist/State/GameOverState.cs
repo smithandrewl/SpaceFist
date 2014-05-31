@@ -31,7 +31,7 @@ namespace SpaceFist.State
         public void EnteringState()
         {
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.GameOverSong);
+            MediaPlayer.Play(game.Songs["GameOverSong"]);
         }
 
         public void Update()

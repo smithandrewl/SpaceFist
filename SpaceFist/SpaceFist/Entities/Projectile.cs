@@ -39,7 +39,7 @@ namespace SpaceFist.Entities
                 new Physics(), 
                 new NullInputComponent(), 
                 new Sprite(texture),
-                new Sound(game.LaserSound),
+                new Sound(game.SoundEffects["LaserSound"]),
                 game.ScreenScale
             )
         {

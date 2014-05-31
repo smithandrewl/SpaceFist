@@ -54,7 +54,7 @@ namespace SpaceFist.State
         public void EnteringState()
         {
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.EndOfGameSong);
+            MediaPlayer.Play(game.Songs["EndOfGameSong"]);
         }
 
         public void ExitingState()

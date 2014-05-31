@@ -146,7 +146,7 @@ namespace SpaceFist.State
             RoundData.Reset();
 
             // Start playing music on a loop
-            MediaPlayer.Play(game.InPlaySong);
+            MediaPlayer.Play(game.Songs["InPlaySong"]);
             MediaPlayer.IsRepeating = true;
 
             var resolution = game.Resolution;

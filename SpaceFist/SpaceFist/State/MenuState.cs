@@ -106,7 +106,7 @@ namespace SpaceFist.State
             game.IsMouseVisible = true;
 
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.TitleScreenSong);
+            MediaPlayer.Play(game.Songs["TitleScreenSong"]);
         }
 
         public void ExitingState()

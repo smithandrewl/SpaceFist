@@ -23,7 +23,7 @@ namespace SpaceFist.Entities
             new Physics(), 
             new NullInputComponent(), 
             new Sprite(game.Textures["EnemyMineTexture"]), 
-            new Sound(game.ExplosionSound))
+            new Sound(game.SoundEffects["ExplosionSound"]))
         {
 
         }

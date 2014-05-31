@@ -18,7 +18,7 @@ namespace SpaceFist.Entities.Enemies
         /// <param name="game">The game</param>
         /// <param name="position">The place in the world to put the fighter</param>
         public EnemyFighter(Game game, Vector2 position)
-            : base(game, game.Textures["EnemyFighterTexture"], game.ExplosionSound, position)
+            : base(game, game.Textures["EnemyFighterTexture"], game.SoundEffects["ExplosionSound"], position)
         {
             this.AI = new AggressiveAI(game, this, game.InPlayState.ship);
         }

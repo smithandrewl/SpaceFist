@@ -21,7 +21,7 @@ namespace SpaceFist.Managers
         /// <param name="game">The game</param>
         /// <param name="position">The location to place the freighter in the world.</param>
         public EnemyFreighter(Game game, Vector2 position):
-            base(game, game.Textures["EnemyFreighterTexture"], game.ExplosionSound, position)
+            base(game, game.Textures["EnemyFreighterTexture"], game.SoundEffects["ExplosionSound"], position)
         {
             AI = new DefensiveAI(game, this);
         }

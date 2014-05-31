@@ -73,7 +73,7 @@ namespace SpaceFist.Managers
 
         public Ship Spawn()
         {
-            game.PlayerSpawn.Play();
+            game.SoundEffects["PlayerSpawn"].Play();
 
             var resolution = game.Resolution;
             var camera     = game.InPlayState.Camera;

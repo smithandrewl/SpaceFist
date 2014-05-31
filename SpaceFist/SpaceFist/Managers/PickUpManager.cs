@@ -64,7 +64,7 @@ namespace SpaceFist.Managers
                 new Pickup(
                     game,
                     game.Textures["WeaponPickupTexture"],
-                    game.WeaponPickupSound,
+                    game.SoundEffects["WeaponPickupSound"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -96,7 +96,7 @@ namespace SpaceFist.Managers
                 new Pickup(
                     game,
                     game.Textures["MinePickupTexture"],
-                    game.WeaponPickupSound,
+                    game.SoundEffects["WeaponPickupSound"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
@@ -118,7 +118,7 @@ namespace SpaceFist.Managers
             var pickup = new Pickup(
                 game,
                 game.Textures["MissilePickupTexture"],
-                game.WeaponPickupSound,
+                game.SoundEffects["WeaponPickupSound"],
                 new Vector2(x, y),
                 Vector2.Zero,
                 (ship) =>
@@ -145,7 +145,7 @@ namespace SpaceFist.Managers
                 new Pickup(
                     game,
                     game.Textures["HealthPickupTexture"],
-                    game.HealthPickupSound,
+                    game.SoundEffects["HealthPickupSound"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -181,7 +181,7 @@ namespace SpaceFist.Managers
                 new Pickup(
                     game,
                     game.Textures["ExtraLifePickupTexture"],
-                    game.ExtraLifeSound,
+                    game.SoundEffects["ExtraLifeSound"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
