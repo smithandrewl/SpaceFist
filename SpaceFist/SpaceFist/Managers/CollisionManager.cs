@@ -66,7 +66,7 @@ namespace SpaceFist.Managers
                 if(projectile.Rectangle.Intersects(shipManager.Ship.Rectangle))
                 {
                     projectile.Alive = false;
-                    explosionManager.add(shipManager.Ship.X, shipManager.Ship.Y);
+                    explosionManager.Add(shipManager.Ship.X, shipManager.Ship.Y);
                     shipManager.ShipHit();
                 }
             }
@@ -79,7 +79,7 @@ namespace SpaceFist.Managers
         {
             foreach (Enemy enemy in enemyManager.Collisions(shipManager.Ship))
             {
-                explosionManager.add(enemy.X, enemy.Y);
+                explosionManager.Add(enemy.X, enemy.Y);
                 enemy.Alive = false;
                 enemy.OnDeath();
                 shipManager.ShipHit();
@@ -98,7 +98,7 @@ namespace SpaceFist.Managers
                     foreach (Enemy enemy in enemyManager.Collisions(laser))
                     {
                         laser.Alive = false;
-                        explosionManager.add(enemy.X, enemy.Y);
+                        explosionManager.Add(enemy.X, enemy.Y);
                         enemy.Alive = false;
                         enemy.OnDeath();
                         shipManager.Scored();
@@ -148,8 +148,8 @@ namespace SpaceFist.Managers
                             enemy.Alive = false;
                             enemy.OnDeath();
 
-                            explosionManager.add(block.X, block.Y);
-                            explosionManager.add(enemy.X, enemy.Y);
+                            explosionManager.Add(block.X, block.Y);
+                            explosionManager.Add(enemy.X, enemy.Y);
 
                             block.Destroy();
                         }
@@ -173,7 +173,7 @@ namespace SpaceFist.Managers
                     {
                         laser.Alive = false;
                         // Create and add a new explosion
-                        explosionManager.add(block.X, block.Y);
+                        explosionManager.Add(block.X, block.Y);
 
                         // Update the score
                         shipManager.Scored();
@@ -201,7 +201,7 @@ namespace SpaceFist.Managers
                     var ship = shipManager.Ship;
 
                     // Create an explosion at the coordinates of the block
-                    explosionManager.add(block.X, block.Y);
+                    explosionManager.Add(block.X, block.Y);
 
                     // Notify the ship manager that the ship has been hit
                     shipManager.ShipHit();
@@ -209,7 +209,7 @@ namespace SpaceFist.Managers
                     // If the ship died, add an explosion where the ship was
                     if (!shipManager.Alive)
                     {
-                        explosionManager.add(ship.X, ship.Y);
+                        explosionManager.Add(ship.X, ship.Y);
                     }
 
                     // Notify the block that it has been hit
