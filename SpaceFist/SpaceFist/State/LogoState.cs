@@ -29,7 +29,7 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            background = game.Textures["LogoTexture"];
+            background = game.Textures["Logo"];
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)

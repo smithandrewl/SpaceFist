@@ -79,7 +79,7 @@ namespace SpaceFist.Managers
             // Place a new active laser at x, y
             Projectile projectile = new Projectile(
                 game, 
-                game.Textures["LaserTexture"], 
+                game.Textures["Laser"], 
                 new Vector2(x, y), 
                 direction, 
                 9, 
@@ -120,7 +120,7 @@ namespace SpaceFist.Managers
 
                     Projectile projectile = new Projectile(
                         game,
-                        game.Textures["SampleProjectileTexture"],
+                        game.Textures["SampleWeapon"],
                         new Vector2(x, y),
                         new Vector2(0, -1),
                         10
@@ -144,7 +144,7 @@ namespace SpaceFist.Managers
          
             Projectile projectile = new Projectile(
                 game, 
-                game.Textures["MineTexture"], 
+                game.Textures["Mine"], 
                 new Vector2(x, y), 
                 new Vector2(0, 0), 
                 0
@@ -159,7 +159,7 @@ namespace SpaceFist.Managers
 
             Projectile projectile = new Projectile(
                 game, 
-                game.Textures["MissileTexture"], 
+                game.Textures["Missile"], 
                 new Vector2(x, y), 
                 new Vector2(0, -1), 
                 20
@@ -169,7 +169,7 @@ namespace SpaceFist.Managers
 
             Projectile projectile1 = new Projectile(
                 game, 
-                game.Textures["MissileTexture"], 
+                game.Textures["Missile"], 
                 new Vector2(x + 50, y), 
                 new Vector2(0, -1), 
                 10
@@ -179,7 +179,7 @@ namespace SpaceFist.Managers
 
             Projectile projectile2 = new Projectile(
                 game, 
-                game.Textures["MissileTexture"], 
+                game.Textures["Missile"], 
                 new Vector2(x - 50, y), 
                 new Vector2(0, -1), 
                 10

@@ -146,7 +146,7 @@ namespace SpaceFist.State
             RoundData.Reset();
 
             // Start playing music on a loop
-            MediaPlayer.Play(game.Songs["InPlaySong"]);
+            MediaPlayer.Play(game.Songs["InPlay"]);
             MediaPlayer.IsRepeating = true;
 
             var resolution = game.Resolution;
@@ -227,8 +227,8 @@ namespace SpaceFist.State
                 Rectangle rect = new Rectangle(
                     rand.Next(0, maxX), 
                     rand.Next(0, maxY), 
-                    (int) (game.Textures["ParticleTexture"].Width * scale), 
-                    (int) (game.Textures["ParticleTexture"].Height * scale)
+                    (int) (game.Textures["Particle"].Width * scale), 
+                    (int) (game.Textures["Particle"].Height * scale)
                 );
 
                 debrisField.Add(rect);
@@ -300,7 +300,7 @@ namespace SpaceFist.State
             foreach(var rect in debrisField)
             {
                 game.SpriteBatch.Draw(
-                    game.Textures["ParticleTexture"], 
+                    game.Textures["Particle"], 
                     new Rectangle(
                         rect.X - (int)Camera.X, 
                         rect.Y - (int)Camera.Y, 
@@ -332,28 +332,28 @@ namespace SpaceFist.State
             int nearTop    = (int)((World.Top * .02) - Camera.Y);
 
             StartOfLevelMarkerPos = new Rectangle(
-                (int)halfWidth - (game.Textures["LevelStartTexture"].Width / 2),
-                (int)nearBottom - game.Textures["LevelStartTexture"].Height,
-                game.Textures["LevelStartTexture"].Width,
-                game.Textures["LevelStartTexture"].Height
+                (int)halfWidth - (game.Textures["LevelStart"].Width / 2),
+                (int)nearBottom - game.Textures["LevelStart"].Height,
+                game.Textures["LevelStart"].Width,
+                game.Textures["LevelStart"].Height
             );
 
             EndOfLevelMarkerPos = new Rectangle(
-                (int)halfWidth - (game.Textures["LevelEndTexture"].Width / 2),
-                (int)nearTop + game.Textures["LevelEndTexture"].Height,
-                game.Textures["LevelEndTexture"].Width,
-                game.Textures["LevelEndTexture"].Height
+                (int)halfWidth - (game.Textures["LevelEnd"].Width / 2),
+                (int)nearTop + game.Textures["LevelEnd"].Height,
+                game.Textures["LevelEnd"].Width,
+                game.Textures["LevelEnd"].Height
             );
 
             // Draw the level markers
             game.SpriteBatch.Draw(
-                game.Textures["LevelStartTexture"],
+                game.Textures["LevelStart"],
                 StartOfLevelMarkerPos,
                 Color.White
             );
 
             game.SpriteBatch.Draw(
-                game.Textures["LevelEndTexture"],
+                game.Textures["LevelEnd"],
                 EndOfLevelMarkerPos,
                 Color.White
             );

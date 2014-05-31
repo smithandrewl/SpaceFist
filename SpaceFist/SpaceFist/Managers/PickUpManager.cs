@@ -63,8 +63,8 @@ namespace SpaceFist.Managers
             var pickup =
                 new Pickup(
                     game,
-                    game.Textures["WeaponPickupTexture"],
-                    game.SoundEffects["WeaponPickupSound"],
+                    game.Textures["WeaponPickup"],
+                    game.SoundEffects["WeaponPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -95,8 +95,8 @@ namespace SpaceFist.Managers
             var pickup =
                 new Pickup(
                     game,
-                    game.Textures["MinePickupTexture"],
-                    game.SoundEffects["WeaponPickupSound"],
+                    game.Textures["MinePickup"],
+                    game.SoundEffects["WeaponPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
@@ -117,8 +117,8 @@ namespace SpaceFist.Managers
         {
             var pickup = new Pickup(
                 game,
-                game.Textures["MissilePickupTexture"],
-                game.SoundEffects["WeaponPickupSound"],
+                game.Textures["MissilePickUp"],
+                game.SoundEffects["WeaponPickup"],
                 new Vector2(x, y),
                 Vector2.Zero,
                 (ship) =>
@@ -144,8 +144,8 @@ namespace SpaceFist.Managers
             var pickup =
                 new Pickup(
                     game,
-                    game.Textures["HealthPickupTexture"],
-                    game.SoundEffects["HealthPickupSound"],
+                    game.Textures["HealthPickup"],
+                    game.SoundEffects["HealthPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -180,8 +180,8 @@ namespace SpaceFist.Managers
             var pickup =
                 new Pickup(
                     game,
-                    game.Textures["ExtraLifePickupTexture"],
-                    game.SoundEffects["ExtraLifeSound"],
+                    game.Textures["ExtraLifePickup"],
+                    game.SoundEffects["ExtraLife"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>

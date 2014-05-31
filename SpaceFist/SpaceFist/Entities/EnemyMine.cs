@@ -19,11 +19,11 @@ namespace SpaceFist.Entities
             float             rotation = 0)*/
         public EnemyMine(Game game, Vector2 position): base(
             game, 
-            new Rectangle((int)position.X, (int)position.Y, game.Textures["EnemyMineTexture"].Width, game.Textures["EnemyMineTexture"].Height),
+            new Rectangle((int)position.X, (int)position.Y, game.Textures["EnemyMine"].Width, game.Textures["EnemyMine"].Height),
             new Physics(), 
             new NullInputComponent(), 
-            new Sprite(game.Textures["EnemyMineTexture"]), 
-            new Sound(game.SoundEffects["ExplosionSound"]))
+            new Sprite(game.Textures["EnemyMine"]), 
+            new Sound(game.SoundEffects["Explosion"]))
         {
 
         }

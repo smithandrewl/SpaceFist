@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using SpaceFist.Entities;
 using SpaceFist.State.Abstract;
 using SpaceFist.State;
+using System.IO;
 
 namespace SpaceFist
 {
@@ -46,58 +47,23 @@ namespace SpaceFist
         //---------------- The paths to the game assets -----------------
         private const String SpriteFontAsset         = @"Fonts\Raised";
 
-        private const String LaserImageAsset         = @"Images\Sprites\Laser";
-        private const String BackgroundAsset         = @"Images\Backgrounds\Background";
-        private const String BackgroundRedAsset      = @"Images\Backgrounds\BackgroundRed";
-        private const String MenuAsset               = @"Images\Backgrounds\Menu";
-        private const String GameOverAsset           = @"Images\Backgrounds\GameOver";
-        private const String HealthPickupAsset       = @"Images\Sprites\HealthPickup";
-        private const String ExtraLifePickupAsset    = @"Images\Sprites\ExtraLifePickup";
-        private const String WeaponPickupAsset       = @"Images\Sprites\WeaponPickup";
-        private const String BlockImageAsset         = @"Images\Sprites\Block";
-        private const String ShipSheetAsset          = @"Images\Sprites\ShipSheet";
-        private const String ExplosionAnimationAsset = @"Images\Animations\Explosion";
-        private const String HUDAsset                = @"Images\UI\Hud";
-        private const String SampleWeaponAsset       = @"Images\Sprites\SampleWeapon";
-        private const String SamplePickupAsset       = @"Images\Sprites\SamplePickup";
         private const String ExplosionSoundAsset     = @"Sound\Explosion";
         private const String ThumpSoundAsset         = @"Sound\Thump";
         private const String LaserSoundAsset         = @"Sound\Laser";
-        private const String LevelStartAsset         = @"Images\Backgrounds\LevelStart";
-        private const String LevelEndAsset           = @"Images\Backgrounds\LevelEnd";
 
         private const String ExtraLifeSoundAsset    = @"Sound\ExtraLife";
         private const String HealthPickupSoundAsset = @"Sound\HealthPickup";
         private const String WeaponPickupSoundAsset = @"Sound\WeaponPickup";
 
-        private const String TitleScreenSongAsset = @"Sound\TitleScreenSong";
-        private const String InPlaySongAsset      = @"Sound\InPlaySong";
-        private const String GameOverSongAsset    = @"Sound\GameOverSong";
+        private const String TitleScreenSongAsset = @"Sound\TitleScreen";
+        private const String InPlaySongAsset      = @"Sound\InPlay";
+        private const String GameOverSongAsset    = @"Sound\GameOver";
 
         private const String EnemyExplosionAsset = @"Sound\EnemyExplosion";
         private const String PlayerDeathAsset    = @"Sound\PlayerDeath";
         private const String PlayerSpawnAsset    = @"Sound\PlayerSpawn";
 
-        private const String EndOfGameAsset     = @"Images\Backgrounds\EndOfGame";
-        private const String EndOfGameSongAsset = @"Sound\EndOfGameSong";
-
-        private const String EnemyFighterAsset   = @"Images\Sprites\EnemyFighter";
-        private const String EnemyFreighterAsset = @"Images\Sprites\EnemyFreighter";
-
-        private const String LogoAsset    = @"Images\Backgrounds\Logo";
-        private const String CreditsAsset = @"Images\Backgrounds\Credits";
-
-        private const String EnemyMineAsset = @"Images\Sprites\EnemyMine";
-
-        /****Dongcai***/
-        private const String MineImageAsset  = @"Images\Sprites\MineImage";
-        private const String MinePickupAsset = @"Images\Sprites\MinePickup";
-
-        private const String MissileImageAsset  = @"Images\Sprites\MissileImage";
-        private const String MissilePickupAsset = @"Images\Sprites\MissilePickUp";
-        /***************************/
-
-        private const String ParticleAsset = @"Images\Sprites\Particle";
+        private const String EndOfGameSongAsset = @"Sound\EndOfGame";
 
         public GameData gameData { get; set; }
 
@@ -142,6 +108,23 @@ namespace SpaceFist
             base.Initialize();
         }
 
+        private void LoadTextures()
+        {
+            String root = Content.RootDirectory;
+
+            DirectoryInfo inf = new DirectoryInfo(root + "/Images");
+
+            foreach (var dir in inf.EnumerateDirectories())
+            {
+                foreach (var file in dir.EnumerateFiles())
+                {
+                    string asset = file.Name.Substring(0, file.Name.IndexOf('.'));
+
+                    Textures[asset] = Content.Load<Texture2D>("Images/" + dir + "/" + asset);
+                }
+            }
+        }
+
         protected override void LoadContent()
         {
             this.Resolution = GraphicsDevice.Viewport.TitleSafeArea;
@@ -156,55 +139,25 @@ namespace SpaceFist
 
             // ----------------------------- Load the games assets -----------
             Font = Content.Load<SpriteFont>(SpriteFontAsset);
-            
-            // Textures
-            Textures["Background"]              = Content.Load<Texture2D>(BackgroundAsset);
-            Textures["BackgroundRed"]           = Content.Load<Texture2D>(BackgroundRedAsset);
-            Textures["Menu"]                    = Content.Load<Texture2D>(MenuAsset);
-            Textures["GameOverTexture"]         = Content.Load<Texture2D>(GameOverAsset);
-            Textures["LaserTexture"]            = Content.Load<Texture2D>(LaserImageAsset);
-            Textures["BlockTexture"]            = Content.Load<Texture2D>(BlockImageAsset);
-            Textures["ShipSheet"]               = Content.Load<Texture2D>(ShipSheetAsset);
-            Textures["EnemyFighterTexture"]     = Content.Load<Texture2D>(EnemyFighterAsset);
-            Textures["EnemyFreighterTexture"]   = Content.Load<Texture2D>(EnemyFreighterAsset);
-            Textures["ExplosionTexture"]        = Content.Load<Texture2D>(ExplosionAnimationAsset);
-            Textures["HudTexture"]              = Content.Load<Texture2D>(HUDAsset);
-            Textures["HealthPickupTexture"]     = Content.Load<Texture2D>(HealthPickupAsset);
-            Textures["ExtraLifePickupTexture"]  = Content.Load<Texture2D>(ExtraLifePickupAsset);
-            Textures["WeaponPickupTexture"]     = Content.Load<Texture2D>(WeaponPickupAsset);
-            Textures["SampleProjectileTexture"] = Content.Load<Texture2D>(SampleWeaponAsset);
-            Textures["LevelStartTexture"]       = Content.Load<Texture2D>(LevelStartAsset);
-            Textures["LevelEndTexture"]         = Content.Load<Texture2D>(LevelEndAsset);
-            Textures["EndOfGameTexture"]        = Content.Load<Texture2D>(EndOfGameAsset);
-            Textures["LogoTexture"]             = Content.Load<Texture2D>(LogoAsset);
 
-            /***Dongcai********************/
-            Textures["MinePickupTexture"]       = Content.Load<Texture2D>(MinePickupAsset);
-            Textures["MineTexture"]             = Content.Load<Texture2D>(MineImageAsset);
-            Textures["MissileTexture"]          = Content.Load<Texture2D>(MissileImageAsset);
-            Textures["MissilePickupTexture"]    = Content.Load<Texture2D>(MissilePickupAsset);
-            /*************************/
-
-            Textures["CreditsTexture"]          = Content.Load<Texture2D>(CreditsAsset);
-            Textures["ParticleTexture"]         = Content.Load<Texture2D>(ParticleAsset);
-            Textures["EnemyMineTexture"]        = Content.Load<Texture2D>(EnemyMineAsset);
+            LoadTextures();
 
             // Sounds
-            SoundEffects["ExplosionSound"]    = Content.Load<SoundEffect>(ExplosionSoundAsset);
-            SoundEffects["ThumpSound"]        = Content.Load<SoundEffect>(ThumpSoundAsset);
-            SoundEffects["LaserSound"]        = Content.Load<SoundEffect>(LaserSoundAsset);
-            SoundEffects["ExtraLifeSound"]    = Content.Load<SoundEffect>(ExtraLifeSoundAsset);
-            SoundEffects["HealthPickupSound"] = Content.Load<SoundEffect>(HealthPickupSoundAsset);
-            SoundEffects["WeaponPickupSound"] = Content.Load<SoundEffect>(WeaponPickupSoundAsset);
+            SoundEffects["Explosion"]    = Content.Load<SoundEffect>(ExplosionSoundAsset);
+            SoundEffects["Thump"]        = Content.Load<SoundEffect>(ThumpSoundAsset);
+            SoundEffects["Laser"]        = Content.Load<SoundEffect>(LaserSoundAsset);
+            SoundEffects["ExtraLife"]    = Content.Load<SoundEffect>(ExtraLifeSoundAsset);
+            SoundEffects["HealthPickup"] = Content.Load<SoundEffect>(HealthPickupSoundAsset);
+            SoundEffects["WeaponPickup"] = Content.Load<SoundEffect>(WeaponPickupSoundAsset);
             SoundEffects["EnemyExplosion"]    = Content.Load<SoundEffect>(EnemyExplosionAsset);
             SoundEffects["PlayerDeath"]       = Content.Load<SoundEffect>(PlayerDeathAsset);
             SoundEffects["PlayerSpawn"]       = Content.Load<SoundEffect>(PlayerSpawnAsset);
 
              // Songs
-            Songs["TitleScreenSong"] = Content.Load<Song>(TitleScreenSongAsset);
-            Songs["InPlaySong"]      = Content.Load<Song>(InPlaySongAsset);
-            Songs["GameOverSong"]    = Content.Load<Song>(GameOverSongAsset);
-            Songs["EndOfGameSong"]   = Content.Load<Song>(EndOfGameSongAsset);
+            Songs["TitleScreen"] = Content.Load<Song>(TitleScreenSongAsset);
+            Songs["InPlay"]      = Content.Load<Song>(InPlaySongAsset);
+            Songs["GameOver"]    = Content.Load<Song>(GameOverSongAsset);
+            Songs["EndOfGame"]   = Content.Load<Song>(EndOfGameSongAsset);
 
             SplashScreenState.LoadContent();
             InPlayState.LoadContent();

@@ -30,7 +30,7 @@ namespace SpaceFist.State
             var resolution = game.Resolution;
 
             game.SpriteBatch.Draw(
-                game.Textures["EndOfGameTexture"], 
+                game.Textures["EndOfGame"], 
                 new Rectangle(
                     0, 
                     0, 
@@ -54,7 +54,7 @@ namespace SpaceFist.State
         public void EnteringState()
         {
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.Songs["EndOfGameSong"]);
+            MediaPlayer.Play(game.Songs["EndOfGame"]);
         }
 
         public void ExitingState()

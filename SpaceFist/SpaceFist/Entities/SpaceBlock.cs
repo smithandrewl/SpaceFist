@@ -37,10 +37,10 @@ namespace SpaceFist.Entities
                  new Physics(), 
                  new NullInputComponent(), 
                  new Sprite(texture),
-                 new Sound(game.SoundEffects["ExplosionSound"]),
+                 new Sound(game.SoundEffects["Explosion"]),
                  game.ScreenScale)
         {
-            thump = new Sound(game.SoundEffects["ExplosionSound"]);
+            thump = new Sound(game.SoundEffects["Explosion"]);
 
             Velocity = velocity;
         }
