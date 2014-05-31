@@ -94,18 +94,18 @@ namespace SpaceFist
         /// <returns>The resutlt of the and operation</returns>
         protected static float And(float first, float second)
         {
-            return Math.Min(first, second);
+            return first * second;
         }
 
         /// <summary>
-        /// Performs a fuzzy "or" operation
+        /// Performs a fuzzy "probabilistic-or" operation
         /// </summary>
         /// <param name="first">The first operand</param>
         /// <param name="second">The second operand</param>
         /// <returns>The result of the or operation</returns>
         protected static float Or(float first, float second)
         {
-            return Math.Max(first, second);
+            return first + second - (first * second);
         }
 
         /// <summary>

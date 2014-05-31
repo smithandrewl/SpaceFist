@@ -76,6 +76,8 @@ namespace SpaceFist
 
         public Texture2D ParticleTexture { get; set; }
 
+        public Texture2D EnemyMineTexture { get; set; }
+
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
         public SoundEffect ExplosionSound  { get; set; }
@@ -140,6 +142,8 @@ namespace SpaceFist
         private const String LogoAsset    = @"Images\Backgrounds\Logo";
         private const String CreditsAsset = @"Images\Backgrounds\Credits";
 
+        private const String EnemyMineAsset = @"Images\Sprites\EnemyMine";
+
         /****Dongcai***/
         private const String MineImageAsset  = @"Images\Sprites\blue-laser";
         private const String MinePickupAsset = @"Images\Sprites\Laser-beam-pickup";
@@ -196,7 +200,7 @@ namespace SpaceFist
             // Draw the background image with the dimensions of the screen
             BackgroundRect = new Rectangle(0, 0, Resolution.Width, Resolution.Height);
 
-            ScreenScale = .60f;
+            ScreenScale = .5f;
             
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -241,6 +245,8 @@ namespace SpaceFist
 
             CreditsTexture  = Content.Load<Texture2D>(CreditsAsset);
             ParticleTexture = Content.Load<Texture2D>(ParticleAsset);
+
+            EnemyMineTexture = Content.Load<Texture2D>(EnemyMineAsset);
 
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);

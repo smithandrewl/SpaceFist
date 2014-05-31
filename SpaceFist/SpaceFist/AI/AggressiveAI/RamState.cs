@@ -71,8 +71,8 @@ namespace SpaceFist.AI.DummyAI
 
             var millisecondsPassed = (DateTime.Now - lastUpdate).Milliseconds;
             
-            // Keep up to 3 waypoints, updating them every 100 milliseconds
-            if (millisecondsPassed > 100)
+            // Keep up to 3 waypoints, updating them every 25 milliseconds
+            if (millisecondsPassed > 25)
             {
                 if (WayPoints.Count < 3)
                 {
@@ -120,19 +120,25 @@ namespace SpaceFist.AI.DummyAI
                 }
                 else
                 {
+                    
                     // The line of sight vector
                     var direction = (wayPoint - new Vector2(Enemy.X, Enemy.Y)) * membership;
+                    
+                    var intX = MathHelper.Lerp(Enemy.Velocity.X, direction.X, .185f);
+                    var intY = MathHelper.Lerp(Enemy.Velocity.Y, direction.Y, .185f);
 
+                    direction = new Vector2(intX, intY);
+
+                    // Convert the direction to a unit vector
+                    direction.Normalize();
+                    
                     // The rotation of the ship needed for it to face in the direction of the next waypoint
                     var destRotation = (float)MathHelper.ToDegrees((float)(Math.Atan2(direction.Y, direction.X))) + 90;
 
                     Enemy.Rotation = MathHelper.ToRadians(destRotation);
-                   
-                    // Convert the direction to a unit vector
-                    direction.Normalize();
 
                     // Calculate a velocity to move along the line of sight at a magnitude of 5
-                    Enemy.Velocity = (direction * Speed) * membership;
+                    Enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), Speed, .15f) * membership));
                 }
             }
         }

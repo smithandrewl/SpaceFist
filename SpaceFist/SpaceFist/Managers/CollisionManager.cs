@@ -21,6 +21,7 @@ namespace SpaceFist.Managers
         private PlayerManager     shipManager;
         private PickUpManager     pickupManager;
         private EnemyManager      enemyManager;
+        private EnemyMineManager  enemyMineManager;
 
         private RoundData roundData;
         private Game      game;
@@ -33,6 +34,7 @@ namespace SpaceFist.Managers
             ExplosionManager  explosionManager,
             PickUpManager     pickupManager,
             EnemyManager      enemyManager,
+            EnemyMineManager  enemyMineManager,
             RoundData         roundData)
         {
             this.game             = game;
@@ -42,6 +44,7 @@ namespace SpaceFist.Managers
             this.explosionManager = explosionManager;
             this.pickupManager    = pickupManager;
             this.enemyManager     = enemyManager;
+            this.enemyMineManager = enemyMineManager;
             this.roundData        = roundData;
         }
         
@@ -54,6 +57,18 @@ namespace SpaceFist.Managers
             HandleEnemyShipCollisions();
             HandleEnemyRockCollisions();
             HandleProjectileShipCollisions();
+            HandleShipEnemyMineCollisions();
+        }
+
+        private void HandleShipEnemyMineCollisions()
+        {
+            foreach (var mine in enemyMineManager.Collisions(shipManager.Ship))
+            {
+                mine.Alive = false;
+                mine.Hit();
+                explosionManager.add(mine.X, mine.Y);
+                shipManager.ShipHit();
+            }
         }
 
         /// <summary>
