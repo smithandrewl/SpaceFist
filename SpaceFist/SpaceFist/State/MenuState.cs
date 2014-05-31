@@ -36,9 +36,9 @@ namespace SpaceFist.State
             var resolution = game.Resolution;
 
             backgroundRect = resolution;
-            background     = game.BackgroundRed;
+            background     = game.Textures["BackgroundRed"];
             
-            menu           = game.Menu;
+            menu           = game.Textures["Menu"];
 
             menuRect = new Rectangle(
                 (int) ((background.Width / 2f) - (menu.Width)), 

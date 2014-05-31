@@ -46,15 +46,15 @@ namespace SpaceFist
             TopRect = new Rectangle(
                     0,
                     0,
-                    game.HudTexture.Width,
-                    game.HudTexture.Height
+                    game.Textures["HudTexture"].Width,
+                    game.Textures["HudTexture"].Height
                 );
 
             BottomRect = new Rectangle(
                     0,
-                    game.Resolution.Height - game.HudTexture.Height,
-                    game.HudTexture.Width,
-                    game.HudTexture.Height
+                    game.Resolution.Height - game.Textures["HudTexture"].Height,
+                    game.Textures["HudTexture"].Width,
+                    game.Textures["HudTexture"].Height
                 );
         }
 
@@ -76,7 +76,7 @@ namespace SpaceFist
         public void Draw()
         {
             //Draw the top rectangle
-            game.SpriteBatch.Draw(game.HudTexture, TopRect, semiTransparent);
+            game.SpriteBatch.Draw(game.Textures["HudTexture"], TopRect, semiTransparent);
 
             // Write the score to the screen
             game.SpriteBatch.DrawString(
@@ -92,7 +92,7 @@ namespace SpaceFist
             );
 
             // Draw the bottom rectangle
-            game.SpriteBatch.Draw(game.HudTexture, BottomRect, semiTransparent);
+            game.SpriteBatch.Draw(game.Textures["HudTexture"], BottomRect, semiTransparent);
 
             // Write the controls message to the screen
             game.SpriteBatch.DrawString(

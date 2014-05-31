@@ -75,7 +75,7 @@ namespace SpaceFist.Managers
                 // Construct the block
                 var block = new SpaceBlock(
                     game,
-                    game.BlockTexture,
+                    game.Textures["BlockTexture"],
                     randomPos(),
                     randomVel()
                 );

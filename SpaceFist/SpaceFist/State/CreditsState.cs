@@ -36,7 +36,7 @@ namespace SpaceFist.State
             var centerX = (int) (0.5    * resolution.Width) - 103;
 
             game.SpriteBatch.Draw(
-                game.CreditsTexture, 
+                game.Textures["CreditsTexture"], 
                 game.Resolution, 
                 Color.White
             );

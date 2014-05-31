@@ -30,7 +30,7 @@ namespace SpaceFist.State
             var resolution = game.Resolution;
 
             game.SpriteBatch.Draw(
-                game.EndOfGameTexture, 
+                game.Textures["EndOfGameTexture"], 
                 new Rectangle(
                     0, 
                     0, 

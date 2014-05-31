@@ -39,44 +39,8 @@ namespace SpaceFist
         // -------------- ----------- Font(s) -----------------------
         public SpriteFont  Font             { get; set; }
 
+        public Dictionary<string, Texture2D> Textures { get; set; }
         // -------------------------- Textures ----------------------
-        public Texture2D   Background            { get; set; }
-        public Texture2D   BackgroundRed         { get; set; }
-        public Texture2D   Menu                  { get; set; }
-        public Texture2D   LaserTexture          { get; set; }
-        public Texture2D   BlockTexture          { get; set; }
-        public Texture2D   GameOverTexture       { get; set; }
-        public Texture2D   ShipSheet             { get; set; }
-        public Texture2D   EnemyTexture          { get; set; }
-        public Texture2D   EnemyFighterTexture   { get; set; }
-        public Texture2D   EnemyFreighterTexture { get; set; }
-        public Texture2D   ExplosionTexture      { get; set; }
-        public Texture2D   HudTexture            { get; set; } // The image of the
-                                                               // purple transparent window where the score is drawn.
-        
-        public Texture2D SampleProjectileTexture { get; set; }
-        public Texture2D HealthPickupTexture     { get; set; }
-        public Texture2D ExtraLifePickupTexture  { get; set; }
-        public Texture2D WeaponPickupTexture     { get; set; }
-
-        public Texture2D LevelStartTexture { get; set; }
-        public Texture2D LevelEndTexture   { get; set; }
-
-        public Texture2D EndOfGameTexture { get; set; }
-        public Texture2D LogoTexture      { get; set; }
-        public Texture2D CreditsTexture   { get; set; }
-
-        /****Dongcai**/
-        public Texture2D MissileTexture       { get; set; }
-        public Texture2D MissilePickupTexture { get; set; }
-
-        public Texture2D MineTexture       { get; set; }
-        public Texture2D MinePickupTexture { get; set; }
-        /***********/
-
-        public Texture2D ParticleTexture { get; set; }
-
-        public Texture2D EnemyMineTexture { get; set; }
 
         // ----------------------- Sounds -----------------------
         public SoundEffect LaserSound      { get; set; }
@@ -182,6 +146,7 @@ namespace SpaceFist
            
             Content.RootDirectory = "Content";
             gameData = new GameData();
+            Textures = new Dictionary<string, Texture2D>();
         }
        
         protected override void Initialize()
@@ -209,44 +174,44 @@ namespace SpaceFist
             Font = Content.Load<SpriteFont>(SpriteFontAsset);
             
             // Textures
-            Background         = Content.Load<Texture2D>(BackgroundAsset);
-            BackgroundRed      = Content.Load<Texture2D>(BackgroundRedAsset);
-            Menu               = Content.Load<Texture2D>(MenuAsset);
-            GameOverTexture    = Content.Load<Texture2D>(GameOverAsset);
-            LaserTexture       = Content.Load<Texture2D>(LaserImageAsset);
-            BlockTexture       = Content.Load<Texture2D>(BlockImageAsset);
-            ShipSheet          = Content.Load<Texture2D>(ShipSheetAsset);
+            Textures["Background"]        = Content.Load<Texture2D>(BackgroundAsset);
+            Textures["BackgroundRed"]      = Content.Load<Texture2D>(BackgroundRedAsset);
+            Textures["Menu"]               = Content.Load<Texture2D>(MenuAsset);
+            Textures["GameOverTexture"]    = Content.Load<Texture2D>(GameOverAsset);
+            Textures["LaserTexture"]       = Content.Load<Texture2D>(LaserImageAsset);
+            Textures["BlockTexture"]       = Content.Load<Texture2D>(BlockImageAsset);
+            Textures["ShipSheet"]          = Content.Load<Texture2D>(ShipSheetAsset);
             
-            EnemyTexture          = Content.Load<Texture2D>(EnemyAsset);
-            EnemyFighterTexture   = Content.Load<Texture2D>(EnemyFighterAsset);
-            EnemyFreighterTexture = Content.Load<Texture2D>(EnemyFreighterAsset);
-            ExplosionTexture      = Content.Load<Texture2D>(ExplosionAnimationAsset);
-            HudTexture            = Content.Load<Texture2D>(HUDAsset);
+            Textures["EnemyTexture"]          = Content.Load<Texture2D>(EnemyAsset);
+            Textures["EnemyFighterTexture"]   = Content.Load<Texture2D>(EnemyFighterAsset);
+            Textures["EnemyFreighterTexture"] = Content.Load<Texture2D>(EnemyFreighterAsset);
+            Textures["ExplosionTexture"]      = Content.Load<Texture2D>(ExplosionAnimationAsset);
+            Textures["HudTexture"]            = Content.Load<Texture2D>(HUDAsset);
 
-            HealthPickupTexture    = Content.Load<Texture2D>(HealthPickupAsset);
-            ExtraLifePickupTexture = Content.Load<Texture2D>(ExtraLifePickupAsset);
-            WeaponPickupTexture    = Content.Load<Texture2D>(WeaponPickupAsset);
+            Textures["HealthPickupTexture"]    = Content.Load<Texture2D>(HealthPickupAsset);
+            Textures["ExtraLifePickupTexture"] = Content.Load<Texture2D>(ExtraLifePickupAsset);
+            Textures["WeaponPickupTexture"]    = Content.Load<Texture2D>(WeaponPickupAsset);
 
-            SampleProjectileTexture = Content.Load<Texture2D>(SampleWeaponAsset);
+            Textures["SampleProjectileTexture"] = Content.Load<Texture2D>(SampleWeaponAsset);
 
-            LevelStartTexture = Content.Load<Texture2D>(LevelStartAsset);
-            LevelEndTexture   = Content.Load<Texture2D>(LevelEndAsset);
+            Textures["LevelStartTexture"] = Content.Load<Texture2D>(LevelStartAsset);
+            Textures["LevelEndTexture"]   = Content.Load<Texture2D>(LevelEndAsset);
 
-            EndOfGameTexture = Content.Load<Texture2D>(EndOfGameAsset);
-            LogoTexture      = Content.Load<Texture2D>(LogoAsset);
+            Textures["EndOfGameTexture"] = Content.Load<Texture2D>(EndOfGameAsset);
+            Textures["LogoTexture"]      = Content.Load<Texture2D>(LogoAsset);
 
             /***Dongcai********************/
-            MinePickupTexture = Content.Load<Texture2D>(MinePickupAsset);
-            MineTexture       = Content.Load<Texture2D>(MineImageAsset);
+            Textures["MinePickupTexture"] = Content.Load<Texture2D>(MinePickupAsset);
+            Textures["MineTexture"]       = Content.Load<Texture2D>(MineImageAsset);
 
-            MissileTexture       = Content.Load<Texture2D>(MissileImageAsset);
-            MissilePickupTexture = Content.Load<Texture2D>(MissilePickupAsset);
+            Textures["MissileTexture"]       = Content.Load<Texture2D>(MissileImageAsset);
+            Textures["MissilePickupTexture"] = Content.Load<Texture2D>(MissilePickupAsset);
             /*************************/
 
-            CreditsTexture  = Content.Load<Texture2D>(CreditsAsset);
-            ParticleTexture = Content.Load<Texture2D>(ParticleAsset);
+            Textures["CreditsTexture"]  = Content.Load<Texture2D>(CreditsAsset);
+            Textures["ParticleTexture"] = Content.Load<Texture2D>(ParticleAsset);
 
-            EnemyMineTexture = Content.Load<Texture2D>(EnemyMineAsset);
+            Textures["EnemyMineTexture"] = Content.Load<Texture2D>(EnemyMineAsset);
 
             // Sounds
             ExplosionSound    = Content.Load<SoundEffect>(ExplosionSoundAsset);

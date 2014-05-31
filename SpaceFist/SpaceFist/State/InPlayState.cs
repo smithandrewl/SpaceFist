@@ -227,8 +227,8 @@ namespace SpaceFist.State
                 Rectangle rect = new Rectangle(
                     rand.Next(0, maxX), 
                     rand.Next(0, maxY), 
-                    (int) (game.ParticleTexture.Width * scale), 
-                    (int) (game.ParticleTexture.Height * scale)
+                    (int) (game.Textures["ParticleTexture"].Width * scale), 
+                    (int) (game.Textures["ParticleTexture"].Height * scale)
                 );
 
                 debrisField.Add(rect);
@@ -291,7 +291,7 @@ namespace SpaceFist.State
         public void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             // Draw the background
-            game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
+            game.SpriteBatch.Draw(game.Textures["Background"], game.BackgroundRect, Color.White);
 
             // Draw the map
             Map.Draw(game.SpriteBatch, OnScreenWorld);
@@ -300,7 +300,7 @@ namespace SpaceFist.State
             foreach(var rect in debrisField)
             {
                 game.SpriteBatch.Draw(
-                    game.ParticleTexture, 
+                    game.Textures["ParticleTexture"], 
                     new Rectangle(
                         rect.X - (int)Camera.X, 
                         rect.Y - (int)Camera.Y, 
@@ -332,28 +332,28 @@ namespace SpaceFist.State
             int nearTop    = (int)((World.Top * .02) - Camera.Y);
 
             StartOfLevelMarkerPos = new Rectangle(
-                (int)halfWidth - (game.LevelStartTexture.Width / 2),
-                (int)nearBottom - game.LevelStartTexture.Height,
-                game.LevelStartTexture.Width,
-                game.LevelStartTexture.Height
+                (int)halfWidth - (game.Textures["LevelStartTexture"].Width / 2),
+                (int)nearBottom - game.Textures["LevelStartTexture"].Height,
+                game.Textures["LevelStartTexture"].Width,
+                game.Textures["LevelStartTexture"].Height
             );
 
             EndOfLevelMarkerPos = new Rectangle(
-                (int)halfWidth - (game.LevelEndTexture.Width / 2),
-                (int)nearTop + game.LevelEndTexture.Height,
-                game.LevelEndTexture.Width,
-                game.LevelEndTexture.Height
+                (int)halfWidth - (game.Textures["LevelEndTexture"].Width / 2),
+                (int)nearTop + game.Textures["LevelEndTexture"].Height,
+                game.Textures["LevelEndTexture"].Width,
+                game.Textures["LevelEndTexture"].Height
             );
 
             // Draw the level markers
             game.SpriteBatch.Draw(
-                game.LevelStartTexture,
+                game.Textures["LevelStartTexture"],
                 StartOfLevelMarkerPos,
                 Color.White
             );
 
             game.SpriteBatch.Draw(
-                game.LevelEndTexture,
+                game.Textures["LevelEndTexture"],
                 EndOfLevelMarkerPos,
                 Color.White
             );

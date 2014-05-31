@@ -40,7 +40,7 @@ namespace SpaceFist.Entities
                  ), 
                  new Physics(), 
                  new NullInputComponent(), 
-                 new IndexedSprite(game.ExplosionTexture, width, height), 
+                 new IndexedSprite(game.Textures["ExplosionTexture"], width, height), 
                  new NullSoundComponent(),
                  game.ScreenScale)
         {

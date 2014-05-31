@@ -47,8 +47,8 @@ namespace SpaceFist.State
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
             // Draw the game over image
-            game.SpriteBatch.Draw(game.GameOverTexture, game.BackgroundRect, Color.White);
-            game.SpriteBatch.Draw(game.GameOverTexture, game.BackgroundRect, Color.White);
+            game.SpriteBatch.Draw(game.Textures["GameOverTexture"], game.BackgroundRect, Color.White);
+            game.SpriteBatch.Draw(game.Textures["GameOverTexture"], game.BackgroundRect, Color.White);
             
             //If PlayTime is more than 60 senconds, display both a minute and second.
             if (game.gameData.minute > 0)

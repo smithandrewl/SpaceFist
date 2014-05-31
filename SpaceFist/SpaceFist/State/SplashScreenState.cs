@@ -79,7 +79,7 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
+            game.SpriteBatch.Draw(game.Textures["Background"], game.BackgroundRect, Color.White);
             game.SpriteBatch.Draw(overlayTexture, overlayRect, Color.White);
         }
 
