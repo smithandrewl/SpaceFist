@@ -66,7 +66,7 @@ namespace SpaceFist.Managers
             {
                 mine.Alive = false;
                 mine.Hit();
-                explosionManager.add(mine.X, mine.Y);
+                explosionManager.Add(mine.X, mine.Y);
                 shipManager.ShipHit();
             }
         }
