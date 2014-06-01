@@ -36,38 +36,15 @@ namespace SpaceFist
         public LogoState         LogoState         { get; set; }
         public CreditsState      CreditsState      { get; set; }
 
-        // ========================== The game assets ===============
         public SpriteFont  Font { get; set; }
 
         public Dictionary<string, Texture2D>   Textures     { get; set; }
         public Dictionary<string, SoundEffect> SoundEffects { get; set; }
         public Dictionary<string, Song>        Songs        { get; set; }
-        // ==================== End game assets ====================
-
-        //---------------- The paths to the game assets -----------------
-        private const String SpriteFontAsset         = @"Fonts\Raised";
-
-        private const String ExplosionSoundAsset     = @"Sound\Explosion";
-        private const String ThumpSoundAsset         = @"Sound\Thump";
-        private const String LaserSoundAsset         = @"Sound\Laser";
-
-        private const String ExtraLifeSoundAsset    = @"Sound\ExtraLife";
-        private const String HealthPickupSoundAsset = @"Sound\HealthPickup";
-        private const String WeaponPickupSoundAsset = @"Sound\WeaponPickup";
-
-        private const String TitleScreenSongAsset = @"Sound\TitleScreen";
-        private const String InPlaySongAsset      = @"Sound\InPlay";
-        private const String GameOverSongAsset    = @"Sound\GameOver";
-
-        private const String EnemyExplosionAsset = @"Sound\EnemyExplosion";
-        private const String PlayerDeathAsset    = @"Sound\PlayerDeath";
-        private const String PlayerSpawnAsset    = @"Sound\PlayerSpawn";
-
-        private const String EndOfGameSongAsset = @"Sound\EndOfGame";
+        
+        private const String SpriteFontAsset = @"Fonts\Raised";
 
         public GameData gameData { get; set; }
-
-        // -------------------------------------------------------------
 
         public SpriteBatch SpriteBatch {
             get {
@@ -125,6 +102,34 @@ namespace SpaceFist
             }
         }
 
+        private void LoadSongs()
+        {
+            String root = Content.RootDirectory;
+
+            DirectoryInfo inf = new DirectoryInfo(root + "/Sound/Songs");
+
+            foreach (var file in inf.EnumerateFiles())
+            {
+                string asset = file.Name.Substring(0, file.Name.IndexOf('.'));
+
+                Songs[asset] = Content.Load<Song>("Sound/Songs/" + asset);
+            }
+        }
+
+        private void LoadSoundEffects()
+        {
+            String root = Content.RootDirectory;
+
+            DirectoryInfo inf = new DirectoryInfo(root + "/Sound/SoundEffects");
+
+            foreach(var file in inf.EnumerateFiles())
+            {
+                string asset = file.Name.Substring(0, file.Name.IndexOf('.'));
+
+                SoundEffects[asset] = Content.Load<SoundEffect>("Sound/SoundEffects/" + asset);
+            }
+        }
+
         protected override void LoadContent()
         {
             this.Resolution = GraphicsDevice.Viewport.TitleSafeArea;
@@ -141,23 +146,8 @@ namespace SpaceFist
             Font = Content.Load<SpriteFont>(SpriteFontAsset);
 
             LoadTextures();
-
-            // Sounds
-            SoundEffects["Explosion"]    = Content.Load<SoundEffect>(ExplosionSoundAsset);
-            SoundEffects["Thump"]        = Content.Load<SoundEffect>(ThumpSoundAsset);
-            SoundEffects["Laser"]        = Content.Load<SoundEffect>(LaserSoundAsset);
-            SoundEffects["ExtraLife"]    = Content.Load<SoundEffect>(ExtraLifeSoundAsset);
-            SoundEffects["HealthPickup"] = Content.Load<SoundEffect>(HealthPickupSoundAsset);
-            SoundEffects["WeaponPickup"] = Content.Load<SoundEffect>(WeaponPickupSoundAsset);
-            SoundEffects["EnemyExplosion"]    = Content.Load<SoundEffect>(EnemyExplosionAsset);
-            SoundEffects["PlayerDeath"]       = Content.Load<SoundEffect>(PlayerDeathAsset);
-            SoundEffects["PlayerSpawn"]       = Content.Load<SoundEffect>(PlayerSpawnAsset);
-
-             // Songs
-            Songs["TitleScreen"] = Content.Load<Song>(TitleScreenSongAsset);
-            Songs["InPlay"]      = Content.Load<Song>(InPlaySongAsset);
-            Songs["GameOver"]    = Content.Load<Song>(GameOverSongAsset);
-            Songs["EndOfGame"]   = Content.Load<Song>(EndOfGameSongAsset);
+            LoadSongs();
+            LoadSoundEffects();
 
             SplashScreenState.LoadContent();
             InPlayState.LoadContent();
@@ -166,11 +156,6 @@ namespace SpaceFist
             LogoState.LoadContent();
 
             currentState.EnteringState();
-        }
-
-        protected override void UnloadContent()
-        {
-            
         }
 
         protected override void Update(GameTime gameTime)
