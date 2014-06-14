@@ -39,11 +39,11 @@ namespace SpaceFist.Components
             this.texture = texture;
         }
         
-        public void Draw(Game game, Entity obj)
+        public void Draw(GameData gameData, Entity obj)
         {
             // Calculate the portion of the texture to draw given the current index
             var sourceRect  = new Rectangle(Index * width, 0, width, height);
-            var spriteBatch = game.SpriteBatch;
+            var spriteBatch = gameData.SpriteBatch;
 
             // Calculate and draw the image at an offset (this causes the image to rotate around 
             // its center and not its upper left corner
@@ -52,17 +52,17 @@ namespace SpaceFist.Components
 
             spriteBatch.Draw(
                 texture, 
-                position - game.InPlayState.Camera, 
+                position - gameData.Camera, 
                 sourceRect,  
                 obj.Tint,
                 obj.Rotation, origin, 
-                game.ScreenScale, 
+                gameData.ScreenScale, 
                 SpriteEffects.None, 
                 0
             );
         }
 
-        public void Update(Game game, Entity obj)
+        public void Update(GameData gameData, Entity obj)
         {
         }
     }

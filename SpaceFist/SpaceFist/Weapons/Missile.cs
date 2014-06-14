@@ -13,16 +13,13 @@ namespace SpaceFist.Weapons
     class Missile : Weapon
     {
         private ProjectileManager projectileManager;
+        private GameData gameData;
 
-        private Ship ship;
-        private Game game;
-
-        public Missile(Game game, Ship ship)
+        public Missile(GameData gameData)
         {
-            this.game = game;
-            this.ship = ship;
+            this.gameData = gameData;
 
-            projectileManager = game.InPlayState.ProjectileManager;
+            projectileManager = gameData.ProjectileManager;
         }
 
         /// <summary>
@@ -30,8 +27,10 @@ namespace SpaceFist.Weapons
         /// </summary>
         public void fire()
         {
+            Ship ship = gameData.Ship;
+
             int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) - 6);
-            int projectileY = (int)((ship.Y - (35 * game.ScreenScale)));
+            int projectileY = (int)((ship.Y - (35 * gameData.ScreenScale)));
 
             projectileManager.fireMissile(projectileX, projectileY);
         }

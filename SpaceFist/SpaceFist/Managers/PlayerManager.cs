@@ -13,10 +13,8 @@ namespace SpaceFist.Managers
     /// </summary>
     public class PlayerManager
     {
-        Game      game;
+        GameData  gameData;
         RoundData roundData;
-
-        private Ship ship;
 
         // Damage the ship takes per hit
         private const int HitDamage = 10;
@@ -28,103 +26,96 @@ namespace SpaceFist.Managers
         {
             get
             {
-                return ship.Alive;
+                return gameData.Ship.Alive;
             }
         }
 
         /// <summary>
         /// Creates a new PlayerManager instance.
         /// </summary>
-        /// <param name="game">The game</param>
-        public PlayerManager(Game game)
+        /// <param name="gameData">Common game data</param>
+        public PlayerManager(GameData gameData)
         {
-            this.game = game;
-            roundData = game.InPlayState.RoundData;
-        }
-
-        public Ship Ship
-        {
-            get
-            {
-                return ship;
-            }
+            this.gameData = gameData;
+            roundData     = gameData.RoundData;
         }
         
         public void Initialize()
         {
-            ship.Initialize();
+            gameData.Ship.Initialize();
         }
 
         public void Update()
         {
-            if (ship.Alive)
+            if (gameData.Ship.Alive)
             {
-                ship.Update();
+                gameData.Ship.Update();
             }
         }
 
         public void Draw()
         {
-            if (ship.Alive)
+            if (gameData.Ship.Alive)
             {
-                ship.Draw();
+                gameData.Ship.Draw();
             }
         }
 
         public Ship Spawn()
         {
-            game.SoundEffects["PlayerSpawn"].Play();
+            gameData.SoundEffects["PlayerSpawn"].Play();
 
-            var resolution = game.Resolution;
-            var camera     = game.InPlayState.Camera;
+            var resolution = gameData.Resolution;
+            var camera     = gameData.Camera;
 
             // Start the ship at the bottom  in the center of the screen
 
             var startX = (int)((resolution.Width / 2) + camera.X);
             var startY = (int)((resolution.Height * .85) + camera.Y);
 
-            if (ship != null)
+            if (gameData.Ship != null)
             {
-                ship.CurrentState = new SpawningState(ship);
+                gameData.Ship.CurrentState = new SpawningState(gameData);
 
-                ship.X     = startX;
-                ship.Y     = startY;
-                ship.Alive = true;
+                gameData.Ship.X     = startX;
+                gameData.Ship.Y     = startY;
+                gameData.Ship.Alive = true;
             }
             else
             {
-                ship = new Ship(game, new Vector2(startX, startY));
+                gameData.Ship = new Ship(gameData, new Vector2(startX, startY));
+                gameData.Ship.CurrentState.EnteringState();
             }
 
-            ship.Velocity = StartingVelocity;
+            gameData.Ship.Velocity = StartingVelocity;
 
-           return ship;
+           return gameData.Ship;
         }
 
         public void HandleDeath()
         {
-            ship.OnDeath();
+            gameData.Ship.OnDeath();
 
             if (roundData.Lives > 0)
             {
                 roundData.Lives--;
-                ship.HealthPoints = 100;
+                gameData.Ship.HealthPoints = 100;
 
                 Spawn();
             }
             else
             {
-                ship.Alive = false;
+                gameData.Ship.Alive = false;
             }
 
-            ship.Weapon = new LaserWeapon(game, ship);
+            gameData.Ship.Weapon = new LaserWeapon(gameData);
         }
 
         internal void ShipHit()
         {
-            ship.HealthPoints -= HitDamage;
+            gameData.Ship.HealthPoints -= HitDamage;
 
-            if (ship.HealthPoints <= 0)
+            if (gameData.Ship.HealthPoints <= 0)
             {
                 HandleDeath();
             }
@@ -149,7 +140,7 @@ namespace SpaceFist.Managers
         // with the laser weapon.
         internal void ResetWeapon()
         {
-            ship.Weapon = new LaserWeapon(game, ship);
+            gameData.Ship.Weapon = new LaserWeapon(gameData);
         }
     }
 }

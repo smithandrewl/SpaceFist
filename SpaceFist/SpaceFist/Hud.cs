@@ -20,7 +20,7 @@ namespace SpaceFist
         private String scoreDisplay = "";
 
         private Vector2       controlsPosition;
-        private Game          game;
+        private GameData      gameData;
         private RoundData     roundData;
         private PlayerManager shipManager;
         private Vector2       scorePosition;
@@ -30,13 +30,13 @@ namespace SpaceFist
         private Color color           = Color.LightGoldenrodYellow;
         private Color semiTransparent = new Color(255, 255, 255, .8f);
 
-        public Hud(Game game, PlayerManager shipManager)
+        public Hud(GameData gameData, PlayerManager shipManager)
         {
-            this.game        = game;
-            this.roundData   = game.InPlayState.RoundData;
+            this.gameData    = gameData;
+            this.roundData   = gameData.RoundData;
             this.shipManager = shipManager;
 
-            var resolution = game.Resolution;
+            var resolution = gameData.Resolution;
 
             controlsPosition = new Vector2(
                 (resolution.Width * .5f) - (controlsMsg.Length * 5),
@@ -46,15 +46,15 @@ namespace SpaceFist
             TopRect = new Rectangle(
                     0,
                     0,
-                    game.Textures["Hud"].Width,
-                    game.Textures["Hud"].Height
+                    gameData.Textures["Hud"].Width,
+                    gameData.Textures["Hud"].Height
                 );
 
             BottomRect = new Rectangle(
                     0,
-                    game.Resolution.Height - game.Textures["Hud"].Height,
-                    game.Textures["Hud"].Width,
-                    game.Textures["Hud"].Height
+                    gameData.Resolution.Height - gameData.Textures["Hud"].Height,
+                    gameData.Textures["Hud"].Width,
+                    gameData.Textures["Hud"].Height
                 );
         }
 
@@ -63,46 +63,46 @@ namespace SpaceFist
             scoreDisplay = String.Format(
                 ScoreFormat, 
                 roundData.Score, 
-                shipManager.Ship.Health, 
+                gameData.Ship.Health, 
                 roundData.Lives
             );
 
             scorePosition = new Vector2(
-                (game.Resolution.Width * .5f) - (scoreDisplay.Length * 5),
-                 game.Resolution.Height * .001f
+                (gameData.Resolution.Width * .5f) - (scoreDisplay.Length * 5),
+                 gameData.Resolution.Height * .001f
             );
         }
 
         public void Draw()
         {
             //Draw the top rectangle
-            game.SpriteBatch.Draw(game.Textures["Hud"], TopRect, semiTransparent);
+            gameData.SpriteBatch.Draw(gameData.Textures["Hud"], TopRect, semiTransparent);
 
             // Write the score to the screen
-            game.SpriteBatch.DrawString(
-                game.Font,
+            gameData.SpriteBatch.DrawString(
+                gameData.Font,
                 scoreDisplay,
                 scorePosition,
                 color,
                 0f,
                 Vector2.Zero,
-                game.ScreenScale,
+                gameData.ScreenScale,
                 SpriteEffects.None,
                 0
             );
 
             // Draw the bottom rectangle
-            game.SpriteBatch.Draw(game.Textures["Hud"], BottomRect, semiTransparent);
+            gameData.SpriteBatch.Draw(gameData.Textures["Hud"], BottomRect, semiTransparent);
 
             // Write the controls message to the screen
-            game.SpriteBatch.DrawString(
-                game.Font,
+            gameData.SpriteBatch.DrawString(
+                gameData.Font,
                 controlsMsg,
                 controlsPosition,
                 color,
                 0f,
                 Vector2.Zero,
-                game.ScreenScale,
+                gameData.ScreenScale,
                 SpriteEffects.None,
                 0
             );

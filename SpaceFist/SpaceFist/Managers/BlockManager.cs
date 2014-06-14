@@ -21,9 +21,9 @@ namespace SpaceFist.Managers
         /// <summary>
         /// Creates a new BlockManager instance.
         /// </summary>
-        /// <param name="game">The game</param>
-        public BlockManager(Game game)
-            : base(game)
+        /// <param name="gameData">Common game data</param>
+        public BlockManager(GameData gameData)
+            : base(gameData)
         {
             rand = new Random();
         }
@@ -48,8 +48,8 @@ namespace SpaceFist.Managers
         /// <returns>A random point in the world</returns>
         private Vector2 randomPos()
         {
-            int randX = rand.Next(0, game.InPlayState.World.Width);
-            int randY = rand.Next(0, (int)game.InPlayState.World.Height);
+            int randX = rand.Next(0, gameData.World.Width);
+            int randY = rand.Next(0, (int)gameData.World.Height);
 
             return new Vector2(randX, randY);
         }
@@ -74,8 +74,8 @@ namespace SpaceFist.Managers
             {
                 // Construct the block
                 var block = new SpaceBlock(
-                    game,
-                    game.Textures["Block"],
+                    gameData,
+                    gameData.Textures["Block"],
                     randomPos(),
                     randomVel()
                 );
@@ -90,7 +90,7 @@ namespace SpaceFist.Managers
         // off of the edges of the world.
         private void KeepOnWorld(Entity obj)
         {
-            var world = game.InPlayState.World;
+            var world = gameData.World;
             if ((obj.X > world.Width) ||
                 (obj.X < 0) ||
                 (obj.Y > world.Height) ||
@@ -107,8 +107,8 @@ namespace SpaceFist.Managers
         /// <returns>Blocks which are visible to the player</returns>
         public IEnumerable<SpaceBlock> VisibleBlocks()
         {
-            var camera = game.InPlayState.Camera;
-            var bounds = game.BackgroundRect;
+            var camera = gameData.Camera;
+            var bounds = gameData.Resolution;
 
             // The portion of the game world being shown on
             // the screen.
@@ -125,6 +125,15 @@ namespace SpaceFist.Managers
                 select block;
 
             return res;
+        }
+
+        public override void Update()
+        {
+            foreach(var block in this) {
+                KeepOnWorld(block);
+            }
+
+            base.Update();
         }
     }
 }

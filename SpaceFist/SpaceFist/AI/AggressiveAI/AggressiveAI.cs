@@ -21,15 +21,14 @@ namespace SpaceFist.AI.DummyAI
         /// <summary>
         /// Creates a new AggressiveAI instance.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="enemy">The enemy this AI will control</param>
-        /// <param name="ship">The players ship</param>
-        public AggressiveAI(Game game, Enemy enemy, Ship ship)
+        public AggressiveAI(GameData gameData, Enemy enemy)
         {
-            ShipInfo      = new AI.ShipInfo(ship, game.InPlayState.RoundData);
-            ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ship, ShipInfo, game);
+            ShipInfo      = new AI.ShipInfo(gameData);
+            ShipEnemyInfo = new AI.ShipEnemyInfo(enemy, ShipInfo, gameData);
 
-            ramState = new RamState(this);
+            ramState = new RamState(this, gameData);
         }
 
         public void Update()

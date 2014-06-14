@@ -22,15 +22,15 @@ namespace SpaceFist.AI.AggressiveAI
         /// Creates a new FireState instance
         /// </summary>
         /// <param name="ai">The AI this state belongs to.</param>
-        /// <param name="game">The game</param>
-        public FireState(EnemyAI ai, Game game)
+        /// <param name="gameData">Common game data</param>
+        public FireState(EnemyAI ai, GameData gameData)
         {
             this.AI            = ai;
             this.ShipInfo      = AI.ShipInfo;
             this.ShipEnemyInfo = AI.ShipEnemyInfo;
             lastFire           = DateTime.Now;
 
-            this.projectileManager = game.InPlayState.ProjectileManager;
+            this.projectileManager = gameData.ProjectileManager;
         }
 
         public override void Update()

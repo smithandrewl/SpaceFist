@@ -87,31 +87,30 @@ namespace SpaceFist
         /// <summary>
         /// Creates a new Ship instance at the specified location.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="position">The location of the ship in the game world.</param>
-        public Ship(Game game, Vector2 position)
-            : base(game, 
+        public Ship(GameData gameData, Vector2 position)
+            : base(gameData, 
                    new Rectangle(
                        (int)position.X, 
                        (int)position.Y, 
-                       (int)(Width  * (game.ScreenScale / 2)), 
-                       (int)(Height * (game.ScreenScale / 2))
+                       (int)(Width  * (gameData.ScreenScale / 2)), 
+                       (int)(Height * (gameData.ScreenScale / 2))
                    ),
                    new Physics(), 
                    new ShipInput(), 
-                   new IndexedSprite(game.Textures["ShipSheet"], Width, Height, 4),
-                   new Sound(game.SoundEffects["PlayerDeath"]),
-                   game.ScreenScale)
+                   new IndexedSprite(gameData.Textures["ShipSheet"], Width, Height, 4),
+                   new Sound(gameData.SoundEffects["PlayerDeath"]),
+                   gameData.ScreenScale)
         {
             indexedSprite = (IndexedSprite) graphics;
             HealthPoints  = 100;
 
             // Start out with the laser weapon
-            Weapon = new LaserWeapon(game, this);
+            Weapon = new LaserWeapon(gameData);
 
             // Start the ship in the spawning state
-            state = new SpawningState(this);
-            state.EnteringState();
+            state = new SpawningState(gameData);
         }
 
         /// <summary>
@@ -127,7 +126,7 @@ namespace SpaceFist
         /// </summary>
         public void ResetState()
         {
-            CurrentState = new NormalState(this);
+            CurrentState = new NormalState(gameData);
             Reset();
         }
 

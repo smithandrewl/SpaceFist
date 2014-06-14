@@ -11,6 +11,6 @@ namespace SpaceFist.Components.Abstract
     /// </summary>
     public interface GraphicsComponent : Component
     {
-        void Draw(Game game, Entity obj);
+        void Draw(GameData gameData, Entity obj);
     }
 }

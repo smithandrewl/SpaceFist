@@ -18,8 +18,8 @@ namespace SpaceFist.Managers
         /// <summary>
         /// Creates a new ProjectileManager instance
         /// </summary>
-        /// <param name="game">The game</param>
-        public ProjectileManager(Game game): base(game)
+        /// <param name="gameData">Common game data</param>
+        public ProjectileManager(GameData gameData): base(gameData)
         {
         }
 
@@ -28,11 +28,11 @@ namespace SpaceFist.Managers
 
             foreach (var projectile in entities)
             {
-                var resolution = game.Resolution;
+                var resolution = gameData.Resolution;
                 
                 var rect = new Rectangle(
-                    (int)game.InPlayState.Camera.X, 
-                    (int)game.InPlayState.Camera.Y, 
+                    (int)gameData.Camera.X, 
+                    (int)gameData.Camera.Y, 
                     resolution.Width, 
                     resolution.Height
                 );
@@ -72,14 +72,14 @@ namespace SpaceFist.Managers
         /// <param name="enemyLaser">Whether this laser belongs to an enemy</param>
         public void fireLaser(int x, int y, Vector2 direction, bool enemyLaser = false)
         {
-            game.InPlayState.RoundData.ShotsFired++;
+            gameData.RoundData.ShotsFired++;
 
             float rotation = ((float) MathHelper.ToDegrees((float) Math.Atan2(direction.Y, direction.X)) + 90);
 
             // Place a new active laser at x, y
             Projectile projectile = new Projectile(
-                game, 
-                game.Textures["Laser"], 
+                gameData, 
+                gameData.Textures["Laser"], 
                 new Vector2(x, y), 
                 direction, 
                 9, 
@@ -99,8 +99,8 @@ namespace SpaceFist.Managers
         /// <param name="y">The Y component of the location</param>
         public void fireSampleWeapon(int x, int y)
         {
-            var onScreen = new List<Entity>(game.InPlayState.EnemyManager.VisibleEnemies());
-            onScreen.AddRange(game.InPlayState.BlockManager.VisibleBlocks());
+            var onScreen = new List<Entity>(gameData.EnemyManager.VisibleEnemies());
+            onScreen.AddRange(gameData.BlockManager.VisibleBlocks());
 
             onScreen = new List<Entity>(onScreen.Where(entity => entity.Y < y));
 
@@ -116,11 +116,11 @@ namespace SpaceFist.Managers
                     // Mark targeted entities by tinting them red
                     target.Tint = Color.Crimson;
 
-                    game.InPlayState.RoundData.ShotsFired++;
+                    gameData.RoundData.ShotsFired++;
 
                     Projectile projectile = new Projectile(
-                        game,
-                        game.Textures["SampleWeapon"],
+                        gameData,
+                        gameData.Textures["SampleWeapon"],
                         new Vector2(x, y),
                         new Vector2(0, -1),
                         10
@@ -140,11 +140,11 @@ namespace SpaceFist.Managers
         /*******Dongcai**********/
         public void fireBluelaser(int x, int y)
         {
-            game.InPlayState.RoundData.ShotsFired++;
+            gameData.RoundData.ShotsFired++;
          
             Projectile projectile = new Projectile(
-                game, 
-                game.Textures["Mine"], 
+                gameData, 
+                gameData.Textures["Mine"], 
                 new Vector2(x, y), 
                 new Vector2(0, 0), 
                 0
@@ -155,11 +155,11 @@ namespace SpaceFist.Managers
 
         public void fireMissile(int x, int y)
         {
-            game.InPlayState.RoundData.ShotsFired++;
+            gameData.RoundData.ShotsFired++;
 
             Projectile projectile = new Projectile(
-                game, 
-                game.Textures["Missile"], 
+                gameData, 
+                gameData.Textures["Missile"], 
                 new Vector2(x, y), 
                 new Vector2(0, -1), 
                 20
@@ -168,8 +168,8 @@ namespace SpaceFist.Managers
             Add(projectile);
 
             Projectile projectile1 = new Projectile(
-                game, 
-                game.Textures["Missile"], 
+                gameData, 
+                gameData.Textures["Missile"], 
                 new Vector2(x + 50, y), 
                 new Vector2(0, -1), 
                 10
@@ -178,8 +178,8 @@ namespace SpaceFist.Managers
             Add(projectile1);
 
             Projectile projectile2 = new Projectile(
-                game, 
-                game.Textures["Missile"], 
+                gameData, 
+                gameData.Textures["Missile"], 
                 new Vector2(x - 50, y), 
                 new Vector2(0, -1), 
                 10

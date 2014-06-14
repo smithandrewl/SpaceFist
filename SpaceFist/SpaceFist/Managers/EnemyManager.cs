@@ -19,8 +19,8 @@ namespace SpaceFist.Managers
         /// <summary>
         /// Creates a new EnemyManager instance.
         /// </summary>
-        /// <param name="game">The game</param>
-        public EnemyManager(Game game): base(game)
+        /// <param name="gameData">Common game data</param>
+        public EnemyManager(GameData gameData): base(gameData)
         {
             rand        = new Random();
         }
@@ -31,7 +31,7 @@ namespace SpaceFist.Managers
         /// <param name="count">The number of fighters to spawn</param>
         public void SpawnEnemyFighters(int count)
         {
-            SpawnEnemies(count, position => new EnemyFighter(game, position));
+            SpawnEnemies(count, position => new EnemyFighter(gameData, position));
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace SpaceFist.Managers
         /// <param name="count">The number of freighters to spawn</param>
         public void SpawnEnemyFreighters(int count)
         {
-            SpawnEnemies(count, position => new EnemyFreighter(game, position));
+            SpawnEnemies(count, position => new EnemyFreighter(gameData, position));
         }
 
        
@@ -69,11 +69,11 @@ namespace SpaceFist.Managers
             SpawnEnemies(
                 count,
                 0, 
-                game.InPlayState.World.Width, 
+                gameData.World.Width, 
                 0,
                 (int)MathHelper.Max(
-                    game.InPlayState.World.Height *.9f,
-                    game.Resolution.Height / 2
+                    gameData.World.Height *.9f,
+                    gameData.Resolution.Height / 2
                 ),
                 func
             );
@@ -94,8 +94,8 @@ namespace SpaceFist.Managers
         /// <returns></returns>
         public IEnumerable<Enemy> VisibleEnemies()
         {
-            var camera         = game.InPlayState.Camera;
-            var backgroundRect = game.BackgroundRect;
+            var camera         = gameData.Camera;
+            var backgroundRect = gameData.Resolution;
 
             var screenRect = new Rectangle(
                 (int)camera.X, 

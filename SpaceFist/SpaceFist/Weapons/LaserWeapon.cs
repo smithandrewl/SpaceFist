@@ -13,26 +13,24 @@ namespace SpaceFist.Weapons
     {
         private ProjectileManager projectileManager;
         
-        private Game game;
-        private Ship ship;
+        private GameData gameData;
 
         /// <summary>
         /// Creates a new LaserWeapon instance
         /// </summary>
-        /// <param name="game">The game</param>
-        /// <param name="ship">The ship</param>
-        public LaserWeapon(Game game, Ship ship)
+        /// <param name="gameData">Common game data</param>
+        public LaserWeapon(GameData gameData)
         {
-            this.game = game;
-            this.ship = ship;
+            this.gameData = gameData;
         
-            this.projectileManager = game.InPlayState.ProjectileManager;
+            this.projectileManager = gameData.ProjectileManager;
         }
 
         public void fire()
         {
+            Ship ship = gameData.Ship;
             int projectileX = (int) (ship.X + (ship.Rectangle.Width / 2));
-            int projectileY = (int) ((ship.Y - (35 * game.ScreenScale)));
+            int projectileY = (int) ((ship.Y - (35 * gameData.ScreenScale)));
 
             projectileManager.fireLaser(projectileX, projectileY);  
         }

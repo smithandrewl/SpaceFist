@@ -16,7 +16,7 @@ namespace SpaceFist
         {
         }
         
-        public void Update(Game game, Entity obj)
+        public void Update(GameData gameData, Entity obj)
         {
             obj.X += (int)obj.Velocity.X;
             obj.Y += (int)obj.Velocity.Y;

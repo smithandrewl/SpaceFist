@@ -19,25 +19,27 @@ namespace SpaceFist.State.ShipStates
         // This gives the ship time to fully fade-in from transparent to opaque.
         private const int SpawnTime = 1;
 
-        private Ship     Ship      { get; set; }
+        private GameData gameData;
         private DateTime SpawnedAt { get; set; }
 
-        public SpawningState(Ship ship)
+        public SpawningState(GameData gameData)
         {
-            Ship = ship;
+            this.gameData = gameData;
         }
         
         public void Update()
         {
+            Ship ship = gameData.Ship;
+
             byte increment = 5;
 
             // If the ship is not fully visible, increase its visibility
-            if (Ship.Tint.A < 255)
+            if (ship.Tint.A < 255)
             {
-                Ship.Tint.A += increment;
-                Ship.Tint.R += increment;
-                Ship.Tint.G += increment;
-                Ship.Tint.B += increment;
+                ship.Tint.A += increment;
+                ship.Tint.R += increment;
+                ship.Tint.G += increment;
+                ship.Tint.B += increment;
             }
 
             // The number of seconds the ship has been in this state
@@ -46,7 +48,7 @@ namespace SpaceFist.State.ShipStates
             // After the ship fades in, switch to the normal statea
             if (elapsed > SpawnTime)
             {
-                Ship.CurrentState = new NormalState(Ship);
+                ship.CurrentState = new NormalState(gameData);
             }
         }
 
@@ -55,7 +57,7 @@ namespace SpaceFist.State.ShipStates
             SpawnedAt = DateTime.Now;
 
             // Set the color to transparent so that it can fade into full visibility
-            Ship.Tint = Color.Transparent;
+            gameData.Ship.Tint = Color.Transparent;
         }
 
         public void ExitingState()

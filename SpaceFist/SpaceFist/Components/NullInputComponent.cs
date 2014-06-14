@@ -11,7 +11,7 @@ namespace SpaceFist.Components
     /// </summary>
     public class NullInputComponent : InputComponent
     {
-        public void Update(Game game, Entity obj)
+        public void Update(GameData gameData, Entity obj)
         {
         }
     }

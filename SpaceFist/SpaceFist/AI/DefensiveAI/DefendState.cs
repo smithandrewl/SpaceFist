@@ -16,7 +16,6 @@ namespace SpaceFist.AI.DefensiveAI
         public ShipInfo      ShipInfo      { get; set; }
         public ShipEnemyInfo ShipEnemyInfo { get; set; }
         public Enemy         Enemy         { get; set; }
-        public Ship          Ship          { get; set; }
 
         public DefendState(EnemyAI ai)
         {

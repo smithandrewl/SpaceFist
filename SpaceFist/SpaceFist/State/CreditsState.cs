@@ -14,12 +14,12 @@ namespace SpaceFist.State
     /// </summary>
     public class CreditsState : GameState
     {
-        private Game     game;
-        private DateTime enteredAt;
+        private GameData     gameData;
+        private DateTime     enteredAt;
 
-        public CreditsState(Game game)
+        public CreditsState(GameData gameData)
         {
-            this.game = game;
+            this.gameData = gameData;
         }
 
         public void LoadContent()
@@ -28,77 +28,77 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            var resolution = game.Resolution;
+            var resolution = gameData.Resolution;
 
             var y       = (int) (0.63   * resolution.Height);
             var leftX   = (int) (0.1    * resolution.Width);
             var rightX  = (int) (0.7325 * resolution.Width);
             var centerX = (int) (0.5    * resolution.Width) - 103;
 
-            game.SpriteBatch.Draw(
-                game.Textures["Credits"], 
-                game.Resolution, 
+            gameData.SpriteBatch.Draw(
+                gameData.Textures["Credits"], 
+                gameData.Resolution, 
                 Color.White
             );
 
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Dongcai Huang",     
                 new Vector2(leftX, y),  
                 Color.White
             );
             
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Programming", 
                 new Vector2(leftX, y + 30), 
                 Color.PeachPuff
             );
             
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Art Selection", 
                 new Vector2(leftX, y + 45), 
                 Color.PeachPuff
             );
 
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Tatsuya Takahashi", 
                 new Vector2(rightX, y), 
                 Color.White
             );
             
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Programming", 
                 new Vector2(rightX + 40, y + 30), 
                 Color.PeachPuff
             );
             
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Andrew Smith", 
                 new Vector2(centerX, y), 
                 Color.White
             );
             
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Programming / AI", 
                 new Vector2(centerX - 30, y + 30), 
                 Color.PeachPuff
             );
             
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Art Selection", 
                 new Vector2(centerX, y + 45), 
                 Color.PeachPuff
             );
             
-            game.SpriteBatch.DrawString(
-                game.Font, 
+            gameData.SpriteBatch.DrawString(
+                gameData.Font, 
                 "Sound Selection", 
                 new Vector2(centerX - 10, y + 60), 
                 Color.PeachPuff
@@ -118,20 +118,18 @@ namespace SpaceFist.State
                     keys.IsKeyDown(Keys.Enter)              || 
                     keys.IsKeyDown(Keys.Escape))
                 {
-                    game.CurrentState = game.MenuState;
+                    gameData.CurrentState = gameData.MenuState;
                 }
             }
         }
 
         public void EnteringState()
         {
-            game.IsMouseVisible = true;
             enteredAt           = DateTime.Now;
         }
 
         public void ExitingState()
         {
-            game.IsMouseVisible = false;
         }
     }
 }

@@ -21,10 +21,10 @@ namespace SpaceFist.Managers
         /// <summary>
         /// Creates a new instance of PickupManager.
         /// </summary>
-        /// <param name="game">The game</param>
-        public PickUpManager(Game game): base(game)
+        /// <param name="gameData">Common game data</param>
+        public PickUpManager(GameData gameData): base(gameData)
         {
-            roundData    = game.InPlayState.RoundData;
+            roundData    = gameData.RoundData;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace SpaceFist.Managers
         /// <param name="spawnFunction">A function to spawn a specific pickup type</param>
         public void SpawnPickups(int count, Action<int, int> spawnFunction)
         {
-            var world = game.InPlayState.World;
+            var world = gameData.World;
 
             for (int i = 0; i < count; i++)
             {
@@ -62,13 +62,13 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.Textures["WeaponPickup"],
-                    game.SoundEffects["WeaponPickup"],
+                    gameData,
+                    gameData.Textures["WeaponPickup"],
+                    gameData.SoundEffects["WeaponPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
-                        ship.Weapon = new SampleWeapon(game, ship);
+                        ship.Weapon = new SampleWeapon(gameData, ship);
                         return true;
                     });
 
@@ -94,14 +94,14 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.Textures["MinePickup"],
-                    game.SoundEffects["WeaponPickup"],
+                    gameData,
+                    gameData.Textures["MinePickup"],
+                    gameData.SoundEffects["WeaponPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
                     {
-                        ship.Weapon = new Bluelaser(game, ship);
+                        ship.Weapon = new Bluelaser(gameData);
                         return true;
                     });
 
@@ -116,14 +116,14 @@ namespace SpaceFist.Managers
         public void SpawnMissilePickup(int x, int y)
         {
             var pickup = new Pickup(
-                game,
-                game.Textures["MissilePickUp"],
-                game.SoundEffects["WeaponPickup"],
+                gameData,
+                gameData.Textures["MissilePickUp"],
+                gameData.SoundEffects["WeaponPickup"],
                 new Vector2(x, y),
                 Vector2.Zero,
                 (ship) =>
                 {
-                    ship.Weapon = new Missile(game, ship);
+                    ship.Weapon = new Missile(gameData);
 
                     return true;
                 }
@@ -143,9 +143,9 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.Textures["HealthPickup"],
-                    game.SoundEffects["HealthPickup"],
+                    gameData,
+                    gameData.Textures["HealthPickup"],
+                    gameData.SoundEffects["HealthPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -179,9 +179,9 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.Textures["ExtraLifePickup"],
-                    game.SoundEffects["ExtraLife"],
+                    gameData,
+                    gameData.Textures["ExtraLifePickup"],
+                    gameData.SoundEffects["ExtraLife"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>

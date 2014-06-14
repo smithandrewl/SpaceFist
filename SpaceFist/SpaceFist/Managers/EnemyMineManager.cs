@@ -10,14 +10,14 @@ namespace SpaceFist.Managers
     public class EnemyMineManager: Manager<EnemyMine>
     {
 
-        public EnemyMineManager(Game game): base(game)
+        public EnemyMineManager(GameData gameData): base(gameData)
         {
-            this.game = game;
+            this.gameData = gameData;
         }
 
         public void SpawnEnemyMine(int x, int y)
         {
-            Add(new EnemyMine(game, new Vector2(x, y)));
+            Add(new EnemyMine(gameData, new Vector2(x, y)));
         }
     }
 }

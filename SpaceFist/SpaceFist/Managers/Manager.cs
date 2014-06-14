@@ -13,11 +13,11 @@ namespace SpaceFist.Managers
         private Random rand = new Random();
 
         protected List<T> entities;
-        protected Game game;
+        protected GameData gameData;
 
-        public Manager(Game game)
+        public Manager(GameData gameData)
         {
-            this.game = game;
+            this.gameData = gameData;
             this.entities = new List<T>();
         }
 

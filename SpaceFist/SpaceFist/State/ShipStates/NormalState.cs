@@ -18,26 +18,27 @@ namespace SpaceFist.State.ShipStates
     {
         // The percentage of full health at which the ship is considered to have low-health.
         private const float LowHealthThreshold = .40f;
+        private GameData gameData;
 
-        private Ship ship { get; set; }
-
-        public NormalState(Ship ship)
+        public NormalState(GameData gameData)
         {
-            this.ship = ship;
+            this.gameData = gameData;
         }
 
         public void Update()
         {
+            Ship ship = gameData.Ship;
+
             if (ship.Health <= LowHealthThreshold)
             {
                 // Change the ships state to LowHealthState
-                ship.CurrentState = new LowHealthState(ship);
+                ship.CurrentState = new LowHealthState(gameData);
             } 
         }
 
         public void EnteringState()
         {
-            ship.Tint = Color.White;    
+            gameData.Ship.Tint = Color.White;    
         }
 
         public void ExitingState()

@@ -36,7 +36,6 @@ namespace SpaceFist.AI
         // ship data
         private float health;
         private int   speed;
-        private Ship  ship;
 
         // round data
         private RoundData roundData;
@@ -46,7 +45,8 @@ namespace SpaceFist.AI
         private FuzzyVariable fuzzySpeed;
         private FuzzyVariable fuzzyHealth;
         private FuzzyVariable fuzzyTriggerHappy;
-        private FuzzyVariable fuzzyAccuracy;
+        private FuzzyVariable fuzzyAccuracy;       
+        private GameData      gameData;
         // ===============================================================
 
         /// <summary>
@@ -97,12 +97,11 @@ namespace SpaceFist.AI
         /// <summary>
         /// Creates a new ShipInfo instance.
         /// </summary>
-        /// <param name="ship">The ship to gather data from.</param>
-        /// <param name="roundData">Information about how the player has been playing.</param>
-        public ShipInfo(Ship ship, RoundData roundData)
+        /// <param name="gameData">Common game data</param>
+        public ShipInfo(GameData gameData)
         {
-            this.ship         = ship;
-            this.roundData    = roundData;
+            this.roundData    = gameData.RoundData;
+            this.gameData     = gameData;
 
             fuzzyHealth       = new FuzzyVariable { Name = "Health"        };
             fuzzySpeed        = new FuzzyVariable { Name = "Speed"         };
@@ -113,8 +112,8 @@ namespace SpaceFist.AI
         public override void Update()
         {
             // The ships speed is the magnitude of its velocity
-            speed  = (int) ship.Velocity.Length();
-            health = ship.Health;
+            speed  = (int) gameData.Ship.Velocity.Length();
+            health = gameData.Ship.Health;
 
             if (DisplayDebug)
             {

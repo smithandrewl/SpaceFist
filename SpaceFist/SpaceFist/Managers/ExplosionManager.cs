@@ -10,15 +10,15 @@ namespace SpaceFist.Managers
     /// <summary>
     /// Keeps track of all of the explosions in the world.
     /// </summary>
-    class ExplosionManager : Manager<Explosion>
+    public class ExplosionManager : Manager<Explosion>
     {
         /// <summary>
         /// Creates a new ExplosionManager instance.
         /// </summary>
-        /// <param name="game">The game</param>
-        public ExplosionManager(Game game) : base(game)
+        /// <param name="gameData">Common game data</param>
+        public ExplosionManager(GameData gameData) : base(gameData)
         {
-            this.game  = game;
+            this.gameData  = gameData;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace SpaceFist.Managers
         /// <param name="y">The Y component of the location</param>
         public void Add(int x, int y)
         {
-            var explosion = new Explosion(game, new Vector2(x, y));
+            var explosion = new Explosion(gameData, new Vector2(x, y));
             Add(explosion);
         }
     }
