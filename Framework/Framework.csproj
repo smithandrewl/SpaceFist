@@ -59,6 +59,8 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParticleEngine\Particle.cs" />
+    <Compile Include="ParticleEngine\ParticleEmitter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
