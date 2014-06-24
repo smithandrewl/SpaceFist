@@ -71,7 +71,7 @@ namespace Framework.ParticleEngine
             if (alive)
             {
                 // add more particles if needed
-                if ((DateTime.Now - lastEmission).TotalMilliseconds > freq)
+                if ((particles.Count < maxParticles) && ((DateTime.Now - lastEmission).TotalMilliseconds > freq))
                 {
                     for (int i = 0; i < 3; i++)
                     {
@@ -90,8 +90,10 @@ namespace Framework.ParticleEngine
                         // 1,  6
                         var scale = rand.Next(particleOptions.MinScale, particleOptions.MaxScale);
 
-                        particles.Add(new Particle(texture, scale, rotation, angularVelocity, velocity, particleOptions.Ttl, Color.Yellow, Position));
+                        particles.Add(new Particle(texture, scale, rotation, angularVelocity, velocity, particleOptions.Ttl, Color.White, Position));
                     }
+
+                    lastEmission = DateTime.Now;
                 }
 
                 // update all particles

@@ -20,7 +20,11 @@ namespace ParticleEngineTeset
         GraphicsDeviceManager graphics;
         SpriteBatch           spriteBatch;
         Texture2D             part;
+        Texture2D             plusSign;
         ParticleEmitter       plasmaBallEmitter;
+        ParticleEmitter       plusSignEmitter;
+        ParticleEmitter       explosionEmitter;
+        private Texture2D explosion;
 
         public Game1()
         {
@@ -51,14 +55,34 @@ namespace ParticleEngineTeset
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             part = Content.Load<Texture2D>("Particle");
+            plusSign = Content.Load<Texture2D>("Particle2");
+            explosion = Content.Load<Texture2D>("Particle3");
 
             plasmaBallEmitter = new ParticleEmitter(
                 part, 
                 1000,
-                50, 
-                new Vector2(400, 300), 
+                10, 
+                new Vector2(200, 100), 
                 spriteBatch,
                 new ParticleOptions(1.25f, 450, -360, 360, 0, 3, 1, 6)
+            );
+
+            plusSignEmitter = new ParticleEmitter(
+                plusSign,
+                40,
+                100,
+                new Vector2(400, 100),
+                spriteBatch,
+                new ParticleOptions(.75f, 1000, -360, 360, 0, 0, 1, 2)
+            );
+
+            explosionEmitter = new ParticleEmitter(
+                explosion,
+                500,
+                25,
+                new Vector2(600, 100),
+                spriteBatch,
+                new ParticleOptions(1.25f, 500, 0, 50, 0, 0, 1, 7)
             );
         }
 
@@ -85,10 +109,12 @@ namespace ParticleEngineTeset
             var mouse = Mouse.GetState();
 
 
-            plasmaBallEmitter.Position = new Vector2(mouse.X, mouse.Y);
+            //explosionEmitter.Position = new Vector2(mouse.X, mouse.Y);
 
             // TODO: Add your update logic here
             plasmaBallEmitter.Update();
+            plusSignEmitter.Update();
+            explosionEmitter.Update();
             base.Update(gameTime);
         }
 
@@ -103,6 +129,9 @@ namespace ParticleEngineTeset
 
             // TODO: Add your drawing code here
             plasmaBallEmitter.Draw();
+            plusSignEmitter.Draw();
+            explosionEmitter.Draw();
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
