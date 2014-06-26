@@ -108,6 +108,7 @@ namespace Framework.ParticleEngine
                         particlesToRemove.Add(particle);
                     }
                 }
+
                 // remove expired particles
                 foreach (var particle in particlesToRemove)
                 {

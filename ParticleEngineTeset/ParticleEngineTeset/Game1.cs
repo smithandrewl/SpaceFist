@@ -20,10 +20,10 @@ namespace ParticleEngineTeset
         GraphicsDeviceManager graphics;
         SpriteBatch           spriteBatch;
         Texture2D             part;
-        Texture2D             plusSign;
         ParticleEmitter       plasmaBallEmitter;
-        ParticleEmitter       plusSignEmitter;
         ParticleEmitter       explosionEmitter;
+        SpriteFont            font;
+
         private Texture2D explosion;
 
         public Game1()
@@ -55,8 +55,8 @@ namespace ParticleEngineTeset
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             part = Content.Load<Texture2D>("Particle");
-            plusSign = Content.Load<Texture2D>("Particle2");
             explosion = Content.Load<Texture2D>("Particle3");
+            font = Content.Load<SpriteFont>("SpriteFont1");
 
             plasmaBallEmitter = new ParticleEmitter(
                 part, 
@@ -67,20 +67,11 @@ namespace ParticleEngineTeset
                 new ParticleOptions(1.25f, 450, -360, 360, 0, 3, 1, 6)
             );
 
-            plusSignEmitter = new ParticleEmitter(
-                plusSign,
-                40,
-                100,
-                new Vector2(400, 100),
-                spriteBatch,
-                new ParticleOptions(.75f, 1000, -360, 360, 0, 0, 1, 2)
-            );
-
             explosionEmitter = new ParticleEmitter(
                 explosion,
                 500,
                 25,
-                new Vector2(600, 100),
+                new Vector2(400, 100),
                 spriteBatch,
                 new ParticleOptions(1.25f, 500, 0, 50, 0, 0, 1, 7)
             );
@@ -113,7 +104,6 @@ namespace ParticleEngineTeset
 
             // TODO: Add your update logic here
             plasmaBallEmitter.Update();
-            plusSignEmitter.Update();
             explosionEmitter.Update();
             base.Update(gameTime);
         }
@@ -129,8 +119,10 @@ namespace ParticleEngineTeset
 
             // TODO: Add your drawing code here
             plasmaBallEmitter.Draw();
-            plusSignEmitter.Draw();
+            spriteBatch.DrawString(font, "Plasma Ball", new Vector2(150, 150), Color.White);
+
             explosionEmitter.Draw();
+            spriteBatch.DrawString(font, "Explosion", new Vector2(350, 150), Color.White);
 
             spriteBatch.End();
             base.Draw(gameTime);
