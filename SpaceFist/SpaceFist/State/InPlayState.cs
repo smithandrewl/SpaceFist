@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 using FuncWorks.XNA.XTiled;
 using SpaceFist.Entities.Enemies;
+using SpaceFist.ParticleEngine;
 
 namespace SpaceFist.State
 {
@@ -63,8 +64,8 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var resolution   = gameData.Resolution;
-            var screenRect   = new Rectangle(0, 0, resolution.Width, resolution.Height);
+            var resolution = gameData.Resolution;
+            var screenRect = new Rectangle(0, 0, resolution.Width, resolution.Height);
 
             Map = gameData.Content.Load<Map>(@"Maps\01");
 
@@ -212,6 +213,8 @@ namespace SpaceFist.State
                 // If the player has been killed, switch to the game over state
                 gameData.CurrentState = gameData.GameOverState;
             }
+
+            var mouse = Mouse.GetState();
 
             hud.Update();
         }

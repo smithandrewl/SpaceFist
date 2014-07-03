@@ -16,10 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{FB95CCB1-B65F-4E9B-97B7-5B7ABB32A83E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticleEngineTeset", "ParticleEngineTeset\ParticleEngineTeset\ParticleEngineTeset.csproj", "{E9AA775C-084C-468F-9716-C008102C3242}"
-EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ParticleEngineTesetContent", "ParticleEngineTeset\ParticleEngineTesetContent\ParticleEngineTesetContent.contentproj", "{94B2EE7C-2F21-4706-B9C5-9D91F8861D12}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,22 +52,6 @@ Global
 		{FB95CCB1-B65F-4E9B-97B7-5B7ABB32A83E}.Release|Mixed Platforms.Build.0 = Release|x86
 		{FB95CCB1-B65F-4E9B-97B7-5B7ABB32A83E}.Release|x86.ActiveCfg = Release|x86
 		{FB95CCB1-B65F-4E9B-97B7-5B7ABB32A83E}.Release|x86.Build.0 = Release|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Debug|x86.ActiveCfg = Debug|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Debug|x86.Build.0 = Debug|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Release|Any CPU.ActiveCfg = Release|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Release|Mixed Platforms.Build.0 = Release|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Release|x86.ActiveCfg = Release|x86
-		{E9AA775C-084C-468F-9716-C008102C3242}.Release|x86.Build.0 = Release|x86
-		{94B2EE7C-2F21-4706-B9C5-9D91F8861D12}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{94B2EE7C-2F21-4706-B9C5-9D91F8861D12}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{94B2EE7C-2F21-4706-B9C5-9D91F8861D12}.Debug|x86.ActiveCfg = Debug|x86
-		{94B2EE7C-2F21-4706-B9C5-9D91F8861D12}.Release|Any CPU.ActiveCfg = Release|x86
-		{94B2EE7C-2F21-4706-B9C5-9D91F8861D12}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{94B2EE7C-2F21-4706-B9C5-9D91F8861D12}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Framework.ParticleEngine
+namespace SpaceFist.ParticleEngine
 {
     public class Particle
     {
