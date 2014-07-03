@@ -16,11 +16,11 @@ namespace SpaceFist.State
     /// </summary>
     public class GameOverState : GameState
     {
-        private Game game;
+        private GameData gameData;
 
-        public GameOverState(Game game)
+        public GameOverState(GameData gameData)
         {
-            this.game = game;
+            this.gameData = gameData;
         }
 
         public void LoadContent()
@@ -31,7 +31,7 @@ namespace SpaceFist.State
         public void EnteringState()
         {
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.GameOverSong);
+            MediaPlayer.Play(gameData.Songs["GameOver"]);
         }
 
         public void Update()
@@ -40,48 +40,15 @@ namespace SpaceFist.State
 
             if (keys.IsKeyDown(Keys.Enter) || keys.IsKeyDown(Keys.Escape))
             {
-                game.CurrentState = game.SplashScreenState;
+                gameData.CurrentState = gameData.SplashScreenState;
             }
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
             // Draw the game over image
-            game.SpriteBatch.Draw(game.GameOverTexture, game.BackgroundRect, Color.White);
-            game.SpriteBatch.Draw(game.GameOverTexture, game.BackgroundRect, Color.White);
-            
-            //If PlayTime is more than 60 senconds, display both a minute and second.
-            if (game.gameData.minute > 0)
-            {
-                game.SpriteBatch.DrawString(
-                    game.Font, 
-                    "PLAYTIME: "                        + 
-                        game.gameData.minute.ToString() + 
-                        " minutes "                     +
-                        game.gameData.second.ToString() + 
-                        " seconds", 
-                    new Vector2(550f, 450f), 
-                    Color.Red
-                );
-            }
-            else {
-                game.SpriteBatch.DrawString(
-                    game.Font, 
-                    "PLAYTIME: " + 
-                        game.gameData.second.ToString() +
-                        " seconds", 
-                    new Vector2(550f, 450f), 
-                    Color.Red
-                );
-            }
-
-            game.SpriteBatch.DrawString(
-                game.Font, 
-                "SCORE: " + 
-                    game.gameData.finalScore.ToString(), 
-                new Vector2(550f, 500f), 
-                Color.Red
-            );
+            gameData.SpriteBatch.Draw(gameData.Textures["GameOver"], gameData.Resolution, Color.White);
+            gameData.SpriteBatch.Draw(gameData.Textures["GameOver"], gameData.Resolution, Color.White);
         }
 
         public void ExitingState()

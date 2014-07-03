@@ -17,7 +17,7 @@ namespace SpaceFist.Components
         private bool aDown     = false;
         private bool dDown     = false;
 
-        public void Update(Game game, Entity obj)
+        public void Update(GameData gameData, Entity obj)
         {
             var ship = (Ship) obj;
 

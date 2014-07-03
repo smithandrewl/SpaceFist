@@ -12,21 +12,18 @@ namespace SpaceFist.Weapons
     class Bluelaser : Weapon
     {
         private ProjectileManager projectileManager;
-
-        private Ship ship;
-        private Game game;
+        private GameData gameData;
 
         /// <summary>
         /// Creates a new Bluelaser instance.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="ship">The players ship</param>
-        public Bluelaser(Game game, Ship ship)
+        public Bluelaser(GameData gameData)
         {
-            this.game = game;
-            this.ship = ship;
+            this.gameData = gameData;
 
-            projectileManager = game.InPlayState.ProjectileManager;
+            projectileManager = gameData.ProjectileManager;
         }
 
         /// <summary>
@@ -34,8 +31,10 @@ namespace SpaceFist.Weapons
         /// </summary>
         public void fire()
         {
-            int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) - (20 * game.ScreenScale));
-            int projectileY = (int)((ship.Y - (35 * game.ScreenScale)));
+            Ship ship = gameData.Ship;
+
+            int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) - (20 * gameData.ScreenScale));
+            int projectileY = (int)((ship.Y - (35 * gameData.ScreenScale)));
 
             projectileManager.fireBluelaser(projectileX, projectileY);
         }

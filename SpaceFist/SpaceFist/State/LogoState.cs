@@ -20,23 +20,23 @@ namespace SpaceFist.State
 
         private const int loadTime = 3;
         
-        private Game game;
+        private GameData gameData;
 
-        public LogoState(Game game)
+        public LogoState(GameData gameData)
         {
-            this.game = game;
+            this.gameData = gameData;
         }
 
         public void LoadContent()
         {
-            background = game.LogoTexture;
+            background = gameData.Textures["Logo"];
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            game.SpriteBatch.Draw(
+            gameData.SpriteBatch.Draw(
                 background, 
-                game.Resolution, 
+                gameData.Resolution, 
                 Color.White
             );
         }
@@ -49,7 +49,7 @@ namespace SpaceFist.State
                 keys.IsKeyDown(Keys.Enter)                          || 
                 keys.IsKeyDown(Keys.Escape))
             {
-                game.CurrentState = game.SplashScreenState;
+                gameData.CurrentState = gameData.SplashScreenState;
             }
         }
 

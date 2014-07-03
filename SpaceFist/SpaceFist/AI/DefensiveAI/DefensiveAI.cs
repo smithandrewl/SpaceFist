@@ -17,15 +17,15 @@ namespace SpaceFist.AI.DefensiveAI
         /// <summary>
         /// Creates a new DefensiveAI instance.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="enemy">The enemy this AI will control</param>
-        public DefensiveAI(Game game, Enemy enemy)
+        public DefensiveAI(GameData gameData, Enemy enemy)
         {
-            ShipInfo      = new ShipInfo(game.InPlayState.ship, game.InPlayState.RoundData);
-            ShipEnemyInfo = new ShipEnemyInfo(enemy, game.InPlayState.ship, ShipInfo, game);
+            ShipInfo      = new ShipInfo(gameData);
+            ShipEnemyInfo = new ShipEnemyInfo(enemy, ShipInfo, gameData);
 
             defendState = new DefendState(this);
-            fireState = new FireState(this, game);
+            fireState = new FireState(this, gameData);
         }
         /// <summary>
         /// Fuzzy information about the ship specific to the enemy this AI controls

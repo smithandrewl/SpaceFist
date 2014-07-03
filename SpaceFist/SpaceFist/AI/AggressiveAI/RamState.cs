@@ -19,24 +19,25 @@ namespace SpaceFist.AI.DummyAI
         public List<Vector2> WayPoints { get; set; }
         public EnemyAI       AI        { get; set; }
         public Enemy         Enemy     { get; set; }
-        public Ship          Ship      { get; set; }
 
+        private GameData gameData;
         private DateTime lastUpdate;
         private Random   random;
         private float    membership;
 
         private const int Speed = 6;
 
-        public RamState(EnemyAI ai)
+        public RamState(EnemyAI ai, GameData gameData)
         {
             random = new Random();
 
             AI        = ai;
-            Ship      = ai.ShipEnemyInfo.Ship;
             Enemy     = ai.ShipEnemyInfo.Enemy;
             WayPoints = new List<Vector2>();
 
             lastUpdate = DateTime.Now;
+
+            this.gameData = gameData;
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace SpaceFist.AI.DummyAI
                     int randX = random.Next(-10, 10);
                     int randY = random.Next(-10, 10);
 
-                    var shipLocation = new Microsoft.Xna.Framework.Vector2(Ship.X + randX, Ship.Y + randY);
+                    var shipLocation = new Microsoft.Xna.Framework.Vector2(gameData.Ship.X + randX, gameData.Ship.Y + randY);
 
                     if (!WayPoints.Contains(shipLocation))
                     {

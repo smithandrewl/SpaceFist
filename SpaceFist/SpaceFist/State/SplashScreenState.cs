@@ -18,7 +18,7 @@ namespace SpaceFist.State
     /// </summary>
     public class SplashScreenState : GameState
     {
-        Game      game;
+        GameData  gameData;
         Texture2D overlayTexture;
         Rectangle overlayRect;
         DateTime  enteredAt;
@@ -26,25 +26,23 @@ namespace SpaceFist.State
         /// <summary>
         /// Creates a new SplashScreenState instance.
         /// </summary>
-        /// <param name="game">The game</param>
-        public SplashScreenState(Game game)
+        /// <param name="gameData">Common game data</param>
+        public SplashScreenState(GameData gameData)
         {
-            this.game = game;
+            this.gameData = gameData;
         }
 
         public void LoadContent()
         {
-            var resolution = game.Resolution;
+            var resolution = gameData.Resolution;
 
-            overlayTexture = game.Content.Load<Texture2D>(@"Images\Backgrounds\TitleScreen");
+            overlayTexture = gameData.Content.Load<Texture2D>(@"Images\Backgrounds\TitleScreen");
             overlayRect    = new Rectangle(0, 0, resolution.Width, resolution.Height);
         }
 
         public void EnteringState()
         {
             enteredAt = DateTime.Now;
-
-            game.IsMouseVisible = true;
         }
 
         public void Update()
@@ -56,7 +54,7 @@ namespace SpaceFist.State
             
             if (timeDiff.Seconds > 3)
             {
-                game.CurrentState = game.MenuState;
+                gameData.CurrentState = gameData.MenuState;
             }
 
             // This waits 300 milliseconds after the splash screen state has been entered
@@ -67,25 +65,24 @@ namespace SpaceFist.State
                     keyboardState.IsKeyDown(Keys.Space) ||
                     keyboardState.IsKeyDown(Keys.Escape))
                 {
-                    game.CurrentState = game.MenuState;
+                    gameData.CurrentState = gameData.MenuState;
                 }
 
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    game.CurrentState = game.MenuState;
+                    gameData.CurrentState = gameData.MenuState;
                 }
             }
         }
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            game.SpriteBatch.Draw(game.Background, game.BackgroundRect, Color.White);
-            game.SpriteBatch.Draw(overlayTexture, overlayRect, Color.White);
+            gameData.SpriteBatch.Draw(gameData.Textures["Background"], gameData.Resolution, Color.White);
+            gameData.SpriteBatch.Draw(overlayTexture, overlayRect, Color.White);
         }
 
         public void ExitingState()
         {
-            game.IsMouseVisible = false;
         }
     }
 }

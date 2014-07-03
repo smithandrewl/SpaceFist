@@ -44,13 +44,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Backgrounds\Purple.png">
-      <Name>Purple</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Images\Sprites\Block.png">
       <Name>Block</Name>
       <Importer>TextureImporter</Importer>
@@ -71,39 +64,10 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Sprites\Ship4.png">
-      <Name>Ship4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Images\Sprites\ShipSheet.png">
       <Name>ShipSheet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\explosion.wav">
-      <Name>explosion</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Sound\laser.wav">
-      <Name>laser</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Sound\thump.wav">
-      <Name>thump</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Images\Animations\explosion.png">
-      <Name>explosion</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -118,13 +82,6 @@
   <ItemGroup>
     <Compile Include="Images\Backgrounds\GameOver.png">
       <Name>GameOver</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Images\Sprites\SampleProjectile.png">
-      <Name>SampleProjectile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -159,90 +116,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sound\ExtraLife.wav">
-      <Name>ExtraLife</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\HealthPickup.mp3">
-      <Name>HealthPickup</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\WeaponPickup.mp3">
-      <Name>WeaponPickup</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Images\Sprites\Enemy.png">
-      <Name>Enemy</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Blown Away.mp3">
-      <Name>Blown Away</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="Sound\Space 1990-B.mp3">
-      <Name>Space 1990-B</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Local Forecast.mp3">
-      <Name>Local Forecast</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\EnemyExplosion.wav">
-      <Name>EnemyExplosion</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Sound\PlayerDeath.wav">
-      <Name>PlayerDeath</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Spawn.mp3">
-      <Name>Spawn</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Fonts\Raised.png">
       <Name>Raised</Name>
       <Importer>TextureImporter</Importer>
       <Processor>FontTextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Images\Backgrounds\vortex_0.png">
-      <Name>vortex_0</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\There It Is.mp3">
-      <Name>There It Is</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -265,23 +142,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprites\blue-laser.png">
-      <Name>blue-laser</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Images\Sprites\Laser-beam-pickup.png">
-      <Name>Laser-beam-pickup</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Images\Backgrounds\Credits.png">
       <Name>Credits</Name>
     </Compile>
-    <Compile Include="Images\Sprites\MissileImage.png">
-      <Name>MissileImage</Name>
+    <Compile Include="Images\Sprites\Missile.png">
+      <Name>Missile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -292,17 +157,150 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Sprites\Particle1.png">
-      <Name>Particle1</Name>
+    <Compile Include="Maps\01.tmx">
+      <Name>01</Name>
+      <Importer>TMXContentImporter</Importer>
+      <Processor>TMXContentProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprites\EnemyMine.png">
+      <Name>EnemyMine</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Maps\01.tmx">
-      <Name>01</Name>
-      <Importer>TMXContentImporter</Importer>
-      <Processor>TMXContentProcessor</Processor>
+    <Compile Include="Images\Backgrounds\Background.png">
+      <Name>Background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Backgrounds\EndOfGame.png">
+      <Name>EndOfGame</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprites\Mine.png">
+      <Name>Mine</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\MinePickup.png">
+      <Name>MinePickup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprites\Particle.png">
+      <Name>Particle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\Sprites\SampleWeapon.png">
+      <Name>SampleWeapon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprites\EnemyFighter.png">
+      <Name>EnemyFighter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprites\EnemyFreighter.png">
+      <Name>EnemyFreighter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Animations\Explosion.png">
+      <Name>Explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\SoundEffects\EnemyExplosion.wav">
+      <Name>EnemyExplosion</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\Explosion.wav">
+      <Name>Explosion</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\ExtraLife.wav">
+      <Name>ExtraLife</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\HealthPickup.mp3">
+      <Name>HealthPickup</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\Laser.wav">
+      <Name>Laser</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\PlayerDeath.wav">
+      <Name>PlayerDeath</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\PlayerSpawn.mp3">
+      <Name>PlayerSpawn</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\Thump.wav">
+      <Name>Thump</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\SoundEffects\WeaponPickup.mp3">
+      <Name>WeaponPickup</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Sprites\Particle3.png">
+      <Name>Particle3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Songs\EndOfGame.mp3">
+      <Name>EndOfGame</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\Songs\GameOver.mp3">
+      <Name>GameOver</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\Songs\InPlay.mp3">
+      <Name>InPlay</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\Songs\TitleScreen.mp3">
+      <Name>TitleScreen</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

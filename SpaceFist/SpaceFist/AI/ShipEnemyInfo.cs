@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
 using SpaceFist.Entities;
+using System;
 
 namespace SpaceFist.AI
 {
@@ -22,11 +22,10 @@ namespace SpaceFist.AI
         private int distance;
         // ------------- Crisp Input -----------------
 
-        private Game game;
+        private GameData gameData;
         private FuzzyVariable fuzzyDistance;
 
         public Enemy    Enemy    { get; set; }
-        public Ship     Ship     { get; set; }
         public ShipInfo ShipInfo { get; set; }
 
         private DateTime lastPrint = DateTime.Now;
@@ -35,15 +34,13 @@ namespace SpaceFist.AI
         /// Creates a new ShipEnemyInfo instance.
         /// </summary>
         /// <param name="enemy">The enemy this information is relevant to</param>
-        /// <param name="ship">The players ship</param>
         /// <param name="shipInfo">General ship information</param>
-        /// <param name="game">The game</param>
-        public ShipEnemyInfo(Enemy enemy, Ship ship, ShipInfo shipInfo, Game game)
+        /// <param name="gameData">Common game Data</param>
+        public ShipEnemyInfo(Enemy enemy, ShipInfo shipInfo, GameData gameData)
         {
             this.Enemy    = enemy;
-            this.Ship     = ship;
             this.ShipInfo = shipInfo;
-            this.game     = game;
+            this.gameData = gameData;
 
             /// <summary>
             /// The fuzzy distance from the player to the enemy.
@@ -69,7 +66,7 @@ namespace SpaceFist.AI
             {
                 if (Enemy.Alive)
                 {
-                    return game.InPlayState.OnScreenWorld.Contains(new Point(Enemy.X, Enemy.Y));
+                    return gameData.OnScreenWorld.Contains(new Point(Enemy.X, Enemy.Y));
                 }
                 else
                 {
@@ -85,7 +82,7 @@ namespace SpaceFist.AI
         public Vector2 LineOfSight { 
             get 
             {
-                var shipPos  = new Vector2(Ship.X, Ship.Y);
+                var shipPos  = new Vector2(gameData.Ship.X, gameData.Ship.Y);
                 var enemyPos = new Vector2(Enemy.X, Enemy.Y);
 
                 var diff = (shipPos - enemyPos);
@@ -98,8 +95,8 @@ namespace SpaceFist.AI
         public override void Update()
         {
             // update distance
-            int xDiff = Ship.X - Enemy.X;
-            int yDiff = Ship.Y - Enemy.Y;
+            int xDiff = gameData.Ship.X - Enemy.X;
+            int yDiff = gameData.Ship.Y - Enemy.Y;
 
             distance = (int) Math.Sqrt((xDiff * xDiff) + (yDiff * yDiff));
 

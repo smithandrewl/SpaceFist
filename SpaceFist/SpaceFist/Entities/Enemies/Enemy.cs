@@ -21,8 +21,8 @@ namespace SpaceFist.Entities
        /// </summary>
        public EnemyAI AI { get; set; }
 
-       public Enemy(Game game, Texture2D enemyTexture, SoundEffect sound, Vector2 position) : 
-           base(game, 
+       public Enemy(GameData gameData, Texture2D enemyTexture, SoundEffect sound, Vector2 position) : 
+           base(gameData, 
                 new Rectangle(
                     (int) position.X, 
                     (int) position.Y, 
@@ -33,7 +33,7 @@ namespace SpaceFist.Entities
                 new NullInputComponent(), 
                 new Sprite(enemyTexture),
                 new Sound(sound), 
-                game.ScreenScale)
+                gameData.ScreenScale)
        {
            Rotation = (float) ((3 * Math.PI) / 2);
        }

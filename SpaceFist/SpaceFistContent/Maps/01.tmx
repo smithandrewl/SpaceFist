@@ -30,16 +30,16 @@
   <object type="FighterZone" x="243" y="5325">
    <ellipse/>
   </object>
-  <object type="FighterZone" x="965" y="5377">
+  <object type="FighterZone" x="952" y="5269">
    <ellipse/>
   </object>
-  <object type="FighterZone" x="1073" y="5443">
+  <object type="FighterZone" x="1060" y="5335">
    <ellipse/>
   </object>
-  <object type="FighterZone" x="1180" y="5503">
+  <object type="FighterZone" x="1167" y="5395">
    <ellipse/>
   </object>
-  <object type="FighterZone" x="1277" y="5563">
+  <object type="FighterZone" x="1264" y="5455">
    <ellipse/>
   </object>
   <object type="FighterZone" x="355" y="5260">
@@ -68,7 +68,7 @@
   </object>
   <object name="Fighter Zone" type="FighterZone" x="112" y="4840" width="1185" height="368">
    <properties>
-    <property name="count" value="15"/>
+    <property name="count" value="5"/>
    </properties>
    <ellipse/>
   </object>
@@ -161,26 +161,197 @@
   </object>
   <object name="Fighter Zone" type="FighterZone" x="128" y="832" width="384" height="320">
    <properties>
-    <property name="count" value="7"/>
+    <property name="count" value="3"/>
    </properties>
    <ellipse/>
   </object>
   <object name="Fighter Zone" type="FighterZone" x="960" y="896" width="384" height="320">
    <properties>
-    <property name="count" value="7"/>
+    <property name="count" value="3"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="FreighterZone" x="640" y="320">
+  <object type="FreighterZone" x="705" y="176">
    <ellipse/>
   </object>
-  <object type="FreighterZone" x="640" y="448">
+  <object type="FreighterZone" x="705" y="304">
    <ellipse/>
   </object>
-  <object type="FreighterZone" x="576" y="384">
+  <object type="FreighterZone" x="641" y="240">
    <ellipse/>
   </object>
-  <object type="FreighterZone" x="704" y="384">
+  <object type="FreighterZone" x="769" y="244">
+   <ellipse/>
+  </object>
+  <object name="Fighter Zone" type="FighterZone" x="64" y="6464" width="1280" height="768">
+   <properties>
+    <property name="count" value="15"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Mines" x="720" y="2894">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="589" y="2888">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="660" y="2834">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="269" y="3134">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="138" y="3128">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="209" y="3074">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="1038" y="3124">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="907" y="3118">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="978" y="3064">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="676" y="3309">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="545" y="3303">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="616" y="3249">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="403" y="5942">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="463" y="6002">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="332" y="5996">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="687" y="5825">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="747" y="5885">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="616" y="5879">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="1028" y="5961">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="1088" y="6021">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="957" y="6015">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="744" y="6058">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="804" y="6118">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="673" y="6112">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="431" y="6133">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="491" y="6193">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="360" y="6187">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="1159" y="5577">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="1219" y="5637">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="1088" y="5631">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="795" y="5563">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="855" y="5623">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="724" y="5617">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="403" y="5597">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="463" y="5657">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="332" y="5651">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="159" y="707">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="95" y="643">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="223" y="647">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="159" y="579">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="1187" y="699">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="1123" y="635">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="1251" y="639">
+   <ellipse/>
+  </object>
+  <object type="FreighterZone" x="1187" y="571">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="392" y="725">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="488" y="641">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="441" y="679">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="657" y="438">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="704" y="400">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="608" y="484">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="744" y="439">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="789" y="484">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="893" y="631">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="978" y="715">
+   <ellipse/>
+  </object>
+  <object type="Mines" x="933" y="669">
    <ellipse/>
   </object>
  </objectgroup>

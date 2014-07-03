@@ -23,12 +23,12 @@ namespace SpaceFist.Entities
         /// <summary>
         /// Creates a new SpaceBlock instance with a specified position and velocity.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="texture">The image for the block</param>
         /// <param name="position">The position of the block in the game world</param>
         /// <param name="velocity">The velocity of the block</param>
-        public SpaceBlock(Game game, Texture2D texture, Vector2 position, Vector2 velocity) : 
-            base(game, 
+        public SpaceBlock(GameData gameData, Texture2D texture, Vector2 position, Vector2 velocity) : 
+            base(gameData, 
                  new Rectangle(
                      (int) position.X, 
                      (int) position.Y, 
@@ -37,10 +37,10 @@ namespace SpaceFist.Entities
                  new Physics(), 
                  new NullInputComponent(), 
                  new Sprite(texture),
-                 new Sound(game.ExplosionSound),
-                 game.ScreenScale)
+                 new Sound(gameData.SoundEffects["Explosion"]),
+                 gameData.ScreenScale)
         {
-            thump = new Sound(game.ExplosionSound);
+            thump = new Sound(gameData.SoundEffects["Explosion"]);
 
             Velocity = velocity;
         }

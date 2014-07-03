@@ -30,7 +30,7 @@ namespace SpaceFist
     /// </summary>
     public class Entity
     {
-        protected Game               game;
+        protected GameData           gameData;
         protected Rectangle          rectangle;
         protected PhysicsComponent   physics;
         protected InputComponent     input;
@@ -102,24 +102,23 @@ namespace SpaceFist
             }
         }
 
-        public Game Game
+        public GameData GameData
         {
             get 
             { 
-                return game; 
+                return gameData; 
             }
         }
 
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="rectangle">The size and position of the entity</param>
         /// <param name="physics">The physics component to use</param>
         /// <param name="input">The input component to use</param>
         /// <param name="graphics">The graphics component to use</param>
         /// <param name="sound">The sound component to use</param>
-        /// <param name="scale">The scale / size of the entity</param>
         /// <param name="rotation">The rotation of the entity.  The default rotation is 0 degrees.</param>
         public Entity(
-            Game              game, 
+            GameData          gameData, 
             Rectangle         rectangle, 
             PhysicsComponent  physics, 
             InputComponent    input, 
@@ -128,7 +127,7 @@ namespace SpaceFist
             float             rotation = 0)
         {
             Alive          = true;
-            this.game      = game;
+            this.gameData  = gameData;
             this.rectangle = rectangle;
             this.physics   = physics;
             this.input     = input;
@@ -150,10 +149,10 @@ namespace SpaceFist
         {
             if (Alive)
             {
-                graphics.Update(game, this);
-                input.Update(game, this);
-                physics.Update(game, this);
-                sound.Update(game, this);
+                graphics.Update(gameData, this);
+                input.Update(gameData, this);
+                physics.Update(gameData, this);
+                sound.Update(gameData, this);
             }
         }
 
@@ -164,7 +163,7 @@ namespace SpaceFist
         {
             if (Alive)
             {
-                graphics.Draw(game, this);
+                graphics.Draw(gameData, this);
             }
         }
     }

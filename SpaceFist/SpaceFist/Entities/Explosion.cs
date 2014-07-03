@@ -12,7 +12,7 @@ namespace SpaceFist.Entities
     /// 
     /// The Explosion instance is "killed" after the animation finishes.
     /// </summary>
-    class Explosion : Entity
+    public class Explosion : Entity
     {
         // The dimensions of the explosion
         private const int height = 122;
@@ -29,10 +29,10 @@ namespace SpaceFist.Entities
         /// <summary>
         /// Creates a new Explosion instance at a specified location.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="position">The on world location of the explosion</param>
-        public Explosion(Game game, Vector2 position): 
-            base(game, 
+        public Explosion(GameData gameData, Vector2 position): 
+            base(gameData, 
                  new Rectangle(
                      (int)position.X, 
                      (int)position.Y, 
@@ -40,9 +40,9 @@ namespace SpaceFist.Entities
                  ), 
                  new Physics(), 
                  new NullInputComponent(), 
-                 new IndexedSprite(game.ExplosionTexture, width, height), 
+                 new IndexedSprite(gameData.Textures["Explosion"], width, height), 
                  new NullSoundComponent(),
-                 game.ScreenScale)
+                 gameData.ScreenScale)
         {
             startTime = System.DateTime.Now.Ticks;
             Velocity  = new Vector2(0, 0);

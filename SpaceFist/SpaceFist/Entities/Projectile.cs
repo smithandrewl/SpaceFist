@@ -21,7 +21,7 @@ namespace SpaceFist.Entities
         public ProjectileBehavior Behavior { get; set; }
         
         public Projectile(
-            Game      game, 
+            GameData  gameData, 
             Texture2D texture, 
             Vector2   position, 
             Vector2   unitVector, 
@@ -29,7 +29,7 @@ namespace SpaceFist.Entities
             bool      enemyProjectile = false
         ) : 
             base(
-                game, 
+                gameData, 
                 new Rectangle(
                     (int)position.X, 
                     (int)position.Y, 
@@ -39,8 +39,8 @@ namespace SpaceFist.Entities
                 new Physics(), 
                 new NullInputComponent(), 
                 new Sprite(texture),
-                new Sound(game.LaserSound),
-                game.ScreenScale
+                new Sound(gameData.SoundEffects["Laser"]),
+                gameData.ScreenScale
             )
         {
             Velocity        = unitVector * speed;

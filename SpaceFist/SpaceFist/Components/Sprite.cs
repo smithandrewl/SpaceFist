@@ -28,14 +28,14 @@ namespace SpaceFist
             image = texture;
         }
 
-        public void Update(Game game, Entity obj) 
+        public void Update(GameData gameData, Entity obj) 
         {
             
         }
 
-        public void Draw(Game game, Entity obj) 
+        public void Draw(GameData gameData, Entity obj) 
         {
-            var spriteBatch = game.SpriteBatch;
+            var spriteBatch = gameData.SpriteBatch;
 
             var origin   = new Vector2(obj.Rectangle.Width / 2, obj.Rectangle.Height / 2);
             var position = new Vector2(obj.X, obj.Y) + origin;
@@ -43,12 +43,12 @@ namespace SpaceFist
             // Draw the texture at the location of the Entity obj
             spriteBatch.Draw(
                 image, 
-                position - game.InPlayState.Camera, 
+                position - gameData.Camera, 
                 null, 
                 obj.Tint, 
                 obj.Rotation, 
                 origin, 
-                game.ScreenScale, 
+                gameData.ScreenScale, 
                 SpriteEffects.None, 
                 0f
             );

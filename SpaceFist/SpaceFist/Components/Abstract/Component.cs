@@ -13,6 +13,6 @@ namespace SpaceFist.Components.Abstract
     /// </summary>
     public interface Component
     {
-        void Update(Game game, Entity obj);
+        void Update(GameData gameData, Entity obj);
     }
 }

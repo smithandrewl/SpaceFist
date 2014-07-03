@@ -14,19 +14,19 @@ namespace SpaceFist.Weapons
         private ProjectileManager projectileManager;
 
         private Ship ship;
-        private Game game;
+        private GameData gameData;
 
         /// <summary>
         /// Creates a new SampleWeapon instance.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="ship">The players ship</param>
-        public SampleWeapon(Game game, Ship ship)
+        public SampleWeapon(GameData gameData, Ship ship)
         {
-            this.game = game;
+            this.gameData = gameData;
             this.ship = ship;
         
-            projectileManager = game.InPlayState.ProjectileManager;
+            projectileManager = gameData.ProjectileManager;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace SpaceFist.Weapons
         public void fire()
         {
             int projectileX = (int)(ship.X + (ship.Rectangle.Width / 2) + 2);
-            int projectileY = (int)((ship.Y - (35 * game.ScreenScale)));
+            int projectileY = (int)((ship.Y - (35 * gameData.ScreenScale)));
 
             projectileManager.fireSampleWeapon(projectileX, projectileY);  
         }

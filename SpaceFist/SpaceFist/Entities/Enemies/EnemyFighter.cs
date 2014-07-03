@@ -15,12 +15,12 @@ namespace SpaceFist.Entities.Enemies
         /// <summary>
         /// Creates a new EnemyFighter instance at a specified location.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="position">The place in the world to put the fighter</param>
-        public EnemyFighter(Game game, Vector2 position)
-            : base(game, game.EnemyFighterTexture, game.ExplosionSound, position)
+        public EnemyFighter(GameData gameData, Vector2 position)
+            : base(gameData, gameData.Textures["EnemyFighter"], gameData.SoundEffects["Explosion"], position)
         {
-            this.AI = new AggressiveAI(game, this, game.InPlayState.ship);
+            this.AI = new AggressiveAI(gameData, this);
         }
     }
 }

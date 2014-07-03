@@ -10,11 +10,11 @@ namespace SpaceFist.Components
     // The background for example
     class NullSoundComponent : SoundComponent
     {
-        public void LoadContent(Game game)
+        public void LoadContent(GameData gameData)
         {
         }
 
-        public void Update(Game game, Entity obj)
+        public void Update(GameData gameData, Entity obj)
         {
         }
     }

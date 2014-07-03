@@ -12,21 +12,17 @@ namespace SpaceFist.Managers
     /// <summary>
     /// Keeps track of all of the enemies in the world.
     /// </summary>
-    public class EnemyManager : IEnumerable<Enemy>
+    public class EnemyManager : Manager<Enemy>
     {
         private Random      rand;
-        private List<Enemy> enemies;
-        private Game        game;
 
         /// <summary>
         /// Creates a new EnemyManager instance.
         /// </summary>
-        /// <param name="game">The game</param>
-        public EnemyManager(Game game)
+        /// <param name="gameData">Common game data</param>
+        public EnemyManager(GameData gameData): base(gameData)
         {
             rand        = new Random();
-            this.game   = game;
-            enemies     = new List<Enemy>();
         }
 
         /// <summary>
@@ -35,7 +31,7 @@ namespace SpaceFist.Managers
         /// <param name="count">The number of fighters to spawn</param>
         public void SpawnEnemyFighters(int count)
         {
-            SpawnEnemies(count, position => new EnemyFighter(game, position));
+            SpawnEnemies(count, position => new EnemyFighter(gameData, position));
         }
 
         /// <summary>
@@ -44,7 +40,7 @@ namespace SpaceFist.Managers
         /// <param name="count">The number of freighters to spawn</param>
         public void SpawnEnemyFreighters(int count)
         {
-            SpawnEnemies(count, position => new EnemyFreighter(game, position));
+            SpawnEnemies(count, position => new EnemyFreighter(gameData, position));
         }
 
        
@@ -53,7 +49,7 @@ namespace SpaceFist.Managers
             float rotation = MathHelper.ToRadians(180);
             Enemy enemy = func(new Vector2(x, y));
             enemy.Rotation = rotation;
-            enemies.Add(enemy);
+            Add(enemy);
         }
 
         public void SpawnEnemy(int lowX, int highX, int lowY, int highY, Func<Vector2,Enemy> func)
@@ -73,11 +69,11 @@ namespace SpaceFist.Managers
             SpawnEnemies(
                 count,
                 0, 
-                game.InPlayState.World.Width, 
+                gameData.World.Width, 
                 0,
                 (int)MathHelper.Max(
-                    game.InPlayState.World.Height *.9f,
-                    game.Resolution.Height / 2
+                    gameData.World.Height *.9f,
+                    gameData.Resolution.Height / 2
                 ),
                 func
             );
@@ -91,28 +87,6 @@ namespace SpaceFist.Managers
             }
         }
 
-        public void Update(){
-            foreach(var enemy in enemies) {
-                if(enemy.Alive) {
-                    enemy.Update();
-                }
-            }
-        }
-        
-        public void Draw() {
-            enemies.ForEach(enemy => enemy.Draw());
-        }
-
-        public IEnumerator<Enemy> GetEnumerator()
-        {
-            return enemies.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
         /// <summary>
         /// Returns a collection of all of the live enemies
         /// which are visible to the player.
@@ -120,8 +94,8 @@ namespace SpaceFist.Managers
         /// <returns></returns>
         public IEnumerable<Enemy> VisibleEnemies()
         {
-            var camera         = game.InPlayState.Camera;
-            var backgroundRect = game.BackgroundRect;
+            var camera         = gameData.Camera;
+            var backgroundRect = gameData.Resolution;
 
             var screenRect = new Rectangle(
                 (int)camera.X, 
@@ -131,36 +105,11 @@ namespace SpaceFist.Managers
             );
 
             var res =
-                from   enemy in enemies
+                from   enemy in this
                 where  enemy.Alive && screenRect.Intersects(enemy.Rectangle)
                 select enemy;
 
             return res;
-        }
-
-        /// <summary>
-        /// Returns a collection of all of the enemies colliding with the specified entity.
-        /// </summary>
-        /// <param name="entity">The entity to check for enemy collisions</param>
-        /// <returns>A collection of enemies which have collided with the entity</returns>
-        public IEnumerable<Entity> Collisions(Entity entity)
-        {
-            var res =
-                from   enemy in enemies
-                where  enemy.Alive       && 
-                       (enemy != entity) && 
-                       enemy.Rectangle.Intersects(entity.Rectangle)
-                select enemy;
-
-            return res;
-        }
-
-        /// <summary>
-        /// Removes all enemies from the world.
-        /// </summary>
-        public void Clear()
-        {
-            enemies.Clear();
         }
     }
 }

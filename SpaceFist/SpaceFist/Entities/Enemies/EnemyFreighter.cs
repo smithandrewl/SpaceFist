@@ -18,12 +18,12 @@ namespace SpaceFist.Managers
         /// <summary>
         /// Creates a new EnemyFreighter instance at a specified location.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="position">The location to place the freighter in the world.</param>
-        public EnemyFreighter(Game game, Vector2 position):
-            base(game, game.EnemyFreighterTexture, game.ExplosionSound, position)
+        public EnemyFreighter(GameData gameData, Vector2 position):
+            base(gameData, gameData.Textures["EnemyFreighter"], gameData.SoundEffects["Explosion"], position)
         {
-            AI = new DefensiveAI(game, this);
+            AI = new DefensiveAI(gameData, this);
         }
     }
 }

@@ -12,10 +12,8 @@ namespace SpaceFist.Managers
     /// Keeps track of the pickups in the world and provides
     /// methods to operate on them.
     /// </summary>
-    public class PickUpManager : IEnumerable<Pickup>
+    public class PickUpManager : Manager<Pickup>
     {
-        private Game         game;
-        private List<Pickup> pickups;
         private RoundData    roundData;
 
         private Random rand = new Random();
@@ -23,57 +21,10 @@ namespace SpaceFist.Managers
         /// <summary>
         /// Creates a new instance of PickupManager.
         /// </summary>
-        /// <param name="game">The game</param>
-        public PickUpManager(Game game)
+        /// <param name="gameData">Common game data</param>
+        public PickUpManager(GameData gameData): base(gameData)
         {
-            this.game    = game;
-            this.pickups = new List<Pickup>();
-            roundData    = game.InPlayState.RoundData;
-        }
-
-        public void Update()
-        {
-            pickups.ForEach(pickup => pickup.Update());
-        }
-
-        /// <summary>
-        /// Removes a pickup from the world.
-        /// </summary>
-        /// <param name="pickup">The pickup to remove</param>
-        public void Remove(Pickup pickup)
-        {
-            pickups.Remove(pickup);
-        }
-
-        /// <summary>
-        /// Returns a collection of the pickups colliding with the
-        /// specified entity.
-        /// </summary>
-        /// <param name="entity">The entity to check for pickup collisions</param>
-        /// <returns>The collection of pickups colliding with the entity</returns>
-        public IEnumerable<Pickup> Collisions(Entity entity)
-        {
-            var collisions =
-                from   pickup in pickups
-                where  pickup.Alive && pickup.Rectangle.Intersects(entity.Rectangle)
-                select pickup;
-
-            return collisions;
-        }
-
-        public void Draw()
-        {
-            pickups.ForEach(pickup => pickup.Draw());
-        }
-
-        public IEnumerator<Pickup> GetEnumerator()
-        {
-            return pickups.GetEnumerator();
-        }
-       
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
+            roundData    = gameData.RoundData;
         }
 
         /// <summary>
@@ -83,7 +34,7 @@ namespace SpaceFist.Managers
         /// <param name="spawnFunction">A function to spawn a specific pickup type</param>
         public void SpawnPickups(int count, Action<int, int> spawnFunction)
         {
-            var world = game.InPlayState.World;
+            var world = gameData.World;
 
             for (int i = 0; i < count; i++)
             {
@@ -111,17 +62,17 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.WeaponPickupTexture,
-                    game.WeaponPickupSound,
+                    gameData,
+                    gameData.Textures["WeaponPickup"],
+                    gameData.SoundEffects["WeaponPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
-                        ship.Weapon = new SampleWeapon(game, ship);
+                        ship.Weapon = new SampleWeapon(gameData, ship);
                         return true;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         /// <summary>
@@ -143,18 +94,18 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.MinePickupTexture,
-                    game.WeaponPickupSound,
+                    gameData,
+                    gameData.Textures["MinePickup"],
+                    gameData.SoundEffects["WeaponPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
                     {
-                        ship.Weapon = new Bluelaser(game, ship);
+                        ship.Weapon = new Bluelaser(gameData);
                         return true;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         public void SpawnMissilePickups(int count)
@@ -165,20 +116,20 @@ namespace SpaceFist.Managers
         public void SpawnMissilePickup(int x, int y)
         {
             var pickup = new Pickup(
-                game,
-                game.MissilePickupTexture,
-                game.WeaponPickupSound,
+                gameData,
+                gameData.Textures["MissilePickUp"],
+                gameData.SoundEffects["WeaponPickup"],
                 new Vector2(x, y),
                 Vector2.Zero,
                 (ship) =>
                 {
-                    ship.Weapon = new Missile(game, ship);
+                    ship.Weapon = new Missile(gameData);
 
                     return true;
                 }
             );
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
         /***********************/
 
@@ -192,9 +143,9 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.HealthPickupTexture,
-                    game.HealthPickupSound,
+                    gameData,
+                    gameData.Textures["HealthPickup"],
+                    gameData.SoundEffects["HealthPickup"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) => {
@@ -207,7 +158,7 @@ namespace SpaceFist.Managers
                         return false;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         /// <summary>
@@ -228,9 +179,9 @@ namespace SpaceFist.Managers
         {
             var pickup =
                 new Pickup(
-                    game,
-                    game.ExtraLifePickupTexture,
-                    game.ExtraLifeSound,
+                    gameData,
+                    gameData.Textures["ExtraLifePickup"],
+                    gameData.SoundEffects["ExtraLife"],
                     new Vector2(x, y),
                     Vector2.Zero,
                     (ship) =>
@@ -239,7 +190,7 @@ namespace SpaceFist.Managers
                         return true;
                     });
 
-            pickups.Add(pickup);
+            Add(pickup);
         }
 
         /// <summary>
@@ -247,7 +198,7 @@ namespace SpaceFist.Managers
         /// </summary>
         internal void Reset()
         {
-            pickups.Clear();
+            Clear();
         }
     }
 }

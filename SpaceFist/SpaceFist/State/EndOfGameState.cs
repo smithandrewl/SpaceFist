@@ -14,11 +14,11 @@ namespace SpaceFist.State
     /// </summary>
     public class EndOfGameState : GameState
     {
-        private Game game;
+        private GameData gameData;
 
-        public EndOfGameState(Game game)
+        public EndOfGameState(GameData gameData)
         {
-            this.game = game;
+            this.gameData = gameData;
         } 
 
         public void LoadContent()
@@ -27,10 +27,10 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            var resolution = game.Resolution;
+            var resolution = gameData.Resolution;
 
-            game.SpriteBatch.Draw(
-                game.EndOfGameTexture, 
+            gameData.SpriteBatch.Draw(
+                gameData.Textures["EndOfGame"], 
                 new Rectangle(
                     0, 
                     0, 
@@ -47,14 +47,14 @@ namespace SpaceFist.State
 
             if (keys.IsKeyDown(Keys.Enter) || keys.IsKeyDown(Keys.Escape))
             {
-                game.CurrentState = game.SplashScreenState;
+                gameData.CurrentState = gameData.SplashScreenState;
             }
         }
 
         public void EnteringState()
         {
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.EndOfGameSong);
+            MediaPlayer.Play(gameData.Songs["EndOfGame"]);
         }
 
         public void ExitingState()

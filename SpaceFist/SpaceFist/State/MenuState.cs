@@ -16,7 +16,7 @@ namespace SpaceFist.State
     /// </summary>
     public class MenuState : GameState
     {
-        private Game      game;
+        private GameData  gameData;
         private DateTime  enteredAt;
         private Texture2D background;
         private Texture2D menu;
@@ -26,19 +26,19 @@ namespace SpaceFist.State
         private Rectangle creditsRect;
         private Rectangle exitRect;
 
-        public MenuState(Game game)
+        public MenuState(GameData gameData)
         {
-            this.game  = game;
+            this.gameData  = gameData;
         }
 
         public void LoadContent()
         {
-            var resolution = game.Resolution;
+            var resolution = gameData.Resolution;
 
             backgroundRect = resolution;
-            background     = game.BackgroundRed;
+            background     = gameData.Textures["BackgroundRed"];
             
-            menu           = game.Menu;
+            menu           = gameData.Textures["Menu"];
 
             menuRect = new Rectangle(
                 (int) ((background.Width / 2f) - (menu.Width)), 
@@ -55,8 +55,8 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime time)
         {
-            game.SpriteBatch.Draw(background, backgroundRect, Color.White);
-            game.SpriteBatch.Draw(menu, menuRect, Color.White);
+            gameData.SpriteBatch.Draw(background, backgroundRect, Color.White);
+            gameData.SpriteBatch.Draw(menu, menuRect, Color.White);
         }
 
         public void Update()
@@ -72,29 +72,29 @@ namespace SpaceFist.State
                 {
                     if (newGameRect.Contains(mousePos))
                     {
-                        game.CurrentState = game.InPlayState;
+                        gameData.CurrentState = gameData.InPlayState;
                     }
 
                     if (creditsRect.Contains(mousePos))
                     {
-                        game.CurrentState = game.CreditsState;
+                        gameData.CurrentState = gameData.CreditsState;
                     }
 
                     if (exitRect.Contains(mousePos))
                     {
-                        game.Exit();
+                        System.Environment.Exit(0);
                     }
                 }
                 else
                 {
                     if (keys.IsKeyDown(Keys.Enter))
                     {
-                        game.CurrentState = game.InPlayState;
+                        gameData.CurrentState = gameData.InPlayState;
 
                     }
                     else if(keys.IsKeyDown(Keys.Escape))
                     {
-                        game.Exit();
+                        System.Environment.Exit(0);
                     }
                 }
             }
@@ -103,16 +103,16 @@ namespace SpaceFist.State
         public void EnteringState()
         {
             enteredAt           = DateTime.Now;
-            game.IsMouseVisible = true;
 
+            gameData.IsMouseVisible = true;
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(game.TitleScreenSong);
+            MediaPlayer.Play(gameData.Songs["TitleScreen"]);
         }
 
         public void ExitingState()
         {
+            gameData.IsMouseVisible = false;
             MediaPlayer.Stop();
-            game.IsMouseVisible = false;
         }
     }
 }

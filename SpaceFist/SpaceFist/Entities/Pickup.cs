@@ -25,20 +25,20 @@ namespace SpaceFist.Entities
         /// Creates a new Pickup instance which runs a function 
         /// when it is picked up by the player.
         /// </summary>
-        /// <param name="game">The game</param>
+        /// <param name="gameData">Common game data</param>
         /// <param name="texture">The image of the pickup</param>
         /// <param name="sound">The sound to play when picked up</param>
         /// <param name="position">The initial location of the pickup</param>
         /// <param name="velocity">The initial velocity of the pickup</param>
         /// <param name="pickupHandler">The function to run on pickup</param>
-        public Pickup(Game          game, 
+        public Pickup(GameData      gameData, 
                       Texture2D     texture, 
                       SoundEffect   sound, 
                       Vector2       position, 
                       Vector2       velocity, 
                       PickupHandler pickupHandler) :
             base(
-                game, 
+                gameData, 
                 new Rectangle(
                     (int)position.X, 
                     (int) position.Y, 
@@ -49,7 +49,7 @@ namespace SpaceFist.Entities
                 new NullInputComponent(),
                 new Sprite(texture),
                 new Sound(sound),
-                game.ScreenScale
+                gameData.ScreenScale
             )
 
         {
