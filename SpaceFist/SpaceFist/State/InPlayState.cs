@@ -68,8 +68,8 @@ namespace SpaceFist.State
             var screenRect = new Rectangle(0, 0, resolution.Width, resolution.Height);
 
             Map = gameData.Content.Load<Map>(@"Maps\01");
-
-            gameData.World = new Rectangle(0, 0, resolution.Width, resolution.Height * 10);
+            
+            gameData.World = new Rectangle(0, 0, Map.Width * Map.TileWidth, Map.Height * Map.TileHeight);
 
             hud = new Hud(gameData, gameData.PlayerManager);
         }
