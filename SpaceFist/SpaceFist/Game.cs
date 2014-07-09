@@ -121,7 +121,6 @@ namespace SpaceFist
             GameData.MenuState.LoadContent();
             GameData.LogoState.LoadContent();
 
-
             GameData.CurrentState.EnteringState();
         }
 

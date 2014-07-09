@@ -22,10 +22,6 @@ namespace SpaceFist.State
     /// </summary>
     public class InPlayState : GameState
     {
-        private const int NumBlocks   = 40;
-
-        // The number of background particles to spawn
-        private const int DebrisCount = 4000;
 
         // The speed at which the camera scrolls up the map / world
         private const float ScrollSpeed = 1.5f;
@@ -47,8 +43,6 @@ namespace SpaceFist.State
             }
         }
 
-        public Map Map { get; set; }
-
         // It is used to measure playtime.
         Stopwatch stopwatch = new Stopwatch();
 
@@ -59,7 +53,6 @@ namespace SpaceFist.State
         {
             this.gameData        = gameData;
             gameData.RoundData   = new RoundData();
-            debrisField          = new List<Rectangle>(DebrisCount);
         }
 
         public void LoadContent()
@@ -67,20 +60,21 @@ namespace SpaceFist.State
             var resolution = gameData.Resolution;
             var screenRect = new Rectangle(0, 0, resolution.Width, resolution.Height);
 
-            Map = gameData.Content.Load<Map>(@"Maps\01");
-            
-            gameData.World = new Rectangle(0, 0, Map.Width * Map.TileWidth, Map.Height * Map.TileHeight);
+            gameData.LevelManager.Init();
+            gameData.LevelManager.LoadLevel(1);
 
-            hud = new Hud(gameData, gameData.PlayerManager);
+            debrisField    = new List<Rectangle>(gameData.Level.DebrisParticleCount);
+            gameData.World = new Rectangle(0, 0, gameData.Level.Width, gameData.Level.Height);
+            hud            = new Hud(gameData, gameData.PlayerManager);
         }
 
         public void EnteringState()
         {
             // Reset the round statistics
             gameData.RoundData.Reset();
-
+            
             // Start playing music on a loop
-            MediaPlayer.Play(gameData.Songs["InPlay"]);
+            MediaPlayer.Play(gameData.Songs[gameData.Level.Song]);
             MediaPlayer.IsRepeating = true;
 
             var resolution = gameData.Resolution;
@@ -95,42 +89,61 @@ namespace SpaceFist.State
             gameData.PlayerManager.ResetLives();
             gameData.PlayerManager.ResetScore();
             gameData.PlayerManager.ResetWeapon();
-            
+
+            int numBlocks = gameData.Level.BlockCount;
+
             // Spawn blocks to the world
-            gameData.BlockManager.SpawnBlocks(NumBlocks);
+            gameData.BlockManager.SpawnBlocks(numBlocks);
 
             gameData.EnemyManager.Clear();
             gameData.EnemyMineManager.Clear();
             gameData.PickUpManager.Reset();
 
-            foreach (var fighter in Map.ObjectLayers[0].MapObjects)
+            //Spawn fighters
+            foreach (var zone in gameData.Level.Fighters)
             {
-                var bounds = fighter.Bounds;
-                Func<Vector2, Enemy> func;
 
-                int count = 1;
-
-                if (fighter.Properties.ContainsKey("count"))
-                {
-                    count = fighter.Properties["count"].AsInt32 ?? 1;
+                if(zone.Count > 1) {
+                    gameData.EnemyManager.SpawnEnemies(
+                        zone.Count,
+                        zone.Left,
+                        zone.Right,
+                        zone.Top,
+                        zone.Bottom, 
+                        position => new EnemyFighter(gameData, position)
+                    );
                 }
-                
-                if (fighter.Type == "FighterZone")
+                else
                 {
-                    func = position => new EnemyFighter(gameData, position);
-
-                    gameData.EnemyManager.SpawnEnemies(count, bounds.Left, bounds.Right, bounds.Top, bounds.Bottom, func);
+                    gameData.EnemyManager.SpawnEnemy(zone.Center.X, zone.Center.Y, position => new EnemyFighter(gameData, position));
                 }
-                else if (fighter.Type == "FreighterZone")
-                {
-                    func = position => new EnemyFreighter(gameData, position);
+            }
 
-                    gameData.EnemyManager.SpawnEnemies(count, bounds.Left, bounds.Right, bounds.Top, bounds.Bottom, func);
-                } 
-                else if (fighter.Type == "Mines")
+            // Spawn freighters
+            foreach (var zone in gameData.Level.Freighters)
+            {
+
+                if (zone.Count > 1)
                 {
-                    gameData.EnemyMineManager.SpawnEnemyMine(bounds.Center.X, bounds.Center.Y);
+                    gameData.EnemyManager.SpawnEnemies(
+                        zone.Count,
+                        zone.Left,
+                        zone.Right,
+                        zone.Top,
+                        zone.Bottom,
+                        position => new EnemyFreighter(gameData, position)
+                    );
                 }
+                else
+                {
+                    gameData.EnemyManager.SpawnEnemy(zone.Center.X, zone.Center.Y, position => new EnemyFreighter(gameData, position));
+                }
+            }
+
+            //Spawn mines
+            foreach (var point in gameData.Level.Mines)
+            {
+                gameData.EnemyMineManager.SpawnEnemyMine(point.X, point.Y);
             }
 
             // Spawn the players ship
@@ -151,18 +164,23 @@ namespace SpaceFist.State
 
             debrisField.Clear();
 
+            int    minScale      = gameData.Level.DebrisParticleMinScale;
+            int    maxScale      = gameData.Level.DebrisParticleMaxScale;
+            string particleImage = gameData.Level.DebrisParticleImage;
+            int    DebrisCount   = gameData.Level.DebrisParticleCount;
+
             // init debris field
             for (int i = 0; i < DebrisCount; i++)
             {
                 var maxX  = gameData.World.Width;
                 var maxY  = gameData.World.Height;
-                var scale = rand.Next(10, 60) * .01f;
+                var scale = rand.Next(minScale * 10, maxScale * 10) * .01f;
 
                 Rectangle rect = new Rectangle(
                     rand.Next(0, maxX), 
                     rand.Next(0, maxY), 
-                    (int) (gameData.Textures["Particle"].Width * scale), 
-                    (int) (gameData.Textures["Particle"].Height * scale)
+                    (int) (gameData.Textures[particleImage].Width * scale), 
+                    (int) (gameData.Textures[particleImage].Height * scale)
                 );
 
                 debrisField.Add(rect);
@@ -221,17 +239,17 @@ namespace SpaceFist.State
 
         public void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            // Draw the background
-            gameData.SpriteBatch.Draw(gameData.Textures["Background"], gameData.Resolution, Color.White);
+            string background    = gameData.Level.BackgroundImage;
+            string particleImage = gameData.Level.DebrisParticleImage;
 
-            // Draw the map
-            Map.Draw(gameData.SpriteBatch, OnScreenWorld);
+            // Draw the background
+            gameData.SpriteBatch.Draw(gameData.Textures[background], gameData.Resolution, Color.White);
 
             // Draw debris
             foreach(var rect in debrisField)
             {
                 gameData.SpriteBatch.Draw(
-                    gameData.Textures["Particle"], 
+                    gameData.Textures[particleImage], 
                     new Rectangle(
                         rect.X - (int)gameData.Camera.X, 
                         rect.Y - (int)gameData.Camera.Y, 

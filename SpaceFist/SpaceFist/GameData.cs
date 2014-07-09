@@ -17,7 +17,7 @@ namespace SpaceFist
     {
 
         private GameState currentState;
-        private Game game;
+        private Game      game;
 
         public bool IsMouseVisible {
             get
@@ -27,34 +27,27 @@ namespace SpaceFist
             set{
                 game.IsMouseVisible = value;
             }       
-        } 
-        
-        public Ship                            Ship         { get; set; }
-
-        public SpriteFont                      Font         { get; set; }
-        public Rectangle                       Resolution   { get; set; }
-        public float                           ScreenScale  { get; set; }
-        public SpriteBatch                     SpriteBatch  { get; set; }
-        public ContentManager                  Content      { get; set; }
-        public Dictionary<string, Texture2D>   Textures     { get; set; }
-        public Dictionary<string, SoundEffect> SoundEffects { get; set; }
-        public Dictionary<string, Song>        Songs        { get; set; }
-        public RoundData                       RoundData    { get; set; }
-        public GraphicsDevice GraphicsDevice { get; set; }
-
-        // Camera
-        public Vector2   Camera        { get; set; }
-        public Rectangle World         { get; set; }
-
-        public Rectangle OnScreenWorld
-        {
-            get
-            {
-                return new Rectangle((int)Camera.X, (int)Camera.Y, Resolution.Width, Resolution.Height);
-            }
         }
-        // Managers
-        // TODO: Add map for Managers
+
+        public float ScreenScale { get; set; }
+        public int   LevelCount  { get; set; }
+
+        public Ship                            Ship           { get; set; }
+        public SpriteFont                      Font           { get; set; }
+        public Rectangle                       Resolution     { get; set; }
+        public SpriteBatch                     SpriteBatch    { get; set; }
+        public ContentManager                  Content        { get; set; }
+        public Dictionary<string, Texture2D>   Textures       { get; set; }
+        public Dictionary<string, SoundEffect> SoundEffects   { get; set; }
+        public Dictionary<string, Song>        Songs          { get; set; }
+        public RoundData                       RoundData      { get; set; }
+        public GraphicsDevice                  GraphicsDevice { get; set; }
+        public Level                           Level          { get; set; }
+        public Vector2                         Camera         { get; set; }
+        public Rectangle                       World          { get; set; }
+
+        // -------------- Managers --------------
+        public LevelManager      LevelManager      { get; set; }
         public ProjectileManager ProjectileManager { get; set; }
         public PlayerManager     PlayerManager     { get; set; }
         public PickUpManager     PickUpManager     { get; set; }
@@ -64,6 +57,7 @@ namespace SpaceFist
         public BlockManager      BlockManager      { get; set; }
         public CollisionManager  CollisionManager  { get; set; }
 
+        // -------------- Game States --------------
         public SplashScreenState SplashScreenState { get; set; }
         public MenuState         MenuState         { get; set; }
         public LogoState         LogoState         { get; set; }
@@ -71,6 +65,14 @@ namespace SpaceFist
         public GameOverState     GameOverState     { get; set; }
         public EndOfGameState    EndOfGameState    { get; set; }
         public CreditsState      CreditsState      { get; set; }
+
+        public Rectangle OnScreenWorld
+        {
+            get
+            {
+                return new Rectangle((int)Camera.X, (int)Camera.Y, Resolution.Width, Resolution.Height);
+            }
+        }
         
         public GameData(Game game)
         {
@@ -81,6 +83,7 @@ namespace SpaceFist
             SoundEffects = new Dictionary<string, SoundEffect>();
             Songs        = new Dictionary<string, Song>();
 
+            LevelManager      = new LevelManager(this);
             ProjectileManager = new ProjectileManager(this);
             PlayerManager     = new PlayerManager(this);
             PickUpManager     = new PickUpManager(this);

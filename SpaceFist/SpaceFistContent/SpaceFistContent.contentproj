@@ -157,8 +157,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Maps\01.tmx">
-      <Name>01</Name>
+    <Compile Include="Maps\1.tmx">
+      <Name>1</Name>
       <Importer>TMXContentImporter</Importer>
       <Processor>TMXContentProcessor</Processor>
     </Compile>
