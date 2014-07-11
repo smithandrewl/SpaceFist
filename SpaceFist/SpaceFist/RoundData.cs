@@ -68,6 +68,8 @@ namespace SpaceFist
         /// </summary>
         public void Reset()
         {
+            Lives        = 0;
+            Score        = 0;
             BlocksBumped = 0;
             BlocksShot   = 0;
             EnemiesShot  = 0;
