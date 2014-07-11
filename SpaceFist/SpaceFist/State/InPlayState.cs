@@ -58,7 +58,7 @@ namespace SpaceFist.State
         public InPlayState(GameData gameData)
         {
             this.gameData        = gameData;
-            gameData.RoundData   = new RoundData();
+
             debrisField          = new List<Rectangle>(DebrisCount);
         }
 
