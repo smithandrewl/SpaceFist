@@ -23,7 +23,7 @@ namespace SpaceFist.Managers
         private EnemyManager      enemyManager;
         private EnemyMineManager  enemyMineManager;
 
-        private RoundData roundData;
+        private RoundData     roundData;
         private GameData      gameData;
 
         public CollisionManager(

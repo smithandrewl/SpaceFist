@@ -51,8 +51,7 @@ namespace SpaceFist.State
 
         public InPlayState(GameData gameData)
         {
-            this.gameData        = gameData;
-            gameData.RoundData   = new RoundData();
+            this.gameData = gameData;
         }
 
         public void LoadContent()

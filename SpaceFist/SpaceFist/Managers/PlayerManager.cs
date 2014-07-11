@@ -87,7 +87,8 @@ namespace SpaceFist.Managers
                 gameData.Ship.CurrentState.EnteringState();
             }
 
-            gameData.Ship.Velocity = StartingVelocity;
+            gameData.Ship.HealthPoints = 100;
+            gameData.Ship.Velocity     = StartingVelocity;
 
            return gameData.Ship;
         }
