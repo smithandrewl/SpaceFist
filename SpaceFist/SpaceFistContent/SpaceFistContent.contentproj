@@ -109,11 +109,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\Backgrounds\LevelStart.png">
-      <Name>LevelStart</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\Raised.png">
@@ -157,8 +152,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Maps\01.tmx">
-      <Name>01</Name>
+    <Compile Include="Maps\1.tmx">
+      <Name>1</Name>
       <Importer>TMXContentImporter</Importer>
       <Processor>TMXContentProcessor</Processor>
     </Compile>
@@ -301,6 +296,13 @@
       <Name>TitleScreen</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fonts\Title.spritefont">
+      <Name>Title</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

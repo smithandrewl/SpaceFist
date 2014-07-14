@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="21" height="120" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="21" height="120" tilewidth="64" tileheight="64" backgroundcolor="#000000">
+ <properties>
+  <property name="Background Image" value="Background"/>
+  <property name="Block Count" value="40"/>
+  <property name="Debris Particle Count" value="4000"/>
+  <property name="Debris Particle Image" value="Particle"/>
+  <property name="Debris Particle Max Scale" value="6"/>
+  <property name="Debris Particle Min Scale" value="1"/>
+  <property name="Is First Level" value="True"/>
+  <property name="Is Last Level" value="True"/>
+  <property name="Level Title" value="First and Only Level"/>
+  <property name="Song" value="InPlay"/>
+ </properties>
  <objectgroup name="Object Layer 1" width="21" height="120">
   <object name="LevelStart" type="StartOfLevel" x="0" y="7465" width="1343" height="116"/>
   <object name="LevelEnd" type="EndOfLevel" x="0" y="-4" width="1343" height="84"/>
