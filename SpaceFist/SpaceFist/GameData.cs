@@ -34,6 +34,7 @@ namespace SpaceFist
 
         public Ship                            Ship           { get; set; }
         public SpriteFont                      Font           { get; set; }
+        public SpriteFont                      TitleFont      { get; set; }
         public Rectangle                       Resolution     { get; set; }
         public SpriteBatch                     SpriteBatch    { get; set; }
         public ContentManager                  Content        { get; set; }

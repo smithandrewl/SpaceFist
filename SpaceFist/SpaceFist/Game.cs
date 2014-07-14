@@ -18,7 +18,9 @@ namespace SpaceFist
     public class Game : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
+
         private const String SpriteFontAsset = @"Fonts\Raised";
+        private const String TitleFontAsset  = @"Fonts\Title";
 
         public GameData GameData { get; set; }
 
@@ -109,7 +111,8 @@ namespace SpaceFist
             GameData.SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             // ----------------------------- Load the games assets -----------
-            GameData.Font = Content.Load<SpriteFont>(SpriteFontAsset);
+            GameData.Font      = Content.Load<SpriteFont>(SpriteFontAsset);
+            GameData.TitleFont = Content.Load<SpriteFont>(TitleFontAsset);
 
             LoadTextures();
             LoadSongs();

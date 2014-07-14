@@ -26,10 +26,14 @@ namespace SpaceFist.State
         // The speed at which the camera scrolls up the map / world
         private const float ScrollSpeed = 1.5f;
         
-        private List<Rectangle> debrisField;
 
         GameData gameData;
-        private Hud hud;
+
+        private Hud             hud;
+        private DateTime        levelLoadedAt;
+        private List<Rectangle> debrisField;
+        
+        private bool titleShown = false;
 
         // The portion of the world which is currently visible.
         public Rectangle OnScreenWorld
@@ -46,7 +50,6 @@ namespace SpaceFist.State
         // It is used to measure playtime.
         Stopwatch stopwatch = new Stopwatch();
 
-        private Rectangle StartOfLevelMarkerPos { get; set; }
         private Rectangle EndOfLevelMarkerPos   { get; set; }
 
         public InPlayState(GameData gameData)
@@ -178,7 +181,7 @@ namespace SpaceFist.State
                 Rectangle rect = new Rectangle(
                     rand.Next(0, maxX), 
                     rand.Next(0, maxY), 
-                    (int) (gameData.Textures[particleImage].Width * scale), 
+                    (int) (gameData.Textures[particleImage].Width  * scale), 
                     (int) (gameData.Textures[particleImage].Height * scale)
                 );
 
@@ -187,6 +190,9 @@ namespace SpaceFist.State
 
             stopwatch.Reset();
             stopwatch.Start();
+
+            levelLoadedAt = DateTime.Now;
+            titleShown    = false;
         }
 
         public void Update()
@@ -279,25 +285,43 @@ namespace SpaceFist.State
             int nearBottom = (int)((gameData.World.Bottom * .98) - gameData.Camera.Y);
             int nearTop    = (int)((gameData.World.Top * .02)    - gameData.Camera.Y);
 
-            StartOfLevelMarkerPos = new Rectangle(
-                (int)halfWidth - (gameData.Textures["LevelStart"].Width / 2),
-                (int)nearBottom - gameData.Textures["LevelStart"].Height,
-                gameData.Textures["LevelStart"].Width,
-                gameData.Textures["LevelStart"].Height
-            );
 
+            if (!titleShown)
+            {
+                var delta = (DateTime.Now - levelLoadedAt).TotalSeconds;
+
+                // The title takes two seconds to fade in and then
+                // is displayed for another second
+                Color color = Color.White * ((float)(delta / 2));
+
+                if (delta < 3)
+                {
+                    gameData.SpriteBatch.DrawString(
+                        gameData.TitleFont,
+                        gameData.Level.Title,
+                        new Vector2(
+                            (gameData.Resolution.Width / 2) - (gameData.Level.Title.Length * 10),
+                            gameData.Resolution.Height / 2  - 48
+                        ),
+                        color,
+                        0,
+                        Vector2.Zero,
+                        1f,
+                        SpriteEffects.None,
+                        0
+                    );
+                }
+                else
+                {
+                    titleShown = true;
+                }
+            }
+      
             EndOfLevelMarkerPos = new Rectangle(
                 (int)halfWidth - (gameData.Textures["LevelEnd"].Width / 2),
                 (int)nearTop + gameData.Textures["LevelEnd"].Height,
                 gameData.Textures["LevelEnd"].Width,
                 gameData.Textures["LevelEnd"].Height
-            );
-
-            // Draw the level markers
-            gameData.SpriteBatch.Draw(
-                gameData.Textures["LevelStart"],
-                StartOfLevelMarkerPos,
-                Color.White
             );
 
             gameData.SpriteBatch.Draw(
