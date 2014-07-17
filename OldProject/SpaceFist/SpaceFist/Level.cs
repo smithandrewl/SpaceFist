@@ -1,4 +1,4 @@
-﻿using FuncWorks.XNA.XTiled;
+using FuncWorks.XNA.XTiled;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using SpaceFist.AI.DefensiveAI;
 using SpaceFist.AI.DummyAI;
 using SpaceFist.Entities;

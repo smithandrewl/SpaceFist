@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using SpaceFist.AI.ProjectileBehaviors;
 using SpaceFist.Entities;
 using System;

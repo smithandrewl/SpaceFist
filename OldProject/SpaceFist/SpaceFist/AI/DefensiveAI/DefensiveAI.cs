@@ -1,4 +1,4 @@
-﻿using SpaceFist.AI.AggressiveAI;
+using SpaceFist.AI.AggressiveAI;
 using SpaceFist.Entities;
 using SpaceFist.Managers;
 using System;

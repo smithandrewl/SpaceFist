@@ -1,4 +1,4 @@
-﻿using SpaceFist.AI;
+using SpaceFist.AI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

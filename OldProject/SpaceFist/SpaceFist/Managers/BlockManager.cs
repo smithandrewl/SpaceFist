@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using SpaceFist.Entities;
 using System;
 using System.Collections.Generic;

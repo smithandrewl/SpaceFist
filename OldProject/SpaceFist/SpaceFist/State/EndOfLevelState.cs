@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input;
 using SpaceFist.State.Abstract;
 using System;
 using System.Collections.Generic;

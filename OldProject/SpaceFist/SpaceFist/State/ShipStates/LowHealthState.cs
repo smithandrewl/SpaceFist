@@ -1,4 +1,4 @@
-﻿using SpaceFist.State.Abstract;
+using SpaceFist.State.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿/***Doncai******/
+/***Doncai******/
 using SpaceFist.Managers;
 using System;
 using System.Collections.Generic;
