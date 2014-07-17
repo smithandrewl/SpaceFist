@@ -52,7 +52,6 @@ public class GameData
     private BitmapFont titleFont;
 
     /*
-    public ContentManager                  Content        { get; set; }
     public GraphicsDevice                  GraphicsDevice { get; set; }
     public Level                           Level          { get; set; }
     */
