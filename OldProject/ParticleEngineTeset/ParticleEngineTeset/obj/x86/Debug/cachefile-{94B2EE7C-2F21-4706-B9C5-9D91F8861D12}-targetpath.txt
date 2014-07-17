@@ -1,3 +1,0 @@
-Content\Particle.xnb
-Content\Particle3.xnb
-Content\SpriteFont1.xnb
