@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="The Game class is used like the normal XNA Game class.  The difference is that it implements the StateMachine interface.  Most of the game logic is stored in the games states, SplashScreenState, InPlayState and GameOverState">
+    <Position X="1.104" Y="2.719" Height="1.885" Width="1.7" />
+  </Comment>
+  <Comment CommentText="A game state must implement all of the methods in the State and GameState interfaces.">
+    <Position X="7.719" Y="2.5" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="This state is shown after the team logo has been shown.  It does nothing but draw the splash screen and switch to the menu state when the clicked or the user presses enter.">
+    <Position X="3.083" Y="5.011" Height="1.104" Width="2.315" />
+  </Comment>
+  <Comment CommentText="This state contains all of the game play logic.  It transistions to the GameOverState when the user dies with no lives left.">
+    <Position X="5.531" Y="4.989" Height="0.823" Width="1.95" />
+  </Comment>
+  <Comment CommentText="This state is shown after the player runs out of lives.  It draws the game over message and switches to the splash screen state when the player presses enter">
+    <Position X="7.573" Y="4.948" Height="1" Width="2.502" />
+  </Comment>
+  <Comment CommentText="This state is shown when the game first starts.  It displays the team logo and then transitions to the SplashScreenState">
+    <Position X="2.844" Y="7.271" Height="1.031" Width="1.7" />
+  </Comment>
+  <Comment CommentText="This state provides information about the game developers.">
+    <Position X="4.927" Y="7.271" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="This state gives the player the chance to start a new game, show the credits screen or exit.">
+    <Position X="6.99" Y="7.26" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="This state is displayed when the entire game has been completed.">
+    <Position X="9.01" Y="7.24" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="SpaceFist.State.GameOverState" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAgAAAAAAAQ=</HashCode>
+      <FileName>State\GameOverState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.State.InPlayState" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIwCQQgAgBAAhgABAIAIQQgAICgBAAAI4AgQACAAAEQ=</HashCode>
+      <FileName>State\InPlayState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.State.SplashScreenState" Collapsed="true">
+    <Position X="3.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoQAAAAAAAIAAggAAAAAAAAAAAAAAAAIAAgAAAAAAAQ=</HashCode>
+      <FileName>State\SplashScreenState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.Game" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>REyBHGCxbwAzA40ApjYkASMDMQluAisQQQAkwAATrRY=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="currentState" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.State.CreditsState" Collapsed="true">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAIAAgAAAAAAAAAAAAAAAAAIAAgAAAAAAAQ=</HashCode>
+      <FileName>State\CreditsState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.State.EndOfGameState" Collapsed="true">
+    <Position X="9" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAgAAAAAAAQ=</HashCode>
+      <FileName>State\EndOfGameState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.State.LogoState" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAIAAgAAAAAAAAAAAAAAAAAIgAgAAAAAIAQ=</HashCode>
+      <FileName>State\LogoState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.State.MenuState" Collapsed="true">
+    <Position X="7" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJQAAAQAAAIAAgAAAAAAAAgAAAAAAAAYAAhAAAAAKAQ=</HashCode>
+      <FileName>State\MenuState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="SpaceFist.State.Abstract.State">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>State\Abstract\State.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SpaceFist.State.Abstract.GameState">
+    <Position X="5.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>State\Abstract\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

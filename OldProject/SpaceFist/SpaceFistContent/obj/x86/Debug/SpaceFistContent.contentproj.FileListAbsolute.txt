@@ -1,0 +1,2 @@
+C:\Users\Andrew\Desktop\cs373\termproject2\SpaceFist\SpaceFistContent\obj\x86\Debug\SpaceFistContent.contentprojResolveAssemblyReference.cache
+C:\Users\Andrew\Desktop\SpaceFist\SpaceFist\SpaceFistContent\obj\x86\Debug\SpaceFistContent.contentprojResolveAssemblyReference.cache

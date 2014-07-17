@@ -1,0 +1,6 @@
+C:\Users\Andrew\Desktop\SpaceFist\Framework\bin\x86\Debug\Framework.dll
+C:\Users\Andrew\Desktop\SpaceFist\Framework\bin\x86\Debug\Framework.pdb
+C:\Users\Andrew\Desktop\SpaceFist\Framework\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Andrew\Desktop\SpaceFist\Framework\obj\x86\Debug\Framework.dll
+C:\Users\Andrew\Desktop\SpaceFist\Framework\obj\x86\Debug\Framework.pdb
+C:\Users\Andrew\Desktop\SpaceFist\Framework\obj\x86\Debug\Framework.csprojResolveAssemblyReference.cache

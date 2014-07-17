@@ -1,0 +1,11 @@
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\bin\x86\Debug\Content\Particle.xnb
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\bin\x86\Debug\ParticleEngineTeset.exe
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\bin\x86\Debug\ParticleEngineTeset.pdb
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\bin\x86\Debug\Framework.dll
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\bin\x86\Debug\Framework.pdb
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\obj\x86\Debug\ParticleEngineTeset.csprojResolveAssemblyReference.cache
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\obj\x86\Debug\ParticleEngineTeset.exe
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\obj\x86\Debug\ParticleEngineTeset.pdb
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\bin\x86\Debug\Content\Particle3.xnb
+C:\Users\Andrew\Desktop\SpaceFist\ParticleEngineTeset\ParticleEngineTeset\bin\x86\Debug\Content\SpriteFont1.xnb

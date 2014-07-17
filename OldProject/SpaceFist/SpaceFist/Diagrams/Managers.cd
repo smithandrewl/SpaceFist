@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SpaceFist.Managers.BlockManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gGQAAIAIAAAAChAAAAIQBAAAAAAAAgAIAAAAAAAABAA=</HashCode>
+      <FileName>Managers\BlockManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="blocks" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceFist.Managers.CollisionManager" Collapsed="true">
+    <Position X="2" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAEAAAAAAAABAIACQBAABAAAAAAIIABQAGAAAAE=</HashCode>
+      <FileName>Managers\CollisionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceFist.Managers.ExplosionManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAAAAAhAAAAAAAAAAAACAAAAIAAAAAAACAAA=</HashCode>
+      <FileName>Managers\ExplosionManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="explosions" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SpaceFist.Managers.PlayerManager" Collapsed="true">
+    <Position X="12.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUEAAAAAAAgAwgAQEEAAAAIAACAAAQIgAAAAEAAAAA=</HashCode>
+      <FileName>Managers\PlayerManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ship" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpaceFist.Entities.Enemy" Collapsed="true">
+    <Position X="2" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Enemies\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceFist.Entities.Explosion" Collapsed="true">
+    <Position X="4.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAAQAQAggAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceFist.Entities.SpaceBlock" Collapsed="true">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAABAAAAAAAAAAAAEAAAABAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Entities\SpaceBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceFist.Entity" Collapsed="true">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAA4AAAAAAACAAAAgkABwIAAAAAAIEYAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceFist.Ship" Collapsed="true">
+    <Position X="12.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwACACARgCgDBAAAAAAAOAAAgAEgAgECACAAQAwAAI=</HashCode>
+      <FileName>Entities\Ship.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.Entities.Projectile" Collapsed="true">
+    <Position X="8" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAACAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Entities\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceFist.Managers.ProjectileManager" Collapsed="true">
+    <Position X="8" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACSQAIABAAAAQhAAAAAQAAAAAAAAAAAIAABAAAAAAAQ=</HashCode>
+      <FileName>Managers\ProjectileManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="projectiles" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.Managers.EnemyManager" Collapsed="true">
+    <Position X="2" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAIAAgAAAAxAAAAAQAAAAAAAAAAAJACAAAABAAEA=</HashCode>
+      <FileName>Managers\EnemyManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="enemies" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.Managers.PickUpManager" Collapsed="true">
+    <Position X="6.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICQAAIBAAAAABhAQAAAYBAAAAAAAACAIAABAAEIACgA=</HashCode>
+      <FileName>Managers\PickUpManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="pickups" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceFist.Entities.Pickup" Collapsed="true">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAMAAAAAA=</HashCode>
+      <FileName>Entities\Pickup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
