@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.game.SpaceFistGame;
+import com.spacefist.state.LogoState;
 import com.spacefist.state.abst.GameState;
 
 import java.util.HashMap;
@@ -71,7 +72,13 @@ public class GameData
     // -------------- Game States --------------
     public SplashScreenState SplashScreenState { get; set; }
     public MenuState         MenuState         { get; set; }
-    public LogoState         LogoState         { get; set; }
+    */
+    private LogoState logoState;
+
+
+
+
+    /*
     public InPlayState       InPlayState       { get; set; }
     public GameOverState     GameOverState     { get; set; }
     public EndOfGameState    EndOfGameState    { get; set; }
@@ -226,5 +233,13 @@ public class GameData
 
     public void setTitleFont(BitmapFont titleFont) {
         this.titleFont = titleFont;
+    }
+
+    public LogoState getLogoState() {
+        return logoState;
+    }
+
+    public void setLogoState(LogoState logoState) {
+        this.logoState = logoState;
     }
 }
