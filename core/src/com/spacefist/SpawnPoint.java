@@ -1,4 +1,4 @@
-﻿package com.spacefist;
+package com.spacefist;
 
 /**
  * Represents a spawn point in a level.

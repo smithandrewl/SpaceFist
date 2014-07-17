@@ -1,4 +1,4 @@
-﻿package com.spacefist;
+package com.spacefist;
 
 import com.badlogic.gdx.math.Vector2;
 
