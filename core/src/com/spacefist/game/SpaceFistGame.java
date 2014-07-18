@@ -1,7 +1,11 @@
 package com.spacefist.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -72,59 +76,48 @@ public class SpaceFistGame extends ApplicationAdapter {
         batch.end();
     }
 
+    @Override
+    public void dispose() {
+        for(Texture texture : gameData.getTextures().values()) {
+            texture.dispose();
+        }
+
+        for(Music song : gameData.getSongs().values()) {
+            song.dispose();
+        }
+
+        for(Sound soundEffect : gameData.getSoundEffects().values()) {
+            soundEffect.dispose();
+        }
+    }
+
     public GameData getGameData() {
         return gameData;
     }
 
     private void LoadTextures()
     {
-        /*
-        String root = Content.RootDirectory;
-
-        DirectoryInfo inf = new DirectoryInfo(root + "/Images");
-
-        foreach (var dir in inf.EnumerateDirectories())
-        {
-            foreach (var file in dir.EnumerateFiles())
-            {
-                string asset = file.Name.Substring(0, file.Name.IndexOf('.'));
-
-                GameData.Textures[asset] = Content.Load<Texture2D>("Images/" + dir + "/" + asset);
+        for(FileHandle fileHandle : Gdx.files.absolute("images/").list()) {
+            if(fileHandle.isDirectory()) {
+                for(FileHandle file : fileHandle.list(".png")) {
+                    gameData.getTextures().put(file.nameWithoutExtension(), new Texture(file));
+                }
             }
         }
-        */
     }
 
     private void LoadSongs()
     {
-        /*
-        String root = Content.RootDirectory;
-
-        DirectoryInfo inf = new DirectoryInfo(root + "/Sound/Songs");
-
-        foreach (var file in inf.EnumerateFiles())
-        {
-            string asset = file.Name.Substring(0, file.Name.IndexOf('.'));
-
-            GameData.Songs[asset] = Content.Load<Song>("Sound/Songs/" + asset);
+        for(FileHandle fileHandle : Gdx.files.absolute("sound/songs/").list()) {
+            gameData.getSongs().put(fileHandle.nameWithoutExtension(), Gdx.audio.newMusic(fileHandle));
         }
-        */
     }
 
     private void LoadSoundEffects()
     {
-        /*
-        String root = Content.RootDirectory;
-
-        DirectoryInfo inf = new DirectoryInfo(root + "/Sound/SoundEffects");
-
-        foreach(var file in inf.EnumerateFiles())
-        {
-            string asset = file.Name.Substring(0, file.Name.IndexOf('.'));
-
-            GameData.SoundEffects[asset] = Content.Load<SoundEffect>("Sound/SoundEffects/" + asset);
+        for(FileHandle fileHandle : Gdx.files.absolute("sound/soundeffects/").list()) {
+            gameData.getSoundEffects().put(fileHandle.nameWithoutExtension(), Gdx.audio.newSound(fileHandle));
         }
-        */
     }
 
     protected void loadContent()
@@ -142,11 +135,13 @@ public class SpaceFistGame extends ApplicationAdapter {
         /*
         GameData.Font      = Content.Load<SpriteFont>(SpriteFontAsset);
         GameData.TitleFont = Content.Load<SpriteFont>(TitleFontAsset);
+        */
 
         LoadTextures();
         LoadSongs();
         LoadSoundEffects();
-        */
+
+
         /*
         GameData.SplashScreenState.LoadContent();
         GameData.InPlayState.LoadContent();

@@ -3,14 +3,15 @@ package com.spacefist.state;
 import com.badlogic.gdx.graphics.Texture;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
+import java.util.Date;
 
-/// <summary>
-/// This state displays the team logo before switching
-/// to the splash screen.
-/// </summary>
+/**
+ * This state displays the team logo before switching
+ * to the splash screen.
+ */
 public class LogoState implements GameState {
     Texture background;
-    //DateTime  enteredAt;
+    Date    enteredAt;
 
     private static final int loadTime = 3;
 
@@ -53,7 +54,7 @@ public class LogoState implements GameState {
 
     public void EnteringState()
     {
-        //enteredAt = DateTime.Now;
+        enteredAt = new Date();
     }
 
     public void ExitingState()
