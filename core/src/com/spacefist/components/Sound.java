@@ -1,27 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+package com.spacefist.components;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+import com.spacefist.GameData;
+import com.spacefist.components.abst.SoundComponent;
+import com.spacefist.entities.Entity;
 
-using SpaceFist.Components.Abstract;
-
-namespace SpaceFist.Components
-{
     /// <summary>
     /// A simple sound component that plays a sound effect.
     /// </summary>
-    class Sound : SoundComponent
-    {
-        SoundEffect soundEffect;
+    public class Sound implements SoundComponent {
+        com.badlogic.gdx.audio.Sound soundEffect;
 
         /// <summary>
         /// Creates a new Sound instance from a SoundEffect.
         /// </summary>
         /// <param name="sound">The sound to play</param>
-        public Sound(SoundEffect sound)
+        public Sound(com.badlogic.gdx.audio.Sound sound)
         {
             this.soundEffect = sound;
         }
@@ -31,11 +24,10 @@ namespace SpaceFist.Components
         /// </summary>
         public void play()
         {
-            soundEffect.Play();
+            soundEffect.play();
         }
 
         public void Update(GameData gameData, Entity obj)
         {
         }
     }
-}

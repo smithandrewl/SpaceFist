@@ -13,6 +13,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
 import com.spacefist.state.LogoState;
 
+import java.util.Map;
+
 public class SpaceFistGame extends ApplicationAdapter {
     SpriteBatch batch;
 
@@ -50,17 +52,6 @@ public class SpaceFistGame extends ApplicationAdapter {
         gameData.setCurrentState(gameData.getLogoState());
 
         loadContent();
-
-        /*
-        GameData.Content      = Content;
-        Content.RootDirectory = "Content";
-        */
-
-        /* set the resolution
-        graphics.PreferredBackBufferWidth  = 1366;
-        graphics.PreferredBackBufferHeight = 768;
-        graphics.ApplyChanges();
-        */
     }
 
     @Override
@@ -97,10 +88,12 @@ public class SpaceFistGame extends ApplicationAdapter {
 
     private void LoadTextures()
     {
+        Map<String, Texture> textures = gameData.getTextures();
+
         for(FileHandle fileHandle : Gdx.files.absolute("images/").list()) {
             if(fileHandle.isDirectory()) {
                 for(FileHandle file : fileHandle.list(".png")) {
-                    gameData.getTextures().put(file.nameWithoutExtension(), new Texture(file));
+                    textures.put(file.nameWithoutExtension(), new Texture(file));
                 }
             }
         }
@@ -108,15 +101,19 @@ public class SpaceFistGame extends ApplicationAdapter {
 
     private void LoadSongs()
     {
+        Map<String, Music> songs = gameData.getSongs();
+
         for(FileHandle fileHandle : Gdx.files.absolute("sound/songs/").list()) {
-            gameData.getSongs().put(fileHandle.nameWithoutExtension(), Gdx.audio.newMusic(fileHandle));
+            songs.put(fileHandle.nameWithoutExtension(), Gdx.audio.newMusic(fileHandle));
         }
     }
 
     private void LoadSoundEffects()
     {
+        Map<String, Sound> soundEffects = gameData.getSoundEffects();
+
         for(FileHandle fileHandle : Gdx.files.absolute("sound/soundeffects/").list()) {
-            gameData.getSoundEffects().put(fileHandle.nameWithoutExtension(), Gdx.audio.newSound(fileHandle));
+            soundEffects.put(fileHandle.nameWithoutExtension(), Gdx.audio.newSound(fileHandle));
         }
     }
 
