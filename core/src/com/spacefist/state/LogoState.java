@@ -24,11 +24,15 @@ public class LogoState implements GameState {
 
     public void LoadContent()
     {
-        //background = gameData.Textures["Logo"];
+        background = gameData.getTextures().get("Logo");
     }
 
     public void Draw()
     {
+        float height = gameData.getResolution().getHeight();
+        float width = gameData.getResolution().getWidth();
+
+        gameData.getSpriteBatch().draw(background, 0, 0, width, height);
         /*
         gameData.SpriteBatch.Draw(
                 background,

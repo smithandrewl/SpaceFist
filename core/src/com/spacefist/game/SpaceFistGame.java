@@ -144,7 +144,10 @@ public class SpaceFistGame extends ApplicationAdapter {
         GameData.InPlayState.LoadContent();
         GameData.GameOverState.LoadContent();
         GameData.MenuState.LoadContent();
-        GameData.LogoState.LoadContent();
+        */
+
+        gameData.getLogoState().LoadContent();
+        /*
         GameData.EndOfLevelState.LoadContent();
         */
 
