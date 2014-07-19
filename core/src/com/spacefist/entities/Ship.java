@@ -11,6 +11,8 @@ import com.spacefist.components.abst.SoundComponent;
 import com.spacefist.state.abst.ShipState;
 import com.spacefist.state.abst.StateMachine;
 import com.spacefist.components.IndexedSprite;
+import com.spacefist.weapons.abst.Weapon;
+
 /// <summary>
     /// 
     /// </summary>
@@ -25,10 +27,8 @@ import com.spacefist.components.IndexedSprite;
 
         private static final int maxHealthPoints = 100;
 
-
-
-        // private Weapon weapon;
-        private int healthPoints;
+        private Weapon weapon;
+        private int    healthPoints;
 
         /// <summary>
         /// The current state of the ship.  
@@ -61,8 +61,6 @@ import com.spacefist.components.IndexedSprite;
             state = shipState;
         }
 
-        /*
-        TODO: Convert
         /// <summary>
         /// The ships current weapon.
         /// </summary>
@@ -73,7 +71,6 @@ import com.spacefist.components.IndexedSprite;
         public void setWeapon(Weapon weapon) {
             this.weapon = weapon;
         }
-        */
 
         /// <summary>
         /// The number of health points the ship has left.
@@ -179,7 +176,7 @@ import com.spacefist.components.IndexedSprite;
         /// </summary>
         public void Fire()
         {
-            // weapon.fire();
+            weapon.fire();
         }
 
         public void Reset()
