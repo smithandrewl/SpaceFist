@@ -32,7 +32,8 @@ import com.spacefist.components.abst.SoundComponent;
  */
 public class Entity
 {
-    private GameData          gameData;
+    protected GameData gameData;
+
     private Rectangle         rectangle;
     private PhysicsComponent  physics;
     private InputComponent    input;

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.spacefist.entities.Ship;
 import com.spacefist.game.SpaceFistGame;
 import com.spacefist.state.LogoState;
 import com.spacefist.state.abst.GameState;
@@ -45,9 +46,16 @@ public class GameData
 
     private RoundData roundData;
 
-    /*
-    public Ship                            Ship           { get; set; }
-    */
+
+    private Ship ship;
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
 
     private BitmapFont font;
     private BitmapFont titleFont;
