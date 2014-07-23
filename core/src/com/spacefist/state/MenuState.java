@@ -1,25 +1,23 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using SpaceFist.State.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+package com.spacefist.state;
 
-namespace SpaceFist.State
-{
-    /// <summary>
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
+import com.spacefist.GameData;
+import com.spacefist.state.abst.GameState;
+
+import java.util.Date;
+
+/// <summary>
     /// This state displays the main menu and handles input to 
     /// switch to several other states.
     /// </summary>
-    public class MenuState : GameState
+    public class MenuState implements GameState
     {
         private GameData  gameData;
-        private DateTime  enteredAt;
-        private Texture2D background;
-        private Texture2D menu;
+        private Date      enteredAt;
+        private Texture   background;
+        private Texture   menu;
         private Rectangle backgroundRect;
         private Rectangle menuRect;
         private Rectangle newGameRect;
@@ -33,34 +31,40 @@ namespace SpaceFist.State
 
         public void LoadContent()
         {
-            var resolution = gameData.Resolution;
+            Rectangle resolution = gameData.getResolution();
 
             backgroundRect = resolution;
-            background     = gameData.Textures["BackgroundRed"];
-            
-            menu           = gameData.Textures["Menu"];
+            background     = gameData.getTextures().get("BackgroundRed");
+            menu           = gameData.getTextures().get("Menu");
 
             menuRect = new Rectangle(
-                (int) ((background.Width / 2f) - (menu.Width)), 
-                (int)((background.Height / 2f) - (menu.Height)), 
-                menu.Width, menu.Height
+                (int) ((background.getWidth() / 2f) - (menu.getWidth())),
+                (int)((background.getHeight() / 2f) - (menu.getHeight())),
+                menu.getWidth(), menu.getHeight()
             );
 
             // Calculate and set rectangles for each button since the buttons
             // are part of a single image.
-            newGameRect = new Rectangle(menuRect.X + 8, menuRect.Y + 12, 149, 29);
-            creditsRect = new Rectangle(menuRect.X + 8, menuRect.Y + 46, 149, 29);
-            exitRect    = new Rectangle(menuRect.X + 8, menuRect.Y + 82, 149, 29);
+            newGameRect = new Rectangle(menuRect.x + 8, menuRect.y + 12, 149, 29);
+            creditsRect = new Rectangle(menuRect.x + 8, menuRect.y + 46, 149, 29);
+            exitRect    = new Rectangle(menuRect.x + 8, menuRect.y + 82, 149, 29);
         }
 
-        public void Draw(Microsoft.Xna.Framework.GameTime time)
+        public void Draw()
         {
-            gameData.SpriteBatch.Draw(background, backgroundRect, Color.White);
-            gameData.SpriteBatch.Draw(menu, menuRect, Color.White);
+            // TODO: Convert MenuState.Draw()
+
+            /*
+            gameData.getSpriteBatch().draw(background, backgroundRect, Color.WHITE);
+            gameData.getSpriteBatch().draw(menu, menuRect, Color.WHITE);
+            */
         }
 
         public void Update()
         {
+            // TODO: Convert Input handling code in MenuState.Update
+
+            /*
             MouseState    mouse = Mouse.GetState();
             KeyboardState keys  = Keyboard.GetState();
 
@@ -70,7 +74,7 @@ namespace SpaceFist.State
             {
                 if (mouse.LeftButton == ButtonState.Pressed)
                 {
-                    if (newGameRect.Contains(mousePos))
+                    if (newGameRect.contains(mousePos))
                     {
                         gameData.CurrentState = gameData.InPlayState;
                     }
@@ -98,24 +102,29 @@ namespace SpaceFist.State
                     }
                 }
             }
+            */
         }
 
         public void EnteringState()
         {
-            enteredAt           = DateTime.Now;
+            // TODO: Convert MenuState.EnteringState
+            // enteredAt           = DateTime.Now;
 
-            gameData.IsMouseVisible = true;
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(gameData.Songs["TitleScreen"]);
+            // gameData.IsMouseVisible = true;
+            // MediaPlayer.IsRepeating = true;
+            // MediaPlayer.Play(gameData.Songs["TitleScreen"]);
 
-            gameData.LevelManager.Init();
-            gameData.LevelManager.LoadLevel(1);
+            // gameData.LevelManager.Init();
+            // gameData.LevelManager.LoadLevel(1);
         }
 
         public void ExitingState()
         {
-            gameData.IsMouseVisible = false;
-            MediaPlayer.Stop();
+            // TODO: Convert MenuState.ExitingState
+            // TODO: Get mouse visibility working
+            // gameData.IsMouseVisible = false;
+
+            // TODO: Convert audio to libGDX
+            //MediaPlayer.Stop();
         }
     }
-}
