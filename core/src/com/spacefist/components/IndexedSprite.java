@@ -78,7 +78,7 @@ public class IndexedSprite implements GraphicsComponent
         // obj.Tint,
     }
 
-    public void Update(GameData gameData, Entity obj)
+    public void update(GameData gameData, Entity obj)
     {
     }
 }

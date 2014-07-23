@@ -1,11 +1,7 @@
-using SpaceFist.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+package com.spacefist.ai.abst;
 
-namespace SpaceFist.AI.Abstract
-{
+import com.spacefist.entities.Projectile;
+
     /// <summary>
     /// This interface must be implemented by any weapon behavior. 
     /// </summary>
@@ -13,4 +9,3 @@ namespace SpaceFist.AI.Abstract
     {
         void Update(Projectile projectile);
     }
-}
