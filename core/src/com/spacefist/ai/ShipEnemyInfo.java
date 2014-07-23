@@ -110,6 +110,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled
             PrintDebuggingInfo();
         }
     }
+
     /// <summary>
     /// Displays details of the fuzzy variables to the console every second.
     /// </summary>

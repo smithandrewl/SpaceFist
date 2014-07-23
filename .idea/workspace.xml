@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0576c9e6-e380-4136-a7cc-d857e7da501e" name="Default" comment="Started converting EnemyMine, Explosion, Pickup, SpaceBlock.  Converted the delegate PickupHandler to an interface">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/AI/ShipEnemyInfo.cs" afterPath="$PROJECT_DIR$/core/src/com/spacefist/ai/ShipEnemyInfo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/AI/ShipInfo.cs" afterPath="$PROJECT_DIR$/core/src/com/spacefist/ai/ShipInfo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/Entities/Enemies/Enemy.cs" afterPath="$PROJECT_DIR$/core/src/com/spacefist/entities/enemies/Enemy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/spacefist/PickupHandler.java" afterPath="$PROJECT_DIR$/core/src/com/spacefist/PickupHandler.java" />
+    <list default="true" id="0576c9e6-e380-4136-a7cc-d857e7da501e" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/Weapons/Bluelaser.cs" afterPath="$PROJECT_DIR$/core/src/com/spacefist/weapons/Bluelaser.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/Weapons/Missile.cs" afterPath="$PROJECT_DIR$/core/src/com/spacefist/weapons/Missile.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/Weapons/SampleWeapon.cs" afterPath="$PROJECT_DIR$/core/src/com/spacefist/weapons/SampleWeapon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/spacefist/ai/ShipEnemyInfo.java" afterPath="$PROJECT_DIR$/core/src/com/spacefist/ai/ShipEnemyInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SpaceFistGDX.iws" />
@@ -73,19 +73,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ShipEnemyInfo.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/ai/ShipEnemyInfo.java">
+      <file leaf-file-name="Bluelaser.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/weapons/Bluelaser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19115324" vertical-offset="1447" max-vertical-offset="2144">
-              <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.56774193" vertical-offset="48" max-vertical-offset="736">
+              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-                <element signature="e#911#912#0" expanded="true" />
-                <element signature="e#952#953#0" expanded="true" />
-                <element signature="e#986#987#0" expanded="true" />
-                <element signature="e#1754#1755#0" expanded="true" />
-                <element signature="e#1834#1835#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1249,9 +1243,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/src/com/spacefist/state/abst/State.java" />
-        <option value="$PROJECT_DIR$/core/src/com/spacefist/state/abst/GameState.java" />
-        <option value="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/State/Abstract/StateMachine.cs" />
         <option value="$PROJECT_DIR$/core/src/com/spacefist/state/abst/StateMachine.java" />
         <option value="$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/Components/Abstract/Component.cs" />
         <option value="$PROJECT_DIR$/core/src/com/spacefist/components/abst/PhysicsComponent.java" />
@@ -1300,6 +1291,9 @@
         <option value="$PROJECT_DIR$/core/src/com/spacefist/entities/enemies/Enemy.java" />
         <option value="$PROJECT_DIR$/core/src/com/spacefist/ai/ShipInfo.java" />
         <option value="$PROJECT_DIR$/core/src/com/spacefist/ai/ShipEnemyInfo.java" />
+        <option value="$PROJECT_DIR$/core/src/com/spacefist/weapons/Missile.java" />
+        <option value="$PROJECT_DIR$/core/src/com/spacefist/weapons/SampleWeapon.java" />
+        <option value="$PROJECT_DIR$/core/src/com/spacefist/weapons/Bluelaser.java" />
       </list>
     </option>
   </component>
@@ -1477,6 +1471,36 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Entities" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Enemies" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceFistGDX" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceFistGDX" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OldProject" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceFist" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceFist" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="AI" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1562,6 +1586,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="spacefist" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceFistGDX" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpaceFistGDX" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spacefist" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="weapons" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1685,11 +1735,11 @@
       <recent name="$PROJECT_DIR$/core/src/com/spacefist/state/" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/src/com/spacefist/weapons" />
       <recent name="$PROJECT_DIR$/core/src/com/spacefist/ai" />
       <recent name="$PROJECT_DIR$/core/src/com/spacefist/entities/enemies" />
       <recent name="$PROJECT_DIR$/core/src/com/spacefist/entities" />
       <recent name="$PROJECT_DIR$/core/src/com/spacefist/state" />
-      <recent name="$PROJECT_DIR$/core/src/com/spacefist/ai/" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.spacefist.state.abstr" />
@@ -2019,7 +2069,11 @@
       <created>1406141219714</created>
       <updated>1406141219714</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Started converting ShipEnemyInfo, ShipInfo, Enemy.">
+      <created>1406143684964</created>
+      <updated>1406143684964</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2067,7 +2121,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38579795" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38726208" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2139,7 +2193,8 @@
     <MESSAGE value="Started converting EnemyAI, EnemyAIState, FuzzyLogicEnabled, ProjectileBehavior, NullBehavior, SeekingBehavior, FuzzyVariable, FuzzyVariable and Projectile." />
     <MESSAGE value="Started converting MenuState" />
     <MESSAGE value="Started converting EnemyMine, Explosion, Pickup, SpaceBlock.  Converted the delegate PickupHandler to an interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started converting EnemyMine, Explosion, Pickup, SpaceBlock.  Converted the delegate PickupHandler to an interface" />
+    <MESSAGE value="Started converting ShipEnemyInfo, ShipInfo, Enemy." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started converting ShipEnemyInfo, ShipInfo, Enemy." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2159,20 +2214,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/state/abst/StateMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/SpawnPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="400">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/ic_launcher-web.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2434,6 +2475,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24678664" vertical-offset="0" max-vertical-offset="1248">
           <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2441,13 +2483,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2320">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OldProject/SpaceFist/SpaceFist/Weapons/Bluelaser.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24678664" vertical-offset="0" max-vertical-offset="768">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -2585,8 +2620,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/ai/ShipEnemyInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19115324" vertical-offset="1447" max-vertical-offset="2144">
-          <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.31753555" vertical-offset="1431" max-vertical-offset="2160">
+          <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#883#884#0" expanded="true" />
@@ -2595,6 +2630,36 @@
             <element signature="e#986#987#0" expanded="true" />
             <element signature="e#1754#1755#0" expanded="true" />
             <element signature="e#1834#1835#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/weapons/SampleWeapon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9241706" vertical-offset="71" max-vertical-offset="768">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/weapons/Missile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37914693" vertical-offset="16" max-vertical-offset="672">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/spacefist/weapons/Bluelaser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56774193" vertical-offset="48" max-vertical-offset="736">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
