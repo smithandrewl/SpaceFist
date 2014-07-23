@@ -22,7 +22,7 @@ public class Sprite implements GraphicsComponent {
         image = texture;
     }
 
-    public void Update(GameData gameData, Entity obj) {
+    public void update(GameData gameData, Entity obj) {
 
     }
 

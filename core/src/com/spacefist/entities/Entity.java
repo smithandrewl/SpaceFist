@@ -140,10 +140,10 @@ public class Entity
     {
         if (isAlive())
         {
-            getGraphics().Update(gameData, this);
-            getInput().Update(gameData, this);
-            getPhysics().Update(gameData, this);
-            getSound().Update(gameData, this);
+            getGraphics().update(gameData, this);
+            getInput().update(gameData, this);
+            getPhysics().update(gameData, this);
+            getSound().update(gameData, this);
         }
     }
 

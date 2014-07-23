@@ -9,7 +9,7 @@ import com.spacefist.entities.Entity;
  */
 public class NullInputComponent implements InputComponent
 {
-    public void Update(GameData gameData, Entity obj)
+    public void update(GameData gameData, Entity obj)
     {
     }
 }

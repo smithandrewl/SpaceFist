@@ -14,7 +14,7 @@ public class NullSoundComponent implements SoundComponent
     {
     }
 
-    public void Update(GameData gameData, Entity obj)
+    public void update(GameData gameData, Entity obj)
     {
     }
 }

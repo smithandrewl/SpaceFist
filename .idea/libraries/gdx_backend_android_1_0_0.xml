@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="gdx-backend-android-1.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.0.0/625737c550f63ecc94b0d1f8074c8b4c9846745b/gdx-backend-android-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.0.0/edfe6fe3a91ff571f7469b085e8e6878cd221798/gdx-backend-android-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

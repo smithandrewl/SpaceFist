@@ -16,7 +16,7 @@ import com.spacefist.entities.Entity;
 // This is used by Ship to draw itself turning. The image contains all of the images of the ship.
 // When the ship turns, it sets the Index property of its graphics component to draw the correct frame.
 //
-// Explosion.cs also uses IndexedSprite as its graphics component to draw an animation
+// Explosion.java also uses IndexedSprite as its graphics component to draw an animation
 public class IndexedSprite implements GraphicsComponent
 {
     private Texture texture;
@@ -78,7 +78,7 @@ public class IndexedSprite implements GraphicsComponent
         // obj.Tint,
     }
 
-    public void Update(GameData gameData, Entity obj)
+    public void update(GameData gameData, Entity obj)
     {
     }
 }

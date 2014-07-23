@@ -27,7 +27,7 @@ import com.spacefist.entities.Entity;
             soundEffect.play();
         }
 
-        public void Update(GameData gameData, Entity obj)
+        public void update(GameData gameData, Entity obj)
         {
         }
     }

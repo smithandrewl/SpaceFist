@@ -10,5 +10,5 @@ import com.spacefist.entities.Entity;
      */
     public interface Component
     {
-        void Update(GameData gameData, Entity obj);
+        void update(GameData gameData, Entity obj);
     }

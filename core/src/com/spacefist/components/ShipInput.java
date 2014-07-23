@@ -16,7 +16,7 @@ public class ShipInput implements InputComponent
     private boolean aDown     = false;
     private boolean dDown     = false;
 
-    public void Update(GameData gameData, Entity obj)
+    public void update(GameData gameData, Entity obj)
     {
         Ship ship = (Ship) obj;
 
