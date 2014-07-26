@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
 import com.spacefist.state.LogoState;
+import com.spacefist.state.MenuState;
+import com.spacefist.state.SplashScreenState;
 
 import java.util.Map;
 
@@ -29,16 +31,17 @@ public class SpaceFistGame extends ApplicationAdapter {
 
         gameData = new GameData(this);
 
-        /*
         // Creates the game states when the game starts.
         // only one state is active at any given time.
-        GameData. SplashScreenState = new SplashScreenState(GameData);
-        GameData.InPlayState        = new InPlayState(GameData);
-        GameData.GameOverState      = new GameOverState(GameData);
-        GameData.MenuState          = new MenuState(GameData);
-        */
-
+        gameData.setSplashScreenState(new SplashScreenState(gameData));
+        gameData.setMenuState(new MenuState(gameData));
         gameData.setLogoState(new LogoState(gameData));
+
+
+        //gameData.setInPlayState(new InPlayState(GameData));
+        /*
+        GameData.GameOverState      = new GameOverState(GameData);
+        */
 
         /*
         GameData.CreditsState       = new CreditsState(GameData);
@@ -139,13 +142,12 @@ public class SpaceFistGame extends ApplicationAdapter {
         LoadSoundEffects();
 
 
-        /*
-        GameData.SplashScreenState.LoadContent();
-        GameData.InPlayState.LoadContent();
-        GameData.GameOverState.LoadContent();
-        GameData.MenuState.LoadContent();
-        */
 
+        // GameData.InPlayState.LoadContent();
+        // GameData.GameOverState.LoadContent();
+
+        gameData.getSplashScreenState().LoadContent();
+        gameData.getMenuState().LoadContent();
         gameData.getLogoState().LoadContent();
         /*
         GameData.EndOfLevelState.LoadContent();

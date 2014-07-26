@@ -1,5 +1,7 @@
 package com.spacefist.state;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
@@ -33,27 +35,18 @@ public class LogoState implements GameState {
         float width = gameData.getResolution().getWidth();
 
         gameData.getSpriteBatch().draw(background, 0, 0, width, height);
-        /*
-        gameData.SpriteBatch.Draw(
-                background,
-                gameData.Resolution,
-                Color.White
-        );
-        */
     }
 
     public void Update()
     {
-        /*
-        KeyboardState keys = Keyboard.GetState();
 
-        if (DateTime.Now.Subtract(enteredAt).Seconds > loadTime ||
-                keys.IsKeyDown(Keys.Enter)                          ||
-                keys.IsKeyDown(Keys.Escape))
+        if (((new Date().getTime() - enteredAt.getTime()) / 1000) > loadTime ||
+                Gdx.input.isKeyPressed(Input.Keys.ENTER)                     ||
+                Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
         {
-            gameData.CurrentState = gameData.SplashScreenState;
+
+            gameData.setCurrentState(gameData.getSplashScreenState());
         }
-        */
     }
 
     public void EnteringState()

@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.spacefist.entities.Ship;
 import com.spacefist.game.SpaceFistGame;
 import com.spacefist.state.LogoState;
+import com.spacefist.state.MenuState;
+import com.spacefist.state.SplashScreenState;
 import com.spacefist.state.abst.GameState;
 
 import java.util.HashMap;
@@ -77,11 +79,12 @@ public class GameData
     public BlockManager      BlockManager      { get; set; }
     public CollisionManager  CollisionManager  { get; set; }
 
-    // -------------- Game States --------------
-    public SplashScreenState SplashScreenState { get; set; }
-    public MenuState         MenuState         { get; set; }
     */
-    private LogoState logoState;
+
+    // -------------- Game States --------------
+    private SplashScreenState splashScreenState;
+    private MenuState         menuState;
+    private LogoState         logoState;
 
 
 
@@ -249,5 +252,21 @@ public class GameData
 
     public void setLogoState(LogoState logoState) {
         this.logoState = logoState;
+    }
+
+    public SplashScreenState getSplashScreenState() {
+        return splashScreenState;
+    }
+
+    public void setSplashScreenState(SplashScreenState splashScreenState) {
+        this.splashScreenState = splashScreenState;
+    }
+
+    public MenuState getMenuState() {
+        return menuState;
+    }
+
+    public void setMenuState(MenuState menuState) {
+        this.menuState = menuState;
     }
 }
