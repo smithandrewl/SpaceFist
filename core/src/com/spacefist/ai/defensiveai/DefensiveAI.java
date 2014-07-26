@@ -35,8 +35,6 @@ public class DefensiveAI implements EnemyAI
     /// </summary>
     private ShipInfo  shipInfo;
 
-
-
     public void Update()
     {
         shipInfo.Update();
