@@ -10,18 +10,19 @@ import com.spacefist.entities.enemies.Enemy;
 /// An aggressive AI which follows the ship and attempts to ram it.
 /// </summary>
 public class AggressiveAI implements EnemyAI {
-    /// <summary>
-    /// The ram fuzzy state
-    /// </summary>
+    /**
+     * The ram fuzzy state
+     */
     private RamState      ramState;
     private ShipEnemyInfo ShipEnemyInfo;
     private ShipInfo      ShipInfo;
 
-    /// <summary>
-    /// Creates a new AggressiveAI instance.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="enemy">The enemy this AI will control</param>
+    /**
+     * Creates a new AggressiveAI instance.
+     *
+     * @param gameData Common game data
+     * @param enemy The enemy this AI will control
+     */
     public AggressiveAI(GameData gameData, Enemy enemy) {
         setShipInfo(new ShipInfo(gameData));
         setShipEnemyInfo(new ShipEnemyInfo(enemy, getShipInfo(), gameData));

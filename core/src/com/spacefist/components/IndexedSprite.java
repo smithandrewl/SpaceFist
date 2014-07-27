@@ -8,28 +8,30 @@ import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.components.abst.GraphicsComponent;
 import com.spacefist.entities.Entity;
-
-// Given a texture and a frame width and height,
-// this component will draw a portion of the texture.
-//
-// Index is used to determine which frame of the image is being drawn.
-// This is used by Ship to draw itself turning. The image contains all of the images of the ship.
-// When the ship turns, it sets the Index property of its graphics component to draw the correct frame.
-//
-// Explosion.java also uses IndexedSprite as its graphics component to draw an animation
-public class IndexedSprite implements GraphicsComponent {
+/**
+ * Given a texture and a frame width and height,
+ * this component will draw a portion of the texture.
+ *
+ * Index is used to determine which frame of the image is being drawn.
+ * This is used by Ship to draw itself turning. The image contains all of the images of the ship.
+ * When the ship turns, it sets the Index property of its graphics component to draw the correct frame.
+ *
+ * Explosion.java also uses IndexedSprite as its graphics component to draw an animation
+ */
+ public class IndexedSprite implements GraphicsComponent {
     private Texture texture;
     private int     width;
     private int     height;
     private int     index;
 
-    /// <summary>
-    /// Provides the ability to draw the cells of a horizontal texture atlas.
-    /// </summary>
-    /// <param name="texture">The texture atlas</param>
-    /// <param name="width">The width of each frame</param>
-    /// <param name="height">The height of each frame</param>
-    /// <param name="index">The index of the currently visible frame</param>
+    /**
+     * Provides the ability to draw the cells of a horizontal texture atlas.
+     *
+     * @param texture The texture atlas
+     * @param width The width of each frame
+     * @param height The height of each frame
+     * @param index The index of the currently visible frame
+     */
     public IndexedSprite(Texture texture, int width, int height, int index) {
         this.width   = width;
         this.height  = height;

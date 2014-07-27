@@ -10,10 +10,10 @@ import com.spacefist.state.abst.GameState;
 
 import java.util.Date;
 
-/// <summary>
-/// This state displays the main menu and handles input to
-/// switch to several other states.
-/// </summary>
+/**
+ * This state displays the main menu and handles input to
+ * switch to several other states.
+ */
 public class MenuState implements GameState {
     private GameData  gameData;
     private Date      enteredAt;

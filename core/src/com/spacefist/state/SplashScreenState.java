@@ -9,22 +9,23 @@ import com.spacefist.state.abst.GameState;
 
 import java.util.Date;
 
-/// <summary>
-/// When the game is in the splash screen state
-/// it draws the splash screen and waits for the player to press enter or click the mouse.
-///
-/// When the player presses enter the game switchs to the menu state.
-/// </summary>
+/**
+ * When the game is in the splash screen state
+ * it draws the splash screen and waits for the player to press enter or click the mouse.
+ *
+ * When the player presses enter the game switchs to the menu state.
+ */
 public class SplashScreenState implements GameState {
     GameData  gameData;
     Texture   overlayTexture;
     Rectangle overlayRect;
     Date      enteredAt;
 
-    /// <summary>
-    /// Creates a new SplashScreenState instance.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
+    /**
+     * Creates a new SplashScreenState instance.
+     *
+     * @param gameData Common game data
+     */
     public SplashScreenState(GameData gameData) {
         this.gameData = gameData;
     }

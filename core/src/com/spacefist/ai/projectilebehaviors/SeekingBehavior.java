@@ -9,27 +9,28 @@ import com.spacefist.entities.Projectile;
 // on the pursuit section of the paper "Steering Behaviors For Autonomous Characters"
 // http://www.red3d.com/cwr/steer/gdc99/
 class SeekingBehavior implements ProjectileBehavior {
-    /// <summary>
-    /// The entity the projectile is intercepting.
-    /// </summary>
+    /**
+     * The entity the projectile is intercepting.
+     */
     private Entity target;
 
-    /// <summary>
-    /// The point on world that the projectile was fired.
-    /// </summary>
+    /**
+     * The point on world that the projectile was fired.
+     */
     private Vector2 origin;
 
-    /// <summary>
-    /// The direction the ship was heading when it fired the projectile.
-    /// </summary>
+    /**
+     * The direction the ship was heading when it fired the projectile.
+     */
     private Vector2 origVector;
 
-    /// <summary>
-    /// Creates a new SeekingBehavior instance given a target, an initial direction and an initial velocity.
-    /// </summary>
-    /// <param name="unitVector">The direction the projectile was fired.</param>
-    /// <param name="origin">The point from which the projectile was fired.</param>
-    /// <param name="target">The target entity to intercept.</param>
+    /**
+     * Creates a new SeekingBehavior instance given a target, an initial direction and an initial velocity.
+     *
+     * @param unitVector The direction the projectile was fired
+     * @param origin The point from which the projectile was fired
+     * @param target The target entity to intercept
+     */
     public SeekingBehavior(Vector2 unitVector, Vector2 origin, Entity target) {
         this.origin = origin;
         this.target = target;

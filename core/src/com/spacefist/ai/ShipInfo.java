@@ -48,10 +48,11 @@ public class ShipInfo extends FuzzyLogicEnabled {
 
     private GameData gameData;
 
-    /// <summary>
-    /// Creates a new ShipInfo instance.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
+    /**
+     * Creates a new ShipInfo instance.
+     *
+     * @param gameData Common game data
+     */
     public ShipInfo(GameData gameData) {
         roundData     = gameData.getRoundData();
         this.gameData = gameData;
@@ -69,9 +70,9 @@ public class ShipInfo extends FuzzyLogicEnabled {
         fuzzyAccuracy.setName("Accuracy");
     }
 
-    /// <summary>
-    /// The degree to which the ship belongs to the low, medium and high speed sets.
-    /// </summary>
+    /**
+     * @return The degree to which the ship belongs to the low, medium and high speed sets.
+     */
     public FuzzyVariable getSpeed() {
         return grade(speed, SpeedLow, SpeedHigh, fuzzySpeed);
     }
@@ -86,16 +87,16 @@ public class ShipInfo extends FuzzyLogicEnabled {
     }
     */
 
-    /// <summary>
-    /// The degree to which the ship belongs to the low, medium and high health sets.
-    /// </summary>
+    /**
+     * @return The degree to which the ship belongs to the low, medium and high health sets.
+     */
     public FuzzyVariable getHealth() {
         return grade(health, HealthLow, HealthHigh, fuzzyHealth);
     }
 
-    /// <summary>
-    /// The degree to which the player has low, medium or high accuracy.
-    /// </summary>
+    /**
+     * @return The degree to which the player has low, medium or high accuracy.
+     */
     public FuzzyVariable getAccuracy() {
         return grade(roundData.getAcc(), AccuracyLow, AccuracyHigh, fuzzyAccuracy);
     }
@@ -111,9 +112,9 @@ public class ShipInfo extends FuzzyLogicEnabled {
         }
     }
 
-    /// <summary>
-    /// Displays fuzzy membership information once a second.
-    /// </summary>
+    /**
+     * Displays fuzzy membership information once a second.
+     */
     private void PrintDebugInfo() {
         if (((new Date().getTime() - LastPrint.getTime()) / 1000) >= 1) {
             System.out.println("Ship Info:");

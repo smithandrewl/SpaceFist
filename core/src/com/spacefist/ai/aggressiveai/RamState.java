@@ -12,12 +12,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-/// <summary>
-/// A fuzzy state that rams the players ship.
-///
-/// The likelyhood of ramming the players ship and the path the enemy takes are determined
-/// by the degree that the state is active.
-/// </summary>
+/**
+ * A fuzzy state that rams the players ship.
+ *
+ * The likelyhood of ramming the players ship and the path the enemy takes are determined
+ * by the degree that the state is active.
+ */
 public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private static final int Speed = 6;
 
@@ -38,14 +38,15 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         this.gameData = gameData;
     }
 
-    /// <summary>
-    /// Determines whether or not one point is near another (within 10 pixels).
-    /// </summary>
-    /// <param name="x1">The X coordinate of point 1</param>
-    /// <param name="y1">The Y coordinate of point 1</param>
-    /// <param name="x2">The X coordinate of point 2</param>
-    /// <param name="y2">The Y coordinate of point 2</param>
-    /// <returns>Returns true if the two points are within 10 pixels of each other</returns>
+    /**
+     * Determines whether or not one point is near another (within 10 pixels).
+     *
+     * @param x1 The X coordinate of point 1
+     * @param y1 The Y coordinate of point 1
+     * @param x2 The X coordinate of point 2
+     * @param y2 The Y coordinate of point 2
+     * @return Returns true if the two points are within 10 pixels of each other
+     */
     private static boolean Near(int x1, int y1, int x2, int y2) {
         int tolerance = 10;
 
@@ -58,9 +59,9 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         return xIsNear && yIsNear;
     }
 
-    /// <summary>
-    /// Updates the degree to which this state is active.
-    /// </summary>
+    /**
+     * Updates the degree to which this state is active.
+     */
     public void Update() {
         membership = Or(
             // If the player is doing too well

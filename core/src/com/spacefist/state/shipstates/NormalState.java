@@ -4,13 +4,13 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.state.abst.ShipState;
 
-/// <summary>
-/// NormalState holds the behavior for the ship after it has loaded,
-/// but before it has low health.
-///
-/// In this state, the ship will wait until it has low health before switching
-/// the ship to the low-health state.
-/// </summary>
+/**
+  * NormalState holds the behavior for the ship after it has loaded,
+  * but before it has low health.
+  *
+  * In this state, the ship will wait until it has low health before switching
+  * the ship to the low-health state.
+  */
 public class NormalState implements ShipState {
     // The percentage of full health at which the ship is considered to have low-health.
     private static final float LowHealthThreshold = .40f;

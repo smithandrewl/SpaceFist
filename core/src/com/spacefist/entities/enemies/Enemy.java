@@ -11,13 +11,13 @@ import com.spacefist.components.Physics;
 import com.spacefist.components.Sprite;
 import com.spacefist.entities.Entity;
 
-/// <summary>
-/// The parent class of all game enemies.
-/// </summary>
+/**
+ * The parent class of all game enemies.
+ */
 public class Enemy extends Entity {
-    /// <summary>
-    /// The AI that will control this enemy.
-    /// </summary>
+    /**
+     * The AI that will control this enemy.
+     */
     private EnemyAI ai;
 
     public Enemy(GameData gameData, Texture enemyTexture, Sound sound, Vector2 position) {
@@ -53,9 +53,9 @@ public class Enemy extends Entity {
         super.Update();
     }
 
-    /// <summary>
-    /// Plays an explosion sound.
-    /// </summary>
+    /**
+     * Plays an explosion sound.
+     */
     public void OnDeath() {
         ((com.spacefist.components.Sound) getSound()).play();
     }

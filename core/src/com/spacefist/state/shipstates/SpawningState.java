@@ -6,12 +6,12 @@ import com.spacefist.state.abst.ShipState;
 
 import java.util.Date;
 
-/// <summary>
-/// The SpawningState determines the ships behavior when it is spawning or has died and respawned.
-///
-/// The ship starts invisible and then fades to fully visible.  When 2 seconds have passed (to give it time to fade-in),
-/// the state is changed to NormalState.
-/// </summary>
+/**
+ * The SpawningState determines the ships behavior when it is spawning or has died and respawned.
+ *
+ * The ship starts invisible and then fades to fully visible.  When 2 seconds have passed (to give it time to fade-in),
+ * the state is changed to NormalState.
+ */
 public class SpawningState implements ShipState {
     // The number of seconds to wait for the ship to load.
     // This gives the ship time to fully fade-in from transparent to opaque.

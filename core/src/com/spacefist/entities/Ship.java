@@ -16,9 +16,6 @@ import com.spacefist.weapons.abst.Weapon;
 
 import static com.badlogic.gdx.math.MathUtils.clamp;
 
-/// <summary>
-///
-/// </summary>
 public class Ship extends Entity implements StateMachine<ShipState> {
     private static final int maxHealthPoints = 100;
 
@@ -35,26 +32,24 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     private static final int RightIndex  = 7;
     private static final int MaxVelocity = 20;
 
-    /// <summary>
-    /// The current behavior of the ship
-    ///
-    /// The current states are spawning, normal and low health
-    /// </summary>
+    /**
+     * The current behavior of the ship
+     *
+     * The current states are spawning, normal and low health
+     */
     private ShipState state;
     private Weapon    weapon;
 
-    /// <summary>
-    /// The number of health points the ship has left.
-    /// </summary>
+    /**
+     * The number of health points the ship has left.
+     */
     private int healthPoints;
-    /// <summary>
-    /// The current state of the ship.
-    /// </summary>
+
+    /**
+     * The current state of the ship.
+     */
     private ShipState CurrentState;
 
-    /// <summary>
-    ///
-    /// </summary>
     private IndexedSprite indexedSprite;
 
     // The predefined velocities to use when changing position
@@ -63,11 +58,12 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     private Vector2 ForwardVelocity  = new Vector2(0, -1);
     private Vector2 BackwardVelocity = new Vector2(0, 1);
 
-    /// <summary>
-    /// Creates a new Ship instance at the specified location.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="position">The location of the ship in the game world.</param>
+    /**
+     * Creates a new Ship instance at the specified location.
+     *
+     * @param gameData Common game data
+     * @param position The location of the ship in the game world
+     */
     public Ship(GameData gameData, Vector2 position) {
         super(
             gameData,
@@ -105,9 +101,9 @@ public class Ship extends Entity implements StateMachine<ShipState> {
         state = shipState;
     }
 
-    /// <summary>
-    /// The ships current weapon.
-    /// </summary>
+    /**
+     * @return The ships current weapon.
+     */
     public Weapon getWeapon() {
         return weapon;
     }
@@ -128,32 +124,32 @@ public class Ship extends Entity implements StateMachine<ShipState> {
         return getHealthPoints() / (float) maxHealthPoints;
     }
 
-    /// <summary>
-    /// Plays the ships destruction sound effect.
-    /// </summary>
+    /**
+     * Plays the ships destruction sound effect.
+     */
     public void OnDeath() {
         ((Sound) getSound()).play();
     }
 
-    /// <summary>
-    /// Resets the ship to the default state (drawn normally (no flashing or fading)).
-    /// </summary>
+    /**
+     * Resets the ship to the default state (drawn normally (no flashing or fading)).
+     */
     public void ResetState() {
         setCurrentState(new NormalState(gameData));
         Reset();
     }
 
-    /// <summary>
-    /// Updates the ship
-    /// </summary>
+    /**
+     * Updates the ship
+     */
     public void Update() {
         CurrentState.Update();
         super.Update();
     }
 
-    /// <summary>
-    /// Fire the active weapon
-    /// </summary>
+    /**
+     * Fire the active weapon
+     */
     public void Fire() {
         weapon.fire();
     }
@@ -163,10 +159,10 @@ public class Ship extends Entity implements StateMachine<ShipState> {
         indexedSprite.setIndex(AtRestIndex);
     }
 
-    /// <summary>
-    /// Changes the velocity by "velocity" and then clamps the value between the minimum and maximum velocities
-    /// allowed.
-    /// </summary>
+    /**
+     * Changes the velocity by "velocity" and then clamps the value between the minimum and maximum velocities
+     * allowed.
+     */
     private void IncrementVelocity(Vector2 velocity) {
         float xVel = clamp(
             getVelocity().x + velocity.x,
@@ -183,9 +179,9 @@ public class Ship extends Entity implements StateMachine<ShipState> {
         setVelocity(new Vector2(xVel, yVel));
     }
 
-    /// <summary>
-    /// Causes the ship to move to the left.
-    /// </summary>
+    /**
+     * Causes the ship to move to the left.
+     */
     public void Left() {
         // This tells indexedSprite to draw the ship turning left
         indexedSprite.setIndex(LeftIndex);
@@ -194,9 +190,9 @@ public class Ship extends Entity implements StateMachine<ShipState> {
         IncrementVelocity(LeftVelocity);
     }
 
-    /// <summary>
-    /// Causes the ship to move to the right.
-    /// </summary>
+    /**
+     * Causes the ship to move to the right.
+     */
     public void Right() {
         // This tells indexedSprite to draw the ship turning right
         indexedSprite.setIndex(RightIndex);
@@ -205,9 +201,9 @@ public class Ship extends Entity implements StateMachine<ShipState> {
         IncrementVelocity(RightVelocity);
     }
 
-    /// <summary>
-    /// Causes the ship to move forward
-    /// </summary>
+    /**
+     * Causes the ship to move forward
+     */
     public void Forward() {
         // This tells indexedSprite to draw the ship normally (not turning)
         indexedSprite.setIndex(AtRestIndex);

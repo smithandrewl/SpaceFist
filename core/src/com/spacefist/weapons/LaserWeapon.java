@@ -5,18 +5,19 @@ import com.spacefist.entities.Ship;
 import com.spacefist.weapons.abst.Weapon;
 
 // TODO: Uncomment projectile manager references when ProjectileManager has been ported
-/// <summary>
-/// The default weapon
-/// </summary>
+/**
+ * The default weapon
+ */
 public class LaserWeapon implements Weapon {
     //private ProjectileManager projectileManager;
 
     private GameData gameData;
 
-    /// <summary>
-    /// Creates a new LaserWeapon instance
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
+    /**
+      * Creates a new LaserWeapon instance
+      *
+      * @param gameData Common game data
+      */
     public LaserWeapon(GameData gameData) {
         this.gameData = gameData;
 

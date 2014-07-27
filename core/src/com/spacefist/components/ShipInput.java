@@ -7,9 +7,9 @@ import com.spacefist.components.abst.InputComponent;
 import com.spacefist.entities.Entity;
 import com.spacefist.entities.Ship;
 
-/// <summary>
-/// Tells the ship to move in response to user input.
-/// </summary>
+/**
+ * Tells the ship to move in response to user input.
+ */
 public class ShipInput implements InputComponent {
     private boolean spaceDown = false;
     private boolean aDown     = false;

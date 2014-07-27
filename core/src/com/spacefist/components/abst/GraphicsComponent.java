@@ -3,9 +3,9 @@ package com.spacefist.components.abst;
 import com.spacefist.GameData;
 import com.spacefist.entities.Entity;
 
-/// <summary>
-/// All graphics components implement this interface
-/// </summary>
+/**
+ * All graphics components implement this interface
+ */
 public interface GraphicsComponent extends Component {
     void Draw(GameData gameData, Entity obj);
 }

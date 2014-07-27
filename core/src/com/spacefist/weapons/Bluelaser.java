@@ -4,28 +4,28 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.weapons.abst.Weapon;
 
-/// <summary>
-/// Represents a weapon which drops stationary mines when fired.
-/// </summary>
+/**
+ * Represents a weapon which drops stationary mines when fired.
+ */
 public class Bluelaser implements Weapon {
     // TODO: Convert ProjectileManager
     // private ProjectileManager projectileManager;
     private GameData gameData;
 
-    /// <summary>
-    /// Creates a new Bluelaser instance.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="ship">The players ship</param>
+    /**
+     * Creates a new Bluelaser instance.
+     *
+     * @param gameData Common game data
+     */
     public Bluelaser(GameData gameData) {
         this.gameData = gameData;
 
         // projectileManager = gameData.ProjectileManager;
     }
 
-    /// <summary>
-    /// Drops a mine at the ships location.
-    /// </summary>
+    /**
+     * Drops a mine at the ships location.
+     */
     public void fire() {
         Ship ship = gameData.getShip();
 

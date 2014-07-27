@@ -1,8 +1,8 @@
 package com.spacefist.ai.abst;
 
-/// <summary>
-/// The interface implemented by all enemy AI states.
-/// </summary>
+/**
+ * The interface implemented by all enemy AI states.
+ */
 public interface EnemyAIState {
     void Update();
 }

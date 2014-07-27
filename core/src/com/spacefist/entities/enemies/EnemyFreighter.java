@@ -4,16 +4,17 @@ import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.ai.defensiveai.DefensiveAI;
 
-/// <summary>
-///  Represents a bulky enemy freighter that does not follow the player, but fires in its
-///  direction.
-/// </summary>
+/**
+ * Represents a bulky enemy freighter that does not follow the player, but fires in its
+ * direction.
+ */
 public class EnemyFreighter extends Enemy {
-    /// <summary>
-    /// Creates a new EnemyFreighter instance at a specified location.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="position">The location to place the freighter in the world.</param>
+    /**
+     * Creates a new EnemyFreighter instance at a specified location.
+     *
+     * @param gameData Common game data
+     * @param position The location to place the freighter in the world
+     */
     public EnemyFreighter(GameData gameData, Vector2 position) {
         super(
             gameData,

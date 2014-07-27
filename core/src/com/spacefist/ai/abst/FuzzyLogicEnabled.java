@@ -2,12 +2,13 @@ package com.spacefist.ai.abst;
 
 import com.spacefist.ai.FuzzyVariable;
 
-/// <summary>
-/// Base class for classes using fuzzy logic.
-/// </summary>
-///
-/// The Triangle and Trapezoid membership grading methods are based on the article
-/// http://www.dma.fi.upm.es/java/fuzzy/fuzzyinf/funpert_en.htm
+/**
+ * Base class for classes using fuzzy logic.
+ *
+ *
+ * The Triangle and Trapezoid membership grading methods are based on the article
+ * http://www.dma.fi.upm.es/java/fuzzy/fuzzyinf/funpert_en.htm
+ */
 public abstract class FuzzyLogicEnabled {
     protected static float Grade(float val, float lowerLimit, float lowerSupportlimit) {
         if (val < lowerLimit)
@@ -56,16 +57,17 @@ public abstract class FuzzyLogicEnabled {
         return (upperLimit - val) / (upperLimit - upperSupportLimit);
     }
 
-    /// <summary>
-    /// Given a high and a low value, this method applies the grading functions
-    /// necessary to populate a fuzzy variable consisting of low, medium and high sets.
-    /// </summary>
-    /// <param name="val">The crisp input</param>
-    /// <param name="low">The highest value to be considered low</param>
-    /// <param name="high">The lowest high value to be considered high</param>
-    /// <param name="fuzzyVariable">The fuzzy variable to populate</param>
-    /// <returns>The populated fuzzy variable</returns>
-    protected static FuzzyVariable grade(float val, float low, float high, FuzzyVariable fuzzyVariable) {
+    /**
+     * Given a high and a low value, this method applies the grading functions
+     * necessary to populate a fuzzy variable consisting of low, medium and high sets.
+     *
+     * @param val The crisp input
+     * @param low The highest value to be considered low
+     * @param high The lowest high value to be considered high
+     * @param fuzzyVariable The fuzzy variable to populate
+     * @return The populated fuzzy variable
+     */
+     protected static FuzzyVariable grade(float val, float low, float high, FuzzyVariable fuzzyVariable) {
         float med = (high - low) / 2.0f;
 
         fuzzyVariable.setValue(val);
@@ -76,31 +78,34 @@ public abstract class FuzzyLogicEnabled {
         return fuzzyVariable;
     }
 
-    /// <summary>
-    /// Performs a fuzzy "and" operation.
-    /// </summary>
-    /// <param name="first">The first operand</param>
-    /// <param name="second">The second operand</param>
-    /// <returns>The resutlt of the and operation</returns>
+    /**
+     * Performs a fuzzy "and" operation.
+     *
+     * @param first The first operand
+     * @param second The second operand
+     * @return The result of the and operation
+     */
     protected static float And(float first, float second) {
         return first * second;
     }
 
-    /// <summary>
-    /// Performs a fuzzy "probabilistic-or" operation
-    /// </summary>
-    /// <param name="first">The first operand</param>
-    /// <param name="second">The second operand</param>
-    /// <returns>The result of the or operation</returns>
+    /**
+     * Performs a fuzzy "probabilistic-or" operation
+     *
+     * @param first The first operand
+     * @param second The second operand
+     * @return The result of the or operation
+     */
     protected static float Or(float first, float second) {
         return first + second - (first * second);
     }
 
-    /// <summary>
-    /// Performs a fuzzy negation operation.
-    /// </summary>
-    /// <param name="val">The value to negate</param>
-    /// <returns>The negated value</returns>
+    /**
+     * Performs a fuzzy negation operation.
+     *
+     * @param val The value to negate
+     * @return The negated value
+     */
     protected static float Not(float val) {
         return 1 - val;
     }

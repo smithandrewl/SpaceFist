@@ -9,9 +9,9 @@ import com.spacefist.components.Physics;
 import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
 
-/// <summary>
-/// Represents a floating block or crate.
-/// </summary>
+/**
+ * Represents a floating block or crate.
+ */
 public class SpaceBlock extends Entity {
     // Dimensions of the block
     private static final int Width  = 80;
@@ -19,14 +19,14 @@ public class SpaceBlock extends Entity {
 
     // The sound made when the ship hits a block
     private Sound thump;
-
-    /// <summary>
-    /// Creates a new SpaceBlock instance with a specified position and velocity.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="texture">The image for the block</param>
-    /// <param name="position">The position of the block in the game world</param>
-    /// <param name="velocity">The velocity of the block</param>
+    /**
+     * Creates a new SpaceBlock instance with a specified position and velocity.
+     *
+     * @param gameData Common game data
+     * @param texture The image for the block
+     * @param position The position of the block in the game world
+     * @param velocity The velocity of the block
+     */
     public SpaceBlock(GameData gameData, Texture texture, Vector2 position, Vector2 velocity) {
         super(gameData,
             new Rectangle(
@@ -47,7 +47,9 @@ public class SpaceBlock extends Entity {
         setVelocity(velocity);
     }
 
-    // Called when the block has been shot
+    /**
+     * Called when the block has been shot
+     */
     public void Destroy() {
         Sound sound = (Sound) getSound();
 
@@ -55,7 +57,9 @@ public class SpaceBlock extends Entity {
         setAlive(false);
     }
 
-    // Called when the block has been bumped by the ship
+    /**
+     * Called when the block has been bumped by the ship
+    */
     public void Thump() {
         thump.play();
         setAlive(false);

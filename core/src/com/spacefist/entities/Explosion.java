@@ -8,11 +8,11 @@ import com.spacefist.components.NullInputComponent;
 import com.spacefist.components.NullSoundComponent;
 import com.spacefist.components.Physics;
 
-/// <summary>
-/// Represents and draws an explosion at its x and y coordinates.
-///
-/// The Explosion instance is "killed" after the animation finishes.
-/// </summary>
+/**
+ * Represents and draws an explosion at its x and y coordinates.
+ *
+ * The Explosion instance is "killed" after the animation finishes.
+ **/
 public class Explosion extends Entity {
     // The dimensions of the explosion
     private static final int height = 122;
@@ -26,11 +26,12 @@ public class Explosion extends Entity {
     private long startTime;
     private long TimeBetweenFrames = 400000;
 
-    /// <summary>
-    /// Creates a new Explosion instance at a specified location.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="position">The on world location of the explosion</param>
+    /**
+     * Creates a new Explosion instance at a specified location.
+     *
+     * @param gameData Common game data
+     * @param position The on world location of the explosion</param>
+    */
     public Explosion(GameData gameData, Vector2 position) {
         super(gameData,
             new Rectangle(

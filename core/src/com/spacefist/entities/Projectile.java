@@ -12,9 +12,9 @@ import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
 import com.spacefist.components.abst.SoundComponent;
 
-/// <summary>
-/// Represents a projectile fired by either the player or an enemy.
-/// </summary>
+/**
+ * Represents a projectile fired by either the player or an enemy.
+ */
 public class Projectile extends Entity {
     private boolean soundPlayed = false;
 
@@ -58,7 +58,9 @@ public class Projectile extends Entity {
         behavior = new NullBehavior();
     }
 
-    // Plays a firing noise on the first update
+    /**
+     * Plays a firing noise on the first update
+     */
     @Override
     public void Update() {
         SoundComponent sound = (Sound) this.getSound();

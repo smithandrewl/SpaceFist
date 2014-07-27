@@ -7,9 +7,9 @@ import com.spacefist.entities.enemies.Enemy;
 
 import java.util.Date;
 
-/// <summary>
-/// Provides information about the players ship that is specific to a particular enemy.
-/// </summary>
+/**
+ * Provides information about the players ship that is specific to a particular enemy.
+ */
 public class ShipEnemyInfo extends FuzzyLogicEnabled {
     private static final boolean DisplayDebug = false;
 
@@ -29,20 +29,19 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
 
     private Date lastPrint = new Date();
 
-    /// <summary>
-    /// Creates a new ShipEnemyInfo instance.
-    /// </summary>
-    /// <param name="enemy">The enemy this information is relevant to</param>
-    /// <param name="shipInfo">General ship information</param>
-    /// <param name="gameData">Common game Data</param>
+    /**
+     * Creates a new ShipEnemyInfo instance.
+     *
+     * @param enemy The enemy this information is relevant to
+     * @param shipInfo General ship information
+     * @param gameData Common game Data
+     */
     public ShipEnemyInfo(Enemy enemy, ShipInfo shipInfo, GameData gameData) {
         this.enemy    = enemy;
         this.shipInfo = shipInfo;
         this.gameData = gameData;
 
-        /// <summary>
-        /// The fuzzy distance from the player to the enemy.
-        /// </summary>
+        // The fuzzy distance from the player to the enemy.
         fuzzyDistance = new FuzzyVariable();
         fuzzyDistance.setName("Distance");
     }
@@ -60,9 +59,9 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
         return grade(distance, DistanceLow, DistanceHigh, fuzzyDistance);
     }
 
-    /// <summary>
-    /// True if the enemy is on the screen.
-    /// </summary>
+    /**
+     * @return whether or not the enemy is on the screen
+     */
     public boolean isEnemyVisible() {
         if (enemy.isAlive()) {
             // TODO: Implement gameData.getOnScreenWorld
@@ -75,9 +74,9 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
     }
 
 
-    /// <summary>
-    /// A vector from the enemy to the ship representing its line of sight.
-    /// </summary>
+    /**
+     * @return A vector from the enemy to the ship representing its line of sight.
+     */
     public Vector2 getLineOfSight() {
         Vector2 shipPos  = new Vector2(gameData.getShip().getX(), gameData.getShip().getY());
         Vector2 enemyPos = new Vector2(enemy.getX(), enemy.getY());
@@ -101,9 +100,9 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
         }
     }
 
-    /// <summary>
-    /// Displays details of the fuzzy variables to the console every second.
-    /// </summary>
+    /**
+     * Displays details of the fuzzy variables to the console every second.
+     */
     private void PrintDebuggingInfo() {
         if (((new Date().getTime() - lastPrint.getTime()) / 1000) >= 1) {
             System.out.println("Ship/Enemy Info:");

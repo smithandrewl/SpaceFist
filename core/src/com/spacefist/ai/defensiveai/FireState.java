@@ -9,9 +9,9 @@ import com.spacefist.ai.abst.FuzzyLogicEnabled;
 
 import java.util.Date;
 
-/// <summary>
-/// This fuzzy state fires at the ship when the enemy is on the screen.
-/// </summary>
+/**
+ * This fuzzy state fires at the ship when the enemy is on the screen.
+ */
 public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
     private float rateOfFire = 0;
 
@@ -30,16 +30,17 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
     // Fuzzy information about the player specific to this enemy
     private ShipEnemyInfo shipEnemyInfo;
 
-    /// <summary>
-    /// Creates a new FireState instance
-    /// </summary>
-    /// <param name="ai">The AI this state belongs to.</param>
-    /// <param name="gameData">Common game data</param>
+    /**
+     * Creates a new FireState instance
+     *
+     * @param ai The AI this state belongs to
+     * @param gameData Common game data
+     */
     public FireState(EnemyAI ai, GameData gameData) {
-        this.ai        = ai;
-        shipInfo       = ai.getShipInfo();
-        shipEnemyInfo  = ai.getShipEnemyInfo();
-        lastFire       = new Date();
+        this.ai       = ai;
+        shipInfo      = ai.getShipInfo();
+        shipEnemyInfo = ai.getShipEnemyInfo();
+        lastFire      = new Date();
 
         // TODO: Convert projectileManager
         //this.projectileManager = gameData.ProjectileManager;

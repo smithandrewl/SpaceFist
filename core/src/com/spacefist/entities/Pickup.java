@@ -11,23 +11,24 @@ import com.spacefist.components.Physics;
 import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
 
-/// <summary>
-/// Represents a pickup item which runs a function when it collides with the players ship.
-/// </summary>
+/**
+ * Represents a pickup item which runs a function when it collides with the players ship.
+ */
 public class Pickup extends Entity {
     private Sound         pickupSound;
     private PickupHandler pickupHandler;
 
-    /// <summary>
-    /// Creates a new Pickup instance which runs a function
-    /// when it is picked up by the player.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="texture">The image of the pickup</param>
-    /// <param name="sound">The sound to play when picked up</param>
-    /// <param name="position">The initial location of the pickup</param>
-    /// <param name="velocity">The initial velocity of the pickup</param>
-    /// <param name="pickupHandler">The function to run on pickup</param>
+    /**
+     * Creates a new Pickup instance which runs a function
+     * when it is picked up by the player.
+     *
+     * @param gameData Common game data
+     * @param texture The image of the pickup
+     * @param sound The sound to play when picked up
+     * @param position The initial location of the pickup
+     * @param velocity The initial velocity of the pickup
+     * @param pickupHandler The function to run on pickup
+     */
     public Pickup(
         GameData      gameData,
         Texture       texture,
@@ -57,8 +58,10 @@ public class Pickup extends Entity {
         setVelocity(velocity);
     }
 
-    // PickedUp calls pickupHandler when the pickup has been "picked up"
-    // The pickup handler returns true if the pickup should be removed
+    /**
+     * PickedUp calls pickupHandler when the pickup has been "picked up"
+     * @return if the pickup should be removed
+     */
     public boolean PickedUp(Ship ship) {
         boolean pickedUp = pickupHandler.handle(ship);
 

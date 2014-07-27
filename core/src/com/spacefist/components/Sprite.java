@@ -8,16 +8,17 @@ import com.spacefist.GameData;
 import com.spacefist.components.abst.GraphicsComponent;
 import com.spacefist.entities.Entity;
 
-/// <summary>
-/// Sprite represents a static image at a position on-world.
-/// </summary>
+/**
+ * Sprite represents a static image at a position on-world.
+ */
 public class Sprite implements GraphicsComponent {
     private Texture image;
 
-    /// <summary>
-    /// Creates a new Sprite instance from a texture
-    /// </summary>
-    /// <param name="texture">The image to draw</param>
+    /**
+     * Creates a new Sprite instance from a texture
+     *
+     * @param texture The image to draw
+    */
     public Sprite(Texture texture) {
         image = texture;
     }

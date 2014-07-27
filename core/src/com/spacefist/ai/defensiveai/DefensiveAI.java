@@ -11,21 +11,22 @@ public class DefensiveAI implements EnemyAI {
     private DefendState defendState;
     private FireState   fireState;
 
-    /// <summary>
-    /// Fuzzy information about the ship specific to the enemy this AI controls
-    /// </summary>
+    /**
+     * Fuzzy information about the ship specific to the enemy this AI controls
+     **/
     private ShipEnemyInfo shipEnemyInfo;
 
-    /// <summary>
-    /// Fuzzy information about the players ship
-    /// </summary>
+    /**
+     * Fuzzy information about the players ship
+     */
     private ShipInfo shipInfo;
 
-    /// <summary>
-    /// Creates a new DefensiveAI instance.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="enemy">The enemy this AI will control</param>
+    /**
+     * Creates a new DefensiveAI instance.
+     *
+     * @param gameData Common game data
+     * @param enemy The enemy this AI will control
+     */
     public DefensiveAI(GameData gameData, Enemy enemy) {
         setShipInfo(new ShipInfo(gameData));
         setShipEnemyInfo(new ShipEnemyInfo(enemy, shipInfo, gameData));

@@ -4,9 +4,9 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.state.abst.ShipState;
 
-/// <summary>
-/// LowHealthState determines the appearance of the ship when it has low health
-/// </summary>
+/**
+ * LowHealthState determines the appearance of the ship when it has low health
+ */
 public class LowHealthState implements ShipState {
     private GameData gameData;
 
