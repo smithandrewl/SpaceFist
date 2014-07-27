@@ -1,7 +1,6 @@
 package com.spacefist.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -18,15 +17,13 @@ import com.spacefist.state.SplashScreenState;
 import java.util.Map;
 
 public class SpaceFistGame extends ApplicationAdapter {
-    SpriteBatch batch;
-
     private static final String SpriteFontAsset = "Fonts/Raised";
-    private static final String TitleFontAsset  = "Fonts/Title";
-
+    private static final String TitleFontAsset = "Fonts/Title";
+    SpriteBatch batch;
     private GameData gameData;
 
     @Override
-    public void create () {
+    public void create() {
         batch = new SpriteBatch();
 
         gameData = new GameData(this);
@@ -58,7 +55,7 @@ public class SpaceFistGame extends ApplicationAdapter {
     }
 
     @Override
-    public void render () {
+    public void render() {
         // Tell the current state to update itself
         gameData.getCurrentState().Update();
 
@@ -72,15 +69,15 @@ public class SpaceFistGame extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-        for(Texture texture : gameData.getTextures().values()) {
+        for (Texture texture : gameData.getTextures().values()) {
             texture.dispose();
         }
 
-        for(Music song : gameData.getSongs().values()) {
+        for (Music song : gameData.getSongs().values()) {
             song.dispose();
         }
 
-        for(Sound soundEffect : gameData.getSoundEffects().values()) {
+        for (Sound soundEffect : gameData.getSoundEffects().values()) {
             soundEffect.dispose();
         }
     }
@@ -89,41 +86,37 @@ public class SpaceFistGame extends ApplicationAdapter {
         return gameData;
     }
 
-    private void LoadTextures()
-    {
+    private void LoadTextures() {
         Map<String, Texture> textures = gameData.getTextures();
 
-        for(FileHandle fileHandle : Gdx.files.absolute("images/").list()) {
-            if(fileHandle.isDirectory()) {
-                for(FileHandle file : fileHandle.list(".png")) {
+        for (FileHandle fileHandle : Gdx.files.absolute("images/").list()) {
+            if (fileHandle.isDirectory()) {
+                for (FileHandle file : fileHandle.list(".png")) {
                     textures.put(file.nameWithoutExtension(), new Texture(file));
                 }
             }
         }
     }
 
-    private void LoadSongs()
-    {
+    private void LoadSongs() {
         Map<String, Music> songs = gameData.getSongs();
 
-        for(FileHandle fileHandle : Gdx.files.absolute("sound/songs/").list()) {
+        for (FileHandle fileHandle : Gdx.files.absolute("sound/songs/").list()) {
             songs.put(fileHandle.nameWithoutExtension(), Gdx.audio.newMusic(fileHandle));
         }
     }
 
-    private void LoadSoundEffects()
-    {
+    private void LoadSoundEffects() {
         Map<String, Sound> soundEffects = gameData.getSoundEffects();
 
-        for(FileHandle fileHandle : Gdx.files.absolute("sound/soundeffects/").list()) {
+        for (FileHandle fileHandle : Gdx.files.absolute("sound/soundeffects/").list()) {
             soundEffects.put(fileHandle.nameWithoutExtension(), Gdx.audio.newSound(fileHandle));
         }
     }
 
-    protected void loadContent()
-    {
+    protected void loadContent() {
         int height = Gdx.graphics.getHeight();
-        int width  = Gdx.graphics.getWidth();
+        int width = Gdx.graphics.getWidth();
 
         gameData.setResolution(new Rectangle(0, 0, width, height));
         gameData.setScreenScale(.5f);
@@ -140,7 +133,6 @@ public class SpaceFistGame extends ApplicationAdapter {
         LoadTextures();
         LoadSongs();
         LoadSoundEffects();
-
 
 
         // GameData.InPlayState.LoadContent();

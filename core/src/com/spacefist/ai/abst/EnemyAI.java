@@ -4,11 +4,10 @@ package com.spacefist.ai.abst;
 import com.spacefist.ai.ShipEnemyInfo;
 import com.spacefist.ai.ShipInfo;
 
-/// <summary>
-/// The interface implemented by all enemy AI's.
-/// </summary>
-public interface EnemyAI
-{
+/**
+ * The interface implemented by all enemy AI's.
+ */
+public interface EnemyAI {
     ShipEnemyInfo getShipEnemyInfo();
     void setShipEnemyInfo(ShipEnemyInfo shipEnemyInfo);
     ShipInfo getShipInfo();

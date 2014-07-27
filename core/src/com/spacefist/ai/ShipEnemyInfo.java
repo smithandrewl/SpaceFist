@@ -7,11 +7,10 @@ import com.spacefist.entities.enemies.Enemy;
 
 import java.util.Date;
 
-/// <summary>
-/// Provides information about the players ship that is specific to a particular enemy.
-/// </summary>
-public class ShipEnemyInfo extends FuzzyLogicEnabled
-{
+/**
+ * Provides information about the players ship that is specific to a particular enemy.
+ */
+public class ShipEnemyInfo extends FuzzyLogicEnabled {
     private static final boolean DisplayDebug = false;
 
     // The range for the distance fuzzy variable
@@ -22,11 +21,30 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled
     private int distance;
     // ------------- Crisp Input -----------------
 
-    private GameData gameData;
+    private GameData      gameData;
     private FuzzyVariable fuzzyDistance;
 
     private Enemy    enemy;
     private ShipInfo shipInfo;
+
+    private Date lastPrint = new Date();
+
+    /**
+     * Creates a new ShipEnemyInfo instance.
+     *
+     * @param enemy The enemy this information is relevant to
+     * @param shipInfo General ship information
+     * @param gameData Common game Data
+     */
+    public ShipEnemyInfo(Enemy enemy, ShipInfo shipInfo, GameData gameData) {
+        this.enemy    = enemy;
+        this.shipInfo = shipInfo;
+        this.gameData = gameData;
+
+        // The fuzzy distance from the player to the enemy.
+        fuzzyDistance = new FuzzyVariable();
+        fuzzyDistance.setName("Distance");
+    }
 
     public Enemy getEnemy() {
         return enemy;
@@ -36,88 +54,57 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled
         this.enemy = enemy;
     }
 
-    private Date lastPrint = new Date();
-
-    /// <summary>
-    /// Creates a new ShipEnemyInfo instance.
-    /// </summary>
-    /// <param name="enemy">The enemy this information is relevant to</param>
-    /// <param name="shipInfo">General ship information</param>
-    /// <param name="gameData">Common game Data</param>
-    public ShipEnemyInfo(Enemy enemy, ShipInfo shipInfo, GameData gameData)
-    {
-        this.enemy    = enemy;
-        this.shipInfo = shipInfo;
-        this.gameData = gameData;
-
-        /// <summary>
-        /// The fuzzy distance from the player to the enemy.
-        /// </summary>
-        fuzzyDistance = new FuzzyVariable();
-        fuzzyDistance.setName("Distance");
-    }
-
     // Distance
-    public FuzzyVariable getDistance()
-    {
+    public FuzzyVariable getDistance() {
         return grade(distance, DistanceLow, DistanceHigh, fuzzyDistance);
     }
 
-    /// <summary>
-    /// True if the enemy is on the screen.
-    /// </summary>
-    public boolean isEnemyVisible()
-    {
-        if (enemy.isAlive())
-        {
+    /**
+     * @return whether or not the enemy is on the screen
+     */
+    public boolean isEnemyVisible() {
+        if (enemy.isAlive()) {
             // TODO: Implement gameData.getOnScreenWorld
             //return gameData.OnScreenWorld.Contains(new Point(Enemy.X, Enemy.Y));
             // TODO: CHANGE ME
             return false;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
 
-    /// <summary>
-    /// A vector from the enemy to the ship representing its line of sight.
-    /// </summary>
+    /**
+     * @return A vector from the enemy to the ship representing its line of sight.
+     */
     public Vector2 getLineOfSight() {
         Vector2 shipPos  = new Vector2(gameData.getShip().getX(), gameData.getShip().getY());
         Vector2 enemyPos = new Vector2(enemy.getX(), enemy.getY());
 
         Vector2 diff = shipPos.sub(enemyPos);
-        diff = diff.nor();
 
-        return diff;
+        return diff.nor();
     }
 
 
     @Override
-    public void Update()
-    {
+    public void Update() {
         // update distance
         int xDiff = gameData.getShip().getX() - enemy.getX();
         int yDiff = gameData.getShip().getY() - enemy.getY();
 
         distance = (int) Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
-        if (DisplayDebug)
-        {
+        if (DisplayDebug) {
             PrintDebuggingInfo();
         }
     }
 
-    /// <summary>
-    /// Displays details of the fuzzy variables to the console every second.
-    /// </summary>
-    private void PrintDebuggingInfo()
-    {
-        if (((new Date().getTime() - lastPrint.getTime()) / 1000 ) >= 1)
-        {
+    /**
+     * Displays details of the fuzzy variables to the console every second.
+     */
+    private void PrintDebuggingInfo() {
+        if (((new Date().getTime() - lastPrint.getTime()) / 1000) >= 1) {
             System.out.println("Ship/Enemy Info:");
             System.out.println(getDistance());
             System.out.println();
@@ -126,4 +113,3 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled
         }
     }
 }
-

@@ -4,33 +4,32 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.weapons.abst.Weapon;
 
-    // TODO: Uncomment projectile manager references when ProjectileManager has been ported
-    /// <summary>
-    /// The default weapon
-    /// </summary>
-    public class LaserWeapon implements Weapon {
-        //private ProjectileManager projectileManager;
-        
-        private GameData gameData;
+// TODO: Uncomment projectile manager references when ProjectileManager has been ported
+/**
+ * The default weapon
+ */
+public class LaserWeapon implements Weapon {
+    //private ProjectileManager projectileManager;
 
-        /// <summary>
-        /// Creates a new LaserWeapon instance
-        /// </summary>
-        /// <param name="gameData">Common game data</param>
-        public LaserWeapon(GameData gameData)
-        {
-            this.gameData = gameData;
-        
-            //this.projectileManager = gameData.ProjectileManager;
-        }
+    private GameData gameData;
 
-        public void fire()
-        {
-            Ship ship = gameData.getShip();
+    /**
+      * Creates a new LaserWeapon instance
+      *
+      * @param gameData Common game data
+      */
+    public LaserWeapon(GameData gameData) {
+        this.gameData = gameData;
 
-            int projectileX = (int) (ship.getX() + (ship.getRectangle().getWidth() / 2));
-            int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
-
-            //projectileManager.fireLaser(projectileX, projectileY);
-        }
+        //this.projectileManager = gameData.ProjectileManager;
     }
+
+    public void fire() {
+        Ship ship = gameData.getShip();
+
+        int projectileX = (int) (ship.getX() + (ship.getRectangle().getWidth() / 2));
+        int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
+
+        //projectileManager.fireLaser(projectileX, projectileY);
+    }
+}

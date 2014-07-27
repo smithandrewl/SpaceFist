@@ -1,42 +1,41 @@
 package com.spacefist.ai.defensiveai;
 
 import com.spacefist.GameData;
-import com.spacefist.ai.abst.EnemyAI;
-import com.spacefist.entities.enemies.Enemy;
 import com.spacefist.ai.ShipEnemyInfo;
 import com.spacefist.ai.ShipInfo;
+import com.spacefist.ai.abst.EnemyAI;
+import com.spacefist.entities.enemies.Enemy;
 
-public class DefensiveAI implements EnemyAI
-{
+public class DefensiveAI implements EnemyAI {
     // Fuzzy sets
     private DefendState defendState;
     private FireState   fireState;
 
-    /// <summary>
-    /// Creates a new DefensiveAI instance.
-    /// </summary>
-    /// <param name="gameData">Common game data</param>
-    /// <param name="enemy">The enemy this AI will control</param>
-    public DefensiveAI(GameData gameData, Enemy enemy)
-    {
+    /**
+     * Fuzzy information about the ship specific to the enemy this AI controls
+     **/
+    private ShipEnemyInfo shipEnemyInfo;
+
+    /**
+     * Fuzzy information about the players ship
+     */
+    private ShipInfo shipInfo;
+
+    /**
+     * Creates a new DefensiveAI instance.
+     *
+     * @param gameData Common game data
+     * @param enemy The enemy this AI will control
+     */
+    public DefensiveAI(GameData gameData, Enemy enemy) {
         setShipInfo(new ShipInfo(gameData));
         setShipEnemyInfo(new ShipEnemyInfo(enemy, shipInfo, gameData));
 
         defendState = new DefendState(this);
         fireState   = new FireState(this, gameData);
     }
-    /// <summary>
-    /// Fuzzy information about the ship specific to the enemy this AI controls
-    /// </summary>
-    private ShipEnemyInfo shipEnemyInfo;
 
-    /// <summary>
-    /// Fuzzy information about the players ship
-    /// </summary>
-    private ShipInfo  shipInfo;
-
-    public void Update()
-    {
+    public void Update() {
         shipInfo.Update();
         shipEnemyInfo.Update();
 

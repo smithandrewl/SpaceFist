@@ -8,16 +8,17 @@ import com.spacefist.GameData;
 import com.spacefist.components.abst.GraphicsComponent;
 import com.spacefist.entities.Entity;
 
-/// <summary>
-/// Sprite represents a static image at a position on-world.
-/// </summary>
+/**
+ * Sprite represents a static image at a position on-world.
+ */
 public class Sprite implements GraphicsComponent {
     private Texture image;
 
-    /// <summary>
-    /// Creates a new Sprite instance from a texture
-    /// </summary>
-    /// <param name="texture">The image to draw</param>
+    /**
+     * Creates a new Sprite instance from a texture
+     *
+     * @param texture The image to draw
+    */
     public Sprite(Texture texture) {
         image = texture;
     }
@@ -29,9 +30,15 @@ public class Sprite implements GraphicsComponent {
     public void Draw(GameData gameData, Entity obj) {
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
-        Vector2 origin   = new Vector2(obj.getRectangle().getWidth() / 2, obj.getRectangle().getHeight() / 2);
-        Vector2 position = new Vector2(obj.getX(), obj.getY()).add(origin);
+        Vector2 origin = new Vector2(
+            obj.getRectangle().getWidth() / 2,
+            obj.getRectangle().getHeight() / 2
+         );
 
+        Vector2 position = new Vector2(
+            obj.getX(),
+            obj.getY()
+        ).add(origin);
 
         // Draw the texture at the location of the Entity obj
         Vector2 adjPos = position.sub(gameData.getCamera());
@@ -50,7 +57,7 @@ public class Sprite implements GraphicsComponent {
                 true
         );
 
-                // TODO: add tinting
-                // obj.Tint
+        // TODO: add tinting
+        // obj.Tint
     }
 }

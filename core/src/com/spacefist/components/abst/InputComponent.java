@@ -1,7 +1,7 @@
 package com.spacefist.components.abst;
 
-/**<summary>
+/**
+ * <summary>
  * A marker interface for input components.
  */
-public interface InputComponent extends Component {
-}
+public interface InputComponent extends Component { }

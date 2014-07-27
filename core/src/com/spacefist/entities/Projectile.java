@@ -12,11 +12,10 @@ import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
 import com.spacefist.components.abst.SoundComponent;
 
-/// <summary>
-/// Represents a projectile fired by either the player or an enemy.
-/// </summary>
-public class Projectile extends Entity
-{
+/**
+ * Represents a projectile fired by either the player or an enemy.
+ */
+public class Projectile extends Entity {
     private boolean soundPlayed = false;
 
     private boolean enemyProjectile;
@@ -25,42 +24,48 @@ public class Projectile extends Entity
 
     public Projectile(
             GameData gameData,
-            Texture texture,
-            Vector2 position,
-            Vector2   unitVector,
-            int       speed,
-            boolean      enemyProjectile
-    )
-    {
+            Texture  texture,
+            Vector2  position,
+            Vector2  unitVector,
+            int      speed,
+            boolean  enemyProjectile
+    ) {
 
         super(
-                gameData,
-                new Rectangle(
-                        (int) position.x,
-                        (int) position.y,
-                        texture.getWidth(),
-                        texture.getHeight()
-                ),
-                new Physics(),
-                new NullInputComponent(),
-                new Sprite(texture),
-                new Sound(gameData.getSoundEffects().get("Laser")),
-                gameData.getScreenScale()
+            gameData,
+            new Rectangle(
+                (int) position.x,
+                (int) position.y,
+                texture.getWidth(),
+                texture.getHeight()
+            ),
+            new Physics(),
+            new NullInputComponent(),
+            new Sprite(texture),
+            new Sound(gameData.getSoundEffects().get("Laser")),
+            gameData.getScreenScale()
         );
 
-        setVelocity(new Vector2(unitVector.x * speed, unitVector.y * speed));
+        setVelocity(
+            new Vector2(
+                unitVector.x * speed,
+                unitVector.y * speed
+            )
+        );
+
         this.enemyProjectile = enemyProjectile;
 
         behavior = new NullBehavior();
     }
 
-    // Plays a firing noise on the first update
+    /**
+     * Plays a firing noise on the first update
+     */
     @Override
     public void Update() {
         SoundComponent sound = (Sound) this.getSound();
 
-        if (!soundPlayed)
-        {
+        if (!soundPlayed) {
             ((Sound) sound).play();
             soundPlayed = true;
         }

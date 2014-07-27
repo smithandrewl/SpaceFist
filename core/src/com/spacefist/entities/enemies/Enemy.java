@@ -11,15 +11,33 @@ import com.spacefist.components.Physics;
 import com.spacefist.components.Sprite;
 import com.spacefist.entities.Entity;
 
-/// <summary>
-/// The parent class of all game enemies.
-/// </summary>
-public class Enemy extends Entity
-{
-    /// <summary>
-    /// The AI that will control this enemy.
-    /// </summary>
+/**
+ * The parent class of all game enemies.
+ */
+public class Enemy extends Entity {
+    /**
+     * The AI that will control this enemy.
+     */
     private EnemyAI ai;
+
+    public Enemy(GameData gameData, Texture enemyTexture, Sound sound, Vector2 position) {
+        super(
+            gameData,
+            new Rectangle(
+                (int) position.x,
+                (int) position.y,
+                enemyTexture.getWidth(),
+                enemyTexture.getHeight()
+            ),
+            new Physics(),
+            new NullInputComponent(),
+            new Sprite(enemyTexture),
+            new com.spacefist.components.Sound(sound),
+            0
+        );
+
+        setRotation((float) ((3 * Math.PI) / 2));
+    }
 
     public EnemyAI getAi() {
         return ai;
@@ -29,38 +47,16 @@ public class Enemy extends Entity
         this.ai = ai;
     }
 
-    public Enemy(GameData gameData, Texture enemyTexture, Sound sound, Vector2 position) {
-        super(
-                gameData,
-                new Rectangle(
-                        (int) position.x,
-                        (int) position.y,
-                        enemyTexture.getWidth(),
-                        enemyTexture.getHeight()
-                ),
-                new Physics(),
-                new NullInputComponent(),
-                new Sprite(enemyTexture),
-                new com.spacefist.components.Sound(sound),
-                0
-        );
-
-        setRotation((float) ((3 * Math.PI) / 2));
-
-    }
-
     @Override
-    public void Update()
-    {
+    public void Update() {
         getAi().Update();
         super.Update();
     }
 
-    /// <summary>
-    /// Plays an explosion sound.
-    /// </summary>
-    public void OnDeath()
-    {
-        ((com.spacefist.components.Sound)getSound()).play();
+    /**
+     * Plays an explosion sound.
+     */
+    public void OnDeath() {
+        ((com.spacefist.components.Sound) getSound()).play();
     }
 }

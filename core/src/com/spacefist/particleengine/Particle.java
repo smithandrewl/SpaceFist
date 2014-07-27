@@ -6,42 +6,39 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.Date;
 
-public class Particle
-{
+public class Particle {
     private Texture texture;
 
-    private float    scale;
-    private float    rotation;
-    private float    angularVelocity;
-    private Vector2  velocity;
-    private Date     creation;
-    private int      ttl;
-    private Color    tint;
-    private Vector2  originalPos;
-    private Vector2  position;
+    private float scale;
+    private float rotation;
+    private float angularVelocity;
+    private Vector2 velocity;
+    private Date creation;
+    private int ttl;
+    private Color tint;
+    private Vector2 originalPos;
+    private Vector2 position;
 
     public Particle(
             Texture texture, float scale, float rotation, float angularVelocity,
-            Vector2 velocity, int ttl, Color tint, Vector2 originalPos)
-    {
-        this.originalPos     = originalPos;
-        this.position        = originalPos;
-        this.texture         = texture;
-        this.scale           = scale;
-        this.rotation        = rotation;
+            Vector2 velocity, int ttl, Color tint, Vector2 originalPos) {
+        this.originalPos = originalPos;
+        this.position = originalPos;
+        this.texture = texture;
+        this.scale = scale;
+        this.rotation = rotation;
         this.angularVelocity = angularVelocity;
-        this.velocity        = velocity;
-        this.creation        = new Date();
+        this.velocity = velocity;
+        this.creation = new Date();
         this.ttl = ttl;
         this.tint = tint;
 
     }
 
-    public void Update()
-{
-    position = new Vector2(position.x + getVelocity().x, position.y + getVelocity().y);
-    rotation = (float) Math.toRadians(Math.toDegrees(getRotation()) + getAngularVelocity());
-}
+    public void Update() {
+        position = new Vector2(position.x + getVelocity().x, position.y + getVelocity().y);
+        rotation = (float) Math.toRadians(Math.toDegrees(getRotation()) + getAngularVelocity());
+    }
 
     public Texture getTexture() {
         return texture;

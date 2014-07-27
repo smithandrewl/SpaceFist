@@ -12,26 +12,25 @@ import com.spacefist.components.abst.SoundComponent;
 /**
  * The base class of all entities.  Anything that moves and is drawn in the game is
  * a subclass of the Entity class.
- *
+ * <p/>
  * Instead of performing tasks such as drawing or handling input,
  * the Entity base class keeps references to classes implementing known interfaces.  It then calls methods of these interfaces
  * such as Update and Draw.
- *
+ * <p/>
  * What this means is that the Entity base class can update and draw itself without knowning how it is being updated or drawn.
- *
+ * <p/>
  * On update, the Entity base class calls the Update method on the graphics, physics, input and sound components.
  * On draw, the Entity base class calls the Draw method on the graphics component.
- *
+ * <p/>
  * Each Entity Subclass provides the exact implementations of the components in its constructor.
- *
+ * <p/>
  * For example, The block class uses Sprite as its GraphicsComponent because it only needs to draw a single image.
  * The Explosion and Ship classes use the IndexedSprite component as its GraphicsComponent because it needs to draw
  * itself in multiple ways (each frame of the explosion or when the ship turns).
- *
+ * <p/>
  * As much as possible, the Entity class contains data about the entity, while the components operate on the data.
  */
-public class Entity
-{
+public class Entity {
     protected GameData gameData;
 
     private Rectangle         rectangle;
@@ -55,6 +54,40 @@ public class Entity
      * A hue which can be used by a graphics component when drawning the entity.
      */
     private Color tint;
+    /**
+     * This represents the rotation of the entity.
+     */
+    private float rotation;
+
+    /**
+     * @param gameData  Common game data
+     * @param rectangle The size and position of the entity
+     * @param physics   The physics component to use
+     * @param input     The input component to use
+     * @param graphics  The graphics component to use
+     * @param sound     The sound component to use
+     * @param rotation  The rotation of the entity
+     */
+    public Entity(
+        GameData          gameData,
+        Rectangle         rectangle,
+        PhysicsComponent  physics,
+        InputComponent    input,
+        GraphicsComponent graphics,
+        SoundComponent    sound,
+        float             rotation
+    ) {
+        setAlive(true);
+        this.gameData  = gameData;
+        this.rectangle = rectangle;
+
+        setPhysics(physics);
+        setInput(input);
+        setGraphics(graphics);
+        setSound(sound);
+
+        setTint(Color.WHITE);
+    }
 
     /**
      * This property provides an easy way to get and set the X coordinate of the rectangle associated with this entity.
@@ -79,15 +112,10 @@ public class Entity
     }
 
     /**
-     * This represents the rotation of the entity.
-     */
-    private float rotation;
-
-    /**
      * The location, height and width of this entity.
      */
     public Rectangle getRectangle() {
-            return rectangle;
+        return rectangle;
     }
 
     public void setRectangle(Rectangle rectangle) {
@@ -98,48 +126,15 @@ public class Entity
         return gameData;
     }
 
-    /**
-     *
-     * @param gameData Common game data
-     * @param rectangle The size and position of the entity
-     * @param physics The physics component to use
-     * @param input The input component to use
-     * @param graphics The graphics component to use
-     * @param sound The sound component to use
-     * @param rotation The rotation of the entity
-     */
-    public Entity(
-        GameData          gameData,
-        Rectangle         rectangle,
-        PhysicsComponent  physics,
-        InputComponent    input,
-        GraphicsComponent graphics,
-        SoundComponent    sound,
-        float             rotation)
-    {
-        setAlive(true);
-        this.gameData  = gameData;
-        this.rectangle = rectangle;
-        this.setPhysics(physics);
-        this.setInput(input);
-        this.setGraphics(graphics);
-        this.setSound(sound);
-
-        setTint(Color.WHITE);
-    }
-
-    public void Initialize()
-    {
+    public void Initialize() {
 
     }
 
     /**
      * If the ship is alive, update all of its components
      */
-    public void Update()
-    {
-        if (isAlive())
-        {
+    public void Update() {
+        if (isAlive()) {
             getGraphics().update(gameData, this);
             getInput().update(gameData, this);
             getPhysics().update(gameData, this);
@@ -150,10 +145,8 @@ public class Entity
     /**
      * If the ship is alive, call draw on its graphics component
      */
-    public void Draw()
-    {
-        if (isAlive())
-        {
+    public void Draw() {
+        if (isAlive()) {
             getGraphics().Draw(gameData, this);
         }
     }

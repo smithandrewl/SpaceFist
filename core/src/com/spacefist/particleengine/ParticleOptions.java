@@ -1,31 +1,29 @@
 package com.spacefist.particleengine;
 
-public class ParticleOptions
-{
-    private float  speed;
-    private int    ttl;
-    private int    minRotation;
-    private int    maxRotation;
-    private int    minAngularVelocity;
-    private int    maxAngularVelocity;
-    private float  minScale;
-    private float  maxScale;
+public class ParticleOptions {
+    private float speed;
+    private int ttl;
+    private int minRotation;
+    private int maxRotation;
+    private int minAngularVelocity;
+    private int maxAngularVelocity;
+    private float minScale;
+    private float maxScale;
 
 
     public ParticleOptions(
-            float speed,              int   ttl,
-            int   minRotation,        int   maxRotation,
-            int   minAngularVelocity, int   maxAngularVelocity,
-            float minScale,           float maxScale)
-    {
-        this.speed              = speed;
-        this.ttl                = ttl;
-        this.minRotation        = minRotation;
-        this.maxRotation        = maxRotation;
+            float speed, int ttl,
+            int minRotation, int maxRotation,
+            int minAngularVelocity, int maxAngularVelocity,
+            float minScale, float maxScale) {
+        this.speed = speed;
+        this.ttl = ttl;
+        this.minRotation = minRotation;
+        this.maxRotation = maxRotation;
         this.minAngularVelocity = minAngularVelocity;
         this.maxAngularVelocity = maxAngularVelocity;
-        this.minScale           = minScale;
-        this.maxScale           = maxScale;
+        this.minScale = minScale;
+        this.maxScale = maxScale;
     }
 
     public float getSpeed() {
