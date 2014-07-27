@@ -7,9 +7,6 @@ import com.spacefist.entities.Entity;
 /**
  * For se by entities that do not use input.
  */
-public class NullInputComponent implements InputComponent
-{
-    public void update(GameData gameData, Entity obj)
-    {
-    }
+public class NullInputComponent implements InputComponent {
+    public void update(GameData gameData, Entity obj) { }
 }

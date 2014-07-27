@@ -8,13 +8,7 @@ import com.spacefist.entities.Entity;
  * For use by entities that do not have a sound
  * The background for example
  */
-public class NullSoundComponent implements SoundComponent
-{
-    public void LoadContent(GameData gameData)
-    {
-    }
-
-    public void update(GameData gameData, Entity obj)
-    {
-    }
+public class NullSoundComponent implements SoundComponent {
+    public void LoadContent(GameData gameData)        { }
+    public void update(GameData gameData, Entity obj) { }
 }

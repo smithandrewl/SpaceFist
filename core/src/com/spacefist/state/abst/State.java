@@ -3,8 +3,7 @@ package com.spacefist.state.abst;
 /**
  * Every state machine state implements State
  */
-public interface State
-{
+public interface State {
     void Update();
 
     /**

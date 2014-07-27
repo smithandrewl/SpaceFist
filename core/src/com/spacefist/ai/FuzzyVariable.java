@@ -89,4 +89,3 @@ public class FuzzyVariable {
         this.value = value;
     }
 }
-

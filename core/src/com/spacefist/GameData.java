@@ -16,9 +16,8 @@ import com.spacefist.state.abst.GameState;
 
 import java.util.HashMap;
 
-public class GameData
-{
-    private GameState     currentState;
+public class GameData {
+    private GameState currentState;
     private SpaceFistGame game;
 
     /*
@@ -33,34 +32,28 @@ public class GameData
     }
     */
 
-    private  float         ScreenScale;
-    private  int           LevelCount;
+    private float ScreenScale;
+    private int LevelCount;
 
-    private Vector2   camera;
+    private Vector2 camera;
     private Rectangle world;
 
     private SpriteBatch spriteBatch;
-    private Rectangle   resolution;
+    private Rectangle resolution;
 
     private HashMap<String, Texture> Textures;
-    private HashMap<String, Sound>  SoundEffects;
-    private HashMap<String, Music>  Songs;
+    private HashMap<String, Sound> SoundEffects;
+    private HashMap<String, Music> Songs;
 
     private RoundData roundData;
 
 
     private Ship ship;
-
-    public Ship getShip() {
-        return ship;
-    }
-
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
-
     private BitmapFont font;
     private BitmapFont titleFont;
+    // -------------- Game States --------------
+    private SplashScreenState splashScreenState;
+    private MenuState menuState;
 
     /*
     public GraphicsDevice                  GraphicsDevice { get; set; }
@@ -80,33 +73,8 @@ public class GameData
     public CollisionManager  CollisionManager  { get; set; }
 
     */
-
-    // -------------- Game States --------------
-    private SplashScreenState splashScreenState;
-    private MenuState         menuState;
-    private LogoState         logoState;
-
-
-
-
-    /*
-    public InPlayState       InPlayState       { get; set; }
-    public GameOverState     GameOverState     { get; set; }
-    public EndOfGameState    EndOfGameState    { get; set; }
-    public CreditsState      CreditsState      { get; set; }
-    public EndOfLevelState   EndOfLevelState   { get; set; }
-
-    public Rectangle OnScreenWorld
-    {
-        get
-        {
-            return new Rectangle((int)Camera.X, (int)Camera.Y, Resolution.Width, Resolution.Height);
-        }
-    }
-    */
-
-    public GameData(SpaceFistGame game)
-    {
+    private LogoState logoState;
+    public GameData(SpaceFistGame game) {
         this.setGame(game);
 
         setRoundData(new RoundData());
@@ -128,13 +96,39 @@ public class GameData
         */
     }
 
+    public Ship getShip() {
+        return ship;
+    }
+
+
+
+
+    /*
+    public InPlayState       InPlayState       { get; set; }
+    public GameOverState     GameOverState     { get; set; }
+    public EndOfGameState    EndOfGameState    { get; set; }
+    public CreditsState      CreditsState      { get; set; }
+    public EndOfLevelState   EndOfLevelState   { get; set; }
+
+    public Rectangle OnScreenWorld
+    {
+        get
+        {
+            return new Rectangle((int)Camera.X, (int)Camera.Y, Resolution.Width, Resolution.Height);
+        }
+    }
+    */
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
+
     public GameState getCurrentState() {
         return currentState;
     }
 
     public void setCurrentState(GameState newState) {
-        if (currentState != null)
-        {
+        if (currentState != null) {
             currentState.ExitingState();
         }
 

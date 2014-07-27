@@ -8,8 +8,7 @@ import com.spacefist.entities.Projectile;
 // Interception and steering behavior based
 // on the pursuit section of the paper "Steering Behaviors For Autonomous Characters"
 // http://www.red3d.com/cwr/steer/gdc99/
-class SeekingBehavior implements ProjectileBehavior
-{
+class SeekingBehavior implements ProjectileBehavior {
     /// <summary>
     /// The entity the projectile is intercepting.
     /// </summary>
@@ -31,37 +30,31 @@ class SeekingBehavior implements ProjectileBehavior
     /// <param name="unitVector">The direction the projectile was fired.</param>
     /// <param name="origin">The point from which the projectile was fired.</param>
     /// <param name="target">The target entity to intercept.</param>
-    public SeekingBehavior(Vector2 unitVector, Vector2 origin, Entity target)
-    {
-        this.origin     = origin;
-        this.target     = target;
-        this.origVector = unitVector;
+    public SeekingBehavior(Vector2 unitVector, Vector2 origin, Entity target) {
+        this.origin = origin;
+        this.target = target;
+        origVector  = unitVector;
     }
 
-    public void Update(Projectile projectile)
-    {
-        if (target.isAlive())
-        {
+    public void Update(Projectile projectile) {
+        if (target.isAlive()) {
             int maxSpeed = 10;
             // The minimum distance from the launching point
             // that the projectile must be after being fired, before it will start
             // intercepting the target.
-            int minDist  = 150;
+            int minDist = 150;
 
             float xDiff = projectile.getX() - origin.x;
             float yDiff = projectile.getY() - origin.y;
 
             // The distance of the projectile from the launch point.
-            int distFromOrigin = (int)Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
+            int distFromOrigin = (int) Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
-            if (distFromOrigin < minDist)
-            {
+            if (distFromOrigin < minDist) {
                 // If the minimum distance has not been reached,
                 // continue moving in the direction fired.
                 projectile.setVelocity(new Vector2(origVector.x * maxSpeed, origVector.y * maxSpeed));
-            }
-            else
-            {
+            } else {
                 Vector2 targetPos = new Vector2(target.getX(), target.getY());
                 Vector2 projPos   = new Vector2(projectile.getX(), projectile.getY());
 
@@ -70,31 +63,36 @@ class SeekingBehavior implements ProjectileBehavior
                 Vector2 positionDiff = new Vector2(target.getX(), target.getY()).sub(new Vector2(projectile.getX(), projectile.getY()));
                 Vector2 velocityDiff = target.getVelocity().sub(projectile.getVelocity());
 
-                timeToIntercept = (int)(positionDiff.len() / velocityDiff.len());
+                timeToIntercept = (int) (positionDiff.len() / velocityDiff.len());
 
                 // The point of interception
-                Vector2 poi = targetPos.add(new Vector2(target.getVelocity().x * timeToIntercept, target.getVelocity().y * timeToIntercept));
+                Vector2 poi = targetPos.add(
+                    new Vector2(
+                        target.getVelocity().x * timeToIntercept,
+                        target.getVelocity().y * timeToIntercept
+                    )
+                );
 
                 Vector2 desiredVelocity = poi.sub(projPos);
                 desiredVelocity.nor();
 
-                desiredVelocity = new Vector2(desiredVelocity.x * maxSpeed, desiredVelocity.y * maxSpeed);
+                desiredVelocity = new Vector2(
+                        desiredVelocity.x * maxSpeed,
+                        desiredVelocity.y * maxSpeed
+                );
 
-                 Vector2 steering = desiredVelocity.sub(projectile.getVelocity());
+                Vector2 steering = desiredVelocity.sub(projectile.getVelocity());
 
                 Vector2 newVelocity = projectile.getVelocity().add(new Vector2(steering.x * .2f, steering.y * .2f));
 
-
-                float direction = (float) (Math.toDegrees((float)Math.atan2(newVelocity.y, newVelocity.x)) + 90);
+                float direction = (float) (Math.toDegrees((float) Math.atan2(newVelocity.y, newVelocity.x)) + 90);
 
                 direction = (float) Math.toRadians(direction);
 
                 projectile.setRotation(direction);
                 projectile.setVelocity(newVelocity);
             }
-        }
-        else
-        {
+        } else {
             // Go away if the target dies before we reach it.
             projectile.setAlive(false);
         }

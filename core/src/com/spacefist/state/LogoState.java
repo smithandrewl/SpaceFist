@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
+
 import java.util.Date;
 
 /**
@@ -12,49 +13,42 @@ import java.util.Date;
  * to the splash screen.
  */
 public class LogoState implements GameState {
+    private static final int loadTime = 3;
+
     Texture background;
     Date    enteredAt;
 
-    private static final int loadTime = 3;
-
     private GameData gameData;
 
-    public LogoState(GameData gameData)
-    {
+    public LogoState(GameData gameData) {
         this.gameData = gameData;
     }
 
-    public void LoadContent()
-    {
+    public void LoadContent() {
         background = gameData.getTextures().get("Logo");
     }
 
-    public void Draw()
-    {
+    public void Draw() {
         float height = gameData.getResolution().getHeight();
-        float width = gameData.getResolution().getWidth();
+        float width  = gameData.getResolution().getWidth();
 
         gameData.getSpriteBatch().draw(background, 0, 0, width, height);
     }
 
-    public void Update()
-    {
+    public void Update() {
 
         if (((new Date().getTime() - enteredAt.getTime()) / 1000) > loadTime ||
-                Gdx.input.isKeyPressed(Input.Keys.ENTER)                     ||
-                Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-        {
+                Gdx.input.isKeyPressed(Input.Keys.ENTER) ||
+                Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
 
             gameData.setCurrentState(gameData.getSplashScreenState());
         }
     }
 
-    public void EnteringState()
-    {
+    public void EnteringState() {
         enteredAt = new Date();
     }
 
-    public void ExitingState()
-    {
+    public void ExitingState() {
     }
 }

@@ -7,17 +7,14 @@ import com.spacefist.state.abst.ShipState;
 /// <summary>
 /// LowHealthState determines the appearance of the ship when it has low health
 /// </summary>
-public class LowHealthState implements ShipState
-{
+public class LowHealthState implements ShipState {
     private GameData gameData;
 
-    public LowHealthState(GameData gameData)
-    {
+    public LowHealthState(GameData gameData) {
         this.gameData = gameData;
     }
 
-    public void Update()
-    {
+    public void Update() {
         Ship ship = gameData.getShip();
 
         /* TODO: Fade the ship from invisible to visible while also fading between its normal colors and a red tint during the low health state
@@ -27,17 +24,11 @@ public class LowHealthState implements ShipState
         */
 
         // If the ship has died, switch to the respawning state
-        if (ship.getHealth() <= 0)
-        {
+        if (ship.getHealth() <= 0) {
             ship.setCurrentState(new SpawningState(gameData));
         }
     }
 
-    public void EnteringState()
-    {
-    }
-
-    public void ExitingState()
-    {
-    }
+    public void EnteringState() { }
+    public void ExitingState()  { }
 }

@@ -11,14 +11,12 @@ import com.spacefist.state.abst.ShipState;
 /// In this state, the ship will wait until it has low health before switching
 /// the ship to the low-health state.
 /// </summary>
-public class NormalState implements ShipState
-{
+public class NormalState implements ShipState {
     // The percentage of full health at which the ship is considered to have low-health.
     private static final float LowHealthThreshold = .40f;
     private GameData gameData;
 
-    public NormalState(GameData gameData)
-    {
+    public NormalState(GameData gameData) {
         this.gameData = gameData;
     }
 
@@ -31,13 +29,10 @@ public class NormalState implements ShipState
         }
     }
 
-    public void EnteringState()
-    {
+    public void EnteringState() {
         // TODO: Set the ship to draw opaque after entering the normal state
         //gameData.Ship.Tint = Color.White;
     }
 
-    public void ExitingState()
-    {
-    }
+    public void ExitingState() { }
 }

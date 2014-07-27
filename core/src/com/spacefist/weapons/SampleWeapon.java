@@ -7,8 +7,7 @@ import com.spacefist.weapons.abst.Weapon;
 /// <summary>
 /// Represents a weapon which fires intercepting rockets.
 /// </summary>
-public class SampleWeapon implements Weapon
-{
+public class SampleWeapon implements Weapon {
     // TODO: Convert ProjectileManager
     // private ProjectileManager projectileManager;
 
@@ -20,10 +19,9 @@ public class SampleWeapon implements Weapon
     /// </summary>
     /// <param name="gameData">Common game data</param>
     /// <param name="ship">The players ship</param>
-    public SampleWeapon(GameData gameData, Ship ship)
-    {
+    public SampleWeapon(GameData gameData, Ship ship) {
         this.gameData = gameData;
-        this.ship = ship;
+        this.ship     = ship;
 
         // projectileManager = gameData.ProjectileManager;
     }
@@ -31,12 +29,10 @@ public class SampleWeapon implements Weapon
     /// <summary>
     /// Fires a rocket cluster
     /// </summary>
-    public void fire()
-    {
-        int projectileX = (int)(ship.getX() + (ship.getRectangle().getWidth() / 2) + 2);
-        int projectileY = (int)((ship.getY() - (35 * gameData.getScreenScale())));
+    public void fire() {
+        int projectileX = (int) (ship.getX() + (ship.getRectangle().getWidth() / 2) + 2);
+        int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
 
         // projectileManager.fireSampleWeapon(projectileX, projectileY);
     }
 }
-

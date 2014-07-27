@@ -3,8 +3,7 @@ package com.spacefist;
 /**
  * Holds information about the current round.
  */
-public class RoundData
-{
+public class RoundData {
     private int lives;
     private int score;
     private int enemiesShot;
@@ -13,7 +12,6 @@ public class RoundData
     private int shotsFired;
 
     /**
-     *
      * @return The players accuracy
      */
     public float getAcc() {
@@ -23,8 +21,7 @@ public class RoundData
     /**
      * Resets all of the values to their default values.
      */
-    public void Reset()
-    {
+    public void Reset() {
         setLives(0);
         setScore(0);
         setBlocksBumped(0);

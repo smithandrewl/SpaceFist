@@ -12,15 +12,17 @@ import java.util.Date;
 /// The ship starts invisible and then fades to fully visible.  When 2 seconds have passed (to give it time to fade-in),
 /// the state is changed to NormalState.
 /// </summary>
-public class SpawningState implements ShipState
-{
+public class SpawningState implements ShipState {
     // The number of seconds to wait for the ship to load.
     // This gives the ship time to fully fade-in from transparent to opaque.
     private static final int SpawnTime = 1;
 
     private GameData gameData;
+    private Date     spawnedAt;
 
-    private Date spawnedAt;
+    public SpawningState(GameData gameData) {
+        this.gameData = gameData;
+    }
 
     public Date getSpawnedAt() {
         return spawnedAt;
@@ -30,15 +32,8 @@ public class SpawningState implements ShipState
         this.spawnedAt = spawnedAt;
     }
 
-    public SpawningState(GameData gameData)
-    {
-        this.gameData = gameData;
-    }
-
-    public void Update()
-    {
-        Ship ship = gameData.getShip();
-
+    public void Update() {
+        Ship ship      = gameData.getShip();
         byte increment = 5;
 
         /*
@@ -67,8 +62,7 @@ public class SpawningState implements ShipState
         */
     }
 
-    public void EnteringState()
-    {
+    public void EnteringState() {
         spawnedAt = new Date();
 
         /*
@@ -78,7 +72,5 @@ public class SpawningState implements ShipState
         //gameData.Ship.Tint = Color.Transparent;
     }
 
-    public void ExitingState()
-    {
-    }
+    public void ExitingState() { }
 }
