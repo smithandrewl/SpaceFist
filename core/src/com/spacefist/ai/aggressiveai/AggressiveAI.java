@@ -6,9 +6,9 @@ import com.spacefist.ai.ShipInfo;
 import com.spacefist.ai.abst.EnemyAI;
 import com.spacefist.entities.enemies.Enemy;
 
-/// <summary>
-/// An aggressive AI which follows the ship and attempts to ram it.
-/// </summary>
+/**
+ * An aggressive AI which follows the ship and attempts to ram it.
+ */
 public class AggressiveAI implements EnemyAI {
     /**
      * The ram fuzzy state

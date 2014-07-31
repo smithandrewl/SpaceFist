@@ -1,8 +1,8 @@
 package com.spacefist.ai;
 
-/// <summary>
-/// Represents a fuzzy input variable of three sets
-/// </summary>
+/**
+ * Represents a fuzzy input variable of three sets
+ */
 public class FuzzyVariable {
     /**
      * The name of the fuzzy variable.

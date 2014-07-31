@@ -15,7 +15,7 @@ import com.spacefist.state.abst.GameState;
 import java.util.HashMap;
 
 public class GameData {
-    private GameState currentState;
+    private GameState     currentState;
     private SpaceFistGame game;
 
     /*
@@ -31,27 +31,26 @@ public class GameData {
     */
 
     private float ScreenScale;
-    private int LevelCount;
+    private int   LevelCount;
 
-    private Vector2 camera;
+    private Vector2   camera;
     private Rectangle world;
 
     private SpriteBatch spriteBatch;
-    private Rectangle resolution;
+    private Rectangle   resolution;
 
     private HashMap<String, Texture> Textures;
-    private HashMap<String, Sound> SoundEffects;
-    private HashMap<String, Music> Songs;
+    private HashMap<String, Sound>   SoundEffects;
+    private HashMap<String, Music>   Songs;
 
     private RoundData roundData;
 
-
-    private Ship ship;
+    private Ship       ship;
     private BitmapFont font;
     private BitmapFont titleFont;
     // -------------- Game States --------------
     private SplashScreenState splashScreenState;
-    private MenuState menuState;
+    private MenuState         menuState;
 
     /*
     public GraphicsDevice                  GraphicsDevice { get; set; }
@@ -105,7 +104,12 @@ public class GameData {
     private EndOfLevelState endOfLevelState;
 
     public Rectangle getOnScreenWorld() {
-        return new Rectangle((int)getCamera().x, (int)getCamera().y, getResolution().getWidth(), getResolution().getHeight());
+        return new Rectangle(
+            (int)getCamera().x,
+            (int)getCamera().y,
+            getResolution().getWidth(),
+            getResolution().getHeight()
+        );
     }
 
     public void setShip(Ship ship) {

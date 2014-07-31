@@ -6,10 +6,10 @@ import com.spacefist.ai.abst.FuzzyLogicEnabled;
 
 import java.util.Date;
 
-/// <summary>
-/// Provides fuzzy information about the ship and how the player
-/// has played this current round.
-/// </summary>
+/**
+ * Provides fuzzy information about the ship and how the player
+ * has played this current round.
+ */
 public class ShipInfo extends FuzzyLogicEnabled {
     private static final boolean DisplayDebug = false;
 
@@ -78,10 +78,11 @@ public class ShipInfo extends FuzzyLogicEnabled {
     }
 
     /* TODO: Implement or remove ShipInfo.getTriggerHappy()
-    /// <summary>
-    /// The degree to which the ship belongs to the low, medium and high sets for firing often.
-    /// If the player never shoots, the membership in TriggerHappy.Low will be 100 percent.
-    /// </summary>
+    /**
+     * The degree to which the ship belongs to the low, medium and high sets for firing often.
+     * If the player never shoots, the membership in TriggerHappy.Low will be 100 percent.
+     */
+    /*
     public FuzzyVariable getTriggerHappy() {
             return grade(roundData.ShotsPerPeriod, TriggerHappyLow, TriggerHappyHigh, fuzzyTriggerHappy);
     }

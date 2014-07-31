@@ -4,35 +4,32 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-/// <summary>
-/// Draws information about the ongoing game and the player to the screen.
-/// </summary>
-public class Hud
-{
+/**
+ * Draws information about the ongoing game and the player to the screen.
+ */
+public class Hud {
     private static final String ScoreFormat = "Score: {0} | Health: {1:P0} | Lives: {2}";
     private static final String controlsMsg = "Controls: WASD to move, SPACE to fire, Q to quit";
 
-
     private String scoreDisplay = "";
 
-    private Vector2 controlsPosition;
-    private GameData      gameData;
-    private RoundData     roundData;
+    private Vector2   controlsPosition;
+    private GameData  gameData;
+    private RoundData roundData;
     // TODO: Convert PlayerManager
     // private PlayerManager shipManager;
-    private Vector2       scorePosition;
+    private Vector2   scorePosition;
     private Rectangle TopRect;
-    private Rectangle     BottomRect;
+    private Rectangle BottomRect;
 
     private Color color           = Color.YELLOW;
     private Color semiTransparent = new Color(255, 255, 255, .8f);
 
     // TODO: Convert PlayerManager
     //public Hud(GameData gameData, PlayerManager shipManager)
-    public Hud(GameData gameData)
-    {
-        this.gameData    = gameData;
-        this.roundData   = gameData.getRoundData();
+    public Hud(GameData gameData) {
+        this.gameData  = gameData;
+        this.roundData = gameData.getRoundData();
 
         // TODO: Convert PlayerManager
         //this.shipManager = shipManager;
@@ -59,8 +56,7 @@ public class Hud
         );
     }
 
-    public void Update()
-    {
+    public void Update() {
         /*
         TODO: Convert Hud.Update
 
@@ -78,8 +74,7 @@ public class Hud
         */
     }
 
-    public void Draw()
-    {
+    public void Draw() {
         /*
         TODO: Hud.Draw
 

@@ -14,10 +14,10 @@ public class SpawnZone {
     private Vector2 center;
 
     public SpawnZone(int count, int left, int right, int top, int bottom, Vector2 center) {
-        this.count = count;
-        this.left = left;
-        this.right = right;
-        this.top = top;
+        this.count  = count;
+        this.left   = left;
+        this.right  = right;
+        this.top    = top;
         this.bottom = bottom;
         this.center = center;
     }
