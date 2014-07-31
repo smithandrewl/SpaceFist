@@ -9,9 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.entities.Ship;
 import com.spacefist.game.SpaceFistGame;
-import com.spacefist.state.LogoState;
-import com.spacefist.state.MenuState;
-import com.spacefist.state.SplashScreenState;
+import com.spacefist.state.*;
 import com.spacefist.state.abst.GameState;
 
 import java.util.HashMap;
@@ -100,24 +98,15 @@ public class GameData {
         return ship;
     }
 
+    private InPlayState     inPlayState;
+    private GameOverState   gameOverState;
+    private EndOfGameState  endOfGameState;
+    private CreditsState    creditsState;
+    private EndOfLevelState endOfLevelState;
 
-
-
-    /*
-    public InPlayState       InPlayState       { get; set; }
-    public GameOverState     GameOverState     { get; set; }
-    public EndOfGameState    EndOfGameState    { get; set; }
-    public CreditsState      CreditsState      { get; set; }
-    public EndOfLevelState   EndOfLevelState   { get; set; }
-
-    public Rectangle OnScreenWorld
-    {
-        get
-        {
-            return new Rectangle((int)Camera.X, (int)Camera.Y, Resolution.Width, Resolution.Height);
-        }
+    public Rectangle getOnScreenWorld() {
+        return new Rectangle((int)getCamera().x, (int)getCamera().y, getResolution().getWidth(), getResolution().getHeight());
     }
-    */
 
     public void setShip(Ship ship) {
         this.ship = ship;
@@ -262,5 +251,45 @@ public class GameData {
 
     public void setMenuState(MenuState menuState) {
         this.menuState = menuState;
+    }
+
+    public InPlayState getInPlayState() {
+        return inPlayState;
+    }
+
+    public void setInPlayState(InPlayState inPlayState) {
+        this.inPlayState = inPlayState;
+    }
+
+    public GameOverState getGameOverState() {
+        return gameOverState;
+    }
+
+    public void setGameOverState(GameOverState gameOverState) {
+        this.gameOverState = gameOverState;
+    }
+
+    public EndOfGameState getEndOfGameState() {
+        return endOfGameState;
+    }
+
+    public void setEndOfGameState(EndOfGameState endOfGameState) {
+        this.endOfGameState = endOfGameState;
+    }
+
+    public CreditsState getCreditsState() {
+        return creditsState;
+    }
+
+    public void setCreditsState(CreditsState creditsState) {
+        this.creditsState = creditsState;
+    }
+
+    public EndOfLevelState getEndOfLevelState() {
+        return endOfLevelState;
+    }
+
+    public void setEndOfLevelState(EndOfLevelState endOfLevelState) {
+        this.endOfLevelState = endOfLevelState;
     }
 }

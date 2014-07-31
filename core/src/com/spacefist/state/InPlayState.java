@@ -1,89 +1,95 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using SpaceFist.Entities;
-using SpaceFist.Managers;
-using SpaceFist.State.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using Microsoft.Xna.Framework.Media;
+package com.spacefist.state;
 
-using FuncWorks.XNA.XTiled;
-using SpaceFist.Entities.Enemies;
-using SpaceFist.ParticleEngine;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.spacefist.GameData;
+import com.spacefist.entities.Entity;
+import com.spacefist.state.abst.GameState;
 
-namespace SpaceFist.State
-{
-    /// <summary>
-    /// The main state of the game.  All game play occurs in the InPlayState.
-    /// </summary>
-    public class InPlayState : GameState
-    {
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
-        // The speed at which the camera scrolls up the map / world
-        private const float ScrollSpeed = 1.5f;
-        
+/*
+ * The main state of the game.  All game play occurs in the InPlayState.
+ */
+public class InPlayState implements GameState {
 
-        GameData gameData;
+    // The speed at which the camera scrolls up the map / world
+    private static final float ScrollSpeed = 1.5f;
 
-        private Hud             hud;
-        private DateTime        levelLoadedAt;
-        private List<Rectangle> debrisField;
-        
-        private bool titleShown = false;
 
-        // The portion of the world which is currently visible.
-        public Rectangle OnScreenWorld
-        {
-            get
-            {
-                var screenWidth  = gameData.Resolution.Width;
-                var screenHeight = gameData.Resolution.Height;
+    GameData gameData;
 
-                return new Rectangle((int) gameData.Camera.X, (int) gameData.Camera.Y, screenWidth, screenHeight);
-            }
-        }
+    // TODO: Convert Hud
+    //private Hud             hud;
 
-        // It is used to measure playtime.
-        Stopwatch stopwatch = new Stopwatch();
+    private Date levelLoadedAt;
+    private List<Rectangle> debrisField;
 
-        private Rectangle EndOfLevelMarkerPos   { get; set; }
+    private boolean titleShown = false;
 
-        public InPlayState(GameData gameData)
-        {
-            this.gameData = gameData;
-        }
+    // The portion of the world which is currently visible.
+    public Rectangle getOnScreenWorld() {
+        int screenWidth = (int) gameData.getResolution().getWidth();
+        int screenHeight = (int) gameData.getResolution().getHeight();
 
-        public void LoadContent()
-        {
-            var resolution = gameData.Resolution;
-            var screenRect = new Rectangle(0, 0, resolution.Width, resolution.Height);
+        return new Rectangle((int) gameData.getCamera().x, (int) gameData.getCamera().y, screenWidth, screenHeight);
+    }
+
+
+    // It is used to measure playtime.
+    // TODO: Convert Stopwatch
+    //Stopwatch stopwatch = new Stopwatch();
+
+    private Rectangle endOfLevelMarkerPos;
+
+    public Rectangle getEndOfLevelMarkerPos() {
+        return endOfLevelMarkerPos;
+    }
+
+    public void setEndOfLevelMarkerPos(Rectangle endOfLevelMarkerPos) {
+        this.endOfLevelMarkerPos = endOfLevelMarkerPos;
+    }
+
+    public InPlayState(GameData gameData) {
+        this.gameData = gameData;
+    }
+
+    public void LoadContent() {
+        Rectangle resolution = gameData.getResolution();
+        Rectangle screenRect = new Rectangle(0, 0, resolution.getWidth(), resolution.getHeight());
+
+            /*
+            TODO: Convert LevelManager
 
             gameData.LevelManager.Init();
             gameData.LevelManager.LoadLevel(1);
-            
-            debrisField    = new List<Rectangle>(gameData.Level.DebrisParticleCount);
-            gameData.World = new Rectangle(0, 0, gameData.Level.Width, gameData.Level.Height);
-            hud            = new Hud(gameData, gameData.PlayerManager);
-        }
+            */
 
-        public void EnteringState()
-        {
-            // Reset the round statistics
-            gameData.RoundData.Reset();
-            
-            // Start playing music on a loop
-            MediaPlayer.Play(gameData.Songs[gameData.Level.Song]);
-            MediaPlayer.IsRepeating = true;
+        //debrisField    = new List<Rectangle>(gameData.getLevel().DebrisParticleCount);
+        //gameData.setWorld(new Rectangle(0, 0, gameData.getLevel().getWidth()), gameData.getLevel().getHeight());
 
-            var resolution = gameData.Resolution;
-            
-            // Position the camera at the bottom of the world
-            gameData.Camera = new Vector2(0, gameData.World.Height - resolution.Height);
+        // TODO: Convert Hud
+        // hud            = new Hud(gameData, gameData.PlayerManager);
+    }
 
+    public void EnteringState() {
+        // Reset the round statistics
+        gameData.getRoundData().Reset();
+
+        // TODO: Convert music playing code in InPlayState
+        // Start playing music on a loop
+        // MediaPlayer.Play(gameData.Songs[gameData.Level.Song]);
+        // MediaPlayer.IsRepeating = true;
+
+        Rectangle resolution = gameData.getResolution();
+
+        // Position the camera at the bottom of the world
+        gameData.setCamera(new Vector2(0, gameData.getWorld().getHeight() - resolution.getHeight()));
+
+        // TODO: Convert PlayerManager, BlockManager, EnemyManager and PickupManager
+            /*
             // Tell the ship manager to spawn the ship
             gameData.PlayerManager.Spawn();
 
@@ -157,15 +163,19 @@ namespace SpaceFist.State
             gameData.PickUpManager.SpawnExamplePickups(4);
             gameData.PickUpManager.SpawnHealthPickups(4);
 
-            /***Dongcai*/
-            gameData.PickUpManager.SpawnLaserbeamPickups(5);
-            gameData.PickUpManager.SpawnMissilePickups(3);
-            /**********/
+            */
 
-            Random rand = new Random();
+        /***Dongcai*/
+        // gameData.PickUpManager.SpawnLaserbeamPickups(5);
+        // gameData.PickUpManager.SpawnMissilePickups(3);
+        /**********/
 
-            debrisField.Clear();
+        Random rand = new Random();
 
+        debrisField.clear();
+
+        // TODO: Convert Level and add Level property to GameData
+            /*
             int    minScale      = gameData.Level.DebrisParticleMinScale;
             int    maxScale      = gameData.Level.DebrisParticleMaxScale;
             string particleImage = gameData.Level.DebrisParticleImage;
@@ -193,10 +203,12 @@ namespace SpaceFist.State
 
             levelLoadedAt = DateTime.Now;
             titleShown    = false;
-        }
+            */
+    }
 
-        public void Update()
-        {
+    public void Update() {
+        // TODO: Convert InplayState.Update
+            /*
             if (gameData.PlayerManager.Alive)
             {
                 KeyboardState keys = Keyboard.GetState();
@@ -247,12 +259,14 @@ namespace SpaceFist.State
             var mouse = Mouse.GetState();
 
             hud.Update();
-        }
 
-        public void Draw(Microsoft.Xna.Framework.GameTime gameTime)
-        {
-            string background    = gameData.Level.BackgroundImage;
-            string particleImage = gameData.Level.DebrisParticleImage;
+            */
+    }
+
+    public void Draw() {
+            /*
+            String background    = gameData.Level.BackgroundImage;
+            String particleImage = gameData.Level.DebrisParticleImage;
 
             // Draw the background
             gameData.SpriteBatch.Draw(gameData.Textures[background], gameData.Resolution, Color.White);
@@ -284,10 +298,12 @@ namespace SpaceFist.State
             DrawLevelMarkers();
 
             hud.Draw();
-        }
+            */
+    }
 
-        private void DrawLevelMarkers()
-        {
+    private void DrawLevelMarkers() {
+            /*
+            TODO: Convert InPlayState.DrawLevelMarkers
             int halfWidth  = (int)((gameData.World.Width / 2)    - gameData.Camera.X);
             int nearBottom = (int)((gameData.World.Bottom * .98) - gameData.Camera.Y);
             int nearTop    = (int)((gameData.World.Top * .02)    - gameData.Camera.Y);
@@ -322,6 +338,7 @@ namespace SpaceFist.State
                 {
                     titleShown = true;
                 }
+
             }
       
             EndOfLevelMarkerPos = new Rectangle(
@@ -336,55 +353,49 @@ namespace SpaceFist.State
                 EndOfLevelMarkerPos,
                 Color.White
             );
-        }
 
-        public void ExitingState()
-        {
-            MediaPlayer.Stop();
-        }
+            */
+    }
 
-       // Keep the player on the screen
-        private void KeepOnScreen(Entity obj)
-        {
-            var resolution = gameData.Resolution;
+    public void ExitingState() {
+        // TODO: Convert InPlayState.ExitingState
+        // MediaPlayer.Stop();
+    }
 
-            int farRight   = (int)gameData.Camera.X + resolution.Width;
-            int Bottom     = (int)gameData.Camera.Y + resolution.Height;
-            int halfHeight = obj.Rectangle.Height / 2;
+    // Keep the player on the screen
+    private void KeepOnScreen(Entity obj) {
+        Rectangle resolution = gameData.getResolution();
 
-            float velDecrease = .125f;
-            
-            bool offScreenRight  = obj.X > farRight;
-            bool offScreenLeft   = obj.X < gameData.Camera.X;
-            bool offscreenTop    = obj.Y + halfHeight > Bottom;
-            bool offscreenBottom = obj.Y < gameData.Camera.Y;
+        int farRight   = (int) (gameData.getCamera().x + resolution.getWidth());
+        int Bottom     = (int) (gameData.getCamera().y + resolution.getHeight());
+        int halfHeight = (int) (obj.getRectangle().getHeight() / 2);
 
-            bool offScreen = offScreenRight || 
-                             offScreenLeft  || 
-                             offscreenTop   || 
-                             offscreenBottom;
+        float velDecrease = .125f;
 
-            if (offScreen)
-            {
-                if (offScreenRight)
-                {
-                    obj.X = (int)farRight - obj.Rectangle.Width;
-                }
-                else if (offScreenLeft)
-                {
-                    obj.X = (int)gameData.Camera.X;
-                }
-                else if (offscreenTop)
-                {
-                    obj.Y = (int)Bottom - obj.Rectangle.Height;
-                }
-                else if (offscreenBottom)
-                {
-                    obj.Y = (int)gameData.Camera.Y + (obj.Rectangle.Height / 16);
-                }
+        boolean offScreenRight  = obj.getX() > farRight;
+        boolean offScreenLeft   = obj.getX() < gameData.getCamera().x;
+        boolean offscreenTop    = obj.getY() + halfHeight > Bottom;
+        boolean offscreenBottom = obj.getY() < gameData.getCamera().y;
 
-                obj.Velocity *= -1 * velDecrease;
+        boolean offScreen = offScreenRight ||
+            offScreenLeft ||
+            offscreenTop ||
+            offscreenBottom;
+
+        if (offScreen) {
+            if (offScreenRight) {
+                obj.setX((int) (farRight - obj.getRectangle().getWidth()));
+            } else if (offScreenLeft) {
+                obj.setX((int) gameData.getCamera().x);
+            } else if (offscreenTop) {
+                obj.setY((int) (Bottom - obj.getRectangle().getHeight()));
+            } else if (offscreenBottom) {
+                obj.setY((int) (gameData.getCamera().y + (obj.getRectangle().getHeight() / 16)));
             }
+
+            float mult = -1 * velDecrease;
+
+            obj.setVelocity(new Vector2(obj.getVelocity().x * mult, obj.getVelocity().y * mult));
         }
     }
 }
