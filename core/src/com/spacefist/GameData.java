@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.entities.Ship;
 import com.spacefist.game.SpaceFistGame;
+import com.spacefist.managers.*;
 import com.spacefist.state.*;
 import com.spacefist.state.abst.GameState;
 
@@ -57,19 +58,20 @@ public class GameData {
     public Level                           Level          { get; set; }
     */
 
-    /*
     // -------------- Managers --------------
-    public LevelManager      LevelManager      { get; set; }
-    public ProjectileManager ProjectileManager { get; set; }
-    public PlayerManager     PlayerManager     { get; set; }
-    public PickUpManager     PickUpManager     { get; set; }
-    public ExplosionManager  ExplosionManager  { get; set; }
-    public EnemyMineManager  EnemyMineManager  { get; set; }
-    public EnemyManager      EnemyManager      { get; set; }
-    public BlockManager      BlockManager      { get; set; }
-    public CollisionManager  CollisionManager  { get; set; }
 
-    */
+    //TODO: Convert LevelManager
+    //public LevelManager      levelManager;
+
+    private ProjectileManager projectileManager;
+    private PlayerManager     playerManager;
+    private PickUpManager     pickUpManager;
+    private ExplosionManager  explosionManager;
+    private EnemyMineManager  enemyMineManager;
+    private EnemyManager      enemyManager;
+    private BlockManager      blockManager;
+    private CollisionManager  collisionManager;
+
     private LogoState logoState;
     public GameData(SpaceFistGame game) {
         this.setGame(game);
@@ -80,17 +82,17 @@ public class GameData {
         setSoundEffects(new HashMap<String, Sound>());
         setSongs(new HashMap<String, Music>());
 
-        /*
-        LevelManager      = new LevelManager(this);
-        ProjectileManager = new ProjectileManager(this);
-        PlayerManager     = new PlayerManager(this);
-        PickUpManager     = new PickUpManager(this);
-        ExplosionManager  = new ExplosionManager(this);
-        EnemyMineManager  = new EnemyMineManager(this);
-        EnemyManager      = new EnemyManager(this);
-        BlockManager      = new BlockManager(this);
-        CollisionManager  = new CollisionManager(this);
-        */
+        // TODO: convert LevelManager
+        // LevelManager      = new LevelManager(this);
+
+        projectileManager = new ProjectileManager(this);
+        playerManager     = new PlayerManager(this);
+        pickUpManager     = new PickUpManager(this);
+        explosionManager  = new ExplosionManager(this);
+        enemyMineManager  = new EnemyMineManager(this);
+        enemyManager      = new EnemyManager(this);
+        blockManager      = new BlockManager(this);
+        collisionManager  = new CollisionManager(this);
     }
 
     public Ship getShip() {
@@ -295,5 +297,69 @@ public class GameData {
 
     public void setEndOfLevelState(EndOfLevelState endOfLevelState) {
         this.endOfLevelState = endOfLevelState;
+    }
+
+    public ProjectileManager getProjectileManager() {
+        return projectileManager;
+    }
+
+    public void setProjectileManager(ProjectileManager projectileManager) {
+        this.projectileManager = projectileManager;
+    }
+
+    public PlayerManager getPlayerManager() {
+        return playerManager;
+    }
+
+    public void setPlayerManager(PlayerManager playerManager) {
+        this.playerManager = playerManager;
+    }
+
+    public PickUpManager getPickUpManager() {
+        return pickUpManager;
+    }
+
+    public void setPickUpManager(PickUpManager pickUpManager) {
+        this.pickUpManager = pickUpManager;
+    }
+
+    public ExplosionManager getExplosionManager() {
+        return explosionManager;
+    }
+
+    public void setExplosionManager(ExplosionManager explosionManager) {
+        this.explosionManager = explosionManager;
+    }
+
+    public EnemyMineManager getEnemyMineManager() {
+        return enemyMineManager;
+    }
+
+    public void setEnemyMineManager(EnemyMineManager enemyMineManager) {
+        this.enemyMineManager = enemyMineManager;
+    }
+
+    public EnemyManager getEnemyManager() {
+        return enemyManager;
+    }
+
+    public void setEnemyManager(EnemyManager enemyManager) {
+        this.enemyManager = enemyManager;
+    }
+
+    public BlockManager getBlockManager() {
+        return blockManager;
+    }
+
+    public void setBlockManager(BlockManager blockManager) {
+        this.blockManager = blockManager;
+    }
+
+    public CollisionManager getCollisionManager() {
+        return collisionManager;
+    }
+
+    public void setCollisionManager(CollisionManager collisionManager) {
+        this.collisionManager = collisionManager;
     }
 }
