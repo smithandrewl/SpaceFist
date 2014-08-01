@@ -74,4 +74,8 @@ public class Projectile extends Entity {
 
         super.Update();
     }
+
+    public boolean isEnemyProjectile() {
+        return enemyProjectile;
+    }
 }

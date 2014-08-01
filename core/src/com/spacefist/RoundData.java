@@ -77,4 +77,8 @@ public class RoundData {
     public void setShotsFired(int shotsFired) {
         this.shotsFired = shotsFired;
     }
+
+    public void shotFired() {
+        shotsFired++;
+    }
 }
