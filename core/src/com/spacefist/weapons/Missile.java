@@ -8,7 +8,7 @@ import com.spacefist.weapons.abst.Weapon;
 /**
  * Represents a cluster of three missiles.
  */
-class Missile implements Weapon {
+public class Missile implements Weapon {
     // TODO: Convert ProjectileManager
 
     // private ProjectileManager projectileManager;
