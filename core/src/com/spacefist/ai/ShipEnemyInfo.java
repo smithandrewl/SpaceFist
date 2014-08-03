@@ -64,10 +64,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
      */
     public boolean isEnemyVisible() {
         if (enemy.isAlive()) {
-            // TODO: Implement gameData.getOnScreenWorld
-            //return gameData.OnScreenWorld.Contains(new Point(Enemy.X, Enemy.Y));
-            // TODO: CHANGE ME
-            return false;
+            return gameData.getOnScreenWorld().contains(enemy.getX(), enemy.getY());
         } else {
             return false;
         }
