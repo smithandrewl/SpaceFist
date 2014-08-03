@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 
@@ -73,21 +74,15 @@ public class ParticleEmitter {
             // add more particles if needed
             if ((particles.size() < maxParticles) && ((new Date().getTime() - lastEmission.getTime()) / 1000) > freq) {
                 for (int i = 0; i < 3; i++) {
-                    // TODO: Convert rng code in ParticleEmitter
-                    //int degrees = rand.Next(particleOptions.getMinRotation(), particleOptions.getMaxRotation());
-                    int degrees = 0;
+                    int degrees = MathUtils.random(particleOptions.getMinRotation(), particleOptions.getMaxRotation());
 
                     float speed = particleOptions.getSpeed();
                     Vector2 velocity = new Vector2((float) (speed * Math.cos(degrees)), (float) (speed * Math.sin(degrees)));
 
 
-                    //float rotation = Math.toRadians(rand.Next(particleOptions.getMinRotation(), particleOptions.getMaxRotation()));
-                    //float angularVelocity = rand.Next(particleOptions.getMinAngularVelocity(), particleOptions.getMaxAngularVelocity());
-                    //float scale = rand.Next(((int) particleOptions.getMinScale()), (int) particleOptions.getMaxScale());
-                    float rotation = 0;
-                    float angularVelocity = 0;
-                    float scale = 1;
-
+                    float rotation = (float) Math.toRadians(MathUtils.random(particleOptions.getMinRotation(), particleOptions.getMaxRotation()));
+                    float angularVelocity = MathUtils.random(particleOptions.getMinAngularVelocity(), particleOptions.getMaxAngularVelocity());
+                    float scale = MathUtils.random(((int) particleOptions.getMinScale()), (int) particleOptions.getMaxScale());
 
                     particles.add(new Particle(texture, scale, rotation, angularVelocity, velocity, particleOptions.getTtl(), Color.WHITE, getPosition()));
                 }
