@@ -1,5 +1,7 @@
 package com.spacefist.ai.aggressiveai;
 
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.ai.abst.EnemyAI;
@@ -78,11 +80,8 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         // Keep up to 3 waypoints, updating them every 25 milliseconds
         if (millisecondsPassed > 25) {
             if (wayPoints.size() < 3) {
-                // TODO: Convert rng code in RamState
-                //int randX = random.Next(-10, 10);
-                //int randY = random.Next(-10, 10);
-                int randX = 0;
-                int randY = 0;
+                int randX = MathUtils.random(-10, 10);
+                int randY = MathUtils.random(-10, 10);
 
                 Vector2 shipLocation = new Vector2(
                     gameData.getShip().getX() + randX,
@@ -135,11 +134,8 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
                     )
                 );
 
-                // TODO: Convert interpolation code in RamState
-                // var intX = MathHelper.Lerp(Enemy.Velocity.X, direction.X, .185f);
-                // var intY = MathHelper.Lerp(Enemy.Velocity.Y, direction.Y, .185f);
-                int intX = 0;
-                int intY = 0;
+                int intX = (int) Interpolation.linear.apply(enemy.getVelocity().x, direction.x, .185f);
+                int intY = (int) Interpolation.linear.apply(enemy.getVelocity().y, direction.y, .185f);
 
                 direction = new Vector2(intX, intY);
 
