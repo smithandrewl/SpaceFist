@@ -6,6 +6,7 @@ import com.spacefist.ai.ShipInfo;
 import com.spacefist.ai.abst.EnemyAI;
 import com.spacefist.ai.abst.EnemyAIState;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
+import com.spacefist.managers.ProjectileManager;
 
 import java.util.Date;
 
@@ -15,8 +16,7 @@ import java.util.Date;
 public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
     private float rateOfFire = 0;
 
-    // TODO: Convert ProjectileManager
-    // private ProjectileManager projectileManager;
+    private ProjectileManager projectileManager;
 
     // The last time this enemy fired at the player
     private Date lastFire;
@@ -42,8 +42,7 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
         shipEnemyInfo = ai.getShipEnemyInfo();
         lastFire      = new Date();
 
-        // TODO: Convert projectileManager
-        //this.projectileManager = gameData.ProjectileManager;
+        this.projectileManager = gameData.getProjectileManager();
     }
 
     public void Update() {
@@ -59,15 +58,13 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
                 int halfWidth  = (int) shipEnemyInfo.getEnemy().getRectangle().getWidth() / 2;
                 int halfHeight = (int) shipEnemyInfo.getEnemy().getRectangle().getHeight() / 2;
 
-                //TODO: Convert ProjectileManager
-                /*
+
                 projectileManager.fireLaser(
-                        ShipEnemyInfo.Enemy.X +halfWidth,
-                        ShipEnemyInfo.Enemy.Y + halfHeight,
-                        ShipEnemyInfo.LineOfSight,
+                        shipEnemyInfo.getEnemy().getX() + halfWidth,
+                        shipEnemyInfo.getEnemy().getY() + halfHeight,
+                        shipEnemyInfo.getLineOfSight(),
                         true
                 );
-                */
 
                 lastFire = now;
             }
