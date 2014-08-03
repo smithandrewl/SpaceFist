@@ -49,19 +49,20 @@ public class GameData {
     private Ship       ship;
     private BitmapFont font;
     private BitmapFont titleFont;
+
     // -------------- Game States --------------
     private SplashScreenState splashScreenState;
     private MenuState         menuState;
 
     /*
     public GraphicsDevice                  GraphicsDevice { get; set; }
-    public Level                           Level          { get; set; }
     */
 
-    // -------------- Managers --------------
+    private Level level;
 
-    //TODO: Convert LevelManager
-    //public LevelManager      levelManager;
+
+    // -------------- Managers --------------
+    private LevelManager      levelManager;
 
     private ProjectileManager projectileManager;
     private PlayerManager     playerManager;
@@ -74,7 +75,7 @@ public class GameData {
 
     private LogoState logoState;
     public GameData(SpaceFistGame game) {
-        this.setGame(game);
+        setGame(game);
 
         setRoundData(new RoundData());
 
@@ -82,8 +83,7 @@ public class GameData {
         setSoundEffects(new HashMap<String, Sound>());
         setSongs(new HashMap<String, Music>());
 
-        // TODO: convert LevelManager
-        // LevelManager      = new LevelManager(this);
+        setLevelManager(new LevelManager(this));
 
         projectileManager = new ProjectileManager(this);
         playerManager     = new PlayerManager(this);
@@ -361,5 +361,21 @@ public class GameData {
 
     public void setCollisionManager(CollisionManager collisionManager) {
         this.collisionManager = collisionManager;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public LevelManager getLevelManager() {
+        return levelManager;
+    }
+
+    public void setLevelManager(LevelManager levelManager) {
+        this.levelManager = levelManager;
     }
 }
