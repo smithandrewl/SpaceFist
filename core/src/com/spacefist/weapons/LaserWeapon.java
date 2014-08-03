@@ -2,14 +2,14 @@ package com.spacefist.weapons;
 
 import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
+import com.spacefist.managers.ProjectileManager;
 import com.spacefist.weapons.abst.Weapon;
 
-// TODO: Uncomment projectile manager references when ProjectileManager has been ported
 /**
  * The default weapon
  */
 public class LaserWeapon implements Weapon {
-    //private ProjectileManager projectileManager;
+    private ProjectileManager projectileManager;
 
     private GameData gameData;
 
@@ -21,7 +21,7 @@ public class LaserWeapon implements Weapon {
     public LaserWeapon(GameData gameData) {
         this.gameData = gameData;
 
-        //this.projectileManager = gameData.ProjectileManager;
+        this.projectileManager = gameData.getProjectileManager();
     }
 
     public void fire() {
@@ -30,6 +30,6 @@ public class LaserWeapon implements Weapon {
         int projectileX = (int) (ship.getX() + (ship.getRectangle().getWidth() / 2));
         int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
 
-        //projectileManager.fireLaser(projectileX, projectileY);
+        projectileManager.fireLaser(projectileX, projectileY);
     }
 }
