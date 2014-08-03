@@ -7,9 +7,6 @@ import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Vector2;
-import com.spacefist.SpawnPoint;
-import com.spacefist.SpawnZone;
-import com.spacefist.entities.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +35,9 @@ public class Level {
         fighters   = new ArrayList<SpawnZone>();
         freighters = new ArrayList<SpawnZone>();
 
-        MapProperties properties = map.getProperties();
-        MapLayer objectLayer = map.getLayers().get(0);
-        /*
-            TODO: Get and use the tiled map layer to get the height and width of the map
-         */
+        MapProperties properties  = map.getProperties();
+        MapLayer      objectLayer = map.getLayers().get(0);
+
         int heightInTiles = properties.get("height", Integer.class);
         int tileheight    = properties.get("tileheight", Integer.class);
         int widthInTiles  = properties.get("width", Integer.class);

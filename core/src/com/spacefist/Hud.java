@@ -3,6 +3,7 @@ package com.spacefist;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.spacefist.managers.PlayerManager;
 
 /**
  * Draws information about the ongoing game and the player to the screen.
@@ -13,26 +14,22 @@ public class Hud {
 
     private String scoreDisplay = "";
 
-    private Vector2   controlsPosition;
-    private GameData  gameData;
-    private RoundData roundData;
-    // TODO: Convert PlayerManager
-    // private PlayerManager shipManager;
-    private Vector2   scorePosition;
-    private Rectangle TopRect;
-    private Rectangle BottomRect;
+    private Vector2       controlsPosition;
+    private GameData      gameData;
+    private RoundData     roundData;
+    private PlayerManager shipManager;
+    private Vector2       scorePosition;
+    private Rectangle     TopRect;
+    private Rectangle     BottomRect;
 
     private Color color           = Color.YELLOW;
     private Color semiTransparent = new Color(255, 255, 255, .8f);
 
-    // TODO: Convert PlayerManager
-    //public Hud(GameData gameData, PlayerManager shipManager)
-    public Hud(GameData gameData) {
+    public Hud(GameData gameData, PlayerManager shipManager) {
         this.gameData  = gameData;
         this.roundData = gameData.getRoundData();
 
-        // TODO: Convert PlayerManager
-        //this.shipManager = shipManager;
+        this.shipManager = shipManager;
 
         Rectangle resolution = gameData.getResolution();
 
