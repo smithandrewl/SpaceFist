@@ -1,5 +1,7 @@
 package com.spacefist.state;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -242,60 +244,49 @@ public class InPlayState implements GameState {
     }
 
     public void Update() {
-        // TODO: Convert InplayState.Update
-            /*
-            if (gameData.PlayerManager.Alive)
+            if (gameData.getPlayerManager().isAlive())
             {
-                KeyboardState keys = Keyboard.GetState();
-
-                if (keys.IsKeyDown(Keys.Q) || keys.IsKeyDown(Keys.Escape))
+                if (Gdx.input.isKeyPressed(Input.Keys.Q) || Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
                 {
-                    gameData.CurrentState = gameData.MenuState;
+                    gameData.setCurrentState(gameData.getMenuState());
                 }
                 
-                KeepOnScreen(gameData.Ship);
+                KeepOnScreen(gameData.getShip());
 
                 // Tell the entity managers to update
-                gameData.ProjectileManager.Update();
-                gameData.BlockManager.Update();
-                gameData.ExplosionManager.Update();
-                gameData.CollisionManager.Update();
-                gameData.PlayerManager.Update();
-                gameData.EnemyManager.Update();
-                gameData.PickUpManager.Update();
-                gameData.EnemyMineManager.Update();
+                gameData.getProjectileManager().Update();
+                gameData.getBlockManager().Update();
+                gameData.getExplosionManager().Update();
+                gameData.getCollisionManager().Update();
+                gameData.getPlayerManager().Update();
+                gameData.getEnemyManager().Update();
+                gameData.getPickUpManager().Update();
+                gameData.getEnemyMineManager().Update();
  
                 // Until the end of the world is reached, move the camera up the world
-                if (gameData.Camera.Y >= gameData.World.Y)
-                {
-                    gameData.Camera = new Vector2(gameData.Camera.X, gameData.Camera.Y - ScrollSpeed);
+                if (gameData.getCamera().y >= gameData.getWorld().y) {
+                    gameData.setCamera(new Vector2(gameData.getCamera().x, gameData.getCamera().y - ScrollSpeed));
                 }
 
                 // When the ship reaches the end of game marker, switch to the 
                 // end of level state.
-                if (gameData.Ship.Rectangle.Intersects(EndOfLevelMarkerPos))
+                if (gameData.getShip().getRectangle().overlaps(getEndOfLevelMarkerPos()));
                 {
-                    if (gameData.Level.IsLastLevel)
-                    {
-                        gameData.CurrentState = gameData.EndOfGameState;
+                    if (gameData.getLevel().isLastLevel()) {
+                        gameData.setCurrentState(gameData.getEndOfGameState());
                     }
-                    else
-                    {
-                        gameData.CurrentState = gameData.EndOfLevelState;
+                    else {
+                        gameData.setCurrentState(gameData.getEndOfLevelState());
                     }
                 }
             }
-            else
-            {
+            else {
                 // If the player has been killed, switch to the game over state
-                gameData.CurrentState = gameData.GameOverState;
+                gameData.setCurrentState(gameData.getGameOverState());
             }
-
-            var mouse = Mouse.GetState();
 
             hud.Update();
 
-            */
     }
 
     public void Draw() {
