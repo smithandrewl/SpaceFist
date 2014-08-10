@@ -8,7 +8,7 @@ import com.spacefist.entities.Projectile;
 // Interception and steering behavior based
 // on the pursuit section of the paper "Steering Behaviors For Autonomous Characters"
 // http://www.red3d.com/cwr/steer/gdc99/
-class SeekingBehavior implements ProjectileBehavior {
+public class SeekingBehavior implements ProjectileBehavior {
     /**
      * The entity the projectile is intercepting.
      */

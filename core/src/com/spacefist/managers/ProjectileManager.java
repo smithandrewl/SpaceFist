@@ -4,8 +4,11 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
+import com.spacefist.ai.projectilebehaviors.SeekingBehavior;
 import com.spacefist.entities.Entity;
 import com.spacefist.entities.Projectile;
+import com.spacefist.entities.SpaceBlock;
+import com.spacefist.entities.enemies.Enemy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,20 +100,13 @@ public class ProjectileManager extends Manager<Projectile> {
     /// <param name="y">The Y component of the location</param>
     public void fireSampleWeapon(int x, int y)
     {
-        /*
-        TODO: Convert EnemyManager
-        TODO: Add BlockManager to gameData
-        List<Entity> visibleEnemies = new List<Entity>(gameData.getEnemyManager().getVisibleEnemies());
-        List<SpaceBlock> visibleBlocks = gameData.getBlockManager().getVisibleBlocks();
-        */
-
-        List<Entity> visibleEnemies = new ArrayList<Entity>();
-        List<Entity> visibleBlocks = new ArrayList<Entity>();
+        Iterable<Enemy> visibleEnemies     = gameData.getEnemyManager().getVisibleEnemies();
+        Iterable<SpaceBlock> visibleBlocks = gameData.getBlockManager().getVisibleBlocks();
 
         List<Entity> onScreen = new ArrayList<Entity>();
 
-        onScreen.addAll(visibleEnemies);
-        onScreen.addAll(visibleBlocks);
+        onScreen.addAll((java.util.Collection<? extends Entity>) visibleEnemies);
+        onScreen.addAll((java.util.Collection<? extends Entity>) visibleBlocks);
 
         for(Entity entity : onScreen) {
             if(entity.getY() >= y) {
@@ -143,14 +139,11 @@ public class ProjectileManager extends Manager<Projectile> {
                     false
                 );
 
-                // TODO: Convert Projectile.setBehavior
-                    /*
                     projectile.setBehavior(new SeekingBehavior(
                         new Vector2(0, -1),
                         new Vector2(x, y),
                         target
                     ));
-                    */
 
                 Add(projectile);
             }

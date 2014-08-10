@@ -106,7 +106,7 @@ public class BlockManager extends Manager<SpaceBlock>
     /// which are currently visible on the screen.
     /// </summary>
     /// <returns>Blocks which are visible to the player</returns>
-    public Iterable<SpaceBlock> VisibleBlocks()
+    public Iterable<SpaceBlock> getVisibleBlocks()
     {
         Vector2 camera   = gameData.getCamera();
         Rectangle bounds = gameData.getResolution();

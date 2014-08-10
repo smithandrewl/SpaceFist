@@ -100,7 +100,7 @@ public class EnemyManager extends Manager<Enemy>
     /// which are visible to the player.
     /// </summary>
     /// <returns></returns>
-    public Iterable<Enemy> VisibleEnemies()
+    public Iterable<Enemy> getVisibleEnemies()
     {
         Vector2 camera         = gameData.getCamera();
         Rectangle backgroundRect = gameData.getResolution();

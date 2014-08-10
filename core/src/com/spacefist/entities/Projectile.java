@@ -78,4 +78,12 @@ public class Projectile extends Entity {
     public boolean isEnemyProjectile() {
         return enemyProjectile;
     }
+
+    public ProjectileBehavior getBehavior() {
+        return behavior;
+    }
+
+    public void setBehavior(ProjectileBehavior behavior) {
+        this.behavior = behavior;
+    }
 }
