@@ -77,17 +77,6 @@ public class ShipInfo extends FuzzyLogicEnabled {
         return grade(speed, SpeedLow, SpeedHigh, fuzzySpeed);
     }
 
-    /* TODO: Implement or remove ShipInfo.getTriggerHappy()
-    /**
-     * The degree to which the ship belongs to the low, medium and high sets for firing often.
-     * If the player never shoots, the membership in TriggerHappy.Low will be 100 percent.
-     */
-    /*
-    public FuzzyVariable getTriggerHappy() {
-            return grade(roundData.ShotsPerPeriod, TriggerHappyLow, TriggerHappyHigh, fuzzyTriggerHappy);
-    }
-    */
-
     /**
      * @return The degree to which the ship belongs to the low, medium and high health sets.
      */
