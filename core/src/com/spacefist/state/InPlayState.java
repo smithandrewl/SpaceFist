@@ -1,11 +1,22 @@
 package com.spacefist.state;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
+import com.spacefist.Hud;
+import com.spacefist.SpawnPoint;
+import com.spacefist.SpawnZone;
 import com.spacefist.entities.Entity;
+import com.spacefist.entities.enemies.Enemy;
+import com.spacefist.entities.enemies.EnemyFighter;
+import com.spacefist.entities.enemies.EnemyFreighter;
+import com.spacefist.managers.PickUpManager;
+import com.spacefist.managers.PlayerManager;
 import com.spacefist.state.abst.GameState;
+import com.spacefist.util.Func;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -18,11 +29,9 @@ public class InPlayState implements GameState {
     // The speed at which the camera scrolls up the map / world
     private static final float ScrollSpeed = 1.5f;
 
-
     GameData gameData;
 
-    // TODO: Convert Hud
-    //private Hud             hud;
+    private Hud hud;
 
     private Date levelLoadedAt;
     private List<Rectangle> debrisField;
@@ -60,18 +69,13 @@ public class InPlayState implements GameState {
         Rectangle resolution = gameData.getResolution();
         Rectangle screenRect = new Rectangle(0, 0, resolution.getWidth(), resolution.getHeight());
 
-            /*
-            TODO: Convert LevelManager
+        gameData.getLevelManager().Init();
+        gameData.getLevelManager().LoadLevel(1);
 
-            gameData.LevelManager.Init();
-            gameData.LevelManager.LoadLevel(1);
-            */
+        debrisField    = new ArrayList<Rectangle>(gameData.getLevel().getDebrisParticleCount());
+        gameData.setWorld(new Rectangle(0, 0, gameData.getLevel().getWidth(), gameData.getLevel().getHeight()));
 
-        //debrisField    = new List<Rectangle>(gameData.getLevel().DebrisParticleCount);
-        //gameData.setWorld(new Rectangle(0, 0, gameData.getLevel().getWidth()), gameData.getLevel().getHeight());
-
-        // TODO: Convert Hud
-        // hud            = new Hud(gameData, gameData.PlayerManager);
+        hud = new Hud(gameData, gameData.getPlayerManager());
     }
 
     public void EnteringState() {
@@ -88,122 +92,153 @@ public class InPlayState implements GameState {
         // Position the camera at the bottom of the world
         gameData.setCamera(new Vector2(0, gameData.getWorld().getHeight() - resolution.getHeight()));
 
-        // TODO: Convert PlayerManager, BlockManager, EnemyManager and PickupManager
-            /*
+        PlayerManager playerManager = gameData.getPlayerManager();
             // Tell the ship manager to spawn the ship
-            gameData.PlayerManager.Spawn();
+            playerManager.Spawn();
 
             // Since the game states are reused, clear the score and lives
-            gameData.PlayerManager.ResetLives();
-            gameData.PlayerManager.ResetScore();
-            gameData.PlayerManager.ResetWeapon();
+            playerManager.ResetLives();
+            playerManager.ResetScore();
+            playerManager.ResetWeapon();
 
-            int numBlocks = gameData.Level.BlockCount;
+            int numBlocks = gameData.getLevel().getBlockCount();
 
             // Spawn blocks to the world
-            gameData.BlockManager.SpawnBlocks(numBlocks);
+            gameData.getBlockManager().SpawnBlocks(numBlocks);
 
-            gameData.EnemyManager.Clear();
-            gameData.EnemyMineManager.Clear();
-            gameData.PickUpManager.Reset();
+            gameData.getEnemyManager().Clear();
+            gameData.getEnemyMineManager().Clear();
+            gameData.getPickUpManager().Reset();
 
             //Spawn fighters
-            foreach (var zone in gameData.Level.Fighters)
+            for (SpawnZone zone : gameData.getLevel().getFighters())
             {
 
-                if(zone.Count > 1) {
-                    gameData.EnemyManager.SpawnEnemies(
-                        zone.Count,
-                        zone.Left,
-                        zone.Right,
-                        zone.Top,
-                        zone.Bottom, 
-                        position => new EnemyFighter(gameData, position)
+                if(zone.getCount() > 1) {
+                    gameData.getEnemyManager().SpawnEnemies(
+                        zone.getCount(),
+                        zone.getLeft(),
+                        zone.getRight(),
+                        zone.getTop(),
+                        zone.getBottom(),
+                        new Func<Vector2, Enemy>() {
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFighter(gameData, position);
+                            }
+                        }
                     );
                 }
                 else
                 {
-                    gameData.EnemyManager.SpawnEnemy(zone.Center.X, zone.Center.Y, position => new EnemyFighter(gameData, position));
+                    gameData.getEnemyManager().SpawnEnemy(
+                        (int) zone.getCenter().x,
+                        (int) zone.getCenter().y,
+                        new Func<Vector2, Enemy>() {
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFighter(gameData, position);
+                            }
+                        }
+                    );
                 }
             }
 
             // Spawn freighters
-            foreach (var zone in gameData.Level.Freighters)
+            for (SpawnZone zone : gameData.getLevel().getFreighters())
             {
 
-                if (zone.Count > 1)
+                if (zone.getCount() > 1)
                 {
-                    gameData.EnemyManager.SpawnEnemies(
-                        zone.Count,
-                        zone.Left,
-                        zone.Right,
-                        zone.Top,
-                        zone.Bottom,
-                        position => new EnemyFreighter(gameData, position)
+                    gameData.getEnemyManager().SpawnEnemies(
+                        zone.getCount(),
+                        zone.getLeft(),
+                        zone.getRight(),
+                        zone.getTop(),
+                        zone.getBottom(),
+                        new Func<Vector2, Enemy>() {
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFreighter(gameData, position);
+                            }
+                        }
                     );
                 }
                 else
                 {
-                    gameData.EnemyManager.SpawnEnemy(zone.Center.X, zone.Center.Y, position => new EnemyFreighter(gameData, position));
+                    gameData.getEnemyManager().SpawnEnemy(
+                        (int) zone.getCenter().x,
+                        (int) zone.getCenter().y,
+                        new Func<Vector2, Enemy>() {
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFreighter(gameData, position);
+                            }
+                        }
+                    );
                 }
             }
 
             //Spawn mines
-            foreach (var point in gameData.Level.Mines)
+            for (SpawnPoint point : gameData.getLevel().getMines())
             {
-                gameData.EnemyMineManager.SpawnEnemyMine(point.X, point.Y);
+                gameData.getEnemyMineManager().SpawnEnemyMine(point.getX(), point.getY());
             }
 
+
             // Spawn the players ship
-            gameData.PlayerManager.Initialize();
+            playerManager.Initialize();
 
+            PickUpManager pickupManager = gameData.getPickUpManager();
             // Spawn the different pickups to the world
-            gameData.PickUpManager.Reset();
-            gameData.PickUpManager.SpawnExtraLifePickups(3);
-            gameData.PickUpManager.SpawnExamplePickups(4);
-            gameData.PickUpManager.SpawnHealthPickups(4);
+            gameData.getPickUpManager().Reset();
+            gameData.getPickUpManager().SpawnExtraLifePickups(3);
+            gameData.getPickUpManager().SpawnExamplePickups(4);
+            gameData.getPickUpManager().SpawnHealthPickups(4);
 
-            */
+
 
         /***Dongcai*/
-        // gameData.PickUpManager.SpawnLaserbeamPickups(5);
-        // gameData.PickUpManager.SpawnMissilePickups(3);
+        gameData.getPickUpManager().SpawnLaserbeamPickups(5);
+        gameData.getPickUpManager().SpawnMissilePickups(3);
         /**********/
 
         Random rand = new Random();
 
         debrisField.clear();
 
-        // TODO: Convert Level and add Level property to GameData
-            /*
-            int    minScale      = gameData.Level.DebrisParticleMinScale;
-            int    maxScale      = gameData.Level.DebrisParticleMaxScale;
-            string particleImage = gameData.Level.DebrisParticleImage;
-            int    DebrisCount   = gameData.Level.DebrisParticleCount;
+        int    minScale      = gameData.getLevel().getDebrisParticleMinScale();
+        int    maxScale      = gameData.getLevel().getDebrisParticleMaxScale();
+        String particleImage = gameData.getLevel().getDebrisParticleImage();
+        int    DebrisCount   = gameData.getLevel().getDebrisParticleCount();
 
-            // init debris field
-            for (int i = 0; i < DebrisCount; i++)
-            {
-                var maxX  = gameData.World.Width;
-                var maxY  = gameData.World.Height;
-                var scale = rand.Next(minScale * 10, maxScale * 10) * .01f;
+        // init debris field
+        for (int i = 0; i < DebrisCount; i++)
+        {
+            float maxX  = gameData.getWorld().getWidth();
+            float maxY  = gameData.getWorld().getHeight();
+            float scale = MathUtils.random(minScale * 10, maxScale * 10) * .01f;
 
-                Rectangle rect = new Rectangle(
-                    rand.Next(0, maxX), 
-                    rand.Next(0, maxY), 
-                    (int) (gameData.Textures[particleImage].Width  * scale), 
-                    (int) (gameData.Textures[particleImage].Height * scale)
-                );
+            Rectangle rect = new Rectangle(
+                MathUtils.random(0, maxX),
+                MathUtils.random(0, maxY),
+                (int) (gameData.getTextures().get(particleImage).getWidth()  * scale),
+                (int) (gameData.getTextures().get(particleImage).getHeight() * scale)
+            );
 
-                debrisField.Add(rect);
-            }
+            debrisField.add(rect);
+        }
 
-            stopwatch.Reset();
-            stopwatch.Start();
+        /*
+        TODO: Convert stopwatch code
 
-            levelLoadedAt = DateTime.Now;
-            titleShown    = false;
-            */
+        stopwatch.Reset();
+        stopwatch.Start();
+
+        */
+
+        levelLoadedAt = new Date();
+        titleShown    = false;
     }
 
     public void Update() {
