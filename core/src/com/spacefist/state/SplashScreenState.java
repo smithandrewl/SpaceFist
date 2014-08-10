@@ -3,6 +3,7 @@ package com.spacefist.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
@@ -70,9 +71,10 @@ public class SplashScreenState implements GameState {
     }
 
     public void Draw() {
-        Rectangle resolution = gameData.getResolution();
+        Rectangle resolution    = gameData.getResolution();
+        SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
-        gameData.getSpriteBatch().draw(
+        spriteBatch.draw(
             gameData.getTextures().get("Background"),
             0,
             0,
@@ -80,7 +82,7 @@ public class SplashScreenState implements GameState {
             resolution.getHeight()
         );
 
-        gameData.getSpriteBatch().draw(
+        spriteBatch.draw(
             overlayTexture,
             0,
             0,
@@ -91,4 +93,3 @@ public class SplashScreenState implements GameState {
 
     public void ExitingState() { }
 }
-

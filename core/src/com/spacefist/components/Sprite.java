@@ -3,6 +3,7 @@ package com.spacefist.components;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.components.abst.GraphicsComponent;
@@ -29,10 +30,11 @@ public class Sprite implements GraphicsComponent {
 
     public void Draw(GameData gameData, Entity obj) {
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
+        Rectangle objRectangle = obj.getRectangle();
 
         Vector2 origin = new Vector2(
-            obj.getRectangle().getWidth() / 2,
-            obj.getRectangle().getHeight() / 2
+            objRectangle.getWidth() / 2,
+            objRectangle.getHeight() / 2
          );
 
         Vector2 position = new Vector2(
@@ -49,8 +51,8 @@ public class Sprite implements GraphicsComponent {
                 adjPos.y,
                 origin.x,
                 origin.y,
-                obj.getRectangle().getWidth(),
-                obj.getRectangle().getHeight(),
+                objRectangle.getWidth(),
+                objRectangle.getHeight(),
                 gameData.getScreenScale(),
                 gameData.getScreenScale(),
                 obj.getRotation(),

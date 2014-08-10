@@ -118,10 +118,9 @@ public class ParticleEmitter {
     public void Draw() {
         if (alive) {
             for (Particle particle : particles) {
-                float complete = (float) ((new Date().getTime() - particle.getCreation().getTime()) / 1000) / particle.getTtl();
 
                 // draw each particle (particles fade as they reach ttl
-                float transparency = complete;
+                float transparency = (float) ((new Date().getTime() - particle.getCreation().getTime()) / 1000) / particle.getTtl();
 
                 Vector2 drawAt = new Vector2(particle.getX(), particle.getY()).sub(gameData.getCamera());
 

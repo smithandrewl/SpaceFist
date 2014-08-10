@@ -2,9 +2,13 @@ package com.spacefist.ai.aggressiveai;
 
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
+import com.spacefist.ai.FuzzyVariable;
+import com.spacefist.ai.ShipEnemyInfo;
+import com.spacefist.ai.ShipInfo;
 import com.spacefist.ai.abst.EnemyAI;
 import com.spacefist.ai.abst.EnemyAIState;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
+import com.spacefist.entities.Ship;
 import com.spacefist.entities.enemies.Enemy;
 
 import java.util.ArrayList;
@@ -63,14 +67,23 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
      * Updates the degree to which this state is active.
      */
     public void Update() {
+        Ship ship = gameData.getShip();
+
+        ShipInfo      shipInfo      = ai.getShipInfo();
+        ShipEnemyInfo shipEnemyInfo = ai.getShipEnemyInfo();
+
+        FuzzyVariable accuracy = shipInfo.getAccuracy();
+        FuzzyVariable health   = shipInfo.getHealth();
+        FuzzyVariable distance = shipEnemyInfo.getDistance();
+
         membership = Or(
             // If the player is doing too well
             And(
-                ai.getShipInfo().getAccuracy().getHigh(),
-                ai.getShipInfo().getHealth().getHigh()
+                accuracy.getHigh(),
+                health.getHigh()
             ),
             // If the player is not too far away
-            Not(ai.getShipEnemyInfo().getDistance().getHigh())
+            Not(distance.getHigh())
         );
 
         long millisecondsPassed = (new Date().getTime() - lastUpdate.getTime());
@@ -85,8 +98,8 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
                 int randY = 0;
 
                 Vector2 shipLocation = new Vector2(
-                    gameData.getShip().getX() + randX,
-                    gameData.getShip().getY() + randY
+                    ship.getX() + randX,
+                    ship.getY() + randY
                 );
 
                 if (!wayPoints.contains(shipLocation)) {

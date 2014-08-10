@@ -13,7 +13,9 @@ import com.spacefist.GameData;
 import com.spacefist.state.LogoState;
 import com.spacefist.state.MenuState;
 import com.spacefist.state.SplashScreenState;
+import com.spacefist.state.abst.GameState;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class SpaceFistGame extends ApplicationAdapter {
@@ -57,27 +59,33 @@ public class SpaceFistGame extends ApplicationAdapter {
     @Override
     public void render() {
         // Tell the current state to update itself
-        gameData.getCurrentState().Update();
+        GameState currentState = gameData.getCurrentState();
+
+        currentState.Update();
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         // Tell the current state to draw itself
-        gameData.getCurrentState().Draw();
+        currentState.Draw();
         batch.end();
     }
 
     @Override
     public void dispose() {
-        for (Texture texture : gameData.getTextures().values()) {
+        HashMap<String, Texture> textures     = gameData.getTextures();
+        HashMap<String, Music>   songs        = gameData.getSongs();
+        HashMap<String, Sound>   soundEffects = gameData.getSoundEffects();
+
+        for (Texture texture : textures.values()) {
             texture.dispose();
         }
 
-        for (Music song : gameData.getSongs().values()) {
+        for (Music song : songs.values()) {
             song.dispose();
         }
 
-        for (Sound soundEffect : gameData.getSoundEffects().values()) {
+        for (Sound soundEffect : soundEffects.values()) {
             soundEffect.dispose();
         }
     }
@@ -89,7 +97,8 @@ public class SpaceFistGame extends ApplicationAdapter {
     private void LoadTextures() {
         Map<String, Texture> textures = gameData.getTextures();
 
-        for (FileHandle fileHandle : Gdx.files.absolute("images/").list()) {
+        FileHandle directory = Gdx.files.absolute("images/");
+        for (FileHandle fileHandle : directory.list()) {
             if (fileHandle.isDirectory()) {
                 for (FileHandle file : fileHandle.list(".png")) {
                     textures.put(file.nameWithoutExtension(), new Texture(file));
@@ -100,16 +109,18 @@ public class SpaceFistGame extends ApplicationAdapter {
 
     private void LoadSongs() {
         Map<String, Music> songs = gameData.getSongs();
+        FileHandle directory = Gdx.files.absolute("sound/songs/");
 
-        for (FileHandle fileHandle : Gdx.files.absolute("sound/songs/").list()) {
+        for (FileHandle fileHandle : directory.list()) {
             songs.put(fileHandle.nameWithoutExtension(), Gdx.audio.newMusic(fileHandle));
         }
     }
 
     private void LoadSoundEffects() {
         Map<String, Sound> soundEffects = gameData.getSoundEffects();
+        FileHandle directory = Gdx.files.absolute("sound/soundeffects/");
 
-        for (FileHandle fileHandle : Gdx.files.absolute("sound/soundeffects/").list()) {
+        for (FileHandle fileHandle : directory.list()) {
             soundEffects.put(fileHandle.nameWithoutExtension(), Gdx.audio.newSound(fileHandle));
         }
     }

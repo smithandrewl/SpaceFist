@@ -63,7 +63,7 @@ public class Projectile extends Entity {
      */
     @Override
     public void Update() {
-        SoundComponent sound = (Sound) this.getSound();
+        SoundComponent sound = getSound();
 
         if (!soundPlayed) {
             ((Sound) sound).play();

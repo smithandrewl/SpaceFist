@@ -31,8 +31,11 @@ public class AggressiveAI implements EnemyAI {
     }
 
     public void Update() {
-        getShipInfo().Update();
-        getShipEnemyInfo().Update();
+        ShipInfo      shipInfo      = getShipInfo();
+        ShipEnemyInfo shipEnemyInfo = getShipEnemyInfo();
+
+        shipInfo.Update();
+        shipEnemyInfo.Update();
         ramState.Update();
     }
 

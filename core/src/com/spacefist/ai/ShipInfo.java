@@ -3,6 +3,7 @@ package com.spacefist.ai;
 import com.spacefist.GameData;
 import com.spacefist.RoundData;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
+import com.spacefist.entities.Ship;
 
 import java.util.Date;
 
@@ -103,9 +104,11 @@ public class ShipInfo extends FuzzyLogicEnabled {
 
     @Override
     public void Update() {
+        Ship ship = gameData.getShip();
+
         // The ships speed is the magnitude of its velocity
-        speed  = (int) gameData.getShip().getVelocity().len();
-        health = gameData.getShip().getHealth();
+        speed  = (int) ship.getVelocity().len();
+        health = ship.getHealth();
 
         if (DisplayDebug) {
             PrintDebugInfo();

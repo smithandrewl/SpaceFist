@@ -3,12 +3,14 @@ package com.spacefist.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
 
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * This state displays the main menu and handles input to
@@ -30,11 +32,12 @@ public class MenuState implements GameState {
     }
 
     public void LoadContent() {
-        Rectangle resolution = gameData.getResolution();
 
-        backgroundRect = resolution;
-        background     = gameData.getTextures().get("BackgroundRed");
-        menu           = gameData.getTextures().get("Menu");
+        backgroundRect = gameData.getResolution();
+        HashMap<String, Texture> textures = gameData.getTextures();
+
+        background     = textures.get("BackgroundRed");
+        menu           = textures.get("Menu");
 
         menuRect = new Rectangle(
                 (int) ((background.getWidth()  / 2f) - (menu.getWidth())),
@@ -50,7 +53,9 @@ public class MenuState implements GameState {
     }
 
     public void Draw() {
-        gameData.getSpriteBatch().draw(
+        SpriteBatch spriteBatch = gameData.getSpriteBatch();
+
+        spriteBatch.draw(
             background,
             backgroundRect.x,
             backgroundRect.y,
@@ -58,7 +63,7 @@ public class MenuState implements GameState {
             backgroundRect.getHeight()
         );
 
-        gameData.getSpriteBatch().draw(
+        spriteBatch.draw(
             menu,
             menuRect.x,
             menuRect.y,

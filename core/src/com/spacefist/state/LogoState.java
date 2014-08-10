@@ -3,6 +3,7 @@ package com.spacefist.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
 
@@ -29,8 +30,10 @@ public class LogoState implements GameState {
     }
 
     public void Draw() {
-        float height = gameData.getResolution().getHeight();
-        float width  = gameData.getResolution().getWidth();
+        Rectangle resolution = gameData.getResolution();
+
+        float height = resolution.getHeight();
+        float width  = resolution.getWidth();
 
         gameData.getSpriteBatch().draw(background, 0, 0, width, height);
     }

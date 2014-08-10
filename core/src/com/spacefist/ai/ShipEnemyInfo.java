@@ -3,6 +3,7 @@ package com.spacefist.ai;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
+import com.spacefist.entities.Ship;
 import com.spacefist.entities.enemies.Enemy;
 
 import java.util.Date;
@@ -78,7 +79,8 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
      * @return A vector from the enemy to the ship representing its line of sight.
      */
     public Vector2 getLineOfSight() {
-        Vector2 shipPos  = new Vector2(gameData.getShip().getX(), gameData.getShip().getY());
+        Ship ship = gameData.getShip();
+        Vector2 shipPos  = new Vector2(ship.getX(), ship.getY());
         Vector2 enemyPos = new Vector2(enemy.getX(), enemy.getY());
 
         Vector2 diff = shipPos.sub(enemyPos);
@@ -86,12 +88,13 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
         return diff.nor();
     }
 
-
     @Override
     public void Update() {
+        Ship ship = gameData.getShip();
+
         // update distance
-        int xDiff = gameData.getShip().getX() - enemy.getX();
-        int yDiff = gameData.getShip().getY() - enemy.getY();
+        int xDiff = ship.getX() - enemy.getX();
+        int yDiff = ship.getY() - enemy.getY();
 
         distance = (int) Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
