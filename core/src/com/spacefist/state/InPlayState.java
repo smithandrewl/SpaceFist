@@ -2,6 +2,7 @@ package com.spacefist.state;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -290,41 +291,47 @@ public class InPlayState implements GameState {
     }
 
     public void Draw() {
-            /*
-            String background    = gameData.Level.BackgroundImage;
-            String particleImage = gameData.Level.DebrisParticleImage;
+
+            String background    = gameData.getLevel().getBackgroundImage();
+            String particleImage = gameData.getLevel().getDebrisParticleImage();
 
             // Draw the background
-            gameData.SpriteBatch.Draw(gameData.Textures[background], gameData.Resolution, Color.White);
+            gameData.getSpriteBatch().draw(
+                gameData.getTextures().get(background),
+                gameData.getResolution().getX(),
+                gameData.getResolution().getY(),
+                gameData.getResolution().getWidth(),
+                gameData.getResolution().getHeight()
+            );
 
             // Draw debris
-            foreach(var rect in debrisField)
+            for(Rectangle rect : debrisField)
             {
-                gameData.SpriteBatch.Draw(
-                    gameData.Textures[particleImage], 
-                    new Rectangle(
-                        rect.X - (int)gameData.Camera.X, 
-                        rect.Y - (int)gameData.Camera.Y, 
-                        rect.Width, 
-                        rect.Height
-                    ), 
-                    Color.White
+                gameData.getSpriteBatch().draw(
+                    gameData.getTextures().get(particleImage),
+                    rect.x - (int)gameData.getCamera().x,
+                    rect.y - (int)gameData.getCamera().y,
+                    rect.getWidth(),
+                    rect.getHeight()
                 );
             }
 
             // Draw the entities
-            gameData.ExplosionManager.Draw();
-            gameData.BlockManager.Draw();
-            gameData.ProjectileManager.Draw();
-            gameData.PlayerManager.Draw();
-            gameData.EnemyManager.Draw();
-            gameData.PickUpManager.Draw();
-            gameData.EnemyMineManager.Draw();
+            gameData.getExplosionManager().Draw();
+            gameData.getBlockManager().Draw();
+            gameData.getProjectileManager().Draw();
+            gameData.getPickUpManager().Draw();
+            gameData.getEnemyManager().Draw();
+            gameData.getPickUpManager().Draw();
+            gameData.getEnemyMineManager().Draw();
 
+            /*
+            TODO: Convert DrawLevelMaarkers
             DrawLevelMarkers();
+            */
 
             hud.Draw();
-            */
+
     }
 
     private void DrawLevelMarkers() {
