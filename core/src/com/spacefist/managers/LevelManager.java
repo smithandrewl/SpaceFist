@@ -19,11 +19,7 @@ public class LevelManager
 
     public void Init()
     {
-        String levelDirectory = Gdx.files.getLocalStoragePath() + "/Maps";
-
-        FileHandle handle = Gdx.files.getFileHandle(levelDirectory, Files.FileType.Local);
-
-        int levelCount = handle.list("tmx").length;
+        int levelCount = Gdx.files.absolute("/maps").list().length;
 
         gameData.setLevelCount(levelCount);
     }
@@ -31,7 +27,7 @@ public class LevelManager
     public void LoadLevel(int id)
     {
         TmxMapLoader loader = new TmxMapLoader();
-        TiledMap map = loader.load(Gdx.files.getLocalStoragePath() + "/Maps/" + id + ".tmx");
+        TiledMap map = loader.load(Gdx.files.absolute("maps/" + id + ".tmx").path());
         gameData.setLevel(new Level(map));
     }
 }

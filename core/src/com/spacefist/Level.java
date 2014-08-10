@@ -47,15 +47,15 @@ public class Level {
         width                  = widthInTiles  * tileWidth;
 
         title                  = properties.get("Level Title", String.class);
-        debrisParticleMinScale = properties.get("Debris Particle Min Scale", Integer.class);
-        debrisParticleMaxScale = properties.get("Debris Particle Max Scale", Integer.class);
+        debrisParticleMinScale = Integer.parseInt(properties.get("Debris Particle Min Scale", String.class));
+        debrisParticleMaxScale = Integer.parseInt(properties.get("Debris Particle Max Scale", String.class));
         debrisParticleImage    = properties.get("Debris Particle Image", String.class);
-        debrisParticleCount    = properties.get("Debris Particle Count", Integer.class);
+        debrisParticleCount    = Integer.parseInt(properties.get("Debris Particle Count", String.class));
         song                   = properties.get("Song", String.class);
-        blockCount             = properties.get("Block Count", Integer.class);
+        blockCount             = Integer.parseInt(properties.get("Block Count", String.class));
         backgroundImage        = properties.get("Background Image", String.class);
-        levelId                = properties.get("Level ID", Integer.class);
-        isLastLevel            = properties.get("Is Last Level", Boolean.class);
+        levelId                = Integer.parseInt(properties.get("Level ID", String.class));
+        isLastLevel            = Boolean.parseBoolean(properties.get("Is Last Level", String.class));
 
         for (MapObject obj :  map.getLayers().get(0).getObjects()) {
 
@@ -66,7 +66,7 @@ public class Level {
             int count = 1;
 
             if (object.getProperties().containsKey("count")) {
-                count = object.getProperties().get("count", Integer.class);
+                count = Integer.parseInt(object.getProperties().get("count", String.class));
             }
 
             Ellipse bounds = object.getEllipse();
