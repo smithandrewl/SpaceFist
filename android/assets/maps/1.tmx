@@ -14,7 +14,6 @@
   <property name="Song" value="InPlay"/>
  </properties>
  <objectgroup name="Object Layer 1" width="21" height="120">
-  <object name="LevelStart" type="StartOfLevel" x="0" y="7465" width="1343" height="116"/>
   <object type="Health" x="8" y="5569" width="616" height="569">
    <ellipse/>
   </object>
@@ -366,6 +365,5 @@
   <object type="Mines" x="933" y="669">
    <ellipse/>
   </object>
-  <object name="LevelEnd" type="EndOfLevel" x="1" y="6926" width="1343" height="84"/>
  </objectgroup>
 </map>
