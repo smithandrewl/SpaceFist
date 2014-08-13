@@ -37,14 +37,14 @@ public class FuzzyVariable {
      * @param medWeight The weight to apply to the medium set membership
      * @param highWeight The weight to apply to the high set membership
      */
-    public float Defuzzify(float lowWeight, float medWeight, float highWeight) {
-        float adjustedLow  = getLow()  * lowWeight;
-        float adjustedMed  = getMed()  * medWeight;
-        float adjustedHigh = getHigh() * highWeight;
+    public float defuzzify(float lowWeight, float medWeight, float highWeight) {
+        float adjustedLow  = low  * lowWeight;
+        float adjustedMed  = med  * medWeight;
+        float adjustedHigh = high * highWeight;
 
         float weightedTotal = adjustedLow + adjustedMed + adjustedHigh;
 
-        float total  = getLow() + getMed() + getHigh();
+        float total  = low + med + high;
 
         return weightedTotal / total;
     }

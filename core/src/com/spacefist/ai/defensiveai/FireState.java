@@ -51,7 +51,7 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
     public void Update() {
         FuzzyVariable distance = shipEnemyInfo.getDistance();
 
-        rateOfFire = distance.Defuzzify(700, 550, 300);
+        rateOfFire = distance.defuzzify(700, 550, 300);
 
         // if this enemy is on screen, fire and wait a fuzzy amount of time before
         // firing again.
