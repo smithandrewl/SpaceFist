@@ -34,33 +34,41 @@ import java.util.Random;
         );
 */
 public class ParticleEmitter {
-    private Vector2 position;
-    private List<Particle> particles;
-    private Date creation;
-    private int maxParticles;
-    private int freq;
-    private Vector2 center;
-    private SpriteBatch spriteBatch;
-    private boolean alive;
-    private Date lastEmission;
-    private Texture texture;
-    private Random rand;
+    private Vector2         position;
+    private List<Particle>  particles;
+    private Date            creation;
+    private int             maxParticles;
+    private int             freq;
+    private Vector2         center;
+    private SpriteBatch     spriteBatch;
+    private boolean         alive;
+    private Date            lastEmission;
+    private Texture         texture;
+    private Random          rand;
     private ParticleOptions particleOptions;
-    private GameData gameData;
-    public ParticleEmitter(GameData gameData, Texture texture, int maxParticles, int freq, Vector2 center, SpriteBatch spriteBatch,
-                           ParticleOptions particleOptions) {
+    private GameData        gameData;
+
+    public ParticleEmitter(
+        GameData        gameData,
+        Texture         texture,
+        int             maxParticles,
+        int             freq,
+        Vector2         center,
+        SpriteBatch     spriteBatch,
+        ParticleOptions particleOptions
+    ) {
         this.gameData = gameData;
 
-        particles = new ArrayList<Particle>();
-        this.center = center;
-        this.spriteBatch = spriteBatch;
-        alive = true;
-        this.creation = new Date();
-        lastEmission = new Date();
-        this.maxParticles = maxParticles;
-        this.freq = freq;
-        this.texture = texture;
-        rand = new Random();
+        particles            = new ArrayList<Particle>();
+        this.center          = center;
+        this.spriteBatch     = spriteBatch;
+        alive                = true;
+        this.creation        = new Date();
+        lastEmission         = new Date();
+        this.maxParticles    = maxParticles;
+        this.freq            = freq;
+        this.texture         = texture;
+        rand                 = new Random();
         this.particleOptions = particleOptions;
     }
 
@@ -77,19 +85,29 @@ public class ParticleEmitter {
                     //int degrees = rand.Next(particleOptions.getMinRotation(), particleOptions.getMaxRotation());
                     int degrees = 0;
 
-                    float speed = particleOptions.getSpeed();
+                    float   speed    = particleOptions.getSpeed();
                     Vector2 velocity = new Vector2((float) (speed * Math.cos(degrees)), (float) (speed * Math.sin(degrees)));
 
 
                     //float rotation = Math.toRadians(rand.Next(particleOptions.getMinRotation(), particleOptions.getMaxRotation()));
                     //float angularVelocity = rand.Next(particleOptions.getMinAngularVelocity(), particleOptions.getMaxAngularVelocity());
                     //float scale = rand.Next(((int) particleOptions.getMinScale()), (int) particleOptions.getMaxScale());
-                    float rotation = 0;
+                    float rotation        = 0;
                     float angularVelocity = 0;
-                    float scale = 1;
+                    float scale           = 1;
 
 
-                    particles.add(new Particle(texture, scale, rotation, angularVelocity, velocity, particleOptions.getTtl(), Color.WHITE, getPosition()));
+                    particles.add(
+                        new Particle(
+                            texture,
+                            scale,
+                            rotation,
+                            angularVelocity,
+                            velocity,
+                            particleOptions.getTtl(),
+                            Color.WHITE, getPosition()
+                        )
+                    );
                 }
 
                 lastEmission = new Date();
@@ -123,8 +141,7 @@ public class ParticleEmitter {
                 float transparency = (float) ((new Date().getTime() - particle.getCreation().getTime()) / 1000) / particle.getTtl();
 
                 Vector2 drawAt = new Vector2(particle.getX(), particle.getY()).sub(gameData.getCamera());
-
-                Color color = new Color(particle.getTint().r, particle.getTint().g, particle.getTint().b, transparency);
+                Color   color  = new Color(particle.getTint().r, particle.getTint().g, particle.getTint().b, transparency);
 
                 spriteBatch.draw(
                         new TextureRegion(particle.getTexture()),
