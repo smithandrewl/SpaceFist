@@ -36,11 +36,11 @@ public class DefensiveAI implements EnemyAI {
     }
 
     public void Update() {
-        shipInfo.Update();
-        shipEnemyInfo.Update();
+        shipInfo.update();
+        shipEnemyInfo.update();
 
-        fireState.Update();
-        defendState.Update();
+        fireState.update();
+        defendState.update();
     }
 
     @Override

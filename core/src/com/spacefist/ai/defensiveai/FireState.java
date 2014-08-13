@@ -48,7 +48,7 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
         //this.projectileManager = gameData.ProjectileManager;
     }
 
-    public void Update() {
+    public void update() {
         FuzzyVariable distance = shipEnemyInfo.getDistance();
 
         rateOfFire = distance.defuzzify(700, 550, 300);

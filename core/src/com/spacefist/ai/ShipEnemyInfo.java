@@ -12,11 +12,11 @@ import java.util.Date;
  * Provides information about the players ship that is specific to a particular enemy.
  */
 public class ShipEnemyInfo extends FuzzyLogicEnabled {
-    private static final boolean DisplayDebug = false;
+    private static final boolean DISPLAY_DEBUG = false;
 
     // The range for the distance fuzzy variable
-    private static final float DistanceHigh = 1000;
-    private static final float DistanceLow  = 0;
+    private static final float DISTANCE_HIGH = 1000;
+    private static final float DISTANCE_LOW  = 0;
 
     //-------------- Crisp input -----------------
     private int distance;
@@ -57,7 +57,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
 
     // Distance
     public FuzzyVariable getDistance() {
-        return grade(distance, DistanceLow, DistanceHigh, fuzzyDistance);
+        return grade(distance, DISTANCE_LOW, DISTANCE_HIGH, fuzzyDistance);
     }
 
     /**
@@ -79,9 +79,14 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
      * @return A vector from the enemy to the ship representing its line of sight.
      */
     public Vector2 getLineOfSight() {
-        Ship ship = gameData.getShip();
-        Vector2 shipPos  = new Vector2(ship.getX(), ship.getY());
-        Vector2 enemyPos = new Vector2(enemy.getX(), enemy.getY());
+        Ship ship  = gameData.getShip();
+        int shipX  = ship.getX();
+        int shipY  = ship.getY();
+        int enemyX = enemy.getX();
+        int enemyY = enemy.getY();
+
+        Vector2 shipPos  = new Vector2(shipX, shipY);
+        Vector2 enemyPos = new Vector2(enemyX, enemyY);
 
         Vector2 diff = shipPos.sub(enemyPos);
 
@@ -89,7 +94,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
     }
 
     @Override
-    public void Update() {
+    public void update() {
         Ship ship = gameData.getShip();
 
         // update distance
@@ -98,18 +103,22 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
 
         distance = (int) Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
 
-        if (DisplayDebug) {
-            PrintDebuggingInfo();
+        if (DISPLAY_DEBUG) {
+            printDebuggingInfo();
         }
     }
 
     /**
      * Displays details of the fuzzy variables to the console every second.
      */
-    private void PrintDebuggingInfo() {
-        if (((new Date().getTime() - lastPrint.getTime()) / 1000) >= 1) {
-            System.out.println("Ship/Enemy Info:");
-            System.out.println(getDistance());
+    private void printDebuggingInfo() {
+        long secondsElapsed = (new Date().getTime() - lastPrint.getTime()) / 1000;
+
+        if (secondsElapsed >= 1) {
+            FuzzyVariable distance = getDistance();
+
+            System.out.println("ShipEnemyInfo:");
+            System.out.println(distance);
             System.out.println();
 
             lastPrint = new Date();

@@ -66,7 +66,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     /**
      * Updates the degree to which this state is active.
      */
-    public void Update() {
+    public void update() {
         Ship ship = gameData.getShip();
 
         ShipInfo      shipInfo      = ai.getShipInfo();

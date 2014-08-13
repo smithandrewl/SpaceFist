@@ -103,7 +103,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
     }
 
     @Override
-    public void Update() {
+    public void update() {
         Ship ship = gameData.getShip();
 
         // The ships speed is the magnitude of its velocity

@@ -74,7 +74,7 @@ public class MenuState implements GameState {
     }
 
     public void Update() {
-        // TODO: Convert Input handling code in MenuState.Update
+        // TODO: Convert Input handling code in MenuState.update
 
         Vector2 mousePos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
 

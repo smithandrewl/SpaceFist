@@ -110,5 +110,5 @@ public abstract class FuzzyLogicEnabled {
         return 1 - val;
     }
 
-    public abstract void Update();
+    public abstract void update();
 }

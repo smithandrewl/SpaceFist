@@ -22,5 +22,5 @@ public class DefendState extends FuzzyLogicEnabled implements EnemyAIState {
         shipEnemyInfo = ai.getShipEnemyInfo();
     }
 
-    public void Update() { }
+    public void update() { }
 }
