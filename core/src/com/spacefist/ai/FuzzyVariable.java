@@ -1,8 +1,8 @@
 package com.spacefist.ai;
 
-/// <summary>
-/// Represents a fuzzy input variable of three sets
-/// </summary>
+/**
+ *  Represents a fuzzy input variable of three sets
+ */
 public class FuzzyVariable {
     /**
      * The name of the fuzzy variable.
@@ -38,7 +38,15 @@ public class FuzzyVariable {
      * @param highWeight The weight to apply to the high set membership
      */
     public float Defuzzify(float lowWeight, float medWeight, float highWeight) {
-        return (getLow() * lowWeight + getMed() * medWeight + getHigh() * highWeight) / (getLow() + getMed() + getHigh());
+        float adjustedLow  = getLow()  * lowWeight;
+        float adjustedMed  = getMed()  * medWeight;
+        float adjustedHigh = getHigh() * highWeight;
+
+        float weightedTotal = adjustedLow + adjustedMed + adjustedHigh;
+
+        float total  = getLow() + getMed() + getHigh();
+
+        return weightedTotal / total;
     }
 
     /**
