@@ -29,11 +29,11 @@ public class Sprite implements GraphicsComponent {
     }
 
     public void Draw(GameData gameData, Entity obj) {
-        SpriteBatch spriteBatch = gameData.getSpriteBatch();
-        Rectangle objRectangle = obj.getRectangle();
+        SpriteBatch spriteBatch  = gameData.getSpriteBatch();
+        Rectangle   objRectangle = obj.getRectangle();
 
         Vector2 origin = new Vector2(
-            objRectangle.getWidth() / 2,
+            objRectangle.getWidth()  / 2,
             objRectangle.getHeight() / 2
          );
 
