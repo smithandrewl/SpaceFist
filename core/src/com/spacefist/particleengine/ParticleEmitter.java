@@ -76,7 +76,7 @@ public class ParticleEmitter {
         return creation;
     }
 
-    public void Update() {
+    public void update() {
         if (alive) {
             // add more particles if needed
             if ((particles.size() < maxParticles) && ((new Date().getTime() - lastEmission.getTime()) / 1000) > freq) {
@@ -115,7 +115,7 @@ public class ParticleEmitter {
 
             // update all particles
             for (Particle particle : particles) {
-                particle.Update();
+                particle.update();
             }
 
             List<Particle> particlesToRemove = new ArrayList<Particle>();
@@ -133,7 +133,7 @@ public class ParticleEmitter {
         }
     }
 
-    public void Draw() {
+    public void draw() {
         if (alive) {
             for (Particle particle : particles) {
 

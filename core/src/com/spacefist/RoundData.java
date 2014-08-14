@@ -21,7 +21,7 @@ public class RoundData {
     /**
      * Resets all of the values to their default values.
      */
-    public void Reset() {
+    public void reset() {
         setLives(0);
         setScore(0);
         setBlocksBumped(0);

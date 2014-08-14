@@ -129,10 +129,10 @@ public class GameData {
 
     public void setCurrentState(GameState newState) {
         if (currentState != null) {
-            currentState.ExitingState();
+            currentState.exitingState();
         }
 
-        newState.EnteringState();
+        newState.enteringState();
         currentState = newState;
     }
 

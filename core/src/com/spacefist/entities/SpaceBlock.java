@@ -50,7 +50,7 @@ public class SpaceBlock extends Entity {
     /**
      * Called when the block has been shot
      */
-    public void Destroy() {
+    public void destroy() {
         Sound sound = (Sound) getSound();
 
         sound.play();
@@ -60,7 +60,7 @@ public class SpaceBlock extends Entity {
     /**
      * Called when the block has been bumped by the ship
     */
-    public void Thump() {
+    public void thump() {
         thump.play();
         setAlive(false);
     }

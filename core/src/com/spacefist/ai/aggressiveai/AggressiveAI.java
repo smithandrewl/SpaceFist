@@ -30,7 +30,7 @@ public class AggressiveAI implements EnemyAI {
         ramState = new RamState(this, gameData);
     }
 
-    public void Update() {
+    public void update() {
         ShipInfo      shipInfo      = getShipInfo();
         ShipEnemyInfo shipEnemyInfo = getShipEnemyInfo();
 

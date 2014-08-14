@@ -47,7 +47,7 @@ import com.spacefist.entities.Entity;
         this.index = index;
     }
 
-    public void Draw(GameData gameData, Entity obj) {
+    public void draw(GameData gameData, Entity obj) {
         // Calculate the portion of the texture to draw given the current index
         Rectangle   sourceRect  = new Rectangle(index * width, 0, width, height);
         SpriteBatch spriteBatch = gameData.getSpriteBatch();

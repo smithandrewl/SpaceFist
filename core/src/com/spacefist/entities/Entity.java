@@ -15,12 +15,12 @@ import com.spacefist.components.abst.SoundComponent;
  * <p/>
  * Instead of performing tasks such as drawing or handling input,
  * the Entity base class keeps references to classes implementing known interfaces.  It then calls methods of these interfaces
- * such as update and Draw.
+ * such as update and draw.
  * <p/>
  * What this means is that the Entity base class can update and draw itself without knowning how it is being updated or drawn.
  * <p/>
  * On update, the Entity base class calls the update method on the graphics, physics, input and sound components.
- * On draw, the Entity base class calls the Draw method on the graphics component.
+ * On draw, the Entity base class calls the draw method on the graphics component.
  * <p/>
  * Each Entity Subclass provides the exact implementations of the components in its constructor.
  * <p/>
@@ -45,7 +45,7 @@ public class Entity {
     private Vector2 velocity;
 
     /**
-     * Whether the entity is in play or not. The default update and Draw methods
+     * Whether the entity is in play or not. The default update and draw methods
      * only update and draw when the entity is Alive.
      */
     private boolean alive;
@@ -126,14 +126,14 @@ public class Entity {
         return gameData;
     }
 
-    public void Initialize() {
+    public void initialize() {
 
     }
 
     /**
      * If the ship is alive, update all of its components
      */
-    public void Update() {
+    public void update() {
         if (isAlive()) {
             getGraphics().update(gameData, this);
             getInput().update(gameData, this);
@@ -145,9 +145,9 @@ public class Entity {
     /**
      * If the ship is alive, call draw on its graphics component
      */
-    public void Draw() {
+    public void draw() {
         if (isAlive()) {
-            getGraphics().Draw(gameData, this);
+            getGraphics().draw(gameData, this);
         }
     }
 

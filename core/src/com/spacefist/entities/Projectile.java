@@ -62,7 +62,7 @@ public class Projectile extends Entity {
      * Plays a firing noise on the first update
      */
     @Override
-    public void Update() {
+    public void update() {
         SoundComponent sound = getSound();
 
         if (!soundPlayed) {
@@ -70,8 +70,8 @@ public class Projectile extends Entity {
             soundPlayed = true;
         }
 
-        behavior.Update(this);
+        behavior.update(this);
 
-        super.Update();
+        super.update();
     }
 }

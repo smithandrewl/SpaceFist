@@ -48,15 +48,15 @@ public class Enemy extends Entity {
     }
 
     @Override
-    public void Update() {
-        getAi().Update();
-        super.Update();
+    public void update() {
+        getAi().update();
+        super.update();
     }
 
     /**
      * Plays an explosion sound.
      */
-    public void OnDeath() {
+    public void onDeath() {
         ((com.spacefist.components.Sound) getSound()).play();
     }
 }

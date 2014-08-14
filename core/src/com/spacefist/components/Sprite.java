@@ -28,7 +28,7 @@ public class Sprite implements GraphicsComponent {
 
     }
 
-    public void Draw(GameData gameData, Entity obj) {
+    public void draw(GameData gameData, Entity obj) {
         SpriteBatch spriteBatch  = gameData.getSpriteBatch();
         Rectangle   objRectangle = obj.getRectangle();
 

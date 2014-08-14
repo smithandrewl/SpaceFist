@@ -61,13 +61,13 @@ public class SpaceFistGame extends ApplicationAdapter {
         // Tell the current state to update itself
         GameState currentState = gameData.getCurrentState();
 
-        currentState.Update();
+        currentState.update();
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         // Tell the current state to draw itself
-        currentState.Draw();
+        currentState.draw();
         batch.end();
     }
 
@@ -94,7 +94,7 @@ public class SpaceFistGame extends ApplicationAdapter {
         return gameData;
     }
 
-    private void LoadTextures() {
+    private void loadTextures() {
         Map<String, Texture> textures = gameData.getTextures();
 
         FileHandle directory = Gdx.files.absolute("images/");
@@ -107,7 +107,7 @@ public class SpaceFistGame extends ApplicationAdapter {
         }
     }
 
-    private void LoadSongs() {
+    private void loadSongs() {
         Map<String, Music> songs = gameData.getSongs();
         FileHandle directory = Gdx.files.absolute("sound/songs/");
 
@@ -116,7 +116,7 @@ public class SpaceFistGame extends ApplicationAdapter {
         }
     }
 
-    private void LoadSoundEffects() {
+    private void loadSoundEffects() {
         Map<String, Sound> soundEffects = gameData.getSoundEffects();
         FileHandle directory = Gdx.files.absolute("sound/soundeffects/");
 
@@ -141,21 +141,21 @@ public class SpaceFistGame extends ApplicationAdapter {
         GameData.TitleFont = Content.Load<SpriteFont>(TITLE_FONT_ASSET);
         */
 
-        LoadTextures();
-        LoadSongs();
-        LoadSoundEffects();
+        loadTextures();
+        loadSongs();
+        loadSoundEffects();
 
 
-        // GameData.InPlayState.LoadContent();
-        // GameData.GameOverState.LoadContent();
+        // GameData.InPlayState.loadContent();
+        // GameData.GameOverState.loadContent();
 
-        gameData.getSplashScreenState().LoadContent();
-        gameData.getMenuState().LoadContent();
-        gameData.getLogoState().LoadContent();
+        gameData.getSplashScreenState().loadContent();
+        gameData.getMenuState().loadContent();
+        gameData.getLogoState().loadContent();
         /*
-        GameData.EndOfLevelState.LoadContent();
+        GameData.EndOfLevelState.loadContent();
         */
 
-        gameData.getCurrentState().EnteringState();
+        gameData.getCurrentState().enteringState();
     }
 }

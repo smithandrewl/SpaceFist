@@ -52,7 +52,7 @@ public class Explosion extends Entity {
     }
 
     @Override
-    public void Update() {
+    public void update() {
         IndexedSprite indexedSprite = (IndexedSprite) getGraphics();
 
         // If the animation is not finished, wait TimeBetweenFrames
@@ -71,6 +71,6 @@ public class Explosion extends Entity {
             setAlive(false);
         }
 
-        super.Update();
+        super.update();
     }
 }

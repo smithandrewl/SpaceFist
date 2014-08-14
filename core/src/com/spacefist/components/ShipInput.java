@@ -25,37 +25,37 @@ public class ShipInput implements InputComponent {
         boolean space = Gdx.input.isKeyPressed(Input.Keys.SPACE);
 
         if (w) {
-            ship.Forward();
+            ship.forward();
         }
 
         if (!a && aDown) {
             aDown = false;
-            ship.Reset();
+            ship.reset();
         }
 
         if (a) {
             aDown = true;
-            ship.Left();
+            ship.left();
         }
 
         if (!d && dDown) {
             dDown = false;
-            ship.Reset();
+            ship.reset();
         }
 
         if (d) {
             dDown = true;
-            ship.Right();
+            ship.right();
         }
 
         if (s) {
-            ship.Backward();
+            ship.backward();
         }
 
         if (space) {
             if (!spaceDown) {
                 spaceDown = true;
-                ship.Fire();
+                ship.fire();
             }
         }
 

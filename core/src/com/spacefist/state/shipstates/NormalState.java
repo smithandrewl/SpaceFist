@@ -20,7 +20,7 @@ public class NormalState implements ShipState {
         this.gameData = gameData;
     }
 
-    public void Update() {
+    public void update() {
         Ship ship = gameData.getShip();
 
         if (ship.getHealth() <= LOW_HEALTH_THRESHOLD) {
@@ -29,10 +29,10 @@ public class NormalState implements ShipState {
         }
     }
 
-    public void EnteringState() {
+    public void enteringState() {
         // TODO: Set the ship to draw opaque after entering the normal state
         //gameData.Ship.Tint = Color.White;
     }
 
-    public void ExitingState() { }
+    public void exitingState() { }
 }

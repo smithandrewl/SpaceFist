@@ -9,6 +9,6 @@ import com.spacefist.entities.Entity;
  * The background for example
  */
 public class NullSoundComponent implements SoundComponent {
-    public void LoadContent(GameData gameData)        { }
+    public void loadContent(GameData gameData)        { }
     public void update(GameData gameData, Entity obj) { }
 }

@@ -32,7 +32,7 @@ public class SpawningState implements ShipState {
         this.spawnedAt = spawnedAt;
     }
 
-    public void Update() {
+    public void update() {
         Ship ship      = gameData.getShip();
         byte increment = 5;
 
@@ -62,7 +62,7 @@ public class SpawningState implements ShipState {
         */
     }
 
-    public void EnteringState() {
+    public void enteringState() {
         spawnedAt = new Date();
 
         /*
@@ -72,5 +72,5 @@ public class SpawningState implements ShipState {
         //gameData.Ship.Tint = Color.Transparent;
     }
 
-    public void ExitingState() { }
+    public void exitingState() { }
 }

@@ -31,7 +31,7 @@ public class MenuState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() {
+    public void loadContent() {
 
         backgroundRect = gameData.getResolution();
         HashMap<String, Texture> textures = gameData.getTextures();
@@ -52,7 +52,7 @@ public class MenuState implements GameState {
         exitRect    = new Rectangle(menuRect.x + 8, menuRect.y + 82, 149, 29);
     }
 
-    public void Draw() {
+    public void draw() {
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
         spriteBatch.draw(
@@ -73,7 +73,7 @@ public class MenuState implements GameState {
 
     }
 
-    public void Update() {
+    public void update() {
         // TODO: Convert Input handling code in MenuState.update
 
         Vector2 mousePos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -105,8 +105,8 @@ public class MenuState implements GameState {
         }
     }
 
-    public void EnteringState() {
-        // TODO: Convert MenuState.EnteringState
+    public void enteringState() {
+        // TODO: Convert MenuState.enteringState
         enteredAt = new Date();
 
         // gameData.IsMouseVisible = true;
@@ -117,8 +117,8 @@ public class MenuState implements GameState {
         // gameData.LevelManager.LoadLevel(1);
     }
 
-    public void ExitingState() {
-        // TODO: Convert MenuState.ExitingState
+    public void exitingState() {
+        // TODO: Convert MenuState.exitingState
         // TODO: Get mouse visibility working
         // gameData.IsMouseVisible = false;
 

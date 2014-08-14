@@ -25,11 +25,11 @@ public class LogoState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() {
+    public void loadContent() {
         background = gameData.getTextures().get("Logo");
     }
 
-    public void Draw() {
+    public void draw() {
         Rectangle resolution = gameData.getResolution();
 
         float height = resolution.getHeight();
@@ -38,7 +38,7 @@ public class LogoState implements GameState {
         gameData.getSpriteBatch().draw(background, 0, 0, width, height);
     }
 
-    public void Update() {
+    public void update() {
 
         if (((new Date().getTime() - enteredAt.getTime()) / 1000) > LOAD_TIME ||
                 Gdx.input.isKeyPressed(Input.Keys.ENTER) ||
@@ -48,10 +48,10 @@ public class LogoState implements GameState {
         }
     }
 
-    public void EnteringState() {
+    public void enteringState() {
         enteredAt = new Date();
     }
 
-    public void ExitingState() {
+    public void exitingState() {
     }
 }

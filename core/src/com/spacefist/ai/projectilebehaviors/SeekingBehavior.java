@@ -37,7 +37,7 @@ class SeekingBehavior implements ProjectileBehavior {
         origVector  = unitVector;
     }
 
-    public void Update(Projectile projectile) {
+    public void update(Projectile projectile) {
         if (target.isAlive()) {
             int maxSpeed = 10;
             // The minimum distance from the launching point

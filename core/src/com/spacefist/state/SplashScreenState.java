@@ -31,7 +31,7 @@ public class SplashScreenState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() {
+    public void loadContent() {
         Rectangle resolution = gameData.getResolution();
 
         overlayTexture = gameData.getTextures().get("TitleScreen");
@@ -44,11 +44,11 @@ public class SplashScreenState implements GameState {
         );
     }
 
-    public void EnteringState() {
+    public void enteringState() {
         enteredAt = new Date();
     }
 
-    public void Update() {
+    public void update() {
         long timeDiff = new Date().getTime() - enteredAt.getTime();
 
         if ((timeDiff / 1000) > 3) {
@@ -70,7 +70,7 @@ public class SplashScreenState implements GameState {
         }
     }
 
-    public void Draw() {
+    public void draw() {
         Rectangle resolution    = gameData.getResolution();
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
@@ -91,5 +91,5 @@ public class SplashScreenState implements GameState {
         );
     }
 
-    public void ExitingState() { }
+    public void exitingState() { }
 }

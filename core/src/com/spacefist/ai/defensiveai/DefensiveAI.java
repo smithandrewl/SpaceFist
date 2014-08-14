@@ -35,7 +35,7 @@ public class DefensiveAI implements EnemyAI {
         fireState   = new FireState(this, gameData);
     }
 
-    public void Update() {
+    public void update() {
         shipInfo.update();
         shipEnemyInfo.update();
 

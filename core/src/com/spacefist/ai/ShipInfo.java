@@ -111,14 +111,14 @@ public class ShipInfo extends FuzzyLogicEnabled {
         health = ship.getHealth();
 
         if (DISPLAY_DEBUG) {
-            PrintDebugInfo();
+            printDebugInfo();
         }
     }
 
     /**
      * Displays fuzzy membership information once a second.
      */
-    private void PrintDebugInfo() {
+    private void printDebugInfo() {
         if (((new Date().getTime() - LastPrint.getTime()) / 1000) >= 1) {
             System.out.println("Ship Info:");
             System.out.println(getSpeed());
