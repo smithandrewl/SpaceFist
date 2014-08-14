@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ import java.util.List;
 public class ParticleEmitter {
     private Vector2         position;
     private List<Particle>  particles;
-    private Date            creation;
+    private long            creation;
     private int             maxParticles;
     private int             freq;
     private Vector2         center;
     private SpriteBatch     spriteBatch;
     private boolean         alive;
-    private Date            lastEmission;
+    private long            lastEmission;
     private Texture         texture;
     private ParticleOptions particleOptions;
     private GameData        gameData;
@@ -62,22 +63,22 @@ public class ParticleEmitter {
         this.center          = center;
         this.spriteBatch     = spriteBatch;
         alive                = true;
-        this.creation        = new Date();
-        lastEmission         = new Date();
+        this.creation        = TimeUtils.millis();
+        lastEmission         = TimeUtils.millis();
         this.maxParticles    = maxParticles;
         this.freq            = freq;
         this.texture         = texture;
         this.particleOptions = particleOptions;
     }
 
-    public Date getCreation() {
+    public long getCreation() {
         return creation;
     }
 
     public void update() {
         if (alive) {
             // add more particles if needed
-            if ((particles.size() < maxParticles) && ((new Date().getTime() - lastEmission.getTime()) / 1000) > freq) {
+            if ((particles.size() < maxParticles) && ((TimeUtils.millis() - lastEmission) / 1000) > freq) {
                 for (int i = 0; i < 3; i++) {
                     int degrees = MathUtils.random(particleOptions.getMinRotation(), particleOptions.getMaxRotation());
 
@@ -102,7 +103,7 @@ public class ParticleEmitter {
                     );
                 }
 
-                lastEmission = new Date();
+                lastEmission = TimeUtils.millis();
             }
 
             // update all particles
@@ -113,7 +114,7 @@ public class ParticleEmitter {
             List<Particle> particlesToRemove = new ArrayList<Particle>();
 
             for (Particle particle : particles) {
-                if (((new Date().getTime() - particle.getCreation().getTime()) / 1000) > particle.getTtl()) {
+                if ((TimeUtils.millis() - particle.getCreation()) / 1000 > particle.getTtl()) {
                     particlesToRemove.add(particle);
                 }
             }
@@ -130,7 +131,7 @@ public class ParticleEmitter {
             for (Particle particle : particles) {
 
                 // draw each particle (particles fade as they reach ttl
-                float transparency = (float) ((new Date().getTime() - particle.getCreation().getTime()) / 1000) / particle.getTtl();
+                float transparency = (float) ((TimeUtils.millis() - particle.getCreation()) / 1000) / particle.getTtl();
 
                 Vector2 drawAt = new Vector2(particle.getX(), particle.getY()).sub(gameData.getCamera());
                 Color   color  = new Color(particle.getTint().r, particle.getTint().g, particle.getTint().b, transparency);

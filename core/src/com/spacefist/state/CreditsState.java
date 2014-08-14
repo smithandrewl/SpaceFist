@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class CreditsState implements GameState {
     private GameData gameData;
-    private Date     enteredAt;
+    private long     enteredAt;
 
     public CreditsState(GameData gameData) {
         this.gameData = gameData;

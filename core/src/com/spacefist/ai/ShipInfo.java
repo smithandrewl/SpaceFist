@@ -1,11 +1,10 @@
 package com.spacefist.ai;
 
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.RoundData;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.entities.Ship;
-
-import java.util.Date;
 
 /**
  * Provides fuzzy information about the ship and how the player
@@ -29,7 +28,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
     // ------------------------------------------------------------
 
     // The last time debug information was displayed
-    private Date LastPrint = new Date();
+    private long lastPrint = TimeUtils.millis();
 
     // ======================== Crisp Input  ========================
     // ship data
@@ -109,7 +108,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
      * Displays fuzzy membership information once a second.
      */
     private void printDebugInfo() {
-        if (((new Date().getTime() - LastPrint.getTime()) / 1000) >= 1) {
+        if ((TimeUtils.millis() - lastPrint) / 1000 >= 1) {
             System.out.println("Ship Info:");
             System.out.println(getSpeed());
             System.out.println(getHealth());
@@ -117,7 +116,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
             System.out.println(getAccuracy());
             System.out.println();
 
-            LastPrint = new Date();
+            lastPrint = TimeUtils.millis();
         }
     }
 }

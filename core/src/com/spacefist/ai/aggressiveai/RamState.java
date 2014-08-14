@@ -3,6 +3,7 @@ package com.spacefist.ai.aggressiveai;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.ai.FuzzyVariable;
 import com.spacefist.ai.ShipEnemyInfo;
@@ -30,7 +31,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private EnemyAI       ai;
     private Enemy         enemy;
     private GameData      gameData;
-    private Date          lastUpdate;
+    private long          lastUpdate;
 
     public RamState(EnemyAI ai, GameData gameData) {
 
@@ -39,7 +40,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         this.ai       = ai;
         enemy         = shipEnemyInfo.getEnemy();
         wayPoints     = new ArrayList<Vector2>();
-        lastUpdate    = new Date();
+        lastUpdate    = TimeUtils.millis();
         this.gameData = gameData;
     }
 
@@ -87,7 +88,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
             not(distance.getHigh())
         );
 
-        long millisecondsPassed = (new Date().getTime() - lastUpdate.getTime());
+        long millisecondsPassed = TimeUtils.millis() - lastUpdate;
 
         // Keep up to 3 waypoints, updating them every 25 milliseconds
         boolean updateWaypoints = millisecondsPassed > 25;
@@ -133,7 +134,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
                 }
             }
 
-            lastUpdate = new Date();
+            lastUpdate = TimeUtils.millis();
         }
 
         if (!wayPoints.isEmpty()) {
