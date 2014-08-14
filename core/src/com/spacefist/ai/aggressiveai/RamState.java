@@ -16,7 +16,6 @@ import com.spacefist.entities.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * A fuzzy state that rams the players ship.
@@ -32,13 +31,11 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private Enemy         enemy;
     private GameData      gameData;
     private Date          lastUpdate;
-    private Random        random;
 
     public RamState(EnemyAI ai, GameData gameData) {
 
         ShipEnemyInfo shipEnemyInfo = ai.getShipEnemyInfo();
 
-        random        = new Random();
         this.ai       = ai;
         enemy         = shipEnemyInfo.getEnemy();
         wayPoints     = new ArrayList<Vector2>();

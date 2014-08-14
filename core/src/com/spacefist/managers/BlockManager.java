@@ -9,7 +9,6 @@ import com.spacefist.entities.SpaceBlock;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /// <summary>
 /// Keeps track of the space blocks in the world and

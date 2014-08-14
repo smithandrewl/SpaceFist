@@ -22,7 +22,6 @@ import com.spacefist.util.Func;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /*
  * The main state of the game.  All game play occurs in the InPlayState.
@@ -206,8 +205,6 @@ public class InPlayState implements GameState {
         gameData.getPickUpManager().SpawnLaserbeamPickups(5);
         gameData.getPickUpManager().SpawnMissilePickups(3);
         /**********/
-
-        Random rand = new Random();
 
         debrisField.clear();
 

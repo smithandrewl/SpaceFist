@@ -11,7 +11,6 @@ import com.spacefist.GameData;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /*
 *         Examples:
@@ -45,7 +44,6 @@ public class ParticleEmitter {
     private boolean         alive;
     private Date            lastEmission;
     private Texture         texture;
-    private Random          rand;
     private ParticleOptions particleOptions;
     private GameData        gameData;
 
@@ -69,7 +67,6 @@ public class ParticleEmitter {
         this.maxParticles    = maxParticles;
         this.freq            = freq;
         this.texture         = texture;
-        rand                 = new Random();
         this.particleOptions = particleOptions;
     }
 
