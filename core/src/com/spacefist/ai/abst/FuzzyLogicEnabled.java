@@ -6,7 +6,7 @@ import com.spacefist.ai.FuzzyVariable;
  * Base class for classes using fuzzy logic.
  *
  *
- * The Triangle and Trapezoid membership grading methods are based on the article
+ * The triangle and trapezoid membership grading methods are based on the article
  * http://www.dma.fi.upm.es/java/fuzzy/fuzzyinf/funpert_en.htm
  */
 public abstract class FuzzyLogicEnabled {
@@ -20,7 +20,7 @@ public abstract class FuzzyLogicEnabled {
         return 1;
     }
 
-    protected static float ReverseGrade(float val, float upperSupportLimit, float upperLimit) {
+    protected static float reverseGrade(float val, float upperSupportLimit, float upperLimit) {
         if (val > upperLimit)
             return 0;
 
@@ -30,7 +30,7 @@ public abstract class FuzzyLogicEnabled {
         return 1;
     }
 
-    protected static float Triangle(float val, float lowerLimit, float middle, float upperLimit) {
+    protected static float triangle(float val, float lowerLimit, float middle, float upperLimit) {
         if (val <= lowerLimit) return 0;
         if (val <= middle) return (val - lowerLimit) / (middle - lowerLimit);
         if (val < upperLimit) return (upperLimit - val) / (upperLimit - middle);
@@ -38,12 +38,12 @@ public abstract class FuzzyLogicEnabled {
         return 0;
     }
 
-    protected static float Trapezoid(
-            float val,
-            float lowerLimit,
-            float lowerSupportLimit,
-            float upperSupportLimit,
-            float upperLimit
+    protected static float trapezoid(
+        float val,
+        float lowerLimit,
+        float lowerSupportLimit,
+        float upperSupportLimit,
+        float upperLimit
     ) {
         boolean outOfBounds = (val < lowerLimit) || (val > upperLimit);
         boolean inLowRange = (val >= lowerLimit) && (val <= lowerSupportLimit);
@@ -71,8 +71,8 @@ public abstract class FuzzyLogicEnabled {
         float med = (high - low) / 2.0f;
 
         fuzzyVariable.setValue(val);
-        fuzzyVariable.setLow(ReverseGrade(val, low, med));
-        fuzzyVariable.setMed(Triangle(val, low, med, high));
+        fuzzyVariable.setLow(reverseGrade(val, low, med));
+        fuzzyVariable.setMed(triangle(val, low, med, high));
         fuzzyVariable.setHigh(Grade(val, med, high));
 
         return fuzzyVariable;
@@ -85,7 +85,7 @@ public abstract class FuzzyLogicEnabled {
      * @param second The second operand
      * @return The result of the and operation
      */
-    protected static float And(float first, float second) {
+    protected static float and(float first, float second) {
         return first * second;
     }
 
@@ -96,7 +96,7 @@ public abstract class FuzzyLogicEnabled {
      * @param second The second operand
      * @return The result of the or operation
      */
-    protected static float Or(float first, float second) {
+    protected static float or(float first, float second) {
         return first + second - (first * second);
     }
 
@@ -106,7 +106,7 @@ public abstract class FuzzyLogicEnabled {
      * @param val The value to negate
      * @return The negated value
      */
-    protected static float Not(float val) {
+    protected static float not(float val) {
         return 1 - val;
     }
 

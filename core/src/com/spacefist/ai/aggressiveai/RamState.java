@@ -78,14 +78,14 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         FuzzyVariable health   = shipInfo.getHealth();
         FuzzyVariable distance = shipEnemyInfo.getDistance();
 
-        float membership = Or(
+        float membership = or(
             // If the player is doing too well
-            And(
+            and(
                 accuracy.getHigh(),
                 health.getHigh()
             ),
             // If the player is not too far away
-            Not(distance.getHigh())
+            not(distance.getHigh())
         );
 
         long millisecondsPassed = (new Date().getTime() - lastUpdate.getTime());
