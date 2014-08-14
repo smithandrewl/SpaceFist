@@ -123,12 +123,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
 
                     // Using fuzzy logic, the generated way point will be more accurate
                     // the closer the enemy is to the ship.
-                    newPoint = lastPoint.add(
-                        new Vector2(
-                            newPoint.x * mult,
-                            newPoint.y * mult
-                        )
-                    );
+                    newPoint = lastPoint.add(newPoint.scl(mult));
 
                     wayPoints.add(newPoint);
                 }
@@ -163,9 +158,9 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
                 direction = direction.nor();
 
                 // The rotation of the ship needed for it to face in the direction of the next waypoint
-                float destRotation = (float) Math.toDegrees((float) (Math.atan2(direction.y, direction.x))) + 90;
+                float destRotation = direction.angle() + 90;
 
-                enemy.setRotation((float) Math.toRadians(destRotation));
+                enemy.setRotation(destRotation);
 
                 // Calculate a velocity to move along the line of sight at a magnitude of 5
                 // TODO: Convert linear interpolation code in RamState
