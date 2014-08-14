@@ -28,8 +28,8 @@ public class DefensiveAI implements EnemyAI {
      * @param enemy The enemy this AI will control
      */
     public DefensiveAI(GameData gameData, Enemy enemy) {
-        setShipInfo(new ShipInfo(gameData));
-        setShipEnemyInfo(new ShipEnemyInfo(enemy, shipInfo, gameData));
+        shipInfo      = new ShipInfo(gameData);
+        shipEnemyInfo = new ShipEnemyInfo(enemy, shipInfo, gameData);
 
         defendState = new DefendState(this);
         fireState   = new FireState(this, gameData);

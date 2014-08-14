@@ -36,8 +36,8 @@ public class Particle {
     }
 
     public void update() {
-        position = new Vector2(position.x + getVelocity().x, position.y + getVelocity().y);
-        rotation = (float) Math.toRadians(Math.toDegrees(getRotation()) + getAngularVelocity());
+        position = new Vector2(position.x + velocity.x, position.y + velocity.y);
+        rotation = (float) Math.toRadians(Math.toDegrees(rotation) + angularVelocity);
     }
 
     public Texture getTexture() {

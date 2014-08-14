@@ -82,8 +82,8 @@ public class Ship extends Entity implements StateMachine<ShipState> {
 
         indexedSprite = (IndexedSprite) getGraphics();
 
-        setHealthPoints(100);
-        setWeapon(new LaserWeapon(gameData));
+        healthPoints = 100;
+        weapon       = new LaserWeapon(gameData);
 
         // Start the ship in the spawning state
         state = new SpawningState(gameData);
@@ -121,7 +121,7 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     }
 
     public float getHealth() {
-        return getHealthPoints() / (float) MAX_HEALTH_POINTS;
+        return healthPoints / (float) MAX_HEALTH_POINTS;
     }
 
     /**

@@ -105,7 +105,7 @@ public class ParticleEmitter {
                             angularVelocity,
                             velocity,
                             particleOptions.getTtl(),
-                            Color.WHITE, getPosition()
+                            Color.WHITE, position
                         )
                     );
                 }

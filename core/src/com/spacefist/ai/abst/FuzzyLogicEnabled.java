@@ -10,7 +10,7 @@ import com.spacefist.ai.FuzzyVariable;
  * http://www.dma.fi.upm.es/java/fuzzy/fuzzyinf/funpert_en.htm
  */
 public abstract class FuzzyLogicEnabled {
-    protected static float Grade(float val, float lowerLimit, float lowerSupportlimit) {
+    protected static float numericGrade(float val, float lowerLimit, float lowerSupportlimit) {
         if (val < lowerLimit)
             return 0;
 
@@ -73,7 +73,7 @@ public abstract class FuzzyLogicEnabled {
         fuzzyVariable.setValue(val);
         fuzzyVariable.setLow(reverseGrade(val, low, med));
         fuzzyVariable.setMed(triangle(val, low, med, high));
-        fuzzyVariable.setHigh(Grade(val, med, high));
+        fuzzyVariable.setHigh(numericGrade(val, med, high));
 
         return fuzzyVariable;
     }

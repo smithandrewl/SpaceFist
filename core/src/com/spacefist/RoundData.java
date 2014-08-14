@@ -15,19 +15,19 @@ public class RoundData {
      * @return The players accuracy
      */
     public float getAcc() {
-        return (getEnemiesShot() + getBlocksShot()) / (float) getShotsFired();
+        return (enemiesShot + blocksShot) / (float) shotsFired;
     }
 
     /**
      * Resets all of the values to their default values.
      */
     public void reset() {
-        setLives(0);
-        setScore(0);
-        setBlocksBumped(0);
-        setBlocksShot(0);
-        setEnemiesShot(0);
-        setShotsFired(0);
+        lives        = 0;
+        score        = 0;
+        blocksBumped = 0;
+        blocksShot   = 0;
+        enemiesShot  = 0;
+        shotsFired   = 0;
     }
 
     public int getLives() {

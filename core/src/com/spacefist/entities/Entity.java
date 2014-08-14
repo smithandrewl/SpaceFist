@@ -77,16 +77,17 @@ public class Entity {
         SoundComponent    sound,
         float             rotation
     ) {
-        setAlive(true);
+        alive = true;
+
         this.gameData  = gameData;
         this.rectangle = rectangle;
 
-        setPhysics(physics);
-        setInput(input);
-        setGraphics(graphics);
-        setSound(sound);
+        this.physics  = physics;
+        this.input    = input;
+        this.graphics = graphics;
+        this.sound    = sound;
 
-        setTint(Color.WHITE);
+        tint = Color.WHITE;
     }
 
     /**
@@ -134,11 +135,11 @@ public class Entity {
      * If the ship is alive, update all of its components
      */
     public void update() {
-        if (isAlive()) {
-            getGraphics().update(gameData, this);
-            getInput().update(gameData, this);
-            getPhysics().update(gameData, this);
-            getSound().update(gameData, this);
+        if (alive) {
+            graphics.update(gameData, this);
+            input.update(gameData, this);
+            physics.update(gameData, this);
+            sound.update(gameData, this);
         }
     }
 
@@ -146,8 +147,8 @@ public class Entity {
      * If the ship is alive, call draw on its graphics component
      */
     public void draw() {
-        if (isAlive()) {
-            getGraphics().draw(gameData, this);
+        if (alive) {
+            graphics.draw(gameData, this);
         }
     }
 

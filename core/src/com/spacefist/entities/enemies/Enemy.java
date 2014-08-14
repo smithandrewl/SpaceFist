@@ -49,7 +49,7 @@ public class Enemy extends Entity {
 
     @Override
     public void update() {
-        getAi().update();
+        ai.update();
         super.update();
     }
 
