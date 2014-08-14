@@ -1,6 +1,7 @@
 package com.spacefist.ai.defensiveai;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.ai.FuzzyVariable;
 import com.spacefist.ai.ShipEnemyInfo;
@@ -21,7 +22,7 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
     private ProjectileManager projectileManager;
 
     // The last time this enemy fired at the player
-    private Date lastFire;
+    private long lastFire;
 
     // The AI that this state belongs to
     private EnemyAI ai;
@@ -42,7 +43,7 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
         this.ai       = ai;
         shipInfo      = ai.getShipInfo();
         shipEnemyInfo = ai.getShipEnemyInfo();
-        lastFire      = new Date();
+        lastFire      = TimeUtils.millis();
 
         this.projectileManager = gameData.getProjectileManager();
     }
@@ -55,10 +56,9 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
         // if this enemy is on screen, fire and wait a fuzzy amount of time before
         // firing again.
         if (ai.getShipEnemyInfo().isEnemyVisible()) {
-            Date now = new Date();
             // Fire at the ship every 200 to 600 milliseconds depending on how far away
             // the ship is.  The further the ship is, the faster the enemy will fire.
-            if (((now.getTime() - lastFire.getTime()) / 1000) > rateOfFire) {
+            if ((TimeUtils.millis() - lastFire) / 1000 > rateOfFire) {
                 Rectangle enemyRect = shipEnemyInfo.getEnemy().getRectangle();
 
                 int halfWidth  = (int) enemyRect.getWidth() / 2;
@@ -72,7 +72,7 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
                         true
                 );
 
-                lastFire = now;
+                lastFire = TimeUtils.millis();
             }
         }
     }

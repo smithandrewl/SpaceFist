@@ -6,10 +6,8 @@ import com.spacefist.entities.Entity;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 public class Manager<T extends Entity> implements Iterable<T> {
-    private Random rand = new Random();
 
     protected List<T>  entities;
     protected GameData gameData;

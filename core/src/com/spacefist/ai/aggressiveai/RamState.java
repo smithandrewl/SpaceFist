@@ -3,6 +3,7 @@ package com.spacefist.ai.aggressiveai;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.ai.FuzzyVariable;
 import com.spacefist.ai.ShipEnemyInfo;
@@ -16,7 +17,6 @@ import com.spacefist.entities.enemies.Enemy;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * A fuzzy state that rams the players ship.
@@ -31,18 +31,16 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private EnemyAI       ai;
     private Enemy         enemy;
     private GameData      gameData;
-    private Date          lastUpdate;
-    private Random        random;
+    private long          lastUpdate;
 
     public RamState(EnemyAI ai, GameData gameData) {
 
         ShipEnemyInfo shipEnemyInfo = ai.getShipEnemyInfo();
 
-        random        = new Random();
         this.ai       = ai;
         enemy         = shipEnemyInfo.getEnemy();
         wayPoints     = new ArrayList<Vector2>();
-        lastUpdate    = new Date();
+        lastUpdate    = TimeUtils.millis();
         this.gameData = gameData;
     }
 
@@ -90,7 +88,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
             not(distance.getHigh())
         );
 
-        long millisecondsPassed = (new Date().getTime() - lastUpdate.getTime());
+        long millisecondsPassed = TimeUtils.millis() - lastUpdate;
 
         // Keep up to 3 waypoints, updating them every 25 milliseconds
         boolean updateWaypoints = millisecondsPassed > 25;
@@ -125,18 +123,13 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
 
                     // Using fuzzy logic, the generated way point will be more accurate
                     // the closer the enemy is to the ship.
-                    newPoint = lastPoint.add(
-                        new Vector2(
-                            newPoint.x * mult,
-                            newPoint.y * mult
-                        )
-                    );
+                    newPoint = lastPoint.add(newPoint.scl(mult));
 
                     wayPoints.add(newPoint);
                 }
             }
 
-            lastUpdate = new Date();
+            lastUpdate = TimeUtils.millis();
         }
 
         if (!wayPoints.isEmpty()) {
@@ -165,9 +158,9 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
                 direction = direction.nor();
 
                 // The rotation of the ship needed for it to face in the direction of the next waypoint
-                float destRotation = (float) Math.toDegrees((float) (Math.atan2(direction.y, direction.x))) + 90;
+                float destRotation = direction.angle() + 90;
 
-                enemy.setRotation((float) Math.toRadians(destRotation));
+                enemy.setRotation(destRotation);
 
                 // Calculate a velocity to move along the line of sight at a magnitude of 5
                 // TODO: Convert linear interpolation code in RamState

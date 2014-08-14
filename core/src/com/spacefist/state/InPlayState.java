@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.Hud;
 import com.spacefist.SpawnPoint;
@@ -22,7 +23,6 @@ import com.spacefist.util.Func;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /*
  * The main state of the game.  All game play occurs in the InPlayState.
@@ -36,7 +36,7 @@ public class InPlayState implements GameState {
 
     private Hud hud;
 
-    private Date levelLoadedAt;
+    private long levelLoadedAt;
     private List<Rectangle> debrisField;
 
     private boolean titleShown = false;
@@ -207,8 +207,6 @@ public class InPlayState implements GameState {
         gameData.getPickUpManager().SpawnMissilePickups(3);
         /**********/
 
-        Random rand = new Random();
-
         debrisField.clear();
 
         int    minScale      = gameData.getLevel().getDebrisParticleMinScale();
@@ -241,7 +239,7 @@ public class InPlayState implements GameState {
 
         */
 
-        levelLoadedAt = new Date();
+        levelLoadedAt = TimeUtils.millis();
         titleShown    = false;
     }
 

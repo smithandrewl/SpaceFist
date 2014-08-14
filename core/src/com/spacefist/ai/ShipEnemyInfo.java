@@ -1,6 +1,7 @@
 package com.spacefist.ai;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.entities.Ship;
@@ -28,7 +29,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
     private Enemy    enemy;
     private ShipInfo shipInfo;
 
-    private Date lastPrint = new Date();
+    private long lastPrint = TimeUtils.millis();
 
     /**
      * Creates a new ShipEnemyInfo instance.
@@ -109,7 +110,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
      * Displays details of the fuzzy variables to the console every second.
      */
     private void printDebuggingInfo() {
-        long secondsElapsed = (new Date().getTime() - lastPrint.getTime()) / 1000;
+        long secondsElapsed = (TimeUtils.millis() - lastPrint) / 1000;
 
         if (secondsElapsed >= 1) {
             FuzzyVariable distance = getDistance();
@@ -118,7 +119,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
             System.out.println(distance);
             System.out.println();
 
-            lastPrint = new Date();
+            lastPrint = TimeUtils.millis();
         }
     }
 }

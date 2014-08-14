@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
 
@@ -18,7 +19,7 @@ import java.util.HashMap;
  */
 public class MenuState implements GameState {
     private GameData  gameData;
-    private Date      enteredAt;
+    private long      enteredAt;
     private Texture   background;
     private Texture   menu;
     private Rectangle backgroundRect;
@@ -78,7 +79,7 @@ public class MenuState implements GameState {
 
         Vector2 mousePos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
 
-        if (new Date().getTime() - enteredAt.getTime() > 300) {
+        if (TimeUtils.millis() - enteredAt > 300) {
             if (Gdx.input.isTouched()) {
                 if (newGameRect.contains(mousePos)) {
                     // TODO: convert InPlayState
@@ -107,7 +108,7 @@ public class MenuState implements GameState {
 
     public void enteringState() {
         // TODO: Convert MenuState.enteringState
-        enteredAt = new Date();
+        enteredAt = TimeUtils.millis();
 
         // gameData.IsMouseVisible = true;
         // MediaPlayer.IsRepeating = true;

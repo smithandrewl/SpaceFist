@@ -13,8 +13,6 @@ import com.spacefist.weapons.Bluelaser;
 import com.spacefist.weapons.Missile;
 import com.spacefist.weapons.SampleWeapon;
 
-import java.util.Random;
-
 /// <summary>
 /// Keeps track of the pickups in the world and provides
 /// methods to operate on them.
@@ -22,8 +20,6 @@ import java.util.Random;
 public class PickUpManager extends Manager<Pickup>
 {
     private RoundData roundData;
-
-    private Random rand = new Random();
 
     /// <summary>
     /// Creates a new instance of PickupManager.

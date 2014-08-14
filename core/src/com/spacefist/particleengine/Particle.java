@@ -3,6 +3,7 @@ package com.spacefist.particleengine;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Date;
 
@@ -13,7 +14,7 @@ public class Particle {
     private float rotation;
     private float angularVelocity;
     private Vector2 velocity;
-    private Date creation;
+    private long creation;
     private int ttl;
     private Color tint;
     private Vector2 originalPos;
@@ -29,7 +30,7 @@ public class Particle {
         this.rotation = rotation;
         this.angularVelocity = angularVelocity;
         this.velocity = velocity;
-        this.creation = new Date();
+        this.creation = TimeUtils.millis();
         this.ttl = ttl;
         this.tint = tint;
 
@@ -60,7 +61,7 @@ public class Particle {
         return velocity;
     }
 
-    public Date getCreation() {
+    public long getCreation() {
         return creation;
     }
 

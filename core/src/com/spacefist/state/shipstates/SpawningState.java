@@ -1,5 +1,6 @@
 package com.spacefist.state.shipstates;
 
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.state.abst.ShipState;
@@ -18,17 +19,17 @@ public class SpawningState implements ShipState {
     private static final int SPAWN_TIME = 1;
 
     private GameData gameData;
-    private Date     spawnedAt;
+    private long     spawnedAt;
 
     public SpawningState(GameData gameData) {
         this.gameData = gameData;
     }
 
-    public Date getSpawnedAt() {
+    public long getSpawnedAt() {
         return spawnedAt;
     }
 
-    public void setSpawnedAt(Date spawnedAt) {
+    public void setSpawnedAt(long spawnedAt) {
         this.spawnedAt = spawnedAt;
     }
 
@@ -63,7 +64,7 @@ public class SpawningState implements ShipState {
     }
 
     public void enteringState() {
-        spawnedAt = new Date();
+        spawnedAt = TimeUtils.millis();
 
         /*
         TODO: draw the ship transparent when the spawning state has been entered

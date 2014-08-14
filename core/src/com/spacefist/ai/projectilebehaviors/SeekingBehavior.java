@@ -43,52 +43,41 @@ public class SeekingBehavior implements ProjectileBehavior {
             // The minimum distance from the launching point
             // that the projectile must be after being fired, before it will start
             // intercepting the target.
-            int minDist = 150;
+            float minDist = 150.0f;
 
-            float xDiff = projectile.getX() - origin.x;
-            float yDiff = projectile.getY() - origin.y;
+            Vector2 projectilePos = new Vector2(projectile.getX(), projectile.getY());
 
             // The distance of the projectile from the launch point.
-            int distFromOrigin = (int) Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
+            float distFromOrigin = projectilePos.dst(origin);
 
             if (distFromOrigin < minDist) {
                 // If the minimum distance has not been reached,
                 // continue moving in the direction fired.
-                projectile.setVelocity(new Vector2(origVector.x * maxSpeed, origVector.y * maxSpeed));
+                projectile.setVelocity(origVector.scl(maxSpeed));
             } else {
                 Vector2 targetPos = new Vector2(target.getX(), target.getY());
                 Vector2 projPos   = new Vector2(projectile.getX(), projectile.getY());
 
                 int timeToIntercept;
 
-                Vector2 positionDiff = new Vector2(target.getX(), target.getY()).sub(new Vector2(projectile.getX(), projectile.getY()));
+                Vector2 positionDiff = targetPos.sub(projPos);
                 Vector2 velocityDiff = target.getVelocity().sub(projectile.getVelocity());
 
                 timeToIntercept = (int) (positionDiff.len() / velocityDiff.len());
 
                 // The point of interception
-                Vector2 poi = targetPos.add(
-                    new Vector2(
-                        target.getVelocity().x * timeToIntercept,
-                        target.getVelocity().y * timeToIntercept
-                    )
-                );
+                Vector2 poi = targetPos.add(target.getVelocity().scl(timeToIntercept));
 
                 Vector2 desiredVelocity = poi.sub(projPos);
                 desiredVelocity.nor();
 
-                desiredVelocity = new Vector2(
-                        desiredVelocity.x * maxSpeed,
-                        desiredVelocity.y * maxSpeed
-                );
+                desiredVelocity = desiredVelocity.scl(maxSpeed);
 
                 Vector2 steering = desiredVelocity.sub(projectile.getVelocity());
 
-                Vector2 newVelocity = projectile.getVelocity().add(new Vector2(steering.x * 0.2f, steering.y * 0.2f));
+                Vector2 newVelocity = projectile.getVelocity().add(steering.scl(0.2f));
 
-                float direction = (float) (Math.toDegrees((float) Math.atan2(newVelocity.y, newVelocity.x)) + 90);
-
-                direction = (float) Math.toRadians(direction);
+                float direction = newVelocity.angle() + 90;
 
                 projectile.setRotation(direction);
                 projectile.setVelocity(newVelocity);
