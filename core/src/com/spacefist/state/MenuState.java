@@ -40,8 +40,8 @@ public class MenuState implements GameState {
         menu           = textures.get("Menu");
 
         menuRect = new Rectangle(
-                (int) ((background.getWidth()  / 2f) - (menu.getWidth())),
-                (int) ((background.getHeight() / 2f) - (menu.getHeight())),
+                (int) ((background.getWidth()  / 2.0f) - (menu.getWidth())),
+                (int) ((background.getHeight() / 2.0f) - (menu.getHeight())),
                 menu.getWidth(), menu.getHeight()
         );
 

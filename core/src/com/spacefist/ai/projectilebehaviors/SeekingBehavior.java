@@ -84,7 +84,7 @@ class SeekingBehavior implements ProjectileBehavior {
 
                 Vector2 steering = desiredVelocity.sub(projectile.getVelocity());
 
-                Vector2 newVelocity = projectile.getVelocity().add(new Vector2(steering.x * .2f, steering.y * .2f));
+                Vector2 newVelocity = projectile.getVelocity().add(new Vector2(steering.x * 0.2f, steering.y * 0.2f));
 
                 float direction = (float) (Math.toDegrees((float) Math.atan2(newVelocity.y, newVelocity.x)) + 90);
 

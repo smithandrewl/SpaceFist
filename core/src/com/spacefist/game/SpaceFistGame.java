@@ -130,7 +130,7 @@ public class SpaceFistGame extends ApplicationAdapter {
         int width = Gdx.graphics.getWidth();
 
         gameData.setResolution(new Rectangle(0, 0, width, height));
-        gameData.setScreenScale(.5f);
+        gameData.setScreenScale(0.5f);
 
         // Create a new SpriteBatch, which can be used to draw textures.
         gameData.setSpriteBatch(batch);
