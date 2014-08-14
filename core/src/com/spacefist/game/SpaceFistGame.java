@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SpaceFistGame extends ApplicationAdapter {
-    private static final String SpriteFontAsset = "Fonts/Raised";
-    private static final String TitleFontAsset = "Fonts/Title";
+    private static final String SPRITE_FONT_ASSET = "Fonts/Raised";
+    private static final String TITLE_FONT_ASSET  = "Fonts/Title";
     SpriteBatch batch;
     private GameData gameData;
 
@@ -137,8 +137,8 @@ public class SpaceFistGame extends ApplicationAdapter {
 
         // ----------------------------- Load the games assets -----------
         /*
-        GameData.Font      = Content.Load<SpriteFont>(SpriteFontAsset);
-        GameData.TitleFont = Content.Load<SpriteFont>(TitleFontAsset);
+        GameData.Font      = Content.Load<SpriteFont>(SPRITE_FONT_ASSET);
+        GameData.TitleFont = Content.Load<SpriteFont>(TITLE_FONT_ASSET);
         */
 
         LoadTextures();

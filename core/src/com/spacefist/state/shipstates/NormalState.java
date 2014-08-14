@@ -13,7 +13,7 @@ import com.spacefist.state.abst.ShipState;
   */
 public class NormalState implements ShipState {
     // The percentage of full health at which the ship is considered to have low-health.
-    private static final float LowHealthThreshold = .40f;
+    private static final float LOW_HEALTH_THRESHOLD = .40f;
     private GameData gameData;
 
     public NormalState(GameData gameData) {
@@ -23,7 +23,7 @@ public class NormalState implements ShipState {
     public void Update() {
         Ship ship = gameData.getShip();
 
-        if (ship.getHealth() <= LowHealthThreshold) {
+        if (ship.getHealth() <= LOW_HEALTH_THRESHOLD) {
             // Change the ships state to LowHealthState
             ship.setCurrentState(new LowHealthState(gameData));
         }

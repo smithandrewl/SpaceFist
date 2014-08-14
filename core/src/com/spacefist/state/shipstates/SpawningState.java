@@ -15,7 +15,7 @@ import java.util.Date;
 public class SpawningState implements ShipState {
     // The number of seconds to wait for the ship to load.
     // This gives the ship time to fully fade-in from transparent to opaque.
-    private static final int SpawnTime = 1;
+    private static final int SPAWN_TIME = 1;
 
     private GameData gameData;
     private Date     spawnedAt;
@@ -55,7 +55,7 @@ public class SpawningState implements ShipState {
         var elapsed =  DateTime.Now.Subtract(SpawnedAt).Seconds;
 
         // After the ship fades in, switch to the normal state
-        if (elapsed > SpawnTime)
+        if (elapsed > SPAWN_TIME)
         {
             ship.setCurrentState(new NormalState(gameData));
         }

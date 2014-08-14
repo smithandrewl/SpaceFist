@@ -53,7 +53,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
      * @param y2 The Y coordinate of point 2
      * @return Returns true if the two points are within 10 pixels of each other
      */
-    private static boolean near(int x1, int y1, int x2, int y2) {
+    private static boolean isNear(int x1, int y1, int x2, int y2) {
         int tolerance = 10;
 
         // TODO: Convert distance code in RamState
@@ -144,7 +144,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
 
             // If the enemy is close to the waypoint, remove the way point
             // and draw the enemy at rest.
-            if (near(enemy.getX(), enemy.getY(), (int) wayPoint.x, (int) wayPoint.y)) {
+            if (isNear(enemy.getX(), enemy.getY(), (int) wayPoint.x, (int) wayPoint.y)) {
                 wayPoints.remove(wayPoint);
             } else {
 

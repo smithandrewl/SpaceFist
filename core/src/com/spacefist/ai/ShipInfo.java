@@ -12,20 +12,20 @@ import java.util.Date;
 /// has played this current round.
 /// </summary>
 public class ShipInfo extends FuzzyLogicEnabled {
-    private static final boolean DisplayDebug = false;
+    private static final boolean DISPLAY_DEBUG = false;
 
     // ------------------- fuzzy variable range constants ---------
-    private static final float SpeedHigh = 20;
-    private static final float SpeedLow  = 0;
+    private static final float SPEED_HIGH = 20;
+    private static final float SPEED_LOW  = 0;
 
-    private static final float TriggerHappyHigh = 60;
-    private static final float TriggerHappyLow = 0;
+    private static final float TRIGGER_HAPPY_HIGH = 60;
+    private static final float TRIGGER_HAPPY_LOW  = 0;
 
-    private static final float AccuracyHigh = 1;
-    private static final float AccuracyLow  = 0;
+    private static final float ACCURACY_HIGH = 1;
+    private static final float ACCURACY_LOW  = 0;
 
-    private static final float HealthLow  = 0;
-    private static final float HealthHigh = 100;
+    private static final float HEALTH_LOW  = 0;
+    private static final float HEALTH_HIGH = 100;
     // ------------------------------------------------------------
 
     // The last time debug information was displayed
@@ -75,7 +75,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
      * @return The degree to which the ship belongs to the low, medium and high speed sets.
      */
     public FuzzyVariable getSpeed() {
-        return grade(speed, SpeedLow, SpeedHigh, fuzzySpeed);
+        return grade(speed, SPEED_LOW, SPEED_HIGH, fuzzySpeed);
     }
 
     /* TODO: Implement or remove ShipInfo.getTriggerHappy()
@@ -84,7 +84,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
     /// If the player never shoots, the membership in TriggerHappy.Low will be 100 percent.
     /// </summary>
     public FuzzyVariable getTriggerHappy() {
-            return grade(roundData.ShotsPerPeriod, TriggerHappyLow, TriggerHappyHigh, fuzzyTriggerHappy);
+            return grade(roundData.ShotsPerPeriod, TRIGGER_HAPPY_LOW, TRIGGER_HAPPY_HIGH, fuzzyTriggerHappy);
     }
     */
 
@@ -92,14 +92,14 @@ public class ShipInfo extends FuzzyLogicEnabled {
      * @return The degree to which the ship belongs to the low, medium and high health sets.
      */
     public FuzzyVariable getHealth() {
-        return grade(health, HealthLow, HealthHigh, fuzzyHealth);
+        return grade(health, HEALTH_LOW, HEALTH_HIGH, fuzzyHealth);
     }
 
     /**
      * @return The degree to which the player has low, medium or high accuracy.
      */
     public FuzzyVariable getAccuracy() {
-        return grade(roundData.getAcc(), AccuracyLow, AccuracyHigh, fuzzyAccuracy);
+        return grade(roundData.getAcc(), ACCURACY_LOW, ACCURACY_HIGH, fuzzyAccuracy);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
         speed  = (int) ship.getVelocity().len();
         health = ship.getHealth();
 
-        if (DisplayDebug) {
+        if (DISPLAY_DEBUG) {
             PrintDebugInfo();
         }
     }

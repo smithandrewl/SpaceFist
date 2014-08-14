@@ -14,7 +14,7 @@ import java.util.Date;
  * to the splash screen.
  */
 public class LogoState implements GameState {
-    private static final int loadTime = 3;
+    private static final int LOAD_TIME = 3;
 
     Texture background;
     Date    enteredAt;
@@ -40,7 +40,7 @@ public class LogoState implements GameState {
 
     public void Update() {
 
-        if (((new Date().getTime() - enteredAt.getTime()) / 1000) > loadTime ||
+        if (((new Date().getTime() - enteredAt.getTime()) / 1000) > LOAD_TIME ||
                 Gdx.input.isKeyPressed(Input.Keys.ENTER) ||
                 Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
 
