@@ -27,7 +27,9 @@ public class LaserWeapon implements Weapon {
     public void fire() {
         Ship ship = gameData.getShip();
 
-        int projectileX = (int) (ship.getX() + (ship.getRectangle().getWidth() / 2));
+        float shipWidth = ship.getRectangle().getWidth();
+
+        int projectileX = (int) (ship.getX() + (shipWidth / 2));
         int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
 
         projectileManager.fireLaser(projectileX, projectileY);

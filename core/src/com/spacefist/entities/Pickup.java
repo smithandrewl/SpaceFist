@@ -62,7 +62,7 @@ public class Pickup extends Entity {
      * PickedUp calls pickupHandler when the pickup has been "picked up"
      * @return if the pickup should be removed
      */
-    public boolean PickedUp(Ship ship) {
+    public boolean pickedUp(Ship ship) {
         boolean pickedUp = pickupHandler.handle(ship);
 
         if (pickedUp) {

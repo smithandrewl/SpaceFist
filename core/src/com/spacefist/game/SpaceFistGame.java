@@ -13,12 +13,14 @@ import com.spacefist.GameData;
 import com.spacefist.state.LogoState;
 import com.spacefist.state.MenuState;
 import com.spacefist.state.SplashScreenState;
+import com.spacefist.state.abst.GameState;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class SpaceFistGame extends ApplicationAdapter {
-    private static final String SpriteFontAsset = "Fonts/Raised";
-    private static final String TitleFontAsset = "Fonts/Title";
+    private static final String SPRITE_FONT_ASSET = "Fonts/Raised";
+    private static final String TITLE_FONT_ASSET  = "Fonts/Title";
     SpriteBatch batch;
     private GameData gameData;
 
@@ -57,27 +59,33 @@ public class SpaceFistGame extends ApplicationAdapter {
     @Override
     public void render() {
         // Tell the current state to update itself
-        gameData.getCurrentState().Update();
+        GameState currentState = gameData.getCurrentState();
+
+        currentState.update();
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         // Tell the current state to draw itself
-        gameData.getCurrentState().Draw();
+        currentState.draw();
         batch.end();
     }
 
     @Override
     public void dispose() {
-        for (Texture texture : gameData.getTextures().values()) {
+        HashMap<String, Texture> textures     = gameData.getTextures();
+        HashMap<String, Music>   songs        = gameData.getSongs();
+        HashMap<String, Sound>   soundEffects = gameData.getSoundEffects();
+
+        for (Texture texture : textures.values()) {
             texture.dispose();
         }
 
-        for (Music song : gameData.getSongs().values()) {
+        for (Music song : songs.values()) {
             song.dispose();
         }
 
-        for (Sound soundEffect : gameData.getSoundEffects().values()) {
+        for (Sound soundEffect : soundEffects.values()) {
             soundEffect.dispose();
         }
     }
@@ -86,10 +94,11 @@ public class SpaceFistGame extends ApplicationAdapter {
         return gameData;
     }
 
-    private void LoadTextures() {
+    private void loadTextures() {
         Map<String, Texture> textures = gameData.getTextures();
 
-        for (FileHandle fileHandle : Gdx.files.absolute("images/").list()) {
+        FileHandle directory = Gdx.files.absolute("images/");
+        for (FileHandle fileHandle : directory.list()) {
             if (fileHandle.isDirectory()) {
                 for (FileHandle file : fileHandle.list(".png")) {
                     textures.put(file.nameWithoutExtension(), new Texture(file));
@@ -98,18 +107,20 @@ public class SpaceFistGame extends ApplicationAdapter {
         }
     }
 
-    private void LoadSongs() {
+    private void loadSongs() {
         Map<String, Music> songs = gameData.getSongs();
+        FileHandle directory = Gdx.files.absolute("sound/songs/");
 
-        for (FileHandle fileHandle : Gdx.files.absolute("sound/songs/").list()) {
+        for (FileHandle fileHandle : directory.list()) {
             songs.put(fileHandle.nameWithoutExtension(), Gdx.audio.newMusic(fileHandle));
         }
     }
 
-    private void LoadSoundEffects() {
+    private void loadSoundEffects() {
         Map<String, Sound> soundEffects = gameData.getSoundEffects();
+        FileHandle directory = Gdx.files.absolute("sound/soundeffects/");
 
-        for (FileHandle fileHandle : Gdx.files.absolute("sound/soundeffects/").list()) {
+        for (FileHandle fileHandle : directory.list()) {
             soundEffects.put(fileHandle.nameWithoutExtension(), Gdx.audio.newSound(fileHandle));
         }
     }
@@ -119,32 +130,32 @@ public class SpaceFistGame extends ApplicationAdapter {
         int width = Gdx.graphics.getWidth();
 
         gameData.setResolution(new Rectangle(0, 0, width, height));
-        gameData.setScreenScale(.5f);
+        gameData.setScreenScale(0.5f);
 
         // Create a new SpriteBatch, which can be used to draw textures.
         gameData.setSpriteBatch(batch);
 
         // ----------------------------- Load the games assets -----------
         /*
-        GameData.Font      = Content.Load<SpriteFont>(SpriteFontAsset);
-        GameData.TitleFont = Content.Load<SpriteFont>(TitleFontAsset);
+        GameData.Font      = Content.Load<SpriteFont>(SPRITE_FONT_ASSET);
+        GameData.TitleFont = Content.Load<SpriteFont>(TITLE_FONT_ASSET);
         */
 
-        LoadTextures();
-        LoadSongs();
-        LoadSoundEffects();
+        loadTextures();
+        loadSongs();
+        loadSoundEffects();
 
 
-        // GameData.InPlayState.LoadContent();
-        // GameData.GameOverState.LoadContent();
+        // GameData.InPlayState.loadContent();
+        // GameData.GameOverState.loadContent();
 
-        gameData.getSplashScreenState().LoadContent();
-        gameData.getMenuState().LoadContent();
-        gameData.getLogoState().LoadContent();
+        gameData.getSplashScreenState().loadContent();
+        gameData.getMenuState().loadContent();
+        gameData.getLogoState().loadContent();
         /*
-        GameData.EndOfLevelState.LoadContent();
+        GameData.EndOfLevelState.loadContent();
         */
 
-        gameData.getCurrentState().EnteringState();
+        gameData.getCurrentState().enteringState();
     }
 }

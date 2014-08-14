@@ -17,20 +17,20 @@ import com.spacefist.weapons.abst.Weapon;
 import static com.badlogic.gdx.math.MathUtils.clamp;
 
 public class Ship extends Entity implements StateMachine<ShipState> {
-    private static final int maxHealthPoints = 100;
+    private static final int MAX_HEALTH_POINTS = 100;
 
     // The dimensions of the ship
-    private static final int Width  = 60;
-    private static final int Height = 133;
+    private static final int WIDTH  = 60;
+    private static final int HEIGHT = 133;
 
     // The frame of the sprite sheet (ShipSheet.png) to draw
     // Frame 0 is the ship turning left
     // Frame 4 is the ship in its normal state
     // Frame 7 is the ship turning right
-    private static final int LeftIndex   = 0;
-    private static final int AtRestIndex = 4;
-    private static final int RightIndex  = 7;
-    private static final int MaxVelocity = 20;
+    private static final int LEFT_INDEX    = 0;
+    private static final int AT_REST_INDEX = 4;
+    private static final int RIGHT_INDEX   = 7;
+    private static final int MAX_VELOCITY  = 20;
 
     /**
      * The current behavior of the ship
@@ -70,20 +70,20 @@ public class Ship extends Entity implements StateMachine<ShipState> {
             new Rectangle(
                 (int) position.x,
                 (int) position.y,
-                (int) (Width * (gameData.getScreenScale() / 2)),
-                (int) (Height * (gameData.getScreenScale() / 2))
+                (int) (WIDTH * (gameData.getScreenScale() / 2)),
+                (int) (HEIGHT * (gameData.getScreenScale() / 2))
             ),
             new Physics(),
             new ShipInput(),
-            new IndexedSprite(gameData.getTextures().get("ShipSheet"), Width, Height, 4),
+            new IndexedSprite(gameData.getTextures().get("ShipSheet"), WIDTH, HEIGHT, 4),
             new Sound(gameData.getSoundEffects().get("PlayerDeath")),
             gameData.getScreenScale()
         );
 
         indexedSprite = (IndexedSprite) getGraphics();
 
-        setHealthPoints(100);
-        setWeapon(new LaserWeapon(gameData));
+        healthPoints = 100;
+        weapon       = new LaserWeapon(gameData);
 
         // Start the ship in the spawning state
         state = new SpawningState(gameData);
@@ -96,8 +96,8 @@ public class Ship extends Entity implements StateMachine<ShipState> {
 
     @Override
     public void setCurrentState(ShipState shipState) {
-        state.ExitingState();
-        shipState.EnteringState();
+        state.exitingState();
+        shipState.enteringState();
         state = shipState;
     }
 
@@ -121,59 +121,59 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     }
 
     public float getHealth() {
-        return getHealthPoints() / (float) maxHealthPoints;
+        return healthPoints / (float) MAX_HEALTH_POINTS;
     }
 
     /**
      * Plays the ships destruction sound effect.
      */
-    public void OnDeath() {
+    public void onDeath() {
         ((Sound) getSound()).play();
     }
 
     /**
      * Resets the ship to the default state (drawn normally (no flashing or fading)).
      */
-    public void ResetState() {
+    public void resetState() {
         setCurrentState(new NormalState(gameData));
-        Reset();
+        reset();
     }
 
     /**
      * Updates the ship
      */
-    public void Update() {
-        CurrentState.Update();
-        super.Update();
+    public void update() {
+        CurrentState.update();
+        super.update();
     }
 
     /**
      * Fire the active weapon
      */
-    public void Fire() {
+    public void fire() {
         weapon.fire();
     }
 
-    public void Reset() {
+    public void reset() {
         // This causes the ship to be drawn in its default state (not turning left or right)
-        indexedSprite.setIndex(AtRestIndex);
+        indexedSprite.setIndex(AT_REST_INDEX);
     }
 
     /**
      * Changes the velocity by "velocity" and then clamps the value between the minimum and maximum velocities
      * allowed.
      */
-    private void IncrementVelocity(Vector2 velocity) {
+    private void incrementVelocity(Vector2 velocity) {
         float xVel = clamp(
             getVelocity().x + velocity.x,
-            -MaxVelocity,
-            MaxVelocity
+            -MAX_VELOCITY,
+            MAX_VELOCITY
         );
 
         float yVel = clamp(
             getVelocity().y + velocity.y,
-            -MaxVelocity,
-            MaxVelocity
+            -MAX_VELOCITY,
+            MAX_VELOCITY
         );
 
         setVelocity(new Vector2(xVel, yVel));
@@ -182,41 +182,41 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     /**
      * Causes the ship to move to the left.
      */
-    public void Left() {
+    public void left() {
         // This tells indexedSprite to draw the ship turning left
-        indexedSprite.setIndex(LeftIndex);
+        indexedSprite.setIndex(LEFT_INDEX);
 
         // Change to a left moving velocity
-        IncrementVelocity(LeftVelocity);
+        incrementVelocity(LeftVelocity);
     }
 
     /**
      * Causes the ship to move to the right.
      */
-    public void Right() {
+    public void right() {
         // This tells indexedSprite to draw the ship turning right
-        indexedSprite.setIndex(RightIndex);
+        indexedSprite.setIndex(RIGHT_INDEX);
 
         // Change to a right moving velocity
-        IncrementVelocity(RightVelocity);
+        incrementVelocity(RightVelocity);
     }
 
     /**
      * Causes the ship to move forward
      */
-    public void Forward() {
+    public void forward() {
         // This tells indexedSprite to draw the ship normally (not turning)
-        indexedSprite.setIndex(AtRestIndex);
+        indexedSprite.setIndex(AT_REST_INDEX);
 
         // Change to a forward moving velocity
-        IncrementVelocity(ForwardVelocity);
+        incrementVelocity(ForwardVelocity);
     }
 
-    public void Backward() {
+    public void backward() {
         // This tells indexedSprite to draw the ship normally (not turning)
-        indexedSprite.setIndex(AtRestIndex);
+        indexedSprite.setIndex(AT_REST_INDEX);
 
         // Change to a backwards moving velocity
-        IncrementVelocity(BackwardVelocity);
+        incrementVelocity(BackwardVelocity);
     }
 }

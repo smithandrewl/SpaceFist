@@ -10,13 +10,13 @@ public class EndOfLevelState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() {
+    public void loadContent() {
     }
 
-    public void Draw() {
+    public void draw() {
     }
 
-    public void Update() {
+    public void update() {
             /*
             TODO: Convert EndOfLevelState.Update
 
@@ -30,7 +30,9 @@ public class EndOfLevelState implements GameState {
             */
     }
 
-    public void EnteringState() { }
+    @Override
+    public void enteringState() { }
 
-    public void ExitingState() { }
+    @Override
+    public void exitingState() { }
 }

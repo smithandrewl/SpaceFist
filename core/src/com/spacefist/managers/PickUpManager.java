@@ -178,7 +178,7 @@ public class PickUpManager extends Manager<Pickup>
                 public boolean handle(Ship ship) {
                     if (ship.getHealth() < 1) {
                         ship.setHealthPoints(100);
-                        ship.ResetState();
+                        ship.resetState();
                         return true;
                     }
 

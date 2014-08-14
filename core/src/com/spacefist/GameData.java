@@ -40,9 +40,9 @@ public class GameData {
     private SpriteBatch spriteBatch;
     private Rectangle   resolution;
 
-    private HashMap<String, Texture> Textures;
-    private HashMap<String, Sound>   SoundEffects;
-    private HashMap<String, Music>   Songs;
+    private HashMap<String, Texture> textures;
+    private HashMap<String, Sound>   soundEffects;
+    private HashMap<String, Music>   songs;
 
     private RoundData roundData;
 
@@ -75,13 +75,13 @@ public class GameData {
 
     private LogoState logoState;
     public GameData(SpaceFistGame game) {
-        setGame(game);
+        this.game = game;
 
-        setRoundData(new RoundData());
+        roundData = new RoundData();
 
-        setTextures(new HashMap<String, Texture>());
-        setSoundEffects(new HashMap<String, Sound>());
-        setSongs(new HashMap<String, Music>());
+        textures     = new HashMap<String, Texture>();
+        soundEffects = new HashMap<String, Sound>();
+        songs        = new HashMap<String, Music>();
 
         setLevelManager(new LevelManager(this));
 
@@ -124,10 +124,10 @@ public class GameData {
 
     public void setCurrentState(GameState newState) {
         if (currentState != null) {
-            currentState.ExitingState();
+            currentState.exitingState();
         }
 
-        newState.EnteringState();
+        newState.enteringState();
         currentState = newState;
     }
 
@@ -188,27 +188,27 @@ public class GameData {
     }
 
     public HashMap<String, Texture> getTextures() {
-        return Textures;
+        return textures;
     }
 
     public void setTextures(HashMap<String, Texture> textures) {
-        Textures = textures;
+        this.textures = textures;
     }
 
     public HashMap<String, Sound> getSoundEffects() {
-        return SoundEffects;
+        return soundEffects;
     }
 
     public void setSoundEffects(HashMap<String, Sound> soundEffects) {
-        SoundEffects = soundEffects;
+        this.soundEffects = soundEffects;
     }
 
     public HashMap<String, Music> getSongs() {
-        return Songs;
+        return songs;
     }
 
     public void setSongs(HashMap<String, Music> songs) {
-        Songs = songs;
+        this.songs = songs;
     }
 
     public RoundData getRoundData() {

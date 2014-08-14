@@ -14,8 +14,8 @@ public class AggressiveAI implements EnemyAI {
      * The ram fuzzy state
      */
     private RamState      ramState;
-    private ShipEnemyInfo ShipEnemyInfo;
-    private ShipInfo      ShipInfo;
+    private ShipEnemyInfo shipEnemyInfo;
+    private ShipInfo      shipInfo;
 
     /**
      * Creates a new AggressiveAI instance.
@@ -24,35 +24,38 @@ public class AggressiveAI implements EnemyAI {
      * @param enemy The enemy this AI will control
      */
     public AggressiveAI(GameData gameData, Enemy enemy) {
-        setShipInfo(new ShipInfo(gameData));
-        setShipEnemyInfo(new ShipEnemyInfo(enemy, getShipInfo(), gameData));
+        shipInfo      = new ShipInfo(gameData);
+        shipEnemyInfo = new ShipEnemyInfo(enemy, shipInfo, gameData);
 
         ramState = new RamState(this, gameData);
     }
 
-    public void Update() {
-        getShipInfo().Update();
-        getShipEnemyInfo().Update();
-        ramState.Update();
+    public void update() {
+        ShipInfo      shipInfo      = this.shipInfo;
+        ShipEnemyInfo shipEnemyInfo = this.shipEnemyInfo;
+
+        shipInfo.update();
+        shipEnemyInfo.update();
+        ramState.update();
     }
 
     @Override
     public ShipEnemyInfo getShipEnemyInfo() {
-        return ShipEnemyInfo;
+        return shipEnemyInfo;
     }
 
     @Override
     public void setShipEnemyInfo(ShipEnemyInfo shipEnemyInfo) {
-        ShipEnemyInfo = shipEnemyInfo;
+        this.shipEnemyInfo = shipEnemyInfo;
     }
 
     @Override
     public ShipInfo getShipInfo() {
-        return ShipInfo;
+        return shipInfo;
     }
 
     @Override
     public void setShipInfo(ShipInfo shipInfo) {
-        ShipInfo = shipInfo;
+        this.shipInfo = shipInfo;
     }
 }

@@ -26,7 +26,7 @@ public class EnemyMine extends Entity {
         );
     }
 
-    public void Hit() {
+    public void hit() {
         ((Sound) getSound()).play();
     }
 }

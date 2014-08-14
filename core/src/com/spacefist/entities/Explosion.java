@@ -15,11 +15,11 @@ import com.spacefist.components.Physics;
  **/
 public class Explosion extends Entity {
     // The dimensions of the explosion
-    private static final int height = 122;
-    private static final int width  = 122;
+    private static final int HEIGHT = 122;
+    private static final int WIDTH  = 122;
 
     // The number of frames / pictures in the animation
-    private static final int lastFrame = 9;
+    private static final int LAST_FRAME = 9;
 
     // The time the explosion animation started
     // and the time to wait before drawing the next frame
@@ -37,12 +37,12 @@ public class Explosion extends Entity {
             new Rectangle(
                 (int) position.x,
                 (int) position.y,
-                width,
-                height
+                WIDTH,
+                HEIGHT
             ),
             new Physics(),
             new NullInputComponent(),
-            new IndexedSprite(gameData.getTextures().get("Explosion"), width, height, 0),
+            new IndexedSprite(gameData.getTextures().get("Explosion"), WIDTH, HEIGHT, 0),
             new NullSoundComponent(),
             gameData.getScreenScale()
         );
@@ -52,12 +52,12 @@ public class Explosion extends Entity {
     }
 
     @Override
-    public void Update() {
+    public void update() {
         IndexedSprite indexedSprite = (IndexedSprite) getGraphics();
 
         // If the animation is not finished, wait TimeBetweenFrames
         // before switching to the next image of the animation.
-        if (indexedSprite.getIndex() <= lastFrame) {
+        if (indexedSprite.getIndex() <= LAST_FRAME) {
             long curTime = System.currentTimeMillis();
 
             if ((curTime - startTime) >= TimeBetweenFrames) {
@@ -71,6 +71,6 @@ public class Explosion extends Entity {
             setAlive(false);
         }
 
-        super.Update();
+        super.update();
     }
 }

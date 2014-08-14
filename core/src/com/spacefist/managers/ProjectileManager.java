@@ -44,7 +44,7 @@ public class ProjectileManager extends Manager<Projectile> {
             {
                 if (rect.contains(projectile.getRectangle()))
                 {
-                    projectile.Update();
+                    projectile.update();
                 }
                 else
                 {

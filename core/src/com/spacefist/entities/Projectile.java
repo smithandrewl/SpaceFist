@@ -62,17 +62,17 @@ public class Projectile extends Entity {
      * Plays a firing noise on the first update
      */
     @Override
-    public void Update() {
-        SoundComponent sound = (Sound) this.getSound();
+    public void update() {
+        SoundComponent sound = getSound();
 
         if (!soundPlayed) {
             ((Sound) sound).play();
             soundPlayed = true;
         }
 
-        behavior.Update(this);
+        behavior.update(this);
 
-        super.Update();
+        super.update();
     }
 
     public boolean isEnemyProjectile() {

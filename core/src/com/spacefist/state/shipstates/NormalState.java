@@ -13,26 +13,26 @@ import com.spacefist.state.abst.ShipState;
   */
 public class NormalState implements ShipState {
     // The percentage of full health at which the ship is considered to have low-health.
-    private static final float LowHealthThreshold = .40f;
+    private static final float LOW_HEALTH_THRESHOLD = 0.40f;
     private GameData gameData;
 
     public NormalState(GameData gameData) {
         this.gameData = gameData;
     }
 
-    public void Update() {
+    public void update() {
         Ship ship = gameData.getShip();
 
-        if (ship.getHealth() <= LowHealthThreshold) {
+        if (ship.getHealth() <= LOW_HEALTH_THRESHOLD) {
             // Change the ships state to LowHealthState
             ship.setCurrentState(new LowHealthState(gameData));
         }
     }
 
-    public void EnteringState() {
+    public void enteringState() {
         // TODO: Set the ship to draw opaque after entering the normal state
         //gameData.Ship.Tint = Color.White;
     }
 
-    public void ExitingState() { }
+    public void exitingState() { }
 }

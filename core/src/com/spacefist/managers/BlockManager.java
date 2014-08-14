@@ -82,7 +82,7 @@ public class BlockManager extends Manager<SpaceBlock>
             );
 
             // Initialize and the block to the list
-            block.Initialize();
+            block.initialize();
             Add(block);
         }
     }

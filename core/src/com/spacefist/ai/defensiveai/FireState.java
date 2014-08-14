@@ -1,6 +1,8 @@
 package com.spacefist.ai.defensiveai;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
+import com.spacefist.ai.FuzzyVariable;
 import com.spacefist.ai.ShipEnemyInfo;
 import com.spacefist.ai.ShipInfo;
 import com.spacefist.ai.abst.EnemyAI;
@@ -45,8 +47,10 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
         this.projectileManager = gameData.getProjectileManager();
     }
 
-    public void Update() {
-        rateOfFire = shipEnemyInfo.getDistance().Defuzzify(700, 550, 300);
+    public void update() {
+        FuzzyVariable distance = shipEnemyInfo.getDistance();
+
+        rateOfFire = distance.defuzzify(700, 550, 300);
 
         // if this enemy is on screen, fire and wait a fuzzy amount of time before
         // firing again.
@@ -55,8 +59,10 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
             // Fire at the ship every 200 to 600 milliseconds depending on how far away
             // the ship is.  The further the ship is, the faster the enemy will fire.
             if (((now.getTime() - lastFire.getTime()) / 1000) > rateOfFire) {
-                int halfWidth  = (int) shipEnemyInfo.getEnemy().getRectangle().getWidth() / 2;
-                int halfHeight = (int) shipEnemyInfo.getEnemy().getRectangle().getHeight() / 2;
+                Rectangle enemyRect = shipEnemyInfo.getEnemy().getRectangle();
+
+                int halfWidth  = (int) enemyRect.getWidth() / 2;
+                int halfHeight = (int) enemyRect.getHeight() / 2;
 
 
                 projectileManager.fireLaser(

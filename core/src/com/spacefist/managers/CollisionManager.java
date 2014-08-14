@@ -57,7 +57,7 @@ public class CollisionManager
     {
         for (EnemyMine mine : enemyMineManager.Collisions(gameData.getShip())) {
             mine.setAlive(false);
-            mine.Hit();
+            mine.hit();
             explosionManager.Add(mine.getX(), mine.getY());
             shipManager.ShipHit();
         }
@@ -87,7 +87,7 @@ public class CollisionManager
         {
             explosionManager.Add(enemy.getX(), enemy.getY());
             enemy.setAlive(false);
-            enemy.OnDeath();
+            enemy.onDeath();
             shipManager.ShipHit();
         }
     }
@@ -106,7 +106,7 @@ public class CollisionManager
                     laser.setAlive(false);
                     explosionManager.Add(enemy.getX(), enemy.getY());
                     enemy.setAlive(false);
-                    enemy.OnDeath();
+                    enemy.onDeath();
                     shipManager.Scored();
                     roundData.getEnemiesShot();
                 }
@@ -120,7 +120,7 @@ public class CollisionManager
     public void HandleShipPickupCollisions()
     {
         for (Pickup pickup : pickupManager.Collisions(gameData.getShip())) {
-            if (pickup.PickedUp(gameData.getShip())) {
+            if (pickup.pickedUp(gameData.getShip())) {
                 pickup.setAlive(false);
             }
         }
@@ -150,12 +150,12 @@ public class CollisionManager
                     if (cameraRect.contains(block.getRectangle()))
                     {
                         enemy.setAlive(false);
-                        enemy.OnDeath();
+                        enemy.onDeath();
 
                         explosionManager.Add(block.getX(), block.getY());
                         explosionManager.Add(enemy.getX(), enemy.getY());
 
-                        block.Destroy();
+                        block.destroy();
                     }
                 }
             }
@@ -184,7 +184,7 @@ public class CollisionManager
                     roundData.setBlocksShot(roundData.getBlocksShot() + 1);
 
                     // Kill the block
-                    block.Destroy();
+                    block.destroy();
                 }
             }
         }
@@ -217,7 +217,7 @@ public class CollisionManager
                 }
 
                 // Notify the block that it has been hit
-                block.Thump();
+                block.thump();
             }
         }
     }

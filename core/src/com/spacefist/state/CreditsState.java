@@ -18,9 +18,11 @@ public class CreditsState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() { }
+    @Override
+    public void loadContent() { }
 
-    public void Draw() {
+    @Override
+    public void draw() {
         Rectangle resolution = gameData.getResolution();
 
         int y       = (int) (0.63 * resolution.getHeight());
@@ -102,7 +104,7 @@ public class CreditsState implements GameState {
         */
     }
 
-    public void Update() {
+    public void update() {
         /*
         TODO: Convert CreditsState.Update
 
@@ -123,12 +125,14 @@ public class CreditsState implements GameState {
         */
     }
 
-    public void EnteringState() {
+    @Override
+    public void enteringState() {
         /*
         TODO: CreditsState.EnteringState()
         enteredAt           = DateTime.Now;
         */
     }
 
-    public void ExitingState() { }
+    @Override
+    public void exitingState() { }
 }

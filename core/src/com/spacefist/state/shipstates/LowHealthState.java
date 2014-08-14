@@ -14,7 +14,7 @@ public class LowHealthState implements ShipState {
         this.gameData = gameData;
     }
 
-    public void Update() {
+    public void update() {
         Ship ship = gameData.getShip();
 
         /* TODO: Fade the ship from invisible to visible while also fading between its normal colors and a red tint during the low health state
@@ -29,6 +29,6 @@ public class LowHealthState implements ShipState {
         }
     }
 
-    public void EnteringState() { }
-    public void ExitingState()  { }
+    public void enteringState() { }
+    public void exitingState()  { }
 }

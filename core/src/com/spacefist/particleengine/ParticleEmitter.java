@@ -35,33 +35,41 @@ import java.util.Random;
         );
 */
 public class ParticleEmitter {
-    private Vector2 position;
-    private List<Particle> particles;
-    private Date creation;
-    private int maxParticles;
-    private int freq;
-    private Vector2 center;
-    private SpriteBatch spriteBatch;
-    private boolean alive;
-    private Date lastEmission;
-    private Texture texture;
-    private Random rand;
+    private Vector2         position;
+    private List<Particle>  particles;
+    private Date            creation;
+    private int             maxParticles;
+    private int             freq;
+    private Vector2         center;
+    private SpriteBatch     spriteBatch;
+    private boolean         alive;
+    private Date            lastEmission;
+    private Texture         texture;
+    private Random          rand;
     private ParticleOptions particleOptions;
-    private GameData gameData;
-    public ParticleEmitter(GameData gameData, Texture texture, int maxParticles, int freq, Vector2 center, SpriteBatch spriteBatch,
-                           ParticleOptions particleOptions) {
+    private GameData        gameData;
+
+    public ParticleEmitter(
+        GameData        gameData,
+        Texture         texture,
+        int             maxParticles,
+        int             freq,
+        Vector2         center,
+        SpriteBatch     spriteBatch,
+        ParticleOptions particleOptions
+    ) {
         this.gameData = gameData;
 
-        particles = new ArrayList<Particle>();
-        this.center = center;
-        this.spriteBatch = spriteBatch;
-        alive = true;
-        this.creation = new Date();
-        lastEmission = new Date();
-        this.maxParticles = maxParticles;
-        this.freq = freq;
-        this.texture = texture;
-        rand = new Random();
+        particles            = new ArrayList<Particle>();
+        this.center          = center;
+        this.spriteBatch     = spriteBatch;
+        alive                = true;
+        this.creation        = new Date();
+        lastEmission         = new Date();
+        this.maxParticles    = maxParticles;
+        this.freq            = freq;
+        this.texture         = texture;
+        rand                 = new Random();
         this.particleOptions = particleOptions;
     }
 
@@ -69,22 +77,32 @@ public class ParticleEmitter {
         return creation;
     }
 
-    public void Update() {
+    public void update() {
         if (alive) {
             // add more particles if needed
             if ((particles.size() < maxParticles) && ((new Date().getTime() - lastEmission.getTime()) / 1000) > freq) {
                 for (int i = 0; i < 3; i++) {
                     int degrees = MathUtils.random(particleOptions.getMinRotation(), particleOptions.getMaxRotation());
 
-                    float speed = particleOptions.getSpeed();
+                    float   speed    = particleOptions.getSpeed();
                     Vector2 velocity = new Vector2((float) (speed * Math.cos(degrees)), (float) (speed * Math.sin(degrees)));
-
 
                     float rotation = (float) Math.toRadians(MathUtils.random(particleOptions.getMinRotation(), particleOptions.getMaxRotation()));
                     float angularVelocity = MathUtils.random(particleOptions.getMinAngularVelocity(), particleOptions.getMaxAngularVelocity());
                     float scale = MathUtils.random(((int) particleOptions.getMinScale()), (int) particleOptions.getMaxScale());
 
-                    particles.add(new Particle(texture, scale, rotation, angularVelocity, velocity, particleOptions.getTtl(), Color.WHITE, getPosition()));
+
+                    particles.add(
+                        new Particle(
+                            texture,
+                            scale,
+                            rotation,
+                            angularVelocity,
+                            velocity,
+                            particleOptions.getTtl(),
+                            Color.WHITE, position
+                        )
+                    );
                 }
 
                 lastEmission = new Date();
@@ -92,7 +110,7 @@ public class ParticleEmitter {
 
             // update all particles
             for (Particle particle : particles) {
-                particle.Update();
+                particle.update();
             }
 
             List<Particle> particlesToRemove = new ArrayList<Particle>();
@@ -110,17 +128,15 @@ public class ParticleEmitter {
         }
     }
 
-    public void Draw() {
+    public void draw() {
         if (alive) {
             for (Particle particle : particles) {
-                float complete = (float) ((new Date().getTime() - particle.getCreation().getTime()) / 1000) / particle.getTtl();
 
                 // draw each particle (particles fade as they reach ttl
-                float transparency = complete;
+                float transparency = (float) ((new Date().getTime() - particle.getCreation().getTime()) / 1000) / particle.getTtl();
 
                 Vector2 drawAt = new Vector2(particle.getX(), particle.getY()).sub(gameData.getCamera());
-
-                Color color = new Color(particle.getTint().r, particle.getTint().g, particle.getTint().b, transparency);
+                Color   color  = new Color(particle.getTint().r, particle.getTint().g, particle.getTint().b, transparency);
 
                 spriteBatch.draw(
                         new TextureRegion(particle.getTexture()),

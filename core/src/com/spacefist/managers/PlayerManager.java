@@ -39,14 +39,14 @@ public class PlayerManager
 
     public void Initialize()
     {
-        gameData.getShip().Initialize();
+        gameData.getShip().initialize();
     }
 
     public void Update()
     {
         if (gameData.getShip().isAlive())
         {
-            gameData.getShip().Update();
+            gameData.getShip().update();
         }
     }
 
@@ -54,7 +54,7 @@ public class PlayerManager
     {
         if (gameData.getShip().isAlive())
         {
-            gameData.getShip().Draw();
+            gameData.getShip().draw();
         }
     }
 
@@ -79,7 +79,7 @@ public class PlayerManager
         }
         else {
             gameData.setShip(new Ship(gameData, new Vector2(startX, startY)));
-            gameData.getShip().getCurrentState().EnteringState();
+            gameData.getShip().getCurrentState().enteringState();
         }
 
         gameData.getShip().setHealthPoints(100);
@@ -90,7 +90,7 @@ public class PlayerManager
 
     public void HandleDeath()
     {
-        gameData.getShip().OnDeath();
+        gameData.getShip().onDeath();
 
         if (roundData.getLives() > 0)
         {

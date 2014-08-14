@@ -68,7 +68,8 @@ public class InPlayState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() {
+    @Override
+    public void loadContent() {
         Rectangle resolution = gameData.getResolution();
         Rectangle screenRect = new Rectangle(0, 0, resolution.getWidth(), resolution.getHeight());
 
@@ -81,9 +82,9 @@ public class InPlayState implements GameState {
         hud = new Hud(gameData, gameData.getPlayerManager());
     }
 
-    public void EnteringState() {
+    public void enteringState() {
         // Reset the round statistics
-        gameData.getRoundData().Reset();
+        gameData.getRoundData().reset();
 
         // TODO: Convert music playing code in InPlayState
         // Start playing music on a loop
@@ -244,7 +245,8 @@ public class InPlayState implements GameState {
         titleShown    = false;
     }
 
-    public void Update() {
+    @Override
+    public void update() {
             if (gameData.getPlayerManager().isAlive())
             {
                 if (Gdx.input.isKeyPressed(Input.Keys.Q) || Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
@@ -290,7 +292,8 @@ public class InPlayState implements GameState {
 
     }
 
-    public void Draw() {
+    @Override
+    public void draw() {
 
             String background    = gameData.getLevel().getBackgroundImage();
             String particleImage = gameData.getLevel().getDebrisParticleImage();
@@ -390,7 +393,7 @@ public class InPlayState implements GameState {
             */
     }
 
-    public void ExitingState() {
+    public void exitingState() {
         // TODO: Convert InPlayState.ExitingState
         // MediaPlayer.Stop();
     }

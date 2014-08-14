@@ -3,6 +3,7 @@ package com.spacefist.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
@@ -30,7 +31,7 @@ public class SplashScreenState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() {
+    public void loadContent() {
         Rectangle resolution = gameData.getResolution();
 
         overlayTexture = gameData.getTextures().get("TitleScreen");
@@ -43,11 +44,11 @@ public class SplashScreenState implements GameState {
         );
     }
 
-    public void EnteringState() {
+    public void enteringState() {
         enteredAt = new Date();
     }
 
-    public void Update() {
+    public void update() {
         long timeDiff = new Date().getTime() - enteredAt.getTime();
 
         if ((timeDiff / 1000) > 3) {
@@ -69,10 +70,11 @@ public class SplashScreenState implements GameState {
         }
     }
 
-    public void Draw() {
-        Rectangle resolution = gameData.getResolution();
+    public void draw() {
+        Rectangle resolution    = gameData.getResolution();
+        SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
-        gameData.getSpriteBatch().draw(
+        spriteBatch.draw(
             gameData.getTextures().get("Background"),
             0,
             0,
@@ -80,7 +82,7 @@ public class SplashScreenState implements GameState {
             resolution.getHeight()
         );
 
-        gameData.getSpriteBatch().draw(
+        spriteBatch.draw(
             overlayTexture,
             0,
             0,
@@ -89,6 +91,5 @@ public class SplashScreenState implements GameState {
         );
     }
 
-    public void ExitingState() { }
+    public void exitingState() { }
 }
-

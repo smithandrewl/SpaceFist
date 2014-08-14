@@ -14,8 +14,8 @@ import com.spacefist.components.Sprite;
  */
 public class SpaceBlock extends Entity {
     // Dimensions of the block
-    private static final int Width  = 80;
-    private static final int Height = 60;
+    private static final int WIDTH  = 80;
+    private static final int HEIGHT = 60;
 
     // The sound made when the ship hits a block
     private Sound thump;
@@ -32,8 +32,8 @@ public class SpaceBlock extends Entity {
             new Rectangle(
                 (int) position.x,
                 (int) position.y,
-                Width,
-                Height
+                WIDTH,
+                HEIGHT
             ),
             new Physics(),
             new NullInputComponent(),
@@ -50,7 +50,7 @@ public class SpaceBlock extends Entity {
     /**
      * Called when the block has been shot
      */
-    public void Destroy() {
+    public void destroy() {
         Sound sound = (Sound) getSound();
 
         sound.play();
@@ -60,7 +60,7 @@ public class SpaceBlock extends Entity {
     /**
      * Called when the block has been bumped by the ship
     */
-    public void Thump() {
+    public void thump() {
         thump.play();
         setAlive(false);
     }

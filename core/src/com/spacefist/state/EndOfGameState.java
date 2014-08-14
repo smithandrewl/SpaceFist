@@ -16,9 +16,11 @@ public class EndOfGameState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() { }
+    @Override
+    public void loadContent() { }
 
-    public void Draw() {
+    @Override
+    public void draw() {
         Rectangle resolution = gameData.getResolution();
 
         gameData.getSpriteBatch().draw(
@@ -30,7 +32,8 @@ public class EndOfGameState implements GameState {
         );
     }
 
-    public void Update() {
+    @Override
+    public void update() {
         boolean isEnterDown  = Gdx.input.isKeyPressed(Input.Keys.ENTER);
         boolean isEscapeDown = Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
 
@@ -39,13 +42,15 @@ public class EndOfGameState implements GameState {
         }
     }
 
-    public void EnteringState() {
+    @Override
+    public void enteringState() {
         // TODO: Convert EndOfGameState.EnteringState
         //MediaPlayer.IsRepeating = true;
         //MediaPlayer.Play(gameData.Songs["EndOfGame"]);
     }
 
-    public void ExitingState() {
+    @Override
+    public void exitingState() {
         // TODO: Convert EndOfGameState.ExitingState
         //MediaPlayer.Stop();
     }

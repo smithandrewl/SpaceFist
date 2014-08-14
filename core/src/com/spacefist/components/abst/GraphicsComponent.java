@@ -7,5 +7,5 @@ import com.spacefist.entities.Entity;
  * All graphics components implement this interface
  */
 public interface GraphicsComponent extends Component {
-    void Draw(GameData gameData, Entity obj);
+    void draw(GameData gameData, Entity obj);
 }

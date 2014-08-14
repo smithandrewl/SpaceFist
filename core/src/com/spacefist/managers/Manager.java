@@ -30,14 +30,14 @@ public class Manager<T extends Entity> implements Iterable<T> {
     public void Update() {
         for (T entity : entities) {
             if (entity.isAlive()) {
-                entity.Update();
+                entity.update();
             }
         }
     }
 
     public void Draw() {
         for(T entity : entities) {
-            entity.Draw();
+            entity.draw();
         }
     }
 

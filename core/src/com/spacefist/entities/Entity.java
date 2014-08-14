@@ -15,12 +15,12 @@ import com.spacefist.components.abst.SoundComponent;
  * <p/>
  * Instead of performing tasks such as drawing or handling input,
  * the Entity base class keeps references to classes implementing known interfaces.  It then calls methods of these interfaces
- * such as Update and Draw.
+ * such as update and draw.
  * <p/>
  * What this means is that the Entity base class can update and draw itself without knowning how it is being updated or drawn.
  * <p/>
- * On update, the Entity base class calls the Update method on the graphics, physics, input and sound components.
- * On draw, the Entity base class calls the Draw method on the graphics component.
+ * On update, the Entity base class calls the update method on the graphics, physics, input and sound components.
+ * On draw, the Entity base class calls the draw method on the graphics component.
  * <p/>
  * Each Entity Subclass provides the exact implementations of the components in its constructor.
  * <p/>
@@ -45,7 +45,7 @@ public class Entity {
     private Vector2 velocity;
 
     /**
-     * Whether the entity is in play or not. The default Update and Draw methods
+     * Whether the entity is in play or not. The default update and draw methods
      * only update and draw when the entity is Alive.
      */
     private boolean alive;
@@ -77,16 +77,17 @@ public class Entity {
         SoundComponent    sound,
         float             rotation
     ) {
-        setAlive(true);
+        alive = true;
+
         this.gameData  = gameData;
         this.rectangle = rectangle;
 
-        setPhysics(physics);
-        setInput(input);
-        setGraphics(graphics);
-        setSound(sound);
+        this.physics  = physics;
+        this.input    = input;
+        this.graphics = graphics;
+        this.sound    = sound;
 
-        setTint(Color.WHITE);
+        tint = Color.WHITE;
     }
 
     /**
@@ -126,28 +127,28 @@ public class Entity {
         return gameData;
     }
 
-    public void Initialize() {
+    public void initialize() {
 
     }
 
     /**
      * If the ship is alive, update all of its components
      */
-    public void Update() {
-        if (isAlive()) {
-            getGraphics().update(gameData, this);
-            getInput().update(gameData, this);
-            getPhysics().update(gameData, this);
-            getSound().update(gameData, this);
+    public void update() {
+        if (alive) {
+            graphics.update(gameData, this);
+            input.update(gameData, this);
+            physics.update(gameData, this);
+            sound.update(gameData, this);
         }
     }
 
     /**
      * If the ship is alive, call draw on its graphics component
      */
-    public void Draw() {
-        if (isAlive()) {
-            getGraphics().Draw(gameData, this);
+    public void draw() {
+        if (alive) {
+            graphics.draw(gameData, this);
         }
     }
 

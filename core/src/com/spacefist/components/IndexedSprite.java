@@ -47,16 +47,18 @@ import com.spacefist.entities.Entity;
         this.index = index;
     }
 
-    public void Draw(GameData gameData, Entity obj) {
+    public void draw(GameData gameData, Entity obj) {
         // Calculate the portion of the texture to draw given the current index
         Rectangle   sourceRect  = new Rectangle(index * width, 0, width, height);
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
         // Calculate and draw the image at an offset (this causes the image to rotate around
         // its center and not its upper left corner
+        Rectangle objRect = obj.getRectangle();
+
         Vector2 origin   = new Vector2(
-            obj.getRectangle().getWidth()  / 2,
-            obj.getRectangle().getHeight() / 2
+            objRect.getWidth()  / 2,
+            objRect.getHeight() / 2
         );
 
         Vector2 position    = new Vector2(obj.getX(), obj.getY()).add(origin);
@@ -68,8 +70,8 @@ import com.spacefist.entities.Entity;
                 adjPosition.y,
                 origin.x,
                 origin.y,
-                obj.getRectangle().getWidth(),
-                obj.getRectangle().getHeight(),
+                objRect.getWidth(),
+                objRect.getHeight(),
                 gameData.getScreenScale(),
                 gameData.getScreenScale(),
                 obj.getRotation(),

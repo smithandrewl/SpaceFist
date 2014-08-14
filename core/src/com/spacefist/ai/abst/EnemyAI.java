@@ -12,5 +12,5 @@ public interface EnemyAI {
     void setShipEnemyInfo(ShipEnemyInfo shipEnemyInfo);
     ShipInfo getShipInfo();
     void setShipInfo(ShipInfo shipInfo);
-    void Update();
+    void update();
 }

@@ -15,9 +15,11 @@ public class GameOverState implements GameState {
         this.gameData = gameData;
     }
 
-    public void LoadContent() { }
+    @Override
+    public void loadContent() { }
 
-    public void EnteringState() {
+    @Override
+    public void enteringState() {
             /*
             TODO: Convert GameOverState.EnteringState()
 
@@ -26,7 +28,8 @@ public class GameOverState implements GameState {
             */
     }
 
-    public void Update() {
+    @Override
+    public void update() {
             /*
             TODO: Convert GameOverState.Update
 
@@ -39,7 +42,7 @@ public class GameOverState implements GameState {
             */
     }
 
-    public void Draw() {
+    public void draw() {
             /*
             TODO: Convert GameOverState.Draw
 
@@ -49,7 +52,7 @@ public class GameOverState implements GameState {
             */
     }
 
-    public void ExitingState() {
+    public void exitingState() {
             /*
             TODO: Convert GameOverState.ExitingState()
 
