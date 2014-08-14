@@ -23,7 +23,7 @@ import java.util.Random;
  * by the degree that the state is active.
  */
 public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
-    private static final int Speed = 6;
+    private static final int SPEED = 6;
 
     private List<Vector2> wayPoints;
     private EnemyAI       ai;
@@ -31,12 +31,14 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private GameData      gameData;
     private Date          lastUpdate;
     private Random        random;
-    private float         membership;
 
     public RamState(EnemyAI ai, GameData gameData) {
+
+        ShipEnemyInfo shipEnemyInfo = ai.getShipEnemyInfo();
+
         random        = new Random();
         this.ai       = ai;
-        enemy         = ai.getShipEnemyInfo().getEnemy();
+        enemy         = shipEnemyInfo.getEnemy();
         wayPoints     = new ArrayList<Vector2>();
         lastUpdate    = new Date();
         this.gameData = gameData;
@@ -51,7 +53,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
      * @param y2 The Y coordinate of point 2
      * @return Returns true if the two points are within 10 pixels of each other
      */
-    private static boolean Near(int x1, int y1, int x2, int y2) {
+    private static boolean near(int x1, int y1, int x2, int y2) {
         int tolerance = 10;
 
         // TODO: Convert distance code in RamState
@@ -76,7 +78,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         FuzzyVariable health   = shipInfo.getHealth();
         FuzzyVariable distance = shipEnemyInfo.getDistance();
 
-        membership = Or(
+        float membership = Or(
             // If the player is doing too well
             And(
                 accuracy.getHigh(),
@@ -89,8 +91,12 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         long millisecondsPassed = (new Date().getTime() - lastUpdate.getTime());
 
         // Keep up to 3 waypoints, updating them every 25 milliseconds
-        if (millisecondsPassed > 25) {
-            if (wayPoints.size() < 3) {
+        boolean updateWaypoints = millisecondsPassed > 25;
+
+        if (updateWaypoints) {
+            boolean wayPointNeeded = wayPoints.size() < 3;
+
+            if (wayPointNeeded) {
                 // TODO: Convert rng code in RamState
                 //int randX = random.Next(-10, 10);
                 //int randY = random.Next(-10, 10);
@@ -102,7 +108,9 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
                     ship.getY() + randY
                 );
 
-                if (!wayPoints.contains(shipLocation)) {
+                boolean wayPointExists = wayPoints.contains(shipLocation);
+
+                if (!wayPointExists) {
                     Vector2 lastPoint;
 
                     if (wayPoints.isEmpty()) {
@@ -136,7 +144,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
 
             // If the enemy is close to the waypoint, remove the way point
             // and draw the enemy at rest.
-            if (Near(enemy.getX(), enemy.getY(), (int) wayPoint.x, (int) wayPoint.y)) {
+            if (near(enemy.getX(), enemy.getY(), (int) wayPoint.x, (int) wayPoint.y)) {
                 wayPoints.remove(wayPoint);
             } else {
 
@@ -166,7 +174,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
 
                 // Calculate a velocity to move along the line of sight at a magnitude of 5
                 // TODO: Convert linear interpolation code in RamState
-                //enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), Speed, .15f) * membership));
+                //enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), SPEED, .15f) * membership));
                 enemy.setVelocity(Vector2.Zero);
             }
         }

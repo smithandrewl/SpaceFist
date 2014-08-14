@@ -82,7 +82,6 @@
     <inspection_tool class="ClassReferencesSubclass" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CollectionAddedToSelf" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CollectionContainsUrl" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="CollectionsMustHaveInitialCapacity" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ComparableImplementedButEqualsNotOverridden" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CompareToUsesNonFinalVariable" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ComparisonOfShortAndChar" enabled="true" level="WARNING" enabled_by_default="true" />
