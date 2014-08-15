@@ -84,11 +84,9 @@ public class ParticleEmitter {
 
                     float   speed    = particleOptions.getSpeed();
                     Vector2 velocity = new Vector2((float) (speed * Math.cos(degrees)), (float) (speed * Math.sin(degrees)));
-
                     float rotation = (float) Math.toRadians(MathUtils.random(particleOptions.getMinRotation(), particleOptions.getMaxRotation()));
                     float angularVelocity = MathUtils.random(particleOptions.getMinAngularVelocity(), particleOptions.getMaxAngularVelocity());
                     float scale = MathUtils.random(((int) particleOptions.getMinScale()), (int) particleOptions.getMaxScale());
-
 
                     particles.add(
                         new Particle(

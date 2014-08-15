@@ -64,7 +64,6 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
                 int halfWidth  = (int) enemyRect.getWidth() / 2;
                 int halfHeight = (int) enemyRect.getHeight() / 2;
 
-
                 projectileManager.fireLaser(
                         shipEnemyInfo.getEnemy().getX() + halfWidth,
                         shipEnemyInfo.getEnemy().getY() + halfHeight,

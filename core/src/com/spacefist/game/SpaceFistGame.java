@@ -139,8 +139,9 @@ public class SpaceFistGame extends ApplicationAdapter {
         gameData.setSpriteBatch(batch);
 
         // ----------------------------- Load the games assets -----------
-
         gameData.setFont(new BitmapFont(Gdx.files.absolute("fonts/font.fnt")));
+
+        //GameData.TitleFont = Content.Load<SpriteFont>(TITLE_FONT_ASSET);
 
         loadTextures();
         loadSongs();
