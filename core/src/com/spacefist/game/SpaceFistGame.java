@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
@@ -136,10 +137,8 @@ public class SpaceFistGame extends ApplicationAdapter {
         gameData.setSpriteBatch(batch);
 
         // ----------------------------- Load the games assets -----------
-        /*
-        GameData.Font      = Content.Load<SpriteFont>(SPRITE_FONT_ASSET);
-        GameData.TitleFont = Content.Load<SpriteFont>(TITLE_FONT_ASSET);
-        */
+
+        gameData.setFont(new BitmapFont(Gdx.files.absolute("fonts/font.fnt")));
 
         loadTextures();
         loadSongs();
