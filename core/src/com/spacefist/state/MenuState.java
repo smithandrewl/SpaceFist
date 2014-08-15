@@ -49,9 +49,9 @@ public class MenuState implements GameState {
 
         // Calculate and set rectangles for each button since the buttons
         // are part of a single image.
-        newGameRect = new Rectangle(menuRect.x + 8, menuRect.y + 12, 149, 29);
-        creditsRect = new Rectangle(menuRect.x + 8, menuRect.y + 46, 149, 29);
-        exitRect    = new Rectangle(menuRect.x + 8, menuRect.y + 82, 149, 29);
+        newGameRect = new Rectangle(menuRect.x + 8, menuRect.y + 6, 149, 25);
+        creditsRect = new Rectangle(menuRect.x + 8, menuRect.y + 23, 149, 25);
+        exitRect    = new Rectangle(menuRect.x + 8, menuRect.y + 53, 149, 29);
     }
 
     public void draw() {
@@ -72,8 +72,6 @@ public class MenuState implements GameState {
             menuRect.getWidth(),
             menuRect.getHeight()
         );
-
-        BitmapFont font = gameData.getFont();
     }
 
     public void update() {
@@ -86,11 +84,12 @@ public class MenuState implements GameState {
                 if (newGameRect.contains(mousePos)) {
                     // TODO: convert InPlayState
                     //gameData.setCurrentState(gameData.getInPlayState());
+                    gameData.setCurrentState(gameData.getMenuState());
                 }
 
                 if (creditsRect.contains(mousePos)) {
                     // TODO: convert CreditsState
-                    // gameData.setCurrentState(gameData.getCreditsState());
+                    gameData.setCurrentState(gameData.getCreditsState());
                 }
 
                 if (exitRect.contains(mousePos)) {

@@ -1,6 +1,11 @@
 package com.spacefist.state;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
 
@@ -25,112 +30,55 @@ public class CreditsState implements GameState {
     public void draw() {
         Rectangle resolution = gameData.getResolution();
 
-        int y       = (int) (0.63 * resolution.getHeight());
+        int y       = ((int) ( resolution.getHeight() - (0.63 * resolution.getHeight())));
         int leftX   = (int) (0.1 * resolution.getWidth());
         int rightX  = (int) (0.7325 * resolution.getWidth());
         int centerX = (int) (0.5 * resolution.getWidth()) - 103;
 
-        /*
-        TODO: Convert CreditsState.Draw
-
         gameData.getSpriteBatch().draw(
             gameData.getTextures().get("Credits"),
-            gameData.Resolution,
-            Color.White
+            0,
+            0,
+            resolution.getWidth(),
+            resolution.getHeight()
         );
 
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Dongcai Huang",
-            new Vector2(leftX, y),
-            Color.White
-        );
+        BitmapFont font = gameData.getFont();
+        SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Programming",
-            new Vector2(leftX, y + 30),
-            Color.PeachPuff
-        );
+        font.draw(spriteBatch, "Dongcai Huang", leftX, y);
+        font.draw(spriteBatch, "Programming", leftX, y - 30);
+        font.draw(spriteBatch, "Art Selection", leftX, y - 45);
 
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Art Selection",
-            new Vector2(leftX, y + 45),
-            Color.PeachPuff
-        );
+        font.draw(spriteBatch, "Tatsuya Takahashi", rightX, y);
+        font.draw(spriteBatch, "Programming", rightX + 40, y - 30);
 
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Tatsuya Takahashi",
-            new Vector2(rightX, y),
-            Color.White
-        );
-
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Programming",
-            new Vector2(rightX + 40, y + 30),
-            Color.PeachPuff
-        );
-
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Andrew Smith",
-            new Vector2(centerX, y),
-            Color.White
-        );
-
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Programming / AI",
-            new Vector2(centerX - 30, y + 30),
-            Color.PeachPuff
-        );
-
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Art Selection",
-            new Vector2(centerX, y + 45),
-            Color.PeachPuff
-        );
-
-        gameData.getSpriteBatch().DrawString(
-            gameData.Font,
-            "Sound Selection",
-            new Vector2(centerX - 10, y + 60),
-            Color.PeachPuff
-        );
-        */
+        font.draw(spriteBatch, "Andrew Smith", centerX, y);
+        font.draw(spriteBatch, "Programming / AI", centerX - 30, y - 30);
+        font.draw(spriteBatch, "Art Selection", centerX, y - 45);
+        font.draw(spriteBatch, "Sound Selection", centerX - 10, y - 60);
     }
 
     public void update() {
-        /*
-        TODO: Convert CreditsState.Update
 
-        if (DateTime.Now.Subtract(enteredAt).Milliseconds > 300)
+        if (TimeUtils.millis() - enteredAt > 300)
         {
-            enteredAt = DateTime.Now;
+            enteredAt = TimeUtils.millis();
 
-            MouseState    mouse = Mouse.GetState();
-            KeyboardState keys  = Keyboard.GetState();
+            boolean mousePressed = Gdx.input.isTouched();
+            boolean isEnterDown = Gdx.input.isKeyPressed(Input.Keys.ENTER);
+            boolean isEscapeDown = Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
 
-            if (mouse.LeftButton == ButtonState.Pressed ||
-                keys.IsKeyDown(Keys.Enter)              ||
-                keys.IsKeyDown(Keys.Escape))
-            {
-                gameData.CurrentState = gameData.MenuState;
+            if (mousePressed || isEnterDown || isEscapeDown) {
+                gameData.setCurrentState(gameData.getMenuState());
             }
         }
-        */
+
     }
 
     @Override
     public void enteringState() {
-        /*
-        TODO: CreditsState.EnteringState()
-        enteredAt           = DateTime.Now;
-        */
+        enteredAt = TimeUtils.millis();
     }
 
     @Override
