@@ -11,10 +11,6 @@ import com.spacefist.entities.Projectile;
 import com.spacefist.entities.SpaceBlock;
 import com.spacefist.entities.enemies.Enemy;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 /// <summary>
 /// Keeps track of the projectiles in the world.
 /// </summary>

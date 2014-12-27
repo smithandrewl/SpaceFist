@@ -16,7 +16,7 @@ import com.spacefist.components.abst.SoundComponent;
  * Represents a projectile fired by either the player or an enemy.
  */
 public class Projectile extends Entity {
-    private boolean soundPlayed = false;
+    private boolean soundPlayed;
 
     private boolean enemyProjectile;
 

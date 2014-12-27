@@ -11,29 +11,39 @@ import com.spacefist.ai.FuzzyVariable;
  */
 public abstract class FuzzyLogicEnabled {
     protected static float numericGrade(float val, float lowerLimit, float lowerSupportlimit) {
-        if (val < lowerLimit)
+        if (val < lowerLimit) {
             return 0;
+        }
 
-        if ((val >= lowerLimit) && (val <= lowerSupportlimit))
+        if ((val >= lowerLimit) && (val <= lowerSupportlimit)) {
             return (val - lowerLimit) / (lowerSupportlimit - lowerLimit);
+        }
 
         return 1;
     }
 
     protected static float reverseGrade(float val, float upperSupportLimit, float upperLimit) {
-        if (val > upperLimit)
+        if (val > upperLimit) {
             return 0;
+        }
 
-        if ((val >= upperSupportLimit) && (val <= upperLimit))
+        if ((val >= upperSupportLimit) && (val <= upperLimit)) {
             return (upperLimit - val) / (upperLimit - upperSupportLimit);
+        }
 
         return 1;
     }
 
     protected static float triangle(float val, float lowerLimit, float middle, float upperLimit) {
-        if (val <= lowerLimit) return 0;
-        if (val <= middle) return (val - lowerLimit) / (middle - lowerLimit);
-        if (val < upperLimit) return (upperLimit - val) / (upperLimit - middle);
+        if (val <= lowerLimit) {
+            return 0;
+        }
+        if (val <= middle) {
+            return (val - lowerLimit) / (middle - lowerLimit);
+        }
+        if (val < upperLimit) {
+            return (upperLimit - val) / (upperLimit - middle);
+        }
 
         return 0;
     }
@@ -49,9 +59,15 @@ public abstract class FuzzyLogicEnabled {
         boolean inLowRange = (val >= lowerLimit) && (val <= lowerSupportLimit);
         boolean inMiddleRange = (val >= lowerSupportLimit) && (val <= upperSupportLimit);
 
-        if (outOfBounds) return 0;
-        if (inLowRange) return (val - lowerLimit) / (lowerSupportLimit - lowerLimit);
-        if (inMiddleRange) return 1;
+        if (outOfBounds) {
+            return 0;
+        }
+        if (inLowRange) {
+            return (val - lowerLimit) / (lowerSupportLimit - lowerLimit);
+        }
+        if (inMiddleRange) {
+            return 1;
+        }
 
         // inUpperRange
         return (upperLimit - val) / (upperLimit - upperSupportLimit);
@@ -97,7 +113,7 @@ public abstract class FuzzyLogicEnabled {
      * @return The result of the or operation
      */
     protected static float or(float first, float second) {
-        return first + second - (first * second);
+        return (first + second) - (first * second);
     }
 
     /**

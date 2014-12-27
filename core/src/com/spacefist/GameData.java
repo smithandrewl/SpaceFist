@@ -83,7 +83,7 @@ public class GameData {
         soundEffects = new HashMap<String, Sound>();
         songs        = new HashMap<String, Music>();
 
-        setLevelManager(new LevelManager(this));
+        levelManager = new LevelManager(this);
 
         projectileManager = new ProjectileManager(this);
         playerManager     = new PlayerManager(this);
@@ -107,10 +107,10 @@ public class GameData {
 
     public Rectangle getOnScreenWorld() {
         return new Rectangle(
-            (int)getCamera().x,
-            (int)getCamera().y,
-            getResolution().getWidth(),
-            getResolution().getHeight()
+            (int) camera.x,
+            (int) camera.y,
+            resolution.getWidth(),
+            resolution.getHeight()
         );
     }
 

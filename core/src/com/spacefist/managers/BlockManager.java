@@ -53,7 +53,7 @@ public class BlockManager extends Manager<SpaceBlock>
     }
 
     /// <returns>A velocity with a random x between -2 and 2</returns>
-    private Vector2 randomVel()
+    private static Vector2 randomVel()
     {
         return new Vector2(MathUtils.random(4) - 2, MathUtils.random(4));
     }
@@ -110,7 +110,7 @@ public class BlockManager extends Manager<SpaceBlock>
 
         // The portion of the game world being shown on
         // the screen.
-        Rectangle VisibleWorldRect = new Rectangle(
+        Rectangle visibleWorldRect = new Rectangle(
             (int)camera.x,
             (int)camera.y,
             bounds.getWidth(),
@@ -120,7 +120,7 @@ public class BlockManager extends Manager<SpaceBlock>
         Array<SpaceBlock> res = new Array<SpaceBlock>(false,16);
 
         for(SpaceBlock spaceBlock : entities) {
-            if(spaceBlock.isAlive() && VisibleWorldRect.overlaps(spaceBlock.getRectangle())) {
+            if(spaceBlock.isAlive() && visibleWorldRect.overlaps(spaceBlock.getRectangle())) {
                 res.add(spaceBlock);
             }
         }

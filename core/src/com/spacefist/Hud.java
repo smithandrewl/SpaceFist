@@ -1,6 +1,5 @@
 package com.spacefist;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -10,8 +9,8 @@ import com.spacefist.managers.PlayerManager;
  * Draws information about the ongoing game and the player to the screen.
  */
 public class Hud {
-    private static final String ScoreFormat = "Score: %d | Health: %d%% | Lives: %d";
-    private static final String controlsMsg = "Controls: WASD to move, SPACE to fire, Q to quit";
+    private static final String SCORE_FORMAT = "Score: %d | Health: %d%% | Lives: %d";
+    private static final String CONTROLS_MSG = "Controls: WASD to move, SPACE to fire, Q to quit";
 
     private String scoreDisplay = "";
 
@@ -30,7 +29,7 @@ public class Hud {
         Rectangle resolution = gameData.getResolution();
 
         controlsPosition = new Vector2(
-            (resolution.getWidth() * .5f) - (controlsMsg.length() * 4.5f),
+            (resolution.getWidth() * .5f) - (CONTROLS_MSG.length() * 4.5f),
             resolution.getHeight() * .025f
         );
 
@@ -52,7 +51,7 @@ public class Hud {
     public void Update() {
 
         scoreDisplay = String.format(
-                ScoreFormat,
+                SCORE_FORMAT,
                 roundData.getScore(),
                 (int) (gameData.getShip().getHealth() * 100),
                 roundData.getLives()
@@ -79,6 +78,6 @@ public class Hud {
 
 
         // Write the controls message to the screen
-        font.draw(gameData.getSpriteBatch(), controlsMsg, controlsPosition.x, controlsPosition.y);
+        font.draw(gameData.getSpriteBatch(), CONTROLS_MSG, controlsPosition.x, controlsPosition.y);
     }
 }

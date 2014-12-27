@@ -79,7 +79,9 @@ public class MenuState implements GameState {
 
         Vector2 mousePos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
 
-        if (TimeUtils.millis() - enteredAt > 300) {
+        boolean safeToProcessInput = (TimeUtils.millis() - enteredAt) > 300;
+
+        if (safeToProcessInput) {
             if (Gdx.input.isTouched()) {
                 if (newGameRect.contains(mousePos)) {
                     gameData.getInPlayState().loadContent();

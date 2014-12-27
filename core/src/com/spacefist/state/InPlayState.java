@@ -29,7 +29,7 @@ import java.util.List;
 public class InPlayState implements GameState {
 
     // The speed at which the camera scrolls up the map / world
-    private static final float ScrollSpeed = 1.5f;
+    private static final float SCROLL_SPEED = 1.5f;
 
     GameData gameData;
 
@@ -38,7 +38,7 @@ public class InPlayState implements GameState {
     private long levelLoadedAt;
     private List<Rectangle> debrisField;
 
-    private boolean titleShown = false;
+    private boolean titleShown;
 
     // The portion of the world which is currently visible.
     public Rectangle getOnScreenWorld() {
@@ -213,10 +213,10 @@ public class InPlayState implements GameState {
         int    minScale      = gameData.getLevel().getDebrisParticleMinScale();
         int    maxScale      = gameData.getLevel().getDebrisParticleMaxScale();
         String particleImage = gameData.getLevel().getDebrisParticleImage();
-        int    DebrisCount   = gameData.getLevel().getDebrisParticleCount();
+        int    debrisCount   = gameData.getLevel().getDebrisParticleCount();
 
         // init debris field
-        for (int i = 0; i < DebrisCount; i++)
+        for (int i = 0; i < debrisCount; i++)
         {
             float maxX  = gameData.getWorld().getWidth();
             float maxY  = gameData.getWorld().getHeight();
@@ -267,7 +267,7 @@ public class InPlayState implements GameState {
  
                 // Until the end of the world is reached, move the camera up the world
                 if (gameData.getCamera().y >= gameData.getWorld().y) {
-                    gameData.setCamera(new Vector2(gameData.getCamera().x, gameData.getCamera().y - ScrollSpeed));
+                    gameData.setCamera(new Vector2(gameData.getCamera().x, gameData.getCamera().y - SCROLL_SPEED));
                 }
 
                 // When the ship reaches the end of game marker, switch to the 
@@ -409,14 +409,14 @@ public class InPlayState implements GameState {
         Rectangle resolution = gameData.getResolution();
 
         int farRight   = (int) (gameData.getCamera().x + resolution.getWidth());
-        int Bottom     = (int) (gameData.getCamera().y + resolution.getHeight());
+        int bottom     = (int) (gameData.getCamera().y + resolution.getHeight());
         int halfHeight = (int) (obj.getRectangle().getHeight() / 2);
 
         float velDecrease = .125f;
 
         boolean offScreenRight  = obj.getX() > farRight;
         boolean offScreenLeft   = obj.getX() < gameData.getCamera().x;
-        boolean offscreenTop    = obj.getY() + halfHeight > Bottom;
+        boolean offscreenTop    = (obj.getY() + halfHeight) > bottom;
         boolean offscreenBottom = obj.getY() < gameData.getCamera().y;
 
         boolean offScreen = offScreenRight ||
@@ -430,7 +430,7 @@ public class InPlayState implements GameState {
             } else if (offScreenLeft) {
                 obj.setX((int) gameData.getCamera().x);
             } else if (offscreenTop) {
-                obj.setY((int) (gameData.getCamera().y - resolution.getHeight() * .9));
+                obj.setY((int) (gameData.getCamera().y - (resolution.getHeight() * .9)));
             } else if (offscreenBottom) {
                 obj.setY((int) (gameData.getCamera().y + (obj.getRectangle().getHeight() * 2)));
             }

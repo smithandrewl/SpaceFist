@@ -17,7 +17,7 @@ public class PlayerManager
     RoundData roundData;
 
     // Damage the ship takes per hit
-    private static final int HitDamage = 10;
+    private static final int HIT_DAMAGE = 10;
 
     // Start the players ship moving at a velocity greater than the camer scrolls
     private Vector2 StartingVelocity = new Vector2(0, -2);
@@ -111,7 +111,7 @@ public class PlayerManager
 
     public void ShipHit() {
         int healthPoints = gameData.getShip().getHealthPoints();
-        gameData.getShip().setHealthPoints(healthPoints - HitDamage);
+        gameData.getShip().setHealthPoints(healthPoints - HIT_DAMAGE);
 
         if (gameData.getShip().getHealthPoints() <= 0)
         {

@@ -78,7 +78,7 @@ public class ParticleEmitter {
     public void update() {
         if (alive) {
             // add more particles if needed
-            if ((particles.size() < maxParticles) && ((TimeUtils.millis() - lastEmission) / 1000) > freq) {
+            if ((particles.size() < maxParticles) && (((TimeUtils.millis() - lastEmission) / 1000) > freq)) {
                 for (int i = 0; i < 3; i++) {
                     int degrees = MathUtils.random(particleOptions.getMinRotation(), particleOptions.getMaxRotation());
 
@@ -112,7 +112,7 @@ public class ParticleEmitter {
             List<Particle> particlesToRemove = new ArrayList<Particle>();
 
             for (Particle particle : particles) {
-                if ((TimeUtils.millis() - particle.getCreation()) / 1000 > particle.getTtl()) {
+                if (((TimeUtils.millis() - particle.getCreation()) / 1000) > particle.getTtl()) {
                     particlesToRemove.add(particle);
                 }
             }

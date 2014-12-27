@@ -15,7 +15,7 @@ import com.spacefist.managers.ProjectileManager;
  * This fuzzy state fires at the ship when the enemy is on the screen.
  */
 public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
-    private float rateOfFire = 0;
+    private float rateOfFire;
 
     private ProjectileManager projectileManager;
 
@@ -58,7 +58,12 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
         if (ai.getShipEnemyInfo().isEnemyVisible()) {
             // Fire at the ship every 200 to 600 milliseconds depending on how far away
             // the ship is.  The further the ship is, the faster the enemy will fire.
-            if ((TimeUtils.millis() - lastFire) / 1000 > rateOfFire) {
+            long millSinceLastFire = TimeUtils.millis() - lastFire;
+            long secsSinceLastFire = millSinceLastFire / 1000;
+
+            boolean timeToFire = secsSinceLastFire > rateOfFire;
+
+            if (timeToFire) {
                 Rectangle enemyRect = shipEnemyInfo.getEnemy().getRectangle();
 
                 int halfWidth  = (int) enemyRect.getWidth() / 2;

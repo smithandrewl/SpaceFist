@@ -11,9 +11,9 @@ import com.spacefist.entities.Ship;
  * Tells the ship to move in response to user input.
  */
 public class ShipInput implements InputComponent {
-    private boolean spaceDown = false;
-    private boolean aDown     = false;
-    private boolean dDown     = false;
+    private boolean spaceDown;
+    private boolean aDown;
+    private boolean dDown;
 
     @Override
     public void update(GameData gameData, Entity obj) {

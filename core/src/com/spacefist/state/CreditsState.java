@@ -60,7 +60,10 @@ public class CreditsState implements GameState {
     @Override
     public void update() {
 
-        if (TimeUtils.millis() - enteredAt > 300)
+        long    timeSinceEnter     = TimeUtils.millis() - enteredAt;
+        boolean safeToProcessInput = timeSinceEnter > 300;
+
+        if (safeToProcessInput)
         {
             enteredAt = TimeUtils.millis();
 

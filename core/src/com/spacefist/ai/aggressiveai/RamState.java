@@ -149,10 +149,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
                 int intX = (int) Interpolation.linear.apply(enemy.getVelocity().x, direction.x, .185f);
                 int intY = (int) Interpolation.linear.apply(enemy.getVelocity().y, direction.y, .185f);
 
-                direction = new Vector2(intX, intY);
-
-                // Convert the direction to a unit vector
-                direction = direction.nor();
+                direction = new Vector2(intX, intY).nor();
 
                 // The rotation of the ship needed for it to face in the direction of the next waypoint
                 float destRotation = direction.angle() + 90;
