@@ -1,5 +1,9 @@
 package com.spacefist.state;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
 
@@ -20,45 +24,32 @@ public class GameOverState implements GameState {
 
     @Override
     public void enteringState() {
-            /*
-            TODO: Convert GameOverState.EnteringState()
+        Music song = gameData.getSongs().get("GameOver");
 
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(gameData.Songs["GameOver"]);
-            */
+        song.setLooping(true);
+        song.play();
     }
 
     @Override
     public void update() {
-            /*
-            TODO: Convert GameOverState.Update
-
-            KeyboardState keys = Keyboard.GetState();
-
-            if (keys.IsKeyDown(Keys.Enter) || keys.IsKeyDown(Keys.Escape))
-            {
-                gameData.CurrentState = gameData.SplashScreenState;
-            }
-            */
+        if(Gdx.input.isKeyPressed(Keys.ENTER) || Gdx.input.isKeyPressed(Keys.ESCAPE))
+        {
+            gameData.setCurrentState(gameData.getSplashScreenState());
+        }
     }
 
     @Override
     public void draw() {
-            /*
-            TODO: Convert GameOverState.Draw
+        Texture gameOver = gameData.getTextures().get("GameOver");
 
-            // Draw the game over image
-            gameData.SpriteBatch.Draw(gameData.Textures["GameOver"], gameData.Resolution, Color.White);
-            gameData.SpriteBatch.Draw(gameData.Textures["GameOver"], gameData.Resolution, Color.White);
-            */
+        // Draw the game over image
+        gameData.getSpriteBatch().draw(gameOver, 0, 0);
     }
 
     @Override
     public void exitingState() {
-            /*
-            TODO: Convert GameOverState.ExitingState()
+        Music song = gameData.getSongs().get("GameOver");
 
-            MediaPlayer.Stop();
-            */
+        song.stop();
     }
 }
