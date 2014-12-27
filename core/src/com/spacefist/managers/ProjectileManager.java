@@ -164,8 +164,8 @@ public class ProjectileManager extends Manager<Projectile> {
             gameData,
             gameData.getTextures().get("Mine"),
             new Vector2(x, y),
-            new Vector2(0, 0),
-            0,
+            new Vector2(0, -1),
+            -2,
             false
         );
 
