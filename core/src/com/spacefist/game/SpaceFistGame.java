@@ -97,6 +97,8 @@ public class SpaceFistGame extends ApplicationAdapter {
     }
 
     private void loadSongs() {
+        assert gameData.getSongs() != null;
+
         Map<String, Music> songs = gameData.getSongs();
         FileHandle directory = Gdx.files.absolute("sound/songs/");
 
@@ -106,6 +108,8 @@ public class SpaceFistGame extends ApplicationAdapter {
     }
 
     private void loadSoundEffects() {
+        assert gameData.getSoundEffects() != null;
+
         Map<String, Sound> soundEffects = gameData.getSoundEffects();
         FileHandle directory = Gdx.files.absolute("sound/soundeffects/");
 

@@ -54,6 +54,8 @@ public class CollisionManager
 
     private void HandleShipEnemyMineCollisions()
     {
+        assert gameData.getShip() != null;
+
         for (EnemyMine mine : enemyMineManager.Collisions(gameData.getShip())) {
             mine.setAlive(false);
             mine.hit();

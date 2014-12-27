@@ -84,6 +84,8 @@ public abstract class FuzzyLogicEnabled {
      * @return The populated fuzzy variable
      */
      protected static FuzzyVariable grade(float val, float low, float high, FuzzyVariable fuzzyVariable) {
+         assert fuzzyVariable != null;
+
         float med = (high - low) / 2.0f;
 
         fuzzyVariable.setValue(val);

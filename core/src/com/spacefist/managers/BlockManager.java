@@ -46,6 +46,8 @@ public class BlockManager extends Manager<SpaceBlock>
     /// <returns>A random point in the world</returns>
     private Vector2 randomPos()
     {
+        assert gameData.getWorld() != null;
+
         int randX = (int) MathUtils.random(0, gameData.getWorld().getWidth());
         int randY = MathUtils.random(0, (int) gameData.getWorld().getHeight());
 
@@ -88,7 +90,11 @@ public class BlockManager extends Manager<SpaceBlock>
     // off of the edges of the world.
     private void KeepOnWorld(Entity obj)
     {
+        assert obj != null;
+        assert gameData.getWorld() != null;
+
         Rectangle world = gameData.getWorld();
+
         if ((obj.getX() > world.getWidth()) ||
             (obj.getX() < 0) ||
             (obj.getY() > world.getHeight()) ||

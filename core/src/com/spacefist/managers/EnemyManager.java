@@ -74,6 +74,9 @@ public class EnemyManager extends Manager<Enemy>
     /// <param name="count">The number of enemies to spawn</param>
     /// <param name="func">A function to spawn a particular type of enemy</param>
     private void SpawnEnemies(int count, Func<Vector2, Enemy> func){
+        assert count >= 0;
+        assert func != null;
+
         SpawnEnemies(
             count,
             0,

@@ -17,10 +17,14 @@ public class Manager<T extends Entity> implements Iterable<T> {
     }
 
     protected void Add(T entity) {
+        assert entity != null;
+
         entities.add(entity);
     }
 
     protected void Remove(T entity) {
+        assert entity != null;
+
         entities.removeValue(entity,true);
     }
 
