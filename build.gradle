@@ -58,6 +58,8 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.intellij:annotations:9.0.4"
+
     }
 }
 
