@@ -77,19 +77,23 @@ public class Level {
             int top    = (int) bounds.y;
             int bottom = (int) (bounds.y + bounds.height);
 
-            if (objectType.equals("FighterZone")) {
+            //TODO: Enable loading of enemies from the map
+            if(objectType != null) {
+                if (objectType.equals("FighterZone")) {
 
-                fighters.add(
-                    new SpawnZone(
-                        count,
-                        left,
-                        right,
-                        top,
-                        bottom,
-                        center
-                    )
-                );
-            } else if (objectType.equals("FreighterZone")) {
+                    fighters.add(
+                            new SpawnZone(
+                                    count,
+                                    left,
+                                    right,
+                                    top,
+                                    bottom,
+                                    center
+                            )
+                    );
+                }
+            }
+            /*else if (objectType.equals("FreighterZone")) {
                 freighters.add(
                     new SpawnZone(
                         count,
@@ -100,9 +104,13 @@ public class Level {
                         center
                     )
                 );
+            }*/
+
+
+            /*
             } else if (objectType.equals("Mines")) {
                 mines.add(new SpawnPoint((int) center.x, (int) center.y));
-            }
+            } */
         }
     }
 

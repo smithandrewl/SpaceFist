@@ -1,8 +1,8 @@
 package com.spacefist.state;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -21,7 +21,6 @@ import com.spacefist.state.abst.GameState;
 import com.spacefist.util.Func;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /*
@@ -60,6 +59,7 @@ public class InPlayState implements GameState {
         return endOfLevelMarkerPos;
     }
 
+    // TODO: Load and set end of level marker position
     public void setEndOfLevelMarkerPos(Rectangle endOfLevelMarkerPos) {
         this.endOfLevelMarkerPos = endOfLevelMarkerPos;
     }
@@ -71,7 +71,6 @@ public class InPlayState implements GameState {
     @Override
     public void loadContent() {
         Rectangle resolution = gameData.getResolution();
-        Rectangle screenRect = new Rectangle(0, 0, resolution.getWidth(), resolution.getHeight());
 
         gameData.getLevelManager().Init();
         gameData.getLevelManager().LoadLevel(1);
@@ -82,14 +81,15 @@ public class InPlayState implements GameState {
         hud = new Hud(gameData, gameData.getPlayerManager());
     }
 
+    @Override
     public void enteringState() {
         // Reset the round statistics
         gameData.getRoundData().reset();
 
-        // TODO: Convert music playing code in InPlayState
-        // Start playing music on a loop
-        // MediaPlayer.Play(gameData.Songs[gameData.Level.Song]);
-        // MediaPlayer.IsRepeating = true;
+        Music song = gameData.getSongs().get(gameData.getLevel().getSong());
+
+        song.setLooping(true);
+        song.play();
 
         Rectangle resolution = gameData.getResolution();
 
@@ -194,11 +194,12 @@ public class InPlayState implements GameState {
             playerManager.Initialize();
 
             PickUpManager pickupManager = gameData.getPickUpManager();
+
             // Spawn the different pickups to the world
-            gameData.getPickUpManager().Reset();
-            gameData.getPickUpManager().SpawnExtraLifePickups(3);
-            gameData.getPickUpManager().SpawnExamplePickups(4);
-            gameData.getPickUpManager().SpawnHealthPickups(4);
+            pickupManager.Reset();
+            pickupManager.SpawnExtraLifePickups(3);
+            pickupManager.SpawnExamplePickups(4);
+            pickupManager.SpawnHealthPickups(4);
 
 
 
@@ -247,7 +248,7 @@ public class InPlayState implements GameState {
     public void update() {
             if (gameData.getPlayerManager().isAlive())
             {
-                if (Gdx.input.isKeyPressed(Input.Keys.Q) || Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+                if (Gdx.input.isKeyPressed(Keys.Q) || Gdx.input.isKeyPressed(Keys.ESCAPE))
                 {
                     gameData.setCurrentState(gameData.getMenuState());
                 }
@@ -271,6 +272,9 @@ public class InPlayState implements GameState {
 
                 // When the ship reaches the end of game marker, switch to the 
                 // end of level state.
+
+                // TODO: Convert the end of level marker code
+                /*
                 if (gameData.getShip().getRectangle().overlaps(getEndOfLevelMarkerPos()));
                 {
                     if (gameData.getLevel().isLastLevel()) {
@@ -280,6 +284,7 @@ public class InPlayState implements GameState {
                         gameData.setCurrentState(gameData.getEndOfLevelState());
                     }
                 }
+                */
             }
             else {
                 // If the player has been killed, switch to the game over state
@@ -325,7 +330,7 @@ public class InPlayState implements GameState {
             gameData.getEnemyManager().Draw();
             gameData.getPickUpManager().Draw();
             gameData.getEnemyMineManager().Draw();
-
+            gameData.getPlayerManager().Draw();
             /*
             TODO: Convert DrawLevelMaarkers
             DrawLevelMarkers();
@@ -391,9 +396,12 @@ public class InPlayState implements GameState {
             */
     }
 
+    @Override
     public void exitingState() {
-        // TODO: Convert InPlayState.ExitingState
-        // MediaPlayer.Stop();
+        Music song = gameData.getSongs().get(gameData.getLevel().getSong());
+
+        song.setLooping(false);
+        song.stop();
     }
 
     // Keep the player on the screen
@@ -422,9 +430,9 @@ public class InPlayState implements GameState {
             } else if (offScreenLeft) {
                 obj.setX((int) gameData.getCamera().x);
             } else if (offscreenTop) {
-                obj.setY((int) (Bottom - obj.getRectangle().getHeight()));
+                obj.setY((int) (gameData.getCamera().y - resolution.getHeight() * .9));
             } else if (offscreenBottom) {
-                obj.setY((int) (gameData.getCamera().y + (obj.getRectangle().getHeight() / 16)));
+                obj.setY((int) (gameData.getCamera().y + (obj.getRectangle().getHeight() * 2)));
             }
 
             float mult = -1 * velDecrease;

@@ -15,6 +15,7 @@ public class Sound implements SoundComponent {
      *
      * @param sound The sound to play
      */
+    @SuppressWarnings("UnnecessaryThis")
     public Sound(com.badlogic.gdx.audio.Sound sound) {
         this.soundEffect = sound;
     }
@@ -26,5 +27,6 @@ public class Sound implements SoundComponent {
         soundEffect.play();
     }
 
+    @Override
     public void update(GameData gameData, Entity obj) { }
 }

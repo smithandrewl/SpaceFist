@@ -54,6 +54,7 @@ public class PickUpManager extends Manager<Pickup>
     /// <param name="count">The number of pickups to spawn</param>
     public void SpawnExamplePickups(int count) {
         SpawnPickups(count, new Action<Integer, Integer> () {
+            @Override
             public void execute(Integer first, Integer second) {
                 SpawnExamplePickup(first, second);
             }
@@ -91,6 +92,7 @@ public class PickUpManager extends Manager<Pickup>
     public void SpawnHealthPickups(int count)
     {
         SpawnPickups(count,  new Action<Integer, Integer>() {
+            @Override
             public void execute(Integer first, Integer second) {
                 SpawnHealthPickup(first, second);
             }
@@ -101,6 +103,7 @@ public class PickUpManager extends Manager<Pickup>
     public void SpawnLaserbeamPickups(int count)
     {
         SpawnPickups(count, new Action<Integer, Integer>() {
+            @Override
             public void execute(Integer first, Integer second) {
                 SpawnLaserbeamPickup(first, second);
             }
@@ -129,6 +132,7 @@ public class PickUpManager extends Manager<Pickup>
     public void SpawnMissilePickups(int count)
     {
         SpawnPickups(count, new Action<Integer, Integer>() {
+            @Override
             public void execute(Integer first, Integer second) {
                 SpawnMissilePickup(first, second);
             }
@@ -171,6 +175,7 @@ public class PickUpManager extends Manager<Pickup>
             new Vector2(x, y),
             Vector2.Zero,
             new PickupHandler() {
+                @Override
                 public boolean handle(Ship ship) {
                     if (ship.getHealth() < 1) {
                         ship.setHealthPoints(100);
@@ -192,6 +197,7 @@ public class PickUpManager extends Manager<Pickup>
     public void SpawnExtraLifePickups(int count)
     {
         SpawnPickups(count, new Action<Integer, Integer> () {
+            @Override
             public void execute(Integer first, Integer second) {
                 SpawnExtraLifePickup(first, second);
             }

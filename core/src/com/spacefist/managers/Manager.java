@@ -1,20 +1,19 @@
 package com.spacefist.managers;
 
+import com.badlogic.gdx.utils.Array;
 import com.spacefist.GameData;
 import com.spacefist.entities.Entity;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class Manager<T extends Entity> implements Iterable<T> {
 
-    protected List<T>  entities;
+    protected Array<T> entities;
     protected GameData gameData;
 
     public Manager(GameData gameData) {
         this.gameData = gameData;
-        entities      = new ArrayList<T>();
+        entities      = new Array<T>(false, 16);
     }
 
     protected void Add(T entity) {
@@ -22,7 +21,7 @@ public class Manager<T extends Entity> implements Iterable<T> {
     }
 
     protected void Remove(T entity) {
-        entities.remove(entity);
+        entities.removeValue(entity,true);
     }
 
     public void Update() {
@@ -40,7 +39,7 @@ public class Manager<T extends Entity> implements Iterable<T> {
     }
 
     public Iterable<T> Collisions(Entity obj) {
-        List<T> collisions = new ArrayList<T>();
+        Array<T> collisions = new Array<T>(false, 16);
 
         for(T entity : entities) {
             if(entity.isAlive() && entity.getRectangle().overlaps(obj.getRectangle())) {

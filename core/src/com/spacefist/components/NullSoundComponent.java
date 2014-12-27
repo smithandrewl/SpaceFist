@@ -10,5 +10,6 @@ import com.spacefist.entities.Entity;
  */
 public class NullSoundComponent implements SoundComponent {
     public void loadContent(GameData gameData)        { }
+    @Override
     public void update(GameData gameData, Entity obj) { }
 }

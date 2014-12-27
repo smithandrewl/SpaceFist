@@ -1,5 +1,6 @@
 package com.spacefist.components;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -24,12 +25,16 @@ public class Sprite implements GraphicsComponent {
         image = texture;
     }
 
+    @Override
     public void update(GameData gameData, Entity obj) {
 
     }
 
+    @Override
     public void draw(GameData gameData, Entity obj) {
         SpriteBatch spriteBatch  = gameData.getSpriteBatch();
+        spriteBatch.setColor(new Color(obj.getTint()));
+
         Rectangle   objRectangle = obj.getRectangle();
 
         Vector2 origin = new Vector2(
@@ -55,11 +60,10 @@ public class Sprite implements GraphicsComponent {
                 objRectangle.getHeight(),
                 gameData.getScreenScale(),
                 gameData.getScreenScale(),
-                obj.getRotation(),
-                true
+                obj.getRotation()
         );
 
-        // TODO: add tinting
-        // obj.Tint
+        spriteBatch.setColor(new Color(Color.WHITE));
+        spriteBatch.flush();
     }
 }

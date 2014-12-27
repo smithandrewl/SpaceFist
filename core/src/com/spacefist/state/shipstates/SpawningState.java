@@ -5,8 +5,6 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.state.abst.ShipState;
 
-import java.util.Date;
-
 /**
  * The SpawningState determines the ships behavior when it is spawning or has died and respawned.
  *
@@ -33,6 +31,7 @@ public class SpawningState implements ShipState {
         this.spawnedAt = spawnedAt;
     }
 
+    @Override
     public void update() {
         Ship ship      = gameData.getShip();
         byte increment = 5;
@@ -63,6 +62,7 @@ public class SpawningState implements ShipState {
         */
     }
 
+    @Override
     public void enteringState() {
         spawnedAt = TimeUtils.millis();
 
@@ -73,5 +73,6 @@ public class SpawningState implements ShipState {
         //gameData.Ship.Tint = Color.Transparent;
     }
 
+    @Override
     public void exitingState() { }
 }

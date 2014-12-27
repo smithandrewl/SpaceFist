@@ -1,9 +1,8 @@
 package com.spacefist.state;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -11,7 +10,6 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
 
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -33,6 +31,7 @@ public class MenuState implements GameState {
         this.gameData = gameData;
     }
 
+    @Override
     public void loadContent() {
 
         backgroundRect = gameData.getResolution();
@@ -54,6 +53,7 @@ public class MenuState implements GameState {
         exitRect    = new Rectangle(menuRect.x + 8, menuRect.y + 53, 149, 29);
     }
 
+    @Override
     public void draw() {
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
@@ -74,21 +74,19 @@ public class MenuState implements GameState {
         );
     }
 
+    @Override
     public void update() {
-        // TODO: Convert Input handling code in MenuState.update
 
         Vector2 mousePos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
 
         if (TimeUtils.millis() - enteredAt > 300) {
             if (Gdx.input.isTouched()) {
                 if (newGameRect.contains(mousePos)) {
-                    // TODO: convert InPlayState
-                    //gameData.setCurrentState(gameData.getInPlayState());
-                    gameData.setCurrentState(gameData.getMenuState());
+                    gameData.getInPlayState().loadContent();
+                    gameData.setCurrentState(gameData.getInPlayState());
                 }
 
                 if (creditsRect.contains(mousePos)) {
-                    // TODO: convert CreditsState
                     gameData.setCurrentState(gameData.getCreditsState());
                 }
 
@@ -96,35 +94,31 @@ public class MenuState implements GameState {
                     Gdx.app.exit();
                 }
             } else {
-                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-                    // TODO: convert InPlayState
-                    // gameData.setCurrentState(gameData.getInPlayState());
+                if (Gdx.input.isKeyPressed(Keys.ENTER)) {
 
-                } else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+                    gameData.getInPlayState().loadContent();
+                    gameData.setCurrentState(gameData.getInPlayState());
+
+                } else if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
                     Gdx.app.exit();
                 }
             }
         }
     }
 
+    @Override
     public void enteringState() {
-        // TODO: Convert MenuState.enteringState
         enteredAt = TimeUtils.millis();
 
-        // gameData.IsMouseVisible = true;
-        // MediaPlayer.IsRepeating = true;
-        // MediaPlayer.Play(gameData.Songs["TitleScreen"]);
+        gameData.getSongs().get("TitleScreen").setLooping(true);
+        gameData.getSongs().get("TitleScreen").play();
 
-        // gameData.LevelManager.Init();
-        // gameData.LevelManager.LoadLevel(1);
+        gameData.getLevelManager().Init();
+        gameData.getLevelManager().LoadLevel(1);
     }
 
+    @Override
     public void exitingState() {
-        // TODO: Convert MenuState.exitingState
-        // TODO: Get mouse visibility working
-        // gameData.IsMouseVisible = false;
-
-        // TODO: Convert audio to libGDX
-        //MediaPlayer.Stop();
+        gameData.getSongs().get("TitleScreen").stop();
     }
 }

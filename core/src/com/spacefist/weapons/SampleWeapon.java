@@ -30,6 +30,7 @@ public class SampleWeapon implements Weapon {
     /**
      * Fires a rocket cluster
      */
+    @Override
     public void fire() {
         int projectileX = (int) (ship.getX() + (ship.getRectangle().getWidth() / 2) + 2);
         int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));

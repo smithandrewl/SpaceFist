@@ -1,7 +1,7 @@
 package com.spacefist.state;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
@@ -34,8 +34,8 @@ public class EndOfGameState implements GameState {
 
     @Override
     public void update() {
-        boolean isEnterDown  = Gdx.input.isKeyPressed(Input.Keys.ENTER);
-        boolean isEscapeDown = Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
+        boolean isEnterDown  = Gdx.input.isKeyPressed(Keys.ENTER);
+        boolean isEscapeDown = Gdx.input.isKeyPressed(Keys.ESCAPE);
 
         if (isEnterDown || isEscapeDown) {
             gameData.setCurrentState(gameData.getSplashScreenState());

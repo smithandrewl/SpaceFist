@@ -1,7 +1,7 @@
 package com.spacefist.components;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.spacefist.GameData;
 import com.spacefist.components.abst.InputComponent;
 import com.spacefist.entities.Entity;
@@ -15,40 +15,42 @@ public class ShipInput implements InputComponent {
     private boolean aDown     = false;
     private boolean dDown     = false;
 
+    @Override
     public void update(GameData gameData, Entity obj) {
         Ship ship = (Ship) obj;
 
-        boolean w     = Gdx.input.isKeyPressed(Input.Keys.W);
-        boolean a     = Gdx.input.isKeyPressed(Input.Keys.A);
-        boolean s     = Gdx.input.isKeyPressed(Input.Keys.S);
-        boolean d     = Gdx.input.isKeyPressed(Input.Keys.D);
-        boolean space = Gdx.input.isKeyPressed(Input.Keys.SPACE);
+        boolean upKey    = Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP);
+        boolean leftKey  = Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT);
+        boolean downKey  = Gdx.input.isKeyPressed(Keys.S) || Gdx.input.isKeyPressed(Keys.DOWN);
+        boolean rightKey = Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT);
 
-        if (w) {
+        boolean space = Gdx.input.isKeyPressed(Keys.SPACE);
+
+        if (upKey) {
             ship.forward();
         }
 
-        if (!a && aDown) {
+        if (!leftKey && aDown) {
             aDown = false;
             ship.reset();
         }
 
-        if (a) {
+        if (leftKey) {
             aDown = true;
             ship.left();
         }
 
-        if (!d && dDown) {
+        if (!rightKey && dDown) {
             dDown = false;
             ship.reset();
         }
 
-        if (d) {
+        if (rightKey) {
             dDown = true;
             ship.right();
         }
 
-        if (s) {
+        if (downKey) {
             ship.backward();
         }
 

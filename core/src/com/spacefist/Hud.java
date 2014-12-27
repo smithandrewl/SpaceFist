@@ -25,6 +25,7 @@ public class Hud {
     private Color color           = Color.YELLOW;
     private Color semiTransparent = new Color(255, 255, 255, .8f);
 
+    @SuppressWarnings("UnnecessaryThis")
     public Hud(GameData gameData, PlayerManager shipManager) {
         this.gameData  = gameData;
         this.roundData = gameData.getRoundData();

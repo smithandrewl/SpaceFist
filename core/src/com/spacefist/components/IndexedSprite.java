@@ -1,5 +1,6 @@
 package com.spacefist.components;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -47,10 +48,11 @@ import com.spacefist.entities.Entity;
         this.index = index;
     }
 
+    @Override
     public void draw(GameData gameData, Entity obj) {
-        // Calculate the portion of the texture to draw given the current index
-        Rectangle   sourceRect  = new Rectangle(index * width, 0, width, height);
+
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
+        spriteBatch.setColor(new Color(obj.getTint()));
 
         // Calculate and draw the image at an offset (this causes the image to rotate around
         // its center and not its upper left corner
@@ -64,8 +66,10 @@ import com.spacefist.entities.Entity;
         Vector2 position    = new Vector2(obj.getX(), obj.getY()).add(origin);
         Vector2 adjPosition = position.sub(gameData.getCamera());
 
+
         spriteBatch.draw(
-                new TextureRegion(texture),
+                new TextureRegion(texture, width * index, 0, width, height),
+                //new TextureRegion(texture),
                 adjPosition.x,
                 adjPosition.y,
                 origin.x,
@@ -74,14 +78,16 @@ import com.spacefist.entities.Entity;
                 objRect.getHeight(),
                 gameData.getScreenScale(),
                 gameData.getScreenScale(),
-                obj.getRotation(),
-                true
+                obj.getRotation()
         );
 
         // TODO: Add object tinting
         // obj.Tint,
+        //spriteBatch.setColor(new Color(Color.WHITE));
+        spriteBatch.flush();
     }
 
+    @Override
     public void update(GameData gameData, Entity obj) { }
 }
 

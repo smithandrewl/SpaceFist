@@ -8,7 +8,7 @@ public interface StateMachine<State> {
     /**
      * The state active in the machine.
      */
-    public State getCurrentState();
-    public void setCurrentState(State state);
+    State getCurrentState();
+    void setCurrentState(State state);
 }
 

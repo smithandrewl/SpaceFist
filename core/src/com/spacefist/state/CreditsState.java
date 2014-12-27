@@ -1,15 +1,13 @@
 package com.spacefist.state;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
-
-import java.util.Date;
 
 /**
  * This state displays information about the developers of
@@ -59,6 +57,7 @@ public class CreditsState implements GameState {
         font.draw(spriteBatch, "Sound Selection", centerX - 10, y - 60);
     }
 
+    @Override
     public void update() {
 
         if (TimeUtils.millis() - enteredAt > 300)
@@ -66,8 +65,8 @@ public class CreditsState implements GameState {
             enteredAt = TimeUtils.millis();
 
             boolean mousePressed = Gdx.input.isTouched();
-            boolean isEnterDown = Gdx.input.isKeyPressed(Input.Keys.ENTER);
-            boolean isEscapeDown = Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
+            boolean isEnterDown = Gdx.input.isKeyPressed(Keys.ENTER);
+            boolean isEscapeDown = Gdx.input.isKeyPressed(Keys.ESCAPE);
 
             if (mousePressed || isEnterDown || isEscapeDown) {
                 gameData.setCurrentState(gameData.getMenuState());

@@ -8,5 +8,6 @@ import com.spacefist.entities.Entity;
  * For use by entities that do not use input.
  */
 public class NullInputComponent implements InputComponent {
+    @Override
     public void update(GameData gameData, Entity obj) { }
 }

@@ -3,12 +3,10 @@ package com.spacefist.managers;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.spacefist.GameData;
 import com.spacefist.entities.Entity;
 import com.spacefist.entities.SpaceBlock;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /// <summary>
 /// Keeps track of the space blocks in the world and
@@ -49,7 +47,7 @@ public class BlockManager extends Manager<SpaceBlock>
     private Vector2 randomPos()
     {
         int randX = (int) MathUtils.random(0, gameData.getWorld().getWidth());
-        int randY = (int) MathUtils.random(0, (int) gameData.getWorld().getHeight());
+        int randY = MathUtils.random(0, (int) gameData.getWorld().getHeight());
 
         return new Vector2(randX, randY);
     }
@@ -119,7 +117,7 @@ public class BlockManager extends Manager<SpaceBlock>
             bounds.getHeight()
         );
 
-        List<SpaceBlock> res = new ArrayList<SpaceBlock>();
+        Array<SpaceBlock> res = new Array<SpaceBlock>(false,16);
 
         for(SpaceBlock spaceBlock : entities) {
             if(spaceBlock.isAlive() && VisibleWorldRect.overlaps(spaceBlock.getRectangle())) {
@@ -130,6 +128,7 @@ public class BlockManager extends Manager<SpaceBlock>
         return res;
     }
 
+    @Override
     public void Update()
     {
         for (SpaceBlock block : this) {

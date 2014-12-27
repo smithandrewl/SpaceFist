@@ -45,11 +45,6 @@ public class Ship extends Entity implements StateMachine<ShipState> {
      */
     private int healthPoints;
 
-    /**
-     * The current state of the ship.
-     */
-    private ShipState CurrentState;
-
     private IndexedSprite indexedSprite;
 
     // The predefined velocities to use when changing position
@@ -70,8 +65,8 @@ public class Ship extends Entity implements StateMachine<ShipState> {
             new Rectangle(
                 (int) position.x,
                 (int) position.y,
-                (int) (WIDTH * (gameData.getScreenScale() / 2)),
-                (int) (HEIGHT * (gameData.getScreenScale() / 2))
+                    WIDTH,
+                    HEIGHT
             ),
             new Physics(),
             new ShipInput(),
@@ -142,8 +137,9 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     /**
      * Updates the ship
      */
+    @Override
     public void update() {
-        CurrentState.update();
+        state.update();
         super.update();
     }
 

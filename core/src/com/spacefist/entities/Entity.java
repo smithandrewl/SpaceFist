@@ -88,6 +88,7 @@ public class Entity {
         this.sound    = sound;
 
         tint = Color.WHITE;
+        velocity = Vector2.Zero;
     }
 
     /**

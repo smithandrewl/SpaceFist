@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import java.util.Date;
-
 public class Particle {
     private Texture texture;
 
@@ -20,6 +18,7 @@ public class Particle {
     private Vector2 originalPos;
     private Vector2 position;
 
+    @SuppressWarnings("UnnecessaryThis")
     public Particle(
             Texture texture, float scale, float rotation, float angularVelocity,
             Vector2 velocity, int ttl, Color tint, Vector2 originalPos) {

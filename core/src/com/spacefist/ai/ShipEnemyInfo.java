@@ -7,8 +7,6 @@ import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.entities.Ship;
 import com.spacefist.entities.enemies.Enemy;
 
-import java.util.Date;
-
 /**
  * Provides information about the players ship that is specific to a particular enemy.
  */

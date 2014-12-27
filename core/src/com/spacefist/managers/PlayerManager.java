@@ -67,8 +67,11 @@ public class PlayerManager
 
         // Start the ship at the bottom  in the center of the screen
 
-        int startX = (int)((resolution.getWidth() / 2) + camera.x);
-        int startY = (int)((resolution.getHeight() * .85) + camera.y);
+        float xOffset = resolution.getWidth() / 2;
+        double yOffset = resolution.getHeight() * .80;
+
+        int startX = (int)(xOffset + camera.x);
+        int startY = (int)(yOffset + camera.y);
 
         if (gameData.getShip() != null) {
             gameData.getShip().setCurrentState(new SpawningState(gameData));

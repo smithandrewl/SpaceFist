@@ -18,19 +18,22 @@ public class LaserWeapon implements Weapon {
       *
       * @param gameData Common game data
       */
+    @SuppressWarnings("UnnecessaryThis")
     public LaserWeapon(GameData gameData) {
         this.gameData = gameData;
 
         this.projectileManager = gameData.getProjectileManager();
     }
 
+    @Override
     public void fire() {
         Ship ship = gameData.getShip();
 
         float shipWidth = ship.getRectangle().getWidth();
+        float shipHeight = ship.getRectangle().getHeight();
 
         int projectileX = (int) (ship.getX() + (shipWidth / 2));
-        int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
+        int projectileY = (int) ((ship.getY() + shipHeight));
 
         projectileManager.fireLaser(projectileX, projectileY);
     }

@@ -15,7 +15,6 @@ import com.spacefist.entities.Ship;
 import com.spacefist.entities.enemies.Enemy;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,10 +56,8 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         int tolerance = 10;
 
         // TODO: Convert distance code in RamState
-        // boolean xIsNear = MathHelper.Distance(x1, x2) <= tolerance;
-        // boolean yIsNear = MathHelper.Distance(y1, y2) <= tolerance;
-        boolean xIsNear = false;
-        boolean yIsNear = false;
+        boolean xIsNear = Math.abs(x1 - x2) <= tolerance;
+        boolean yIsNear = Math.abs(y1 - y2) <= tolerance;
 
         return xIsNear && yIsNear;
     }
@@ -68,6 +65,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     /**
      * Updates the degree to which this state is active.
      */
+    @Override
     public void update() {
         Ship ship = gameData.getShip();
 
@@ -97,7 +95,6 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
             boolean wayPointNeeded = wayPoints.size() < 3;
 
             if (wayPointNeeded) {
-                // TODO: Convert rng code in RamState
                 int randX = MathUtils.random(-10, 10);
                 int randY = MathUtils.random(-10, 10);
 

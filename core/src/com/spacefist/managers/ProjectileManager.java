@@ -3,6 +3,7 @@ package com.spacefist.managers;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.spacefist.GameData;
 import com.spacefist.ai.projectilebehaviors.SeekingBehavior;
 import com.spacefist.entities.Entity;
@@ -11,6 +12,7 @@ import com.spacefist.entities.SpaceBlock;
 import com.spacefist.entities.enemies.Enemy;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /// <summary>
@@ -26,6 +28,7 @@ public class ProjectileManager extends Manager<Projectile> {
         super(gameData);
     }
 
+    @Override
     public void Update() {
 
         for (Projectile projectile : entities) {
@@ -75,7 +78,7 @@ public class ProjectileManager extends Manager<Projectile> {
     {
         gameData.getRoundData().setShotsFired(gameData.getRoundData().getShotsFired() + 1);
 
-        float rotation = ((float) Math.toDegrees((float) Math.atan2(direction.x, direction.y)) + 90);
+        float rotation = ((float) Math.toDegrees((float) Math.atan2(direction.y, direction.x)));
 
         // Place a new active laser at x, y
         Projectile projectile = new Projectile(
@@ -103,24 +106,26 @@ public class ProjectileManager extends Manager<Projectile> {
         Iterable<Enemy> visibleEnemies     = gameData.getEnemyManager().getVisibleEnemies();
         Iterable<SpaceBlock> visibleBlocks = gameData.getBlockManager().getVisibleBlocks();
 
-        List<Entity> onScreen = new ArrayList<Entity>();
+        Array<Entity> onScreen = new Array<Entity>(false, 16);
 
-        onScreen.addAll((java.util.Collection<? extends Entity>) visibleEnemies);
-        onScreen.addAll((java.util.Collection<? extends Entity>) visibleBlocks);
+        onScreen.addAll((Array<? extends Entity>) visibleEnemies);
+        onScreen.addAll((Array<? extends Entity>) visibleBlocks);
 
+
+        // TODO: ConcurrentModification Bug
         for(Entity entity : onScreen) {
             if(entity.getY() >= y) {
-                onScreen.remove(entity);
+                onScreen.removeValue(entity, true);
             }
         }
 
-        if (!onScreen.isEmpty())
+        if (onScreen.size != 0)
         {
             // Mark several onscreen entities as targets
             // and send rockets to intercept them.
             for (int i = 0; i < 4; i++)
             {
-                int idx = MathUtils.random(onScreen.size());
+                int idx = MathUtils.random(onScreen.size);
 
                 Entity target = onScreen.get(idx);
 
@@ -213,10 +218,10 @@ public class ProjectileManager extends Manager<Projectile> {
     /// </returns>
     public Iterable<Projectile> PlayerProjectiles()
     {
-        List<Projectile> playerProjs = new ArrayList<Projectile>();
+        Array<Projectile> playerProjs = new Array<Projectile>(false, 16);
 
-        for(Projectile projectile : ((List<Projectile>)entities)) {
-            if ((projectile.isEnemyProjectile() == false) && projectile.isAlive()) {
+        for(Projectile projectile : entities) {
+            if ((!projectile.isEnemyProjectile()) && projectile.isAlive()) {
                 playerProjs.add(projectile);
             }
         }
@@ -231,9 +236,9 @@ public class ProjectileManager extends Manager<Projectile> {
     /// <returns></returns>
     public Iterable<Projectile> EnemyProjectiles()
     {
-        List<Projectile> enemyProjs = new ArrayList<Projectile>();
+        Array<Projectile> enemyProjs = new Array<Projectile>(false, 16);
 
-        for(Projectile projectile : ((Iterable<Projectile>) entities)) {
+        for(Projectile projectile : entities) {
             if (projectile.isEnemyProjectile() && projectile.isAlive()) {
                 enemyProjs.add(projectile);
             }

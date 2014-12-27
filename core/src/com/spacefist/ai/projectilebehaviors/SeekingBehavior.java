@@ -37,6 +37,7 @@ public class SeekingBehavior implements ProjectileBehavior {
         origVector  = unitVector;
     }
 
+    @Override
     public void update(Projectile projectile) {
         if (target.isAlive()) {
             int maxSpeed = 10;

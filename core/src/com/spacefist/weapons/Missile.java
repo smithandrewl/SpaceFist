@@ -22,6 +22,7 @@ public class Missile implements Weapon {
     /**
      * Fires a missile in the direction the ship is facing.
      */
+    @Override
     public void fire() {
         Ship ship = gameData.getShip();
 

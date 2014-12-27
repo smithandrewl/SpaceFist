@@ -42,6 +42,7 @@ public class GameOverState implements GameState {
             */
     }
 
+    @Override
     public void draw() {
             /*
             TODO: Convert GameOverState.Draw
@@ -52,6 +53,7 @@ public class GameOverState implements GameState {
             */
     }
 
+    @Override
     public void exitingState() {
             /*
             TODO: Convert GameOverState.ExitingState()

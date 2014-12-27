@@ -1,5 +1,6 @@
 package com.spacefist.state.shipstates;
 
+import com.badlogic.gdx.graphics.Color;
 import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.state.abst.ShipState;
@@ -20,6 +21,7 @@ public class NormalState implements ShipState {
         this.gameData = gameData;
     }
 
+    @Override
     public void update() {
         Ship ship = gameData.getShip();
 
@@ -27,12 +29,15 @@ public class NormalState implements ShipState {
             // Change the ships state to LowHealthState
             ship.setCurrentState(new LowHealthState(gameData));
         }
+
     }
 
+    @Override
     public void enteringState() {
         // TODO: Set the ship to draw opaque after entering the normal state
-        //gameData.Ship.Tint = Color.White;
+        gameData.getShip().setTint(Color.WHITE);
     }
 
+    @Override
     public void exitingState() { }
 }

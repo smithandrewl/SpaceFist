@@ -1,7 +1,7 @@
 package com.spacefist.state;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -31,6 +31,7 @@ public class SplashScreenState implements GameState {
         this.gameData = gameData;
     }
 
+    @Override
     public void loadContent() {
         Rectangle resolution = gameData.getResolution();
 
@@ -44,10 +45,12 @@ public class SplashScreenState implements GameState {
         );
     }
 
+    @Override
     public void enteringState() {
         enteredAt = new Date();
     }
 
+    @Override
     public void update() {
         long timeDiff = new Date().getTime() - enteredAt.getTime();
 
@@ -58,9 +61,9 @@ public class SplashScreenState implements GameState {
         // This waits 300 milliseconds after the splash screen state has been entered
         // before processing input.
         else if (timeDiff > 300) {
-            if (Gdx.input.isKeyPressed(Input.Keys.ENTER) ||
-                Gdx.input.isKeyPressed(Input.Keys.SPACE) ||
-                Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            if (Gdx.input.isKeyPressed(Keys.ENTER) ||
+                Gdx.input.isKeyPressed(Keys.SPACE) ||
+                Gdx.input.isKeyPressed(Keys.ESCAPE)) {
                 gameData.setCurrentState(gameData.getMenuState());
             }
 
@@ -70,6 +73,7 @@ public class SplashScreenState implements GameState {
         }
     }
 
+    @Override
     public void draw() {
         Rectangle resolution    = gameData.getResolution();
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
@@ -91,5 +95,6 @@ public class SplashScreenState implements GameState {
         );
     }
 
+    @Override
     public void exitingState() { }
 }

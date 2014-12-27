@@ -10,9 +10,10 @@ import com.spacefist.entities.Entity;
 public class Physics implements PhysicsComponent {
     public Physics() { }
 
+    @Override
     public void update(GameData gameData, Entity obj) {
         obj.setX(obj.getX() + (int) obj.getVelocity().x);
-        obj.setY(obj.getY() + (int) obj.getVelocity().y);
+        obj.setY(obj.getY() - (int) obj.getVelocity().y);
     }
 }
 

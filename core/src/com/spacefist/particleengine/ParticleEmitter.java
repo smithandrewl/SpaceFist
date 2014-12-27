@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /*
@@ -48,6 +47,7 @@ public class ParticleEmitter {
     private ParticleOptions particleOptions;
     private GameData        gameData;
 
+    @SuppressWarnings("UnnecessaryThis")
     public ParticleEmitter(
         GameData        gameData,
         Texture         texture,

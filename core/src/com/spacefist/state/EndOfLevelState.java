@@ -10,12 +10,15 @@ public class EndOfLevelState implements GameState {
         this.gameData = gameData;
     }
 
+    @Override
     public void loadContent() {
     }
 
+    @Override
     public void draw() {
     }
 
+    @Override
     public void update() {
             /*
             TODO: Convert EndOfLevelState.Update

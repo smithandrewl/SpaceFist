@@ -5,7 +5,6 @@ import com.spacefist.GameData;
 import com.spacefist.RoundData;
 import com.spacefist.entities.*;
 import com.spacefist.entities.enemies.Enemy;
-import com.spacefist.weapons.LaserWeapon;
 
 /// <summary>
 /// Contains methods to handle the different types of entity and player collisions.

@@ -3,14 +3,12 @@ package com.spacefist.managers;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.spacefist.GameData;
+import com.spacefist.entities.enemies.Enemy;
 import com.spacefist.entities.enemies.EnemyFighter;
 import com.spacefist.entities.enemies.EnemyFreighter;
 import com.spacefist.util.Func;
-import com.spacefist.GameData;
-import com.spacefist.entities.enemies.Enemy;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /// <summary>
 /// Keeps track of all of the enemies in the world.
@@ -33,6 +31,7 @@ public class EnemyManager extends Manager<Enemy>
     public void SpawnEnemyFighters(int count)
     {
         SpawnEnemies(count, new Func<Vector2, Enemy>(){
+            @Override
             public Enemy call(Vector2 position) {
                 return new EnemyFighter(gameData, position);
             }
@@ -46,6 +45,7 @@ public class EnemyManager extends Manager<Enemy>
     public void SpawnEnemyFreighters(int count)
     {
         SpawnEnemies(count, new Func<Vector2, Enemy>() {
+            @Override
             public Enemy call(Vector2 position) {
                 return new EnemyFreighter(gameData, position);
             }
@@ -112,7 +112,7 @@ public class EnemyManager extends Manager<Enemy>
             backgroundRect.getHeight()
         );
 
-        List<Enemy> visibleEnemies = new ArrayList<Enemy>();
+        Array<Enemy> visibleEnemies = new Array<Enemy>(false, 16);
 
         for(Enemy enemy : this) {
             if (enemy.isAlive() && screenRect.overlaps(enemy.getRectangle())) {

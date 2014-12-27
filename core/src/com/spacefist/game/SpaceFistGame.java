@@ -11,10 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
-import com.spacefist.state.CreditsState;
-import com.spacefist.state.LogoState;
-import com.spacefist.state.MenuState;
-import com.spacefist.state.SplashScreenState;
+import com.spacefist.state.*;
 import com.spacefist.state.abst.GameState;
 
 import java.util.HashMap;
@@ -37,22 +34,11 @@ public class SpaceFistGame extends ApplicationAdapter {
         gameData.setSplashScreenState(new SplashScreenState(gameData));
         gameData.setMenuState(new MenuState(gameData));
         gameData.setLogoState(new LogoState(gameData));
-
-
-        //gameData.setInPlayState(new InPlayState(GameData));
-        /*
-        GameData.GameOverState      = new GameOverState(GameData);
-        */
-
-
+        gameData.setInPlayState(new InPlayState(gameData));
+        gameData.setGameOverState(new GameOverState(gameData));
         gameData.setCreditsState(new CreditsState(gameData));
-        /*
-        GameData.EndOfLevelState    = new EndOfLevelState(GameData);
-        GameData.EndOfGameState     = new EndOfGameState(GameData);
-        graphics          = new GraphicsDeviceManager(this);
-
-        // Set the first state of the game to be displaying the splash screen.
-        */
+        gameData.setEndOfLevelState(new EndOfLevelState(gameData));
+        gameData.setEndOfGameState(new EndOfGameState(gameData));
 
         gameData.setCurrentState(gameData.getLogoState());
 
@@ -149,14 +135,12 @@ public class SpaceFistGame extends ApplicationAdapter {
 
 
         // GameData.InPlayState.loadContent();
-        // GameData.GameOverState.loadContent();
+        gameData.getGameOverState().loadContent();
 
         gameData.getSplashScreenState().loadContent();
         gameData.getMenuState().loadContent();
         gameData.getLogoState().loadContent();
-        /*
-        GameData.EndOfLevelState.loadContent();
-        */
+        gameData.getEndOfLevelState().loadContent();
 
         gameData.getCurrentState().enteringState();
     }

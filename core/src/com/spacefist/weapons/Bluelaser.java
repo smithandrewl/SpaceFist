@@ -26,6 +26,7 @@ public class Bluelaser implements Weapon {
     /**
      * Drops a mine at the ships location.
      */
+    @Override
     public void fire() {
         Ship ship = gameData.getShip();
 
