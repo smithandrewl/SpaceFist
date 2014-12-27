@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.spacefist.ai.abst.ProjectileBehavior;
 import com.spacefist.entities.Entity;
 import com.spacefist.entities.Projectile;
+import org.jetbrains.annotations.NotNull;
 
 // Interception and steering behavior based
 // on the pursuit section of the paper "Steering Behaviors For Autonomous Characters"
@@ -38,7 +39,7 @@ public class SeekingBehavior implements ProjectileBehavior {
     }
 
     @Override
-    public void update(Projectile projectile) {
+    public void update(@NotNull Projectile projectile) {
         if (target.isAlive()) {
             int maxSpeed = 10;
             // The minimum distance from the launching point

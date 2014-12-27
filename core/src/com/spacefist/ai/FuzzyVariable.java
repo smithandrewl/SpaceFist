@@ -1,5 +1,7 @@
 package com.spacefist.ai;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  *  Represents a fuzzy input variable of three sets
  */
@@ -52,6 +54,7 @@ public class FuzzyVariable {
     /**
      * @return The contents of the variable in a format suitable for display</returns>
      */
+    @NotNull
     @Override
     public String toString() {
         // TODO: convert FuzzyVariable.toString()

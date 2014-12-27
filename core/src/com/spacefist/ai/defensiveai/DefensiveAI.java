@@ -5,6 +5,7 @@ import com.spacefist.ai.ShipEnemyInfo;
 import com.spacefist.ai.ShipInfo;
 import com.spacefist.ai.abst.EnemyAI;
 import com.spacefist.entities.enemies.Enemy;
+import org.jetbrains.annotations.NotNull;
 
 public class DefensiveAI implements EnemyAI {
     // Fuzzy sets
@@ -27,7 +28,7 @@ public class DefensiveAI implements EnemyAI {
      * @param gameData Common game data
      * @param enemy The enemy this AI will control
      */
-    public DefensiveAI(GameData gameData, Enemy enemy) {
+    public DefensiveAI(@NotNull GameData gameData, Enemy enemy) {
         shipInfo      = new ShipInfo(gameData);
         shipEnemyInfo = new ShipEnemyInfo(enemy, shipInfo, gameData);
 

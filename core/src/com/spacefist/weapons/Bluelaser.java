@@ -4,6 +4,7 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.managers.ProjectileManager;
 import com.spacefist.weapons.abst.Weapon;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a weapon which drops stationary mines when fired.
@@ -17,7 +18,7 @@ public class Bluelaser implements Weapon {
      *
      * @param gameData Common game data
      */
-    public Bluelaser(GameData gameData) {
+    public Bluelaser(@NotNull GameData gameData) {
         this.gameData = gameData;
 
         projectileManager = gameData.getProjectileManager();

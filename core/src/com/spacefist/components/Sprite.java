@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.components.abst.GraphicsComponent;
 import com.spacefist.entities.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Sprite represents a static image at a position on-world.
@@ -31,7 +32,7 @@ public class Sprite implements GraphicsComponent {
     }
 
     @Override
-    public void draw(GameData gameData, Entity obj) {
+    public void draw(@NotNull GameData gameData, @NotNull Entity obj) {
         SpriteBatch spriteBatch  = gameData.getSpriteBatch();
         spriteBatch.setColor(new Color(obj.getTint()));
 

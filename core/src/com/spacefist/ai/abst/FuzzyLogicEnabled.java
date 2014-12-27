@@ -1,6 +1,7 @@
 package com.spacefist.ai.abst;
 
 import com.spacefist.ai.FuzzyVariable;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Base class for classes using fuzzy logic.
@@ -83,7 +84,8 @@ public abstract class FuzzyLogicEnabled {
      * @param fuzzyVariable The fuzzy variable to populate
      * @return The populated fuzzy variable
      */
-     protected static FuzzyVariable grade(float val, float low, float high, FuzzyVariable fuzzyVariable) {
+     @NotNull
+     protected static FuzzyVariable grade(float val, float low, float high, @NotNull FuzzyVariable fuzzyVariable) {
          assert fuzzyVariable != null;
 
         float med = (high - low) / 2.0f;

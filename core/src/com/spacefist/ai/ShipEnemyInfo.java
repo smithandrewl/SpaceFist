@@ -6,6 +6,7 @@ import com.spacefist.GameData;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.entities.Ship;
 import com.spacefist.entities.enemies.Enemy;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Provides information about the players ship that is specific to a particular enemy.
@@ -55,6 +56,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
     }
 
     // Distance
+    @NotNull
     public FuzzyVariable getDistance() {
         return grade(distance, DISTANCE_LOW, DISTANCE_HIGH, fuzzyDistance);
     }
@@ -74,6 +76,7 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
     /**
      * @return A vector from the enemy to the ship representing its line of sight.
      */
+    @NotNull
     public Vector2 getLineOfSight() {
         Ship ship  = gameData.getShip();
         int shipX  = ship.getX();

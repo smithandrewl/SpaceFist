@@ -4,6 +4,7 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.managers.ProjectileManager;
 import com.spacefist.weapons.abst.Weapon;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * The default weapon
@@ -19,7 +20,7 @@ public class LaserWeapon implements Weapon {
       * @param gameData Common game data
       */
     @SuppressWarnings("UnnecessaryThis")
-    public LaserWeapon(GameData gameData) {
+    public LaserWeapon(@NotNull GameData gameData) {
         this.gameData = gameData;
 
         this.projectileManager = gameData.getProjectileManager();

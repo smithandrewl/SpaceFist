@@ -9,6 +9,7 @@ import com.spacefist.entities.enemies.Enemy;
 import com.spacefist.entities.enemies.EnemyFighter;
 import com.spacefist.entities.enemies.EnemyFreighter;
 import com.spacefist.util.Func;
+import org.jetbrains.annotations.NotNull;
 
 /// <summary>
 /// Keeps track of all of the enemies in the world.
@@ -31,8 +32,9 @@ public class EnemyManager extends Manager<Enemy>
     public void SpawnEnemyFighters(int count)
     {
         SpawnEnemies(count, new Func<Vector2, Enemy>(){
+            @NotNull
             @Override
-            public Enemy call(Vector2 position) {
+            public Enemy call(@NotNull Vector2 position) {
                 return new EnemyFighter(gameData, position);
             }
         });
@@ -45,14 +47,15 @@ public class EnemyManager extends Manager<Enemy>
     public void SpawnEnemyFreighters(int count)
     {
         SpawnEnemies(count, new Func<Vector2, Enemy>() {
+            @NotNull
             @Override
-            public Enemy call(Vector2 position) {
+            public Enemy call(@NotNull Vector2 position) {
                 return new EnemyFreighter(gameData, position);
             }
         });
     }
 
-    public void SpawnEnemy(int x, int y, Func<Vector2, Enemy> func)
+    public void SpawnEnemy(int x, int y, @NotNull Func<Vector2, Enemy> func)
     {
         float rotation = (float) Math.toRadians(180);
         Enemy enemy = func.call(new Vector2(x, y));
@@ -60,7 +63,7 @@ public class EnemyManager extends Manager<Enemy>
         Add(enemy);
     }
 
-    public void SpawnEnemy(int lowX, int highX, int lowY, int highY, Func<Vector2,Enemy> func)
+    public void SpawnEnemy(int lowX, int highX, int lowY, int highY, @NotNull Func<Vector2,Enemy> func)
     {
         int randX = MathUtils.random(lowX, highX);
         int randY = MathUtils.random(lowY, highY);
@@ -73,7 +76,7 @@ public class EnemyManager extends Manager<Enemy>
     /// </summary>
     /// <param name="count">The number of enemies to spawn</param>
     /// <param name="func">A function to spawn a particular type of enemy</param>
-    private void SpawnEnemies(int count, Func<Vector2, Enemy> func){
+    private void SpawnEnemies(int count, @NotNull Func<Vector2, Enemy> func){
         assert count >= 0;
         assert func != null;
 
@@ -90,7 +93,7 @@ public class EnemyManager extends Manager<Enemy>
         );
     }
 
-    public void SpawnEnemies(int count, int lowX, int highX, int lowY, int highY, Func<Vector2, Enemy> func)
+    public void SpawnEnemies(int count, int lowX, int highX, int lowY, int highY, @NotNull Func<Vector2, Enemy> func)
     {
         for (int i = 0; i < count; i++)
         {
@@ -103,6 +106,7 @@ public class EnemyManager extends Manager<Enemy>
     /// which are visible to the player.
     /// </summary>
     /// <returns></returns>
+    @NotNull
     public Iterable<Enemy> getVisibleEnemies()
     {
         Vector2 camera         = gameData.getCamera();

@@ -13,6 +13,7 @@ import com.spacefist.state.shipstates.NormalState;
 import com.spacefist.state.shipstates.SpawningState;
 import com.spacefist.weapons.LaserWeapon;
 import com.spacefist.weapons.abst.Weapon;
+import org.jetbrains.annotations.NotNull;
 
 import static com.badlogic.gdx.math.MathUtils.clamp;
 
@@ -48,9 +49,13 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     private IndexedSprite indexedSprite;
 
     // The predefined velocities to use when changing position
+    @NotNull
     private Vector2 LeftVelocity     = new Vector2(-1, 0);
+    @NotNull
     private Vector2 RightVelocity    = new Vector2(1, 0);
+    @NotNull
     private Vector2 ForwardVelocity  = new Vector2(0, -1);
+    @NotNull
     private Vector2 BackwardVelocity = new Vector2(0, 1);
 
     /**
@@ -59,7 +64,7 @@ public class Ship extends Entity implements StateMachine<ShipState> {
      * @param gameData Common game data
      * @param position The location of the ship in the game world
      */
-    public Ship(GameData gameData, Vector2 position) {
+    public Ship(@NotNull GameData gameData, @NotNull Vector2 position) {
         super(
             gameData,
             new Rectangle(
@@ -90,7 +95,7 @@ public class Ship extends Entity implements StateMachine<ShipState> {
     }
 
     @Override
-    public void setCurrentState(ShipState shipState) {
+    public void setCurrentState(@NotNull ShipState shipState) {
         state.exitingState();
         shipState.enteringState();
         state = shipState;
@@ -159,7 +164,7 @@ public class Ship extends Entity implements StateMachine<ShipState> {
      * Changes the velocity by "velocity" and then clamps the value between the minimum and maximum velocities
      * allowed.
      */
-    private void incrementVelocity(Vector2 velocity) {
+    private void incrementVelocity(@NotNull Vector2 velocity) {
         float xVel = clamp(
             getVelocity().x + velocity.x,
             -MAX_VELOCITY,

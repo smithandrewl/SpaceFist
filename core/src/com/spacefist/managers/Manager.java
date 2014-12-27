@@ -3,6 +3,7 @@ package com.spacefist.managers;
 import com.badlogic.gdx.utils.Array;
 import com.spacefist.GameData;
 import com.spacefist.entities.Entity;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
@@ -16,13 +17,13 @@ public class Manager<T extends Entity> implements Iterable<T> {
         entities      = new Array<T>(false, 16);
     }
 
-    protected void Add(T entity) {
+    protected void Add(@NotNull T entity) {
         assert entity != null;
 
         entities.add(entity);
     }
 
-    protected void Remove(T entity) {
+    protected void Remove(@NotNull T entity) {
         assert entity != null;
 
         entities.removeValue(entity,true);
@@ -42,7 +43,8 @@ public class Manager<T extends Entity> implements Iterable<T> {
         }
     }
 
-    public Iterable<T> Collisions(Entity obj) {
+    @NotNull
+    public Iterable<T> Collisions(@NotNull Entity obj) {
         Array<T> collisions = new Array<T>(false, 16);
 
         for(T entity : entities) {

@@ -10,6 +10,7 @@ import com.spacefist.ai.abst.EnemyAI;
 import com.spacefist.ai.abst.EnemyAIState;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.managers.ProjectileManager;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This fuzzy state fires at the ship when the enemy is on the screen.
@@ -38,7 +39,7 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
      * @param gameData Common game data
      */
     @SuppressWarnings("UnnecessaryThis")
-    public FireState(EnemyAI ai, GameData gameData) {
+    public FireState(@NotNull EnemyAI ai, @NotNull GameData gameData) {
         this.ai       = ai;
         shipInfo      = ai.getShipInfo();
         shipEnemyInfo = ai.getShipEnemyInfo();

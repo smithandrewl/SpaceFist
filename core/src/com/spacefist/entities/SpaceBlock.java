@@ -8,6 +8,7 @@ import com.spacefist.components.NullInputComponent;
 import com.spacefist.components.Physics;
 import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a floating block or crate.
@@ -27,7 +28,7 @@ public class SpaceBlock extends Entity {
      * @param position The position of the block in the game world
      * @param velocity The velocity of the block
      */
-    public SpaceBlock(GameData gameData, Texture texture, Vector2 position, Vector2 velocity) {
+    public SpaceBlock(@NotNull GameData gameData, Texture texture, @NotNull Vector2 position, Vector2 velocity) {
         super(gameData,
             new Rectangle(
                 (int) position.x,

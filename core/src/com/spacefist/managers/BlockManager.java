@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.spacefist.GameData;
 import com.spacefist.entities.Entity;
 import com.spacefist.entities.SpaceBlock;
+import org.jetbrains.annotations.NotNull;
 
 /// <summary>
 /// Keeps track of the space blocks in the world and
@@ -44,6 +45,7 @@ public class BlockManager extends Manager<SpaceBlock>
     }
 
     /// <returns>A random point in the world</returns>
+    @NotNull
     private Vector2 randomPos()
     {
         assert gameData.getWorld() != null;
@@ -55,6 +57,7 @@ public class BlockManager extends Manager<SpaceBlock>
     }
 
     /// <returns>A velocity with a random x between -2 and 2</returns>
+    @NotNull
     private static Vector2 randomVel()
     {
         return new Vector2(MathUtils.random(4) - 2, MathUtils.random(4));
@@ -88,7 +91,7 @@ public class BlockManager extends Manager<SpaceBlock>
 
     // Keep the specified entity on world causing it to "bounce"
     // off of the edges of the world.
-    private void KeepOnWorld(Entity obj)
+    private void KeepOnWorld(@NotNull Entity obj)
     {
         assert obj != null;
         assert gameData.getWorld() != null;
@@ -109,6 +112,7 @@ public class BlockManager extends Manager<SpaceBlock>
     /// which are currently visible on the screen.
     /// </summary>
     /// <returns>Blocks which are visible to the player</returns>
+    @NotNull
     public Iterable<SpaceBlock> getVisibleBlocks()
     {
         Vector2 camera   = gameData.getCamera();

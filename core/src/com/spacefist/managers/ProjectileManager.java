@@ -10,6 +10,7 @@ import com.spacefist.entities.Entity;
 import com.spacefist.entities.Projectile;
 import com.spacefist.entities.SpaceBlock;
 import com.spacefist.entities.enemies.Enemy;
+import org.jetbrains.annotations.NotNull;
 
 /// <summary>
 /// Keeps track of the projectiles in the world.
@@ -70,7 +71,7 @@ public class ProjectileManager extends Manager<Projectile> {
     /// <param name="y">The Y value of the location</param>
     /// <param name="direction">The direction to send the projectile</param>
     /// <param name="enemyLaser">Whether this laser belongs to an enemy</param>
-    public void fireLaser(int x, int y, Vector2 direction, boolean enemyLaser)
+    public void fireLaser(int x, int y, @NotNull Vector2 direction, boolean enemyLaser)
     {
         gameData.getRoundData().setShotsFired(gameData.getRoundData().getShotsFired() + 1);
 
@@ -215,6 +216,7 @@ public class ProjectileManager extends Manager<Projectile> {
     /// Returns a collection of all of the live projectiles
     /// fired by the player.
     /// </returns>
+    @NotNull
     public Iterable<Projectile> PlayerProjectiles()
     {
         Array<Projectile> playerProjs = new Array<Projectile>(false, 16);
@@ -233,6 +235,7 @@ public class ProjectileManager extends Manager<Projectile> {
     /// fired by an enemy.
     /// </summary>
     /// <returns></returns>
+    @NotNull
     public Iterable<Projectile> EnemyProjectiles()
     {
         Array<Projectile> enemyProjs = new Array<Projectile>(false, 16);

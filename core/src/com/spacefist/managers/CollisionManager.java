@@ -5,6 +5,7 @@ import com.spacefist.GameData;
 import com.spacefist.RoundData;
 import com.spacefist.entities.*;
 import com.spacefist.entities.enemies.Enemy;
+import org.jetbrains.annotations.NotNull;
 
 /// <summary>
 /// Contains methods to handle the different types of entity and player collisions.
@@ -26,7 +27,7 @@ public class CollisionManager
     private GameData gameData;
 
     public CollisionManager(
-        GameData          gameData)
+        @NotNull GameData          gameData)
     {
         this.gameData = gameData;
 

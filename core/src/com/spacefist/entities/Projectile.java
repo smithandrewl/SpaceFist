@@ -11,6 +11,7 @@ import com.spacefist.components.Physics;
 import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
 import com.spacefist.components.abst.SoundComponent;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a projectile fired by either the player or an enemy.
@@ -23,10 +24,10 @@ public class Projectile extends Entity {
     private ProjectileBehavior behavior;
 
     public Projectile(
-            GameData gameData,
-            Texture  texture,
-            Vector2  position,
-            Vector2  unitVector,
+            @NotNull GameData gameData,
+            @NotNull Texture  texture,
+            @NotNull Vector2  position,
+            @NotNull Vector2  unitVector,
             int      speed,
             boolean  enemyProjectile
     ) {

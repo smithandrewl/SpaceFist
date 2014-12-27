@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import org.jetbrains.annotations.NotNull;
 
 public class Level {
     private int     height;
@@ -27,7 +28,7 @@ public class Level {
     private Array<SpawnZone>  fighters;
     private Array<SpawnZone> freighters;
 
-    public Level(TiledMap map)
+    public Level(@NotNull TiledMap map)
     {
         mines      = new Array<SpawnPoint>(false, 50);
         fighters   = new Array<SpawnZone>(false, 50);

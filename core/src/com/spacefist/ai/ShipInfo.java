@@ -5,6 +5,7 @@ import com.spacefist.GameData;
 import com.spacefist.RoundData;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.entities.Ship;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Provides fuzzy information about the ship and how the player
@@ -53,7 +54,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
      *
      * @param gameData Common game data
      */
-    public ShipInfo(GameData gameData) {
+    public ShipInfo(@NotNull GameData gameData) {
         roundData     = gameData.getRoundData();
         this.gameData = gameData;
 
@@ -73,6 +74,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
     /**
      * @return The degree to which the ship belongs to the low, medium and high speed sets.
      */
+    @NotNull
     public FuzzyVariable getSpeed() {
         return grade(speed, SPEED_LOW, SPEED_HIGH, fuzzySpeed);
     }
@@ -90,6 +92,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
     /**
      * @return The degree to which the ship belongs to the low, medium and high health sets.
      */
+    @NotNull
     public FuzzyVariable getHealth() {
         return grade(health, HEALTH_LOW, HEALTH_HIGH, fuzzyHealth);
     }
@@ -97,6 +100,7 @@ public class ShipInfo extends FuzzyLogicEnabled {
     /**
      * @return The degree to which the player has low, medium or high accuracy.
      */
+    @NotNull
     public FuzzyVariable getAccuracy() {
         return grade(roundData.getAcc(), ACCURACY_LOW, ACCURACY_HIGH, fuzzyAccuracy);
     }

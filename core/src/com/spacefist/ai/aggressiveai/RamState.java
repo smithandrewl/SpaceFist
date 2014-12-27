@@ -13,6 +13,7 @@ import com.spacefist.ai.abst.EnemyAIState;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.entities.Ship;
 import com.spacefist.entities.enemies.Enemy;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private GameData      gameData;
     private long          lastUpdate;
 
-    public RamState(EnemyAI ai, GameData gameData) {
+    public RamState(@NotNull EnemyAI ai, GameData gameData) {
 
         ShipEnemyInfo shipEnemyInfo = ai.getShipEnemyInfo();
 

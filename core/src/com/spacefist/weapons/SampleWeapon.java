@@ -4,6 +4,7 @@ import com.spacefist.GameData;
 import com.spacefist.entities.Ship;
 import com.spacefist.managers.ProjectileManager;
 import com.spacefist.weapons.abst.Weapon;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a weapon which fires intercepting rockets.
@@ -20,7 +21,7 @@ public class SampleWeapon implements Weapon {
       * @param gameData Common game data
       * @param ship The players ship
       */
-    public SampleWeapon(GameData gameData, Ship ship) {
+    public SampleWeapon(@NotNull GameData gameData, Ship ship) {
         this.gameData = gameData;
         this.ship     = ship;
 

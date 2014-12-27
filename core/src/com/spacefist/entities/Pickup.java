@@ -10,6 +10,7 @@ import com.spacefist.components.NullInputComponent;
 import com.spacefist.components.Physics;
 import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a pickup item which runs a function when it collides with the players ship.
@@ -30,10 +31,10 @@ public class Pickup extends Entity {
      * @param pickupHandler The function to run on pickup
      */
     public Pickup(
-        GameData      gameData,
-        Texture       texture,
+        @NotNull GameData      gameData,
+        @NotNull Texture       texture,
         com.badlogic.gdx.audio.Sound sound,
-        Vector2       position,
+        @NotNull Vector2       position,
         Vector2       velocity,
         PickupHandler pickupHandler
     ) {

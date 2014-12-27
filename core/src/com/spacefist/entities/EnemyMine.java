@@ -7,9 +7,10 @@ import com.spacefist.components.NullInputComponent;
 import com.spacefist.components.Physics;
 import com.spacefist.components.Sound;
 import com.spacefist.components.Sprite;
+import org.jetbrains.annotations.NotNull;
 
 public class EnemyMine extends Entity {
-    public EnemyMine(GameData gameData, Vector2 position) {
+    public EnemyMine(@NotNull GameData gameData, @NotNull Vector2 position) {
         super(
             gameData,
             new Rectangle(

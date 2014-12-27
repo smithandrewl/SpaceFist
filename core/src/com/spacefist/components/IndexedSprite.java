@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.spacefist.GameData;
 import com.spacefist.components.abst.GraphicsComponent;
 import com.spacefist.entities.Entity;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Given a texture and a frame width and height,
  * this component will draw a portion of the texture.
@@ -49,7 +51,7 @@ import com.spacefist.entities.Entity;
     }
 
     @Override
-    public void draw(GameData gameData, Entity obj) {
+    public void draw(@NotNull GameData gameData, @NotNull Entity obj) {
 
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
         spriteBatch.setColor(new Color(obj.getTint()));

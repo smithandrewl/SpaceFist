@@ -7,6 +7,7 @@ import com.spacefist.RoundData;
 import com.spacefist.entities.Ship;
 import com.spacefist.state.shipstates.SpawningState;
 import com.spacefist.weapons.LaserWeapon;
+import org.jetbrains.annotations.NotNull;
 
 /// <summary>
 /// Handles player and ship interaction with the game world.
@@ -20,6 +21,7 @@ public class PlayerManager
     private static final int HIT_DAMAGE = 10;
 
     // Start the players ship moving at a velocity greater than the camer scrolls
+    @NotNull
     private Vector2 StartingVelocity = new Vector2(0, -2);
 
     public boolean isAlive()
@@ -31,7 +33,7 @@ public class PlayerManager
     /// Creates a new PlayerManager instance.
     /// </summary>
     /// <param name="gameData">Common game data</param>
-    public PlayerManager(GameData gameData)
+    public PlayerManager(@NotNull GameData gameData)
     {
         this.gameData = gameData;
         roundData     = gameData.getRoundData();

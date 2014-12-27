@@ -10,6 +10,7 @@ import com.spacefist.components.NullInputComponent;
 import com.spacefist.components.Physics;
 import com.spacefist.components.Sprite;
 import com.spacefist.entities.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * The parent class of all game enemies.
@@ -20,7 +21,7 @@ public class Enemy extends Entity {
      */
     private EnemyAI ai;
 
-    public Enemy(GameData gameData, Texture enemyTexture, Sound sound, Vector2 position) {
+    public Enemy(GameData gameData, @NotNull Texture enemyTexture, Sound sound, @NotNull Vector2 position) {
         super(
             gameData,
             new Rectangle(

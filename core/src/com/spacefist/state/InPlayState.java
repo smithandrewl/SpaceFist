@@ -20,6 +20,7 @@ import com.spacefist.managers.PickUpManager;
 import com.spacefist.managers.PlayerManager;
 import com.spacefist.state.abst.GameState;
 import com.spacefist.util.Func;
+import org.jetbrains.annotations.NotNull;
 
 /*
  * The main state of the game.  All game play occurs in the InPlayState.
@@ -39,6 +40,7 @@ public class InPlayState implements GameState {
     private boolean titleShown;
 
     // The portion of the world which is currently visible.
+    @NotNull
     public Rectangle getOnScreenWorld() {
         int screenWidth = (int) gameData.getResolution().getWidth();
         int screenHeight = (int) gameData.getResolution().getHeight();
@@ -124,6 +126,7 @@ public class InPlayState implements GameState {
                         zone.getTop(),
                         zone.getBottom(),
                         new Func<Vector2, Enemy>() {
+                            @NotNull
                             @Override
                             public Enemy call(Vector2 position) {
                                 return new EnemyFighter(gameData, position);
@@ -137,6 +140,7 @@ public class InPlayState implements GameState {
                         (int) zone.getCenter().x,
                         (int) zone.getCenter().y,
                         new Func<Vector2, Enemy>() {
+                            @NotNull
                             @Override
                             public Enemy call(Vector2 position) {
                                 return new EnemyFighter(gameData, position);
@@ -159,6 +163,7 @@ public class InPlayState implements GameState {
                         zone.getTop(),
                         zone.getBottom(),
                         new Func<Vector2, Enemy>() {
+                            @NotNull
                             @Override
                             public Enemy call(Vector2 position) {
                                 return new EnemyFreighter(gameData, position);
@@ -172,6 +177,7 @@ public class InPlayState implements GameState {
                         (int) zone.getCenter().x,
                         (int) zone.getCenter().y,
                         new Func<Vector2, Enemy>() {
+                            @NotNull
                             @Override
                             public Enemy call(Vector2 position) {
                                 return new EnemyFreighter(gameData, position);
@@ -403,7 +409,7 @@ public class InPlayState implements GameState {
     }
 
     // Keep the player on the screen
-    private void KeepOnScreen(Entity obj) {
+    private void KeepOnScreen(@NotNull Entity obj) {
         Rectangle resolution = gameData.getResolution();
 
         int farRight   = (int) (gameData.getCamera().x + resolution.getWidth());

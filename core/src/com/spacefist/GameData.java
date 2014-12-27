@@ -12,6 +12,7 @@ import com.spacefist.game.SpaceFistGame;
 import com.spacefist.managers.*;
 import com.spacefist.state.*;
 import com.spacefist.state.abst.GameState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -105,6 +106,7 @@ public class GameData {
     private CreditsState    creditsState;
     private EndOfLevelState endOfLevelState;
 
+    @NotNull
     public Rectangle getOnScreenWorld() {
         return new Rectangle(
             (int) camera.x,
@@ -122,7 +124,7 @@ public class GameData {
         return currentState;
     }
 
-    public void setCurrentState(GameState newState) {
+    public void setCurrentState(@NotNull GameState newState) {
         if (currentState != null) {
             currentState.exitingState();
         }

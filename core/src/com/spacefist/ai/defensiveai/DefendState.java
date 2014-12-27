@@ -6,6 +6,7 @@ import com.spacefist.ai.abst.EnemyAI;
 import com.spacefist.ai.abst.EnemyAIState;
 import com.spacefist.ai.abst.FuzzyLogicEnabled;
 import com.spacefist.entities.enemies.Enemy;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * The fuzzy state for a non-firing AI
@@ -16,7 +17,7 @@ public class DefendState extends FuzzyLogicEnabled implements EnemyAIState {
     private ShipEnemyInfo shipEnemyInfo;
     private Enemy         enemy;
 
-    public DefendState(EnemyAI ai) {
+    public DefendState(@NotNull EnemyAI ai) {
         this.ai       = ai;
         shipInfo      = ai.getShipInfo();
         shipEnemyInfo = ai.getShipEnemyInfo();

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.managers.PlayerManager;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Draws information about the ongoing game and the player to the screen.
@@ -22,7 +23,7 @@ public class Hud {
     private Rectangle TopRect;
 
     @SuppressWarnings("UnnecessaryThis")
-    public Hud(GameData gameData, PlayerManager shipManager) {
+    public Hud(@NotNull GameData gameData, PlayerManager shipManager) {
         this.gameData  = gameData;
         this.roundData = gameData.getRoundData();
 

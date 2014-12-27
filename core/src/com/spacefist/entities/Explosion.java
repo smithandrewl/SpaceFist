@@ -7,6 +7,7 @@ import com.spacefist.components.IndexedSprite;
 import com.spacefist.components.NullInputComponent;
 import com.spacefist.components.NullSoundComponent;
 import com.spacefist.components.Physics;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents and draws an explosion at its x and y coordinates.
@@ -32,7 +33,7 @@ public class Explosion extends Entity {
      * @param gameData Common game data
      * @param position The on world location of the explosion</param>
     */
-    public Explosion(GameData gameData, Vector2 position) {
+    public Explosion(@NotNull GameData gameData, @NotNull Vector2 position) {
         super(gameData,
             new Rectangle(
                 (int) position.x,

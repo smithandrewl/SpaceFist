@@ -12,6 +12,7 @@ import com.spacefist.util.Action;
 import com.spacefist.weapons.Bluelaser;
 import com.spacefist.weapons.Missile;
 import com.spacefist.weapons.SampleWeapon;
+import org.jetbrains.annotations.NotNull;
 
 /// <summary>
 /// Keeps track of the pickups in the world and provides
@@ -25,7 +26,7 @@ public class PickUpManager extends Manager<Pickup>
     /// Creates a new instance of PickupManager.
     /// </summary>
     /// <param name="gameData">Common game data</param>
-    public PickUpManager(GameData gameData) {
+    public PickUpManager(@NotNull GameData gameData) {
         super(gameData);
         roundData    = gameData.getRoundData();
     }
@@ -35,7 +36,7 @@ public class PickUpManager extends Manager<Pickup>
     /// </summary>
     /// <param name="count">The number of pickups to spawn</param>
     /// <param name="spawnFunction">A function to spawn a specific pickup type</param>
-    public void SpawnPickups(int count, Action<Integer, Integer> spawnFunction)
+    public void SpawnPickups(int count, @NotNull Action<Integer, Integer> spawnFunction)
     {
         Rectangle world = gameData.getWorld();
 
@@ -76,7 +77,7 @@ public class PickUpManager extends Manager<Pickup>
             Vector2.Zero,
             new PickupHandler() {
                 @Override
-                public boolean handle(Ship ship) {
+                public boolean handle(@NotNull Ship ship) {
                     ship.setWeapon(new SampleWeapon(gameData, gameData.getShip()));
                     return true;
                 }
@@ -120,7 +121,7 @@ public class PickUpManager extends Manager<Pickup>
             Vector2.Zero,
             new PickupHandler() {
                 @Override
-                public boolean handle(Ship ship) {
+                public boolean handle(@NotNull Ship ship) {
                     ship.setWeapon(new Bluelaser(gameData));
                     return true;
                 }
@@ -149,7 +150,7 @@ public class PickUpManager extends Manager<Pickup>
             Vector2.Zero,
             new PickupHandler() {
                 @Override
-                public boolean handle(Ship ship) {
+                public boolean handle(@NotNull Ship ship) {
                     ship.setWeapon(new Missile(gameData));
                     return true;
                 }
@@ -176,7 +177,7 @@ public class PickUpManager extends Manager<Pickup>
             Vector2.Zero,
             new PickupHandler() {
                 @Override
-                public boolean handle(Ship ship) {
+                public boolean handle(@NotNull Ship ship) {
                     if (ship.getHealth() < 1) {
                         ship.setHealthPoints(100);
                         ship.resetState();
