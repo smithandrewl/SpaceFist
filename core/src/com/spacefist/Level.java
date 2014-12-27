@@ -7,9 +7,7 @@ import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.badlogic.gdx.utils.Array;
 
 public class Level {
     private int     height;
@@ -25,15 +23,15 @@ public class Level {
     private int     levelId;
     private boolean isLastLevel;
 
-    private List<SpawnPoint> mines;
-    private List<SpawnZone>  fighters;
-    private List<SpawnZone>  freighters;
+    private Array<SpawnPoint> mines;
+    private Array<SpawnZone>  fighters;
+    private Array<SpawnZone> freighters;
 
     public Level(TiledMap map)
     {
-        mines      = new ArrayList<SpawnPoint>();
-        fighters   = new ArrayList<SpawnZone>();
-        freighters = new ArrayList<SpawnZone>();
+        mines      = new Array<SpawnPoint>(false, 50);
+        fighters   = new Array<SpawnZone>(false, 50);
+        freighters = new Array<SpawnZone>(false, 50);
 
         MapProperties properties  = map.getProperties();
         MapLayer      objectLayer = map.getLayers().get(0);
@@ -162,15 +160,15 @@ public class Level {
         return isLastLevel;
     }
 
-    public List<SpawnPoint> getMines() {
+    public Iterable<SpawnPoint> getMines() {
         return mines;
     }
 
-    public List<SpawnZone> getFighters() {
+    public Iterable<SpawnZone> getFighters() {
         return fighters;
     }
 
-    public List<SpawnZone> getFreighters() {
+    public Iterable<SpawnZone> getFreighters() {
         return freighters;
     }
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.Hud;
@@ -20,9 +21,6 @@ import com.spacefist.managers.PlayerManager;
 import com.spacefist.state.abst.GameState;
 import com.spacefist.util.Func;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
  * The main state of the game.  All game play occurs in the InPlayState.
  */
@@ -36,7 +34,7 @@ public class InPlayState implements GameState {
     private Hud hud;
 
     private long levelLoadedAt;
-    private List<Rectangle> debrisField;
+    private Array<Rectangle> debrisField;
 
     private boolean titleShown;
 
@@ -75,7 +73,7 @@ public class InPlayState implements GameState {
         gameData.getLevelManager().Init();
         gameData.getLevelManager().LoadLevel(1);
 
-        debrisField    = new ArrayList<Rectangle>(gameData.getLevel().getDebrisParticleCount());
+        debrisField    = new Array<Rectangle>(false, gameData.getLevel().getDebrisParticleCount());
         gameData.setWorld(new Rectangle(0, 0, gameData.getLevel().getWidth(), gameData.getLevel().getHeight()));
 
         hud = new Hud(gameData, gameData.getPlayerManager());

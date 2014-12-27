@@ -108,7 +108,7 @@ public class ProjectileManager extends Manager<Projectile> {
         onScreen.addAll((Array<? extends Entity>) visibleBlocks);
 
 
-        // TODO: ConcurrentModification Bug
+        // TODO: fireSampleWeapon: ConcurrentModification Bug
         for(Entity entity : onScreen) {
             if(entity.getY() >= y) {
                 onScreen.removeValue(entity, true);
@@ -117,6 +117,7 @@ public class ProjectileManager extends Manager<Projectile> {
 
         if (onScreen.size != 0)
         {
+            // TODO: fireSampleWeapon: IndexOutOfBounds Bug
             // Mark several onscreen entities as targets
             // and send rockets to intercept them.
             for (int i = 0; i < 4; i++)
@@ -130,6 +131,8 @@ public class ProjectileManager extends Manager<Projectile> {
                 // target.Tint = Color.Crimson;
 
                 gameData.getRoundData().shotFired();
+
+
 
                 Projectile projectile = new Projectile(
                     gameData,
