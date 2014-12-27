@@ -25,7 +25,7 @@ public class Explosion extends Entity {
     // The time the explosion animation started
     // and the time to wait before drawing the next frame
     private long startTime;
-    private long TimeBetweenFrames = 400000;
+    private long TimeBetweenFrames = 20;
 
     /**
      * Creates a new Explosion instance at a specified location.

@@ -74,6 +74,7 @@ public class CollisionManager
         {
             if(projectile.getRectangle().overlaps(gameData.getShip().getRectangle())) {
                 projectile.setAlive(false);
+                // TODO: Bug: Explosions draw off-center
                 explosionManager.Add(gameData.getShip().getX(), gameData.getShip().getY());
                 shipManager.ShipHit();
             }
