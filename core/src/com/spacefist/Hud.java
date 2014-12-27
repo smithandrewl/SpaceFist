@@ -1,6 +1,7 @@
 package com.spacefist;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.managers.PlayerManager;
@@ -9,44 +10,38 @@ import com.spacefist.managers.PlayerManager;
  * Draws information about the ongoing game and the player to the screen.
  */
 public class Hud {
-    private static final String ScoreFormat = "Score: {0} | Health: {1:P0} | Lives: {2}";
+    private static final String ScoreFormat = "Score: %d | Health: %d%% | Lives: %d";
     private static final String controlsMsg = "Controls: WASD to move, SPACE to fire, Q to quit";
 
     private String scoreDisplay = "";
 
-    private Vector2       controlsPosition;
-    private GameData      gameData;
-    private RoundData     roundData;
-    private PlayerManager shipManager;
-    private Vector2       scorePosition;
-    private Rectangle     TopRect;
-    private Rectangle     BottomRect;
-
-    private Color color           = Color.YELLOW;
-    private Color semiTransparent = new Color(255, 255, 255, .8f);
+    private Vector2   controlsPosition;
+    private GameData  gameData;
+    private RoundData roundData;
+    private Vector2   scorePosition;
+    private Rectangle BottomRect;
+    private Rectangle TopRect;
 
     @SuppressWarnings("UnnecessaryThis")
     public Hud(GameData gameData, PlayerManager shipManager) {
         this.gameData  = gameData;
         this.roundData = gameData.getRoundData();
 
-        this.shipManager = shipManager;
-
         Rectangle resolution = gameData.getResolution();
 
         controlsPosition = new Vector2(
-            (resolution.getWidth() * .5f) - (controlsMsg.length() * 5),
-            resolution.getHeight() * .975f
+            (resolution.getWidth() * .5f) - (controlsMsg.length() * 4.5f),
+            resolution.getHeight() * .025f
         );
 
-        TopRect = new Rectangle(
+        BottomRect = new Rectangle(
             0,
             0,
             gameData.getTextures().get("Hud").getWidth(),
             gameData.getTextures().get("Hud").getHeight()
         );
 
-        BottomRect = new Rectangle(
+        TopRect = new Rectangle(
             0,
             gameData.getResolution().getHeight() - gameData.getTextures().get("Hud").getHeight(),
             gameData.getTextures().get("Hud").getWidth(),
@@ -55,58 +50,35 @@ public class Hud {
     }
 
     public void Update() {
-        /*
-        TODO: Convert Hud.Update
 
-        scoreDisplay = String.Format(
-            ScoreFormat,
-            roundData.Score,
-            gameData.Ship.Health,
-            roundData.Lives
+        scoreDisplay = String.format(
+                ScoreFormat,
+                roundData.getScore(),
+                (int) (gameData.getShip().getHealth() * 100),
+                roundData.getLives()
         );
 
         scorePosition = new Vector2(
-            (gameData.Resolution.Width * .5f) - (scoreDisplay.Length * 5),
-            gameData.Resolution.Height * .001f
+            (gameData.getResolution().getWidth() * .5f) - (scoreDisplay.length() * 5),
+            gameData.getResolution().getHeight() * .994f
         );
-        */
+
     }
 
     public void Draw() {
-        /*
-        TODO: Hud.Draw
+        BitmapFont font = gameData.getFont();
 
         //Draw the top rectangle
-        gameData.SpriteBatch.Draw(gameData.Textures["Hud"], TopRect, semiTransparent);
+        gameData.getSpriteBatch().draw(gameData.getTextures().get("Hud"), TopRect.x, TopRect.y);
 
-        // Write the score to the screen
-        gameData.SpriteBatch.DrawString(
-            gameData.Font,
-            scoreDisplay,
-            scorePosition,
-            color,
-            0f,
-            Vector2.Zero,
-            gameData.ScreenScale,
-            SpriteEffects.None,
-            0
-        );
+        // Draw the score
+        font.draw(gameData.getSpriteBatch(), scoreDisplay, scorePosition.x, scorePosition.y);
 
         // Draw the bottom rectangle
-        gameData.SpriteBatch.Draw(gameData.Textures["Hud"], BottomRect, semiTransparent);
+        gameData.getSpriteBatch().draw(gameData.getTextures().get("Hud"), BottomRect.x, BottomRect.y);
+
 
         // Write the controls message to the screen
-        gameData.SpriteBatch.DrawString(
-            gameData.Font,
-            controlsMsg,
-            controlsPosition,
-            color,
-            0f,
-            Vector2.Zero,
-            gameData.ScreenScale,
-            SpriteEffects.None,
-            0
-        );
-        */
+        font.draw(gameData.getSpriteBatch(), controlsMsg, controlsPosition.x, controlsPosition.y);
     }
 }
