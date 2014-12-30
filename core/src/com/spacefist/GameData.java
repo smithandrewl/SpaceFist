@@ -15,8 +15,18 @@ import com.spacefist.state.abst.GameState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class GameData {
+    public Random getRandom() {
+        return random;
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+
+    private Random random;
     private GameState     currentState;
     private SpaceFistGame game;
 
@@ -77,6 +87,8 @@ public class GameData {
     private LogoState logoState;
     public GameData(SpaceFistGame game) {
         this.game = game;
+
+        random = new Random();
 
         roundData = new RoundData();
 

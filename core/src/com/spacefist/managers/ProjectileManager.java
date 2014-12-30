@@ -12,6 +12,8 @@ import com.spacefist.entities.SpaceBlock;
 import com.spacefist.entities.enemies.Enemy;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 /// <summary>
 /// Keeps track of the projectiles in the world.
 /// </summary>
@@ -158,6 +160,8 @@ public class ProjectileManager extends Manager<Projectile> {
     /*******Dongcai**********/
     public void fireBluelaser(int x, int y)
     {
+        Random rand = gameData.getRandom();
+
         gameData.getRoundData().shotFired();
 
         Projectile projectile = new Projectile(
@@ -165,9 +169,19 @@ public class ProjectileManager extends Manager<Projectile> {
             gameData.getTextures().get("Mine"),
             new Vector2(x, y),
             new Vector2(0, -1),
-            -2,
+                (rand.nextInt(2) + 2) * -1,
             false
         );
+
+
+
+        int angVel = rand.nextInt(3) + 1;
+
+        if(rand.nextBoolean()) {
+            angVel = angVel * -1;
+        }
+
+        projectile.setAngularVelocity(angVel);
 
         Add(projectile);
     }

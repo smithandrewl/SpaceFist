@@ -202,7 +202,10 @@ public class InPlayState implements GameState {
             // Spawn the different pickups to the world
             pickupManager.Reset();
             pickupManager.SpawnExtraLifePickups(3);
-            pickupManager.SpawnExamplePickups(4);
+
+            // TODO: Enable spawning of example pickups
+            //pickupManager.SpawnExamplePickups(4);
+
             pickupManager.SpawnHealthPickups(4);
 
 

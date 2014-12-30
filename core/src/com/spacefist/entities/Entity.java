@@ -39,6 +39,19 @@ public class Entity {
     private GraphicsComponent graphics;
     private SoundComponent    sound;
 
+    public int getAngularVelocity() {
+        return angularVelocity;
+    }
+
+    public void setAngularVelocity(int angularVelocity) {
+        this.angularVelocity = angularVelocity;
+    }
+
+    /**
+     * The speed at which the entity rotates
+     */
+    private int angularVelocity;
+
     /**
      * The direction and speed of the entity
      */

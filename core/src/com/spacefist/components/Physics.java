@@ -13,5 +13,6 @@ public class Physics implements PhysicsComponent {
     public void update(GameData gameData, @NotNull Entity obj) {
         obj.setX(obj.getX() + (int) obj.getVelocity().x);
         obj.setY(obj.getY() - (int) obj.getVelocity().y);
+        obj.setRotation((obj.getRotation() + obj.getAngularVelocity()) % 360);
     }
 }
