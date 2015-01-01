@@ -90,26 +90,21 @@ public class Level {
                                     center
                             )
                     );
+                } else if (objectType.equals("FreighterZone")) {
+                    freighters.add(
+                            new SpawnZone(
+                                    count,
+                                    left,
+                                    right,
+                                    top,
+                                    bottom,
+                                    center
+                            )
+                    );
+                } else if (objectType.equals("Mines")) {
+                    mines.add(new SpawnPoint((int) center.x, (int) center.y));
                 }
             }
-            /*else if (objectType.equals("FreighterZone")) {
-                freighters.add(
-                    new SpawnZone(
-                        count,
-                        left,
-                        right,
-                        top,
-                        bottom,
-                        center
-                    )
-                );
-            }*/
-
-
-            /*
-            } else if (objectType.equals("Mines")) {
-                mines.add(new SpawnPoint((int) center.x, (int) center.y));
-            } */
         }
     }
 
