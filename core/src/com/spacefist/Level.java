@@ -76,7 +76,6 @@ public class Level {
             int top    = (int) bounds.y;
             int bottom = (int) (bounds.y + bounds.height);
 
-            //TODO: Enable loading of enemies from the map
             if(objectType != null) {
                 if (objectType.equals("FighterZone")) {
 
