@@ -56,7 +56,6 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private static boolean isNear(int x1, int y1, int x2, int y2) {
         int tolerance = 10;
 
-        // TODO: Convert distance code in RamState
         boolean xIsNear = Math.abs(x1 - x2) <= tolerance;
         boolean yIsNear = Math.abs(y1 - y2) <= tolerance;
 
