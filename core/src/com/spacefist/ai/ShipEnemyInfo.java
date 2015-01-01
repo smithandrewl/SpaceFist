@@ -89,7 +89,11 @@ public class ShipEnemyInfo extends FuzzyLogicEnabled {
 
         Vector2 diff = shipPos.sub(enemyPos);
 
-        return diff.nor();
+        diff = diff.nor();
+
+        diff = new Vector2(diff.x, diff.y * -1);
+
+        return diff;
     }
 
     @Override
