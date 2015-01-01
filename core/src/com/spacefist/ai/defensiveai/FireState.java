@@ -1,6 +1,7 @@
 package com.spacefist.ai.defensiveai;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.ai.FuzzyVariable;
@@ -60,9 +61,8 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
             // Fire at the ship every 200 to 600 milliseconds depending on how far away
             // the ship is.  The further the ship is, the faster the enemy will fire.
             long millSinceLastFire = TimeUtils.millis() - lastFire;
-            long secsSinceLastFire = millSinceLastFire / 1000;
 
-            boolean timeToFire = secsSinceLastFire > rateOfFire;
+            boolean timeToFire = millSinceLastFire > rateOfFire;
 
             if (timeToFire) {
                 Rectangle enemyRect = shipEnemyInfo.getEnemy().getRectangle();
@@ -70,10 +70,15 @@ public class FireState extends FuzzyLogicEnabled implements EnemyAIState {
                 int halfWidth  = (int) enemyRect.getWidth() / 2;
                 int halfHeight = (int) enemyRect.getHeight() / 2;
 
+                int projPosX = shipEnemyInfo.getEnemy().getX() + halfWidth;
+                int projPosY = shipEnemyInfo.getEnemy().getY() + halfHeight;
+
+                Vector2 lineOfSight = shipEnemyInfo.getLineOfSight();
+
                 projectileManager.fireLaser(
-                        shipEnemyInfo.getEnemy().getX() + halfWidth,
-                        shipEnemyInfo.getEnemy().getY() + halfHeight,
-                        shipEnemyInfo.getLineOfSight(),
+                        projPosX,
+                        projPosY,
+                        lineOfSight,
                         true
                 );
 
