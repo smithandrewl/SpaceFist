@@ -94,7 +94,7 @@ public class InPlayState implements GameState {
         Rectangle resolution = gameData.getResolution();
 
         // Position the camera at the bottom of the world
-        gameData.setCamera(new Vector2(0, gameData.getWorld().getHeight() - resolution.getHeight()));
+        gameData.setCamera(new Vector2(0, 0));
 
         PlayerManager playerManager = gameData.getPlayerManager();
             // Tell the ship manager to spawn the ship
@@ -273,8 +273,8 @@ public class InPlayState implements GameState {
                 gameData.getEnemyMineManager().Update();
  
                 // Until the end of the world is reached, move the camera up the world
-                if (gameData.getCamera().y >= gameData.getWorld().y) {
-                    gameData.setCamera(new Vector2(gameData.getCamera().x, gameData.getCamera().y - SCROLL_SPEED));
+                if (gameData.getCamera().y <= gameData.getWorld().getHeight()) {
+                    gameData.setCamera(new Vector2(gameData.getCamera().x, gameData.getCamera().y + SCROLL_SPEED));
                 }
 
                 // When the ship reaches the end of game marker, switch to the 
