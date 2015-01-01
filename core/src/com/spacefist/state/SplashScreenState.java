@@ -10,6 +10,7 @@ import com.spacefist.state.abst.GameState;
 
 import java.util.Date;
 
+//FIXME: The splash-screen image is drawn skewed
 /**
  * When the game is in the splash screen state
  * it draws the splash screen and waits for the player to press enter or click the mouse.

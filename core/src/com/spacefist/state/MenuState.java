@@ -12,6 +12,7 @@ import com.spacefist.state.abst.GameState;
 
 import java.util.HashMap;
 
+ //  TODO: The Menu code should be migrated to use the scene.ui framework
 /**
  * This state displays the main menu and handles input to
  * switch to several other states.

@@ -42,6 +42,9 @@ public class GameOverState implements GameState {
     public void draw() {
         Texture gameOver = gameData.getTextures().get("GameOver");
 
+
+        // FIXME: Bug: GameOver message is drawn off-center
+
         // Draw the game over image
         gameData.getSpriteBatch().draw(gameOver, 0, 0);
     }
