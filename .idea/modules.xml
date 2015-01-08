@@ -3,11 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SpaceFist.iml" filepath="$PROJECT_DIR$/SpaceFist.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpaceFistGDX.iml" filepath="$PROJECT_DIR$/SpaceFistGDX.iml" />
       <module fileurl="file://$PROJECT_DIR$/android/android.iml" filepath="$PROJECT_DIR$/android/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/desktop/desktop.iml" filepath="$PROJECT_DIR$/desktop/desktop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spacefist.iml" filepath="$PROJECT_DIR$/spacefist.iml" />
     </modules>
   </component>
 </project>
