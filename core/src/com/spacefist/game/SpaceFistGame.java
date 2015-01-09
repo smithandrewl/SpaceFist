@@ -62,21 +62,7 @@ public class SpaceFistGame extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-        HashMap<String, Texture> textures     = gameData.getTextures();
-        HashMap<String, Music>   songs        = gameData.getSongs();
-        HashMap<String, Sound>   soundEffects = gameData.getSoundEffects();
-
-        for (Texture texture : textures.values()) {
-            texture.dispose();
-        }
-
-        for (Music song : songs.values()) {
-            song.dispose();
-        }
-
-        for (Sound soundEffect : soundEffects.values()) {
-            soundEffect.dispose();
-        }
+        gameData.dispose();
     }
 
     public GameData getGameData() {

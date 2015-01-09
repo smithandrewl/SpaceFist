@@ -108,6 +108,25 @@ public class GameData {
         collisionManager  = new CollisionManager(this);
     }
 
+    /**
+     * Called when non-garbage-collected memory should be disposed of
+     */
+    public void dispose() {
+
+        for (Texture texture : textures.values()) {
+            texture.dispose();
+        }
+
+        for (Music song : songs.values()) {
+            song.dispose();
+        }
+
+        for (Sound soundEffect : soundEffects.values()) {
+            soundEffect.dispose();
+        }
+    }
+
+
     public Ship getShip() {
         return ship;
     }
