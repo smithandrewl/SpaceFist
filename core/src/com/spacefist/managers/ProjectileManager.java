@@ -169,7 +169,7 @@ public class ProjectileManager extends Manager<Projectile> {
             gameData.getTextures().get("Mine"),
             new Vector2(x, y),
             new Vector2(0, -1),
-                (rand.nextInt(2) + 2) * -1,
+                1,
             false
         );
 

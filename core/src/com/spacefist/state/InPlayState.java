@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 public class InPlayState implements GameState {
 
     // The speed at which the camera scrolls up the map / world
-    private static final float SCROLL_SPEED = 1.5f;
+    private static final float SCROLL_SPEED = 1f;
 
     GameData gameData;
 
