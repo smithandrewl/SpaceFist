@@ -3,6 +3,8 @@ package com.spacefist.state;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -10,17 +12,27 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.Hud;
+import com.spacefist.Level;
 import com.spacefist.SpawnPoint;
 import com.spacefist.SpawnZone;
 import com.spacefist.entities.Entity;
 import com.spacefist.entities.enemies.Enemy;
 import com.spacefist.entities.enemies.EnemyFighter;
 import com.spacefist.entities.enemies.EnemyFreighter;
+import com.spacefist.managers.BlockManager;
+import com.spacefist.managers.CollisionManager;
+import com.spacefist.managers.EnemyManager;
+import com.spacefist.managers.EnemyMineManager;
+import com.spacefist.managers.ExplosionManager;
+import com.spacefist.managers.LevelManager;
 import com.spacefist.managers.PickUpManager;
 import com.spacefist.managers.PlayerManager;
+import com.spacefist.managers.ProjectileManager;
 import com.spacefist.state.abst.GameState;
 import com.spacefist.util.Func;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
 
 /*
  * The main state of the game.  All game play occurs in the InPlayState.
@@ -42,10 +54,13 @@ public class InPlayState implements GameState {
     // The portion of the world which is currently visible.
     @NotNull
     public Rectangle getOnScreenWorld() {
-        int screenWidth = (int) gameData.getResolution().getWidth();
-        int screenHeight = (int) gameData.getResolution().getHeight();
+        Rectangle resolution = gameData.getResolution();
+        Vector2   camera     = gameData.getCamera();
 
-        return new Rectangle((int) gameData.getCamera().x, (int) gameData.getCamera().y, screenWidth, screenHeight);
+        int screenWidth  = (int) resolution.getWidth();
+        int screenHeight = (int) resolution.getHeight();
+
+        return new Rectangle((int) camera.x, (int) camera.y, screenWidth, screenHeight);
     }
 
 
@@ -70,11 +85,14 @@ public class InPlayState implements GameState {
 
     @Override
     public void loadContent() {
-        gameData.getLevelManager().init();
-        gameData.getLevelManager().loadLevel(1);
+        LevelManager levelManager = gameData.getLevelManager();
+        Level        level        = gameData.getLevel();
 
-        debrisField    = new Array<Rectangle>(false, gameData.getLevel().getDebrisParticleCount());
-        gameData.setWorld(new Rectangle(0, 0, gameData.getLevel().getWidth(), gameData.getLevel().getHeight()));
+        levelManager.init();
+        levelManager.loadLevel(1);
+
+        debrisField    = new Array<Rectangle>(false, level.getDebrisParticleCount());
+        gameData.setWorld(new Rectangle(0, 0, level.getWidth(), level.getHeight()));
 
         hud = new Hud(gameData, gameData.getPlayerManager());
     }
@@ -84,7 +102,10 @@ public class InPlayState implements GameState {
         // reset the round statistics
         gameData.getRoundData().reset();
 
-        Music song = gameData.getSongs().get(gameData.getLevel().getSong());
+        Level level = gameData.getLevel();
+        HashMap<String, Music> songs = gameData.getSongs();
+
+        Music song  = songs.get(level.getSong());
 
         song.setLooping(true);
         song.play();
@@ -101,21 +122,26 @@ public class InPlayState implements GameState {
             playerManager.resetScore();
             playerManager.resetWeapon();
 
-            int numBlocks = gameData.getLevel().getBlockCount();
+            int numBlocks = level.getBlockCount();
+
+        EnemyManager     enemyManager     = gameData.getEnemyManager();
+        BlockManager     blockManager     = gameData.getBlockManager();
+        EnemyMineManager enemyMineManager = gameData.getEnemyMineManager();
+        PickUpManager    pickUpManager    = gameData.getPickUpManager();
 
             // spawn blocks to the world
-            gameData.getBlockManager().spawnBlocks(numBlocks);
+        blockManager.spawnBlocks(numBlocks);
 
-            gameData.getEnemyManager().clear();
-            gameData.getEnemyMineManager().clear();
-            gameData.getPickUpManager().reset();
+        enemyManager.clear();
+        enemyMineManager.clear();
+        pickUpManager.reset();
 
             //spawn fighters
-            for (SpawnZone zone : gameData.getLevel().getFighters())
+            for (SpawnZone zone : level.getFighters())
             {
 
                 if(zone.getCount() > 1) {
-                    gameData.getEnemyManager().spawnEnemies(
+                    enemyManager.spawnEnemies(
                             zone.getCount(),
                             zone.getLeft(),
                             zone.getRight(),
@@ -132,7 +158,7 @@ public class InPlayState implements GameState {
                 }
                 else
                 {
-                    gameData.getEnemyManager().spawnEnemy(
+                    enemyManager.spawnEnemy(
                             (int) zone.getCenter().x,
                             (int) zone.getCenter().y,
                             new Func<Vector2, Enemy>() {
@@ -147,12 +173,12 @@ public class InPlayState implements GameState {
             }
 
             // spawn freighters
-            for (SpawnZone zone : gameData.getLevel().getFreighters())
+            for (SpawnZone zone : level.getFreighters())
             {
 
                 if (zone.getCount() > 1)
                 {
-                    gameData.getEnemyManager().spawnEnemies(
+                    enemyManager.spawnEnemies(
                             zone.getCount(),
                             zone.getLeft(),
                             zone.getRight(),
@@ -169,7 +195,7 @@ public class InPlayState implements GameState {
                 }
                 else
                 {
-                    gameData.getEnemyManager().spawnEnemy(
+                    enemyManager.spawnEnemy(
                             (int) zone.getCenter().x,
                             (int) zone.getCenter().y,
                             new Func<Vector2, Enemy>() {
@@ -184,52 +210,56 @@ public class InPlayState implements GameState {
             }
 
             //spawn mines
-            for (SpawnPoint point : gameData.getLevel().getMines())
+            for (SpawnPoint point : level.getMines())
             {
-                gameData.getEnemyMineManager().spawnEnemyMine(point.getX(), point.getY());
+                enemyMineManager.spawnEnemyMine(point.getX(), point.getY());
             }
 
 
             // spawn the players ship
             playerManager.initialize();
 
-            PickUpManager pickupManager = gameData.getPickUpManager();
 
             // spawn the different pickups to the world
-            pickupManager.reset();
-            pickupManager.spawnExtraLifePickups(3);
+            pickUpManager.reset();
+            pickUpManager.spawnExtraLifePickups(3);
 
             // TODO: Enable spawning of example pickups
-            //pickupManager.spawnExamplePickups(4);
+            //pickUpManager.spawnExamplePickups(4);
 
-            pickupManager.spawnHealthPickups(4);
+            pickUpManager.spawnHealthPickups(4);
 
 
 
         /***Dongcai*/
-        gameData.getPickUpManager().spawnLaserbeamPickups(5);
-        gameData.getPickUpManager().spawnMissilePickups(3);
+        pickUpManager.spawnLaserbeamPickups(5);
+        pickUpManager.spawnMissilePickups(3);
         /**********/
 
         debrisField.clear();
 
-        int    minScale      = gameData.getLevel().getDebrisParticleMinScale();
-        int    maxScale      = gameData.getLevel().getDebrisParticleMaxScale();
-        String particleImage = gameData.getLevel().getDebrisParticleImage();
-        int    debrisCount   = gameData.getLevel().getDebrisParticleCount();
+        int    minScale      = level.getDebrisParticleMinScale();
+        int    maxScale      = level.getDebrisParticleMaxScale();
+        String particleImage = level.getDebrisParticleImage();
+        int    debrisCount   = level.getDebrisParticleCount();
+
+        Rectangle world = gameData.getWorld();
+        HashMap<String, Texture> textures = gameData.getTextures();
 
         // init debris field
         for (int i = 0; i < debrisCount; i++)
         {
-            float maxX  = gameData.getWorld().getWidth();
-            float maxY  = gameData.getWorld().getHeight();
+            float maxX  = world.getWidth();
+            float maxY  = world.getHeight();
             float scale = MathUtils.random(minScale * 10, maxScale * 10) * .01f;
+
+            Texture texture = textures.get(particleImage);
 
             Rectangle rect = new Rectangle(
                 MathUtils.random(0, maxX),
                 MathUtils.random(0, maxY),
-                (int) (gameData.getTextures().get(particleImage).getWidth()  * scale),
-                (int) (gameData.getTextures().get(particleImage).getHeight() * scale)
+                (int) (texture.getWidth()  * scale),
+                (int) (texture.getHeight() * scale)
             );
 
             debrisField.add(rect);
@@ -249,7 +279,9 @@ public class InPlayState implements GameState {
 
     @Override
     public void update() {
-            if (gameData.getPlayerManager().isAlive())
+        PlayerManager playerManager = gameData.getPlayerManager();
+
+        if (playerManager.isAlive())
             {
                 if (Gdx.input.isKeyPressed(Keys.Q) || Gdx.input.isKeyPressed(Keys.ESCAPE))
                 {
@@ -259,18 +291,29 @@ public class InPlayState implements GameState {
                 keepOnScreen(gameData.getShip());
 
                 // Tell the entity managers to update
-                gameData.getProjectileManager().update();
-                gameData.getBlockManager().update();
-                gameData.getExplosionManager().update();
-                gameData.getCollisionManager().update();
-                gameData.getPlayerManager().update();
-                gameData.getEnemyManager().update();
-                gameData.getPickUpManager().update();
-                gameData.getEnemyMineManager().update();
+                ProjectileManager projectileManager = gameData.getProjectileManager();
+                BlockManager      blockManager      = gameData.getBlockManager();
+                ExplosionManager  explosionManager  = gameData.getExplosionManager();
+                CollisionManager  collisionManager  = gameData.getCollisionManager();
+                EnemyManager      enemyManager      = gameData.getEnemyManager();
+                PickUpManager     pickUpManager     = gameData.getPickUpManager();
+                EnemyMineManager  enemyMineManager  = gameData.getEnemyMineManager();
+
+                projectileManager.update();
+                blockManager.update();
+                explosionManager.update();
+                collisionManager.update();
+                playerManager.update();
+                enemyManager.update();
+                pickUpManager.update();
+                enemyMineManager.update();
+
+                Rectangle world  = gameData.getWorld();
+                Vector2   camera = gameData.getCamera();
  
                 // Until the end of the world is reached, move the camera up the world
-                if (gameData.getCamera().y <= gameData.getWorld().getHeight()) {
-                    gameData.setCamera(new Vector2(gameData.getCamera().x, gameData.getCamera().y + SCROLL_SPEED));
+                if (camera.y <= world.getHeight()) {
+                    gameData.setCamera(new Vector2(camera.x, camera.y + SCROLL_SPEED));
                 }
 
                 // When the ship reaches the end of game marker, switch to the 
@@ -301,39 +344,54 @@ public class InPlayState implements GameState {
     @Override
     public void draw() {
 
-            String background    = gameData.getLevel().getBackgroundImage();
-            String particleImage = gameData.getLevel().getDebrisParticleImage();
+        HashMap<String, Texture> textures = gameData.getTextures();
+
+        Level  level         = gameData.getLevel();
+        String background    = level.getBackgroundImage();
+        String particleImage = level.getDebrisParticleImage();
+
+        Rectangle   resolution  = gameData.getResolution();
+        SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
             // draw the background
-            gameData.getSpriteBatch().draw(
-                gameData.getTextures().get(background),
-                gameData.getResolution().getX(),
-                gameData.getResolution().getY(),
-                gameData.getResolution().getWidth(),
-                gameData.getResolution().getHeight()
-            );
+        spriteBatch.draw(
+                textures.get(background),
+                resolution.getX(),
+                resolution.getY(),
+                resolution.getWidth(),
+                resolution.getHeight()
+        );
 
             // draw debris
             for(Rectangle rect : debrisField)
             {
-                gameData.getSpriteBatch().draw(
-                    gameData.getTextures().get(particleImage),
-                    rect.x - (int)gameData.getCamera().x,
-                    rect.y - (int)gameData.getCamera().y,
-                    rect.getWidth(),
-                    rect.getHeight()
+                spriteBatch.draw(
+                        textures.get(particleImage),
+                        rect.x - (int) gameData.getCamera().x,
+                        rect.y - (int) gameData.getCamera().y,
+                        rect.getWidth(),
+                        rect.getHeight()
                 );
             }
 
             // draw the entities
-            gameData.getExplosionManager().draw();
-            gameData.getBlockManager().draw();
-            gameData.getProjectileManager().draw();
-            gameData.getPickUpManager().draw();
-            gameData.getEnemyManager().draw();
-            gameData.getPickUpManager().draw();
-            gameData.getEnemyMineManager().draw();
-            gameData.getPlayerManager().draw();
+        ExplosionManager  explosionManager  = gameData.getExplosionManager();
+        BlockManager      blockManager      = gameData.getBlockManager();
+        ProjectileManager projectileManager = gameData.getProjectileManager();
+        PickUpManager     pickUpManager     = gameData.getPickUpManager();
+        EnemyManager      enemyManager      = gameData.getEnemyManager();
+        EnemyMineManager  enemyMineManager  = gameData.getEnemyMineManager();
+        PlayerManager     playerManager     = gameData.getPlayerManager();
+
+        explosionManager.draw();
+        blockManager.draw();
+        projectileManager.draw();
+        pickUpManager.draw();
+        enemyManager.draw();
+        pickUpManager.draw();
+        enemyMineManager.draw();
+        playerManager.draw();
+
             /*
             TODO: Convert DrawLevelMaarkers
             drawLevelMarkers();
@@ -401,7 +459,11 @@ public class InPlayState implements GameState {
 
     @Override
     public void exitingState() {
-        Music song = gameData.getSongs().get(gameData.getLevel().getSong());
+        Level level = gameData.getLevel();
+
+        HashMap<String, Music> songs = gameData.getSongs();
+
+        Music song = songs.get(level.getSong());
 
         song.setLooping(false);
         song.stop();
@@ -410,10 +472,12 @@ public class InPlayState implements GameState {
     // Keep the player on the screen
     private void keepOnScreen(@NotNull Entity obj) {
         Rectangle resolution = gameData.getResolution();
+        Rectangle rectangle  = obj.getRectangle();
 
         int farRight   = (int) (gameData.getCamera().x + resolution.getWidth());
         int bottom     = (int) (gameData.getCamera().y + resolution.getHeight());
-        int halfHeight = (int) (obj.getRectangle().getHeight() / 2);
+
+        int halfHeight = (int) (rectangle.getHeight() / 2);
 
         float velDecrease = .125f;
 
@@ -429,13 +493,13 @@ public class InPlayState implements GameState {
 
         if (offScreen) {
             if (offScreenRight) {
-                obj.setX((int) (farRight - obj.getRectangle().getWidth()));
+                obj.setX((int) (farRight - rectangle.getWidth()));
             } else if (offScreenLeft) {
                 obj.setX((int) gameData.getCamera().x);
             } else if (offscreenTop) {
                 obj.setY((int) (gameData.getCamera().y - (resolution.getHeight() * .9)));
             } else if (offscreenBottom) {
-                obj.setY((int) (gameData.getCamera().y + (obj.getRectangle().getHeight() * 2)));
+                obj.setY((int) (gameData.getCamera().y + (rectangle.getHeight() * 2)));
             }
 
             float mult = -1 * velDecrease;
