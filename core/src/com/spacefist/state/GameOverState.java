@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
 
@@ -40,13 +41,14 @@ public class GameOverState implements GameState {
 
     @Override
     public void draw() {
-        Texture gameOver = gameData.getTextures().get("GameOver");
+        Texture gameOver     = gameData.getTextures().get("GameOver");
+        Rectangle resolution = gameData.getResolution();
 
-
-        // FIXME: Bug: GameOver message is drawn off-center
+        float width  = resolution.getWidth();
+        float height = resolution.getHeight();
 
         // Draw the game over image
-        gameData.getSpriteBatch().draw(gameOver, 0, 0);
+        gameData.getSpriteBatch().draw(gameOver, 0, 0, width, height);
     }
 
     @Override
