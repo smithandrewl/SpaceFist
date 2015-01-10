@@ -11,10 +11,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.spacefist.GameData;
-import com.spacefist.state.*;
+import com.spacefist.state.CreditsState;
+import com.spacefist.state.EndOfGameState;
+import com.spacefist.state.EndOfLevelState;
+import com.spacefist.state.GameOverState;
+import com.spacefist.state.InPlayState;
+import com.spacefist.state.LogoState;
+import com.spacefist.state.MenuState;
+import com.spacefist.state.SplashScreenState;
 import com.spacefist.state.abst.GameState;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class SpaceFistGame extends ApplicationAdapter {

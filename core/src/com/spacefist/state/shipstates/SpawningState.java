@@ -2,7 +2,6 @@ package com.spacefist.state.shipstates;
 
 import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
-import com.spacefist.entities.Ship;
 import com.spacefist.state.abst.ShipState;
 
 /**

@@ -2,26 +2,15 @@ package com.spacefist.state;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.spacefist.GameData;
 import com.spacefist.state.abst.GameState;
-
-import java.util.HashMap;
 
 /**
  * This state displays the main menu and handles input to
@@ -110,6 +99,7 @@ public class MenuState implements GameState {
         table.add(exit).width(BUTTON_WIDTH).pad(BUTTON_PADDING);
 
         newGame.addListener(new ChangeListener() {
+            @Override
             public void changed(ChangeEvent event, Actor actor) {
                 gameData.getInPlayState().loadContent();
                 gameData.setCurrentState(gameData.getInPlayState());
