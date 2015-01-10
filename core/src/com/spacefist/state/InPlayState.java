@@ -114,120 +114,120 @@ public class InPlayState implements GameState {
         gameData.setCamera(new Vector2(0, 0));
 
         PlayerManager playerManager = gameData.getPlayerManager();
-            // Tell the ship manager to spawn the ship
-            playerManager.spawn();
+        // Tell the ship manager to spawn the ship
+        playerManager.spawn();
 
-            // Since the game states are reused, clear the score and lives
-            playerManager.resetLives();
-            playerManager.resetScore();
-            playerManager.resetWeapon();
+        // Since the game states are reused, clear the score and lives
+        playerManager.resetLives();
+        playerManager.resetScore();
+        playerManager.resetWeapon();
 
-            int numBlocks = level.getBlockCount();
+        int numBlocks = level.getBlockCount();
 
         EnemyManager     enemyManager     = gameData.getEnemyManager();
         BlockManager     blockManager     = gameData.getBlockManager();
         EnemyMineManager enemyMineManager = gameData.getEnemyMineManager();
         PickUpManager    pickUpManager    = gameData.getPickUpManager();
 
-            // spawn blocks to the world
+        // spawn blocks to the world
         blockManager.spawnBlocks(numBlocks);
 
         enemyManager.clear();
         enemyMineManager.clear();
         pickUpManager.reset();
 
-            //spawn fighters
-            for (SpawnZone zone : level.getFighters())
-            {
+        //spawn fighters
+        for (SpawnZone zone : level.getFighters())
+        {
 
-                if(zone.getCount() > 1) {
-                    enemyManager.spawnEnemies(
-                            zone.getCount(),
-                            zone.getLeft(),
-                            zone.getRight(),
-                            zone.getTop(),
-                            zone.getBottom(),
-                            new Func<Vector2, Enemy>() {
-                                @NotNull
-                                @Override
-                                public Enemy call(Vector2 position) {
-                                    return new EnemyFighter(gameData, position);
-                                }
+            if(zone.getCount() > 1) {
+                enemyManager.spawnEnemies(
+                        zone.getCount(),
+                        zone.getLeft(),
+                        zone.getRight(),
+                        zone.getTop(),
+                        zone.getBottom(),
+                        new Func<Vector2, Enemy>() {
+                            @NotNull
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFighter(gameData, position);
                             }
-                    );
-                }
-                else
-                {
-                    enemyManager.spawnEnemy(
-                            (int) zone.getCenter().x,
-                            (int) zone.getCenter().y,
-                            new Func<Vector2, Enemy>() {
-                                @NotNull
-                                @Override
-                                public Enemy call(Vector2 position) {
-                                    return new EnemyFighter(gameData, position);
-                                }
-                            }
-                    );
-                }
+                        }
+                );
             }
-
-            // spawn freighters
-            for (SpawnZone zone : level.getFreighters())
+            else
             {
-
-                if (zone.getCount() > 1)
-                {
-                    enemyManager.spawnEnemies(
-                            zone.getCount(),
-                            zone.getLeft(),
-                            zone.getRight(),
-                            zone.getTop(),
-                            zone.getBottom(),
-                            new Func<Vector2, Enemy>() {
-                                @NotNull
-                                @Override
-                                public Enemy call(Vector2 position) {
-                                    return new EnemyFreighter(gameData, position);
-                                }
+                enemyManager.spawnEnemy(
+                        (int) zone.getCenter().x,
+                        (int) zone.getCenter().y,
+                        new Func<Vector2, Enemy>() {
+                            @NotNull
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFighter(gameData, position);
                             }
-                    );
-                }
-                else
-                {
-                    enemyManager.spawnEnemy(
-                            (int) zone.getCenter().x,
-                            (int) zone.getCenter().y,
-                            new Func<Vector2, Enemy>() {
-                                @NotNull
-                                @Override
-                                public Enemy call(Vector2 position) {
-                                    return new EnemyFreighter(gameData, position);
-                                }
-                            }
-                    );
-                }
+                        }
+                );
             }
+        }
 
-            //spawn mines
-            for (SpawnPoint point : level.getMines())
+        // spawn freighters
+        for (SpawnZone zone : level.getFreighters())
+        {
+
+            if (zone.getCount() > 1)
             {
-                enemyMineManager.spawnEnemyMine(point.getX(), point.getY());
+                enemyManager.spawnEnemies(
+                        zone.getCount(),
+                        zone.getLeft(),
+                        zone.getRight(),
+                        zone.getTop(),
+                        zone.getBottom(),
+                        new Func<Vector2, Enemy>() {
+                            @NotNull
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFreighter(gameData, position);
+                            }
+                        }
+                );
             }
+            else
+            {
+                enemyManager.spawnEnemy(
+                        (int) zone.getCenter().x,
+                        (int) zone.getCenter().y,
+                        new Func<Vector2, Enemy>() {
+                            @NotNull
+                            @Override
+                            public Enemy call(Vector2 position) {
+                                return new EnemyFreighter(gameData, position);
+                            }
+                        }
+                );
+            }
+        }
+
+        //spawn mines
+        for (SpawnPoint point : level.getMines())
+        {
+            enemyMineManager.spawnEnemyMine(point.getX(), point.getY());
+        }
 
 
-            // spawn the players ship
-            playerManager.initialize();
+        // spawn the players ship
+        playerManager.initialize();
 
 
-            // spawn the different pickups to the world
-            pickUpManager.reset();
-            pickUpManager.spawnExtraLifePickups(3);
+        // spawn the different pickups to the world
+        pickUpManager.reset();
+        pickUpManager.spawnExtraLifePickups(3);
 
-            // TODO: Enable spawning of example pickups
-            //pickUpManager.spawnExamplePickups(4);
+        // TODO: Enable spawning of example pickups
+        //pickUpManager.spawnExamplePickups(4);
 
-            pickUpManager.spawnHealthPickups(4);
+        pickUpManager.spawnHealthPickups(4);
 
 
 
@@ -256,10 +256,10 @@ public class InPlayState implements GameState {
             Texture texture = textures.get(particleImage);
 
             Rectangle rect = new Rectangle(
-                MathUtils.random(0, maxX),
-                MathUtils.random(0, maxY),
-                (int) (texture.getWidth()  * scale),
-                (int) (texture.getHeight() * scale)
+                    MathUtils.random(0, maxX),
+                    MathUtils.random(0, maxY),
+                    (int) (texture.getWidth()  * scale),
+                    (int) (texture.getHeight() * scale)
             );
 
             debrisField.add(rect);
@@ -282,44 +282,44 @@ public class InPlayState implements GameState {
         PlayerManager playerManager = gameData.getPlayerManager();
 
         if (playerManager.isAlive())
+        {
+            if (Gdx.input.isKeyPressed(Keys.Q) || Gdx.input.isKeyPressed(Keys.ESCAPE))
             {
-                if (Gdx.input.isKeyPressed(Keys.Q) || Gdx.input.isKeyPressed(Keys.ESCAPE))
-                {
-                    gameData.setCurrentState(gameData.getMenuState());
-                }
-                
-                keepOnScreen(gameData.getShip());
+                gameData.setCurrentState(gameData.getMenuState());
+            }
 
-                // Tell the entity managers to update
-                ProjectileManager projectileManager = gameData.getProjectileManager();
-                BlockManager      blockManager      = gameData.getBlockManager();
-                ExplosionManager  explosionManager  = gameData.getExplosionManager();
-                CollisionManager  collisionManager  = gameData.getCollisionManager();
-                EnemyManager      enemyManager      = gameData.getEnemyManager();
-                PickUpManager     pickUpManager     = gameData.getPickUpManager();
-                EnemyMineManager  enemyMineManager  = gameData.getEnemyMineManager();
+            keepOnScreen(gameData.getShip());
 
-                projectileManager.update();
-                blockManager.update();
-                explosionManager.update();
-                collisionManager.update();
-                playerManager.update();
-                enemyManager.update();
-                pickUpManager.update();
-                enemyMineManager.update();
+            // Tell the entity managers to update
+            ProjectileManager projectileManager = gameData.getProjectileManager();
+            BlockManager      blockManager      = gameData.getBlockManager();
+            ExplosionManager  explosionManager  = gameData.getExplosionManager();
+            CollisionManager  collisionManager  = gameData.getCollisionManager();
+            EnemyManager      enemyManager      = gameData.getEnemyManager();
+            PickUpManager     pickUpManager     = gameData.getPickUpManager();
+            EnemyMineManager  enemyMineManager  = gameData.getEnemyMineManager();
 
-                Rectangle world  = gameData.getWorld();
-                Vector2   camera = gameData.getCamera();
- 
-                // Until the end of the world is reached, move the camera up the world
-                if (camera.y <= world.getHeight()) {
-                    gameData.setCamera(new Vector2(camera.x, camera.y + SCROLL_SPEED));
-                }
+            projectileManager.update();
+            blockManager.update();
+            explosionManager.update();
+            collisionManager.update();
+            playerManager.update();
+            enemyManager.update();
+            pickUpManager.update();
+            enemyMineManager.update();
 
-                // When the ship reaches the end of game marker, switch to the 
-                // end of level state.
+            Rectangle world  = gameData.getWorld();
+            Vector2   camera = gameData.getCamera();
 
-                // TODO: Convert the end of level marker code
+            // Until the end of the world is reached, move the camera up the world
+            if (camera.y <= world.getHeight()) {
+                gameData.setCamera(new Vector2(camera.x, camera.y + SCROLL_SPEED));
+            }
+
+            // When the ship reaches the end of game marker, switch to the
+            // end of level state.
+
+            // TODO: Convert the end of level marker code
                 /*
                 if (gameData.getShip().getRectangle().overlaps(getEndOfLevelMarkerPos()));
                 {
@@ -331,13 +331,13 @@ public class InPlayState implements GameState {
                     }
                 }
                 */
-            }
-            else {
-                // If the player has been killed, switch to the game over state
-                gameData.setCurrentState(gameData.getGameOverState());
-            }
+        }
+        else {
+            // If the player has been killed, switch to the game over state
+            gameData.setCurrentState(gameData.getGameOverState());
+        }
 
-            hud.update();
+        hud.update();
 
     }
 
@@ -353,7 +353,7 @@ public class InPlayState implements GameState {
         Rectangle   resolution  = gameData.getResolution();
         SpriteBatch spriteBatch = gameData.getSpriteBatch();
 
-            // draw the background
+        // draw the background
         spriteBatch.draw(
                 textures.get(background),
                 resolution.getX(),
@@ -362,19 +362,19 @@ public class InPlayState implements GameState {
                 resolution.getHeight()
         );
 
-            // draw debris
-            for(Rectangle rect : debrisField)
-            {
-                spriteBatch.draw(
-                        textures.get(particleImage),
-                        rect.x - (int) gameData.getCamera().x,
-                        rect.y - (int) gameData.getCamera().y,
-                        rect.getWidth(),
-                        rect.getHeight()
-                );
-            }
+        // draw debris
+        for(Rectangle rect : debrisField)
+        {
+            spriteBatch.draw(
+                    textures.get(particleImage),
+                    rect.x - (int) gameData.getCamera().x,
+                    rect.y - (int) gameData.getCamera().y,
+                    rect.getWidth(),
+                    rect.getHeight()
+            );
+        }
 
-            // draw the entities
+        // draw the entities
         ExplosionManager  explosionManager  = gameData.getExplosionManager();
         BlockManager      blockManager      = gameData.getBlockManager();
         ProjectileManager projectileManager = gameData.getProjectileManager();
@@ -397,7 +397,7 @@ public class InPlayState implements GameState {
             drawLevelMarkers();
             */
 
-            hud.draw();
+        hud.draw();
 
     }
 
@@ -487,9 +487,9 @@ public class InPlayState implements GameState {
         boolean offscreenBottom = obj.getY() < gameData.getCamera().y;
 
         boolean offScreen = offScreenRight ||
-            offScreenLeft ||
-            offscreenTop ||
-            offscreenBottom;
+                offScreenLeft ||
+                offscreenTop ||
+                offscreenBottom;
 
         if (offScreen) {
             if (offScreenRight) {
