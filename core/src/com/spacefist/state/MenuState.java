@@ -75,8 +75,8 @@ public class MenuState implements GameState {
         gameData.getSongs().get("TitleScreen").setLooping(true);
         gameData.getSongs().get("TitleScreen").play();
 
-        gameData.getLevelManager().Init();
-        gameData.getLevelManager().LoadLevel(1);
+        gameData.getLevelManager().init();
+        gameData.getLevelManager().loadLevel(1);
 
 
         stage = new Stage();

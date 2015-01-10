@@ -36,7 +36,7 @@ public class PickUpManager extends Manager<Pickup>
     /// </summary>
     /// <param name="count">The number of pickups to spawn</param>
     /// <param name="spawnFunction">A function to spawn a specific pickup type</param>
-    public void SpawnPickups(int count, @NotNull Action<Integer, Integer> spawnFunction)
+    public void spawnPickups(int count, @NotNull Action<Integer, Integer> spawnFunction)
     {
         Rectangle world = gameData.getWorld();
 
@@ -53,11 +53,11 @@ public class PickUpManager extends Manager<Pickup>
     /// Spawns "count" rocket pickups to the world.
     /// </summary>
     /// <param name="count">The number of pickups to spawn</param>
-    public void SpawnExamplePickups(int count) {
-        SpawnPickups(count, new Action<Integer, Integer> () {
+    public void spawnExamplePickups(int count) {
+        spawnPickups(count, new Action<Integer, Integer>() {
             @Override
             public void execute(Integer first, Integer second) {
-                SpawnExamplePickup(first, second);
+                spawnExamplePickup(first, second);
             }
         });
     }
@@ -67,7 +67,7 @@ public class PickUpManager extends Manager<Pickup>
     /// </summary>
     /// <param name="x">The X value of the location</param>
     /// <param name="y">The Y value of the location</param>
-    public void SpawnExamplePickup(int x, int y)
+    public void spawnExamplePickup(int x, int y)
     {
         Pickup pickup = new Pickup(
             gameData,
@@ -83,35 +83,35 @@ public class PickUpManager extends Manager<Pickup>
                 }
             });
 
-        Add(pickup);
+        add(pickup);
     }
 
     /// <summary>
     /// Spawns a number of health pickups to the world.
     /// </summary>
     /// <param name="count">The number of pickups to spawn</param>
-    public void SpawnHealthPickups(int count)
+    public void spawnHealthPickups(int count)
     {
-        SpawnPickups(count,  new Action<Integer, Integer>() {
+        spawnPickups(count, new Action<Integer, Integer>() {
             @Override
             public void execute(Integer first, Integer second) {
-                SpawnHealthPickup(first, second);
+                spawnHealthPickup(first, second);
             }
         });
     }
 
     /****Dongcai***/
-    public void SpawnLaserbeamPickups(int count)
+    public void spawnLaserbeamPickups(int count)
     {
-        SpawnPickups(count, new Action<Integer, Integer>() {
+        spawnPickups(count, new Action<Integer, Integer>() {
             @Override
             public void execute(Integer first, Integer second) {
-                SpawnLaserbeamPickup(first, second);
+                spawnLaserbeamPickup(first, second);
             }
         });
     }
 
-    public void SpawnLaserbeamPickup(int x, int y)
+    public void spawnLaserbeamPickup(int x, int y)
     {
         Pickup pickup = new Pickup(
             gameData,
@@ -127,20 +127,20 @@ public class PickUpManager extends Manager<Pickup>
                 }
             });
 
-        Add(pickup);
+        add(pickup);
     }
 
-    public void SpawnMissilePickups(int count)
+    public void spawnMissilePickups(int count)
     {
-        SpawnPickups(count, new Action<Integer, Integer>() {
+        spawnPickups(count, new Action<Integer, Integer>() {
             @Override
             public void execute(Integer first, Integer second) {
-                SpawnMissilePickup(first, second);
+                spawnMissilePickup(first, second);
             }
         });
     }
 
-    public void SpawnMissilePickup(int x, int y)
+    public void spawnMissilePickup(int x, int y)
     {
         Pickup pickup = new Pickup(
             gameData,
@@ -157,7 +157,7 @@ public class PickUpManager extends Manager<Pickup>
             }
         );
 
-        Add(pickup);
+        add(pickup);
     }
     /***********************/
 
@@ -167,7 +167,7 @@ public class PickUpManager extends Manager<Pickup>
     /// </summary>
     /// <param name="x">The X value of the location</param>
     /// <param name="y">The Y value of the location</param>
-    public void SpawnHealthPickup(int x, int y)
+    public void spawnHealthPickup(int x, int y)
     {
         Pickup pickup = new Pickup(
             gameData,
@@ -188,29 +188,29 @@ public class PickUpManager extends Manager<Pickup>
                 }
             });
 
-        Add(pickup);
+        add(pickup);
     }
 
     /// <summary>
     /// Spawns extra life pickups to the world.
     /// </summary>
     /// <param name="count">The number of pickups to spawn</param>
-    public void SpawnExtraLifePickups(int count)
+    public void spawnExtraLifePickups(int count)
     {
-        SpawnPickups(count, new Action<Integer, Integer> () {
+        spawnPickups(count, new Action<Integer, Integer>() {
             @Override
             public void execute(Integer first, Integer second) {
-                SpawnExtraLifePickup(first, second);
+                spawnExtraLifePickup(first, second);
             }
         });
     }
 
     /// <summary>
-    /// Spawn one extra life pickup at the specified location.
+    /// spawn one extra life pickup at the specified location.
     /// </summary>
     /// <param name="x">The X value of the location</param>
     /// <param name="y">The Y value of the location</param>
-    public void SpawnExtraLifePickup(int x, int y)
+    public void spawnExtraLifePickup(int x, int y)
     {
         Pickup pickup = new Pickup(
             gameData,
@@ -226,14 +226,14 @@ public class PickUpManager extends Manager<Pickup>
                 }
             });
 
-        Add(pickup);
+        add(pickup);
     }
 
     /// <summary>
     /// Removes all pickups from the world.
     /// </summary>
-    public void Reset()
+    public void reset()
     {
-        Clear();
+        clear();
     }
 }

@@ -21,13 +21,13 @@ public class EndOfLevelState implements GameState {
     @Override
     public void update() {
             /*
-            TODO: Convert EndOfLevelState.Update
+            TODO: Convert EndOfLevelState.update
 
             var mouse = Mouse.GetState();
 
             if (mouse.LeftButton == ButtonState.Pressed || mouse.RightButton == ButtonState.Pressed)
             {
-                gameData.LevelManager.LoadLevel(gameData.Level.LevelId + 1);
+                gameData.LevelManager.loadLevel(gameData.Level.LevelId + 1);
                 gameData.CurrentState = gameData.InPlayState;
             }
             */

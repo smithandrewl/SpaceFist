@@ -29,9 +29,9 @@ public class EnemyManager extends Manager<Enemy>
     /// Spawns a number of enemy fighters to the world.
     /// </summary>
     /// <param name="count">The number of fighters to spawn</param>
-    public void SpawnEnemyFighters(int count)
+    public void spawnEnemyFighters(int count)
     {
-        SpawnEnemies(count, new Func<Vector2, Enemy>(){
+        spawnEnemies(count, new Func<Vector2, Enemy>() {
             @NotNull
             @Override
             public Enemy call(@NotNull Vector2 position) {
@@ -44,9 +44,9 @@ public class EnemyManager extends Manager<Enemy>
     /// Spawns the specified number of enemyFreighters to the world.
     /// </summary>
     /// <param name="count">The number of freighters to spawn</param>
-    public void SpawnEnemyFreighters(int count)
+    public void spawnEnemyFreighters(int count)
     {
-        SpawnEnemies(count, new Func<Vector2, Enemy>() {
+        spawnEnemies(count, new Func<Vector2, Enemy>() {
             @NotNull
             @Override
             public Enemy call(@NotNull Vector2 position) {
@@ -55,20 +55,20 @@ public class EnemyManager extends Manager<Enemy>
         });
     }
 
-    public void SpawnEnemy(int x, int y, @NotNull Func<Vector2, Enemy> func)
+    public void spawnEnemy(int x, int y, @NotNull Func<Vector2, Enemy> func)
     {
         float rotation = (float) Math.toRadians(180);
         Enemy enemy = func.call(new Vector2(x, y));
         enemy.setRotation(rotation);
-        Add(enemy);
+        add(enemy);
     }
 
-    public void SpawnEnemy(int lowX, int highX, int lowY, int highY, @NotNull Func<Vector2,Enemy> func)
+    public void spawnEnemy(int lowX, int highX, int lowY, int highY, @NotNull Func<Vector2, Enemy> func)
     {
         int randX = MathUtils.random(lowX, highX);
         int randY = MathUtils.random(lowY, highY);
 
-        SpawnEnemy(randX, randY, func);
+        spawnEnemy(randX, randY, func);
     }
     /// <summary>
     /// Spawns a number of enemies to random locations on the screen
@@ -76,28 +76,28 @@ public class EnemyManager extends Manager<Enemy>
     /// </summary>
     /// <param name="count">The number of enemies to spawn</param>
     /// <param name="func">A function to spawn a particular type of enemy</param>
-    private void SpawnEnemies(int count, @NotNull Func<Vector2, Enemy> func){
+    private void spawnEnemies(int count, @NotNull Func<Vector2, Enemy> func){
         assert count >= 0;
         assert func != null;
 
-        SpawnEnemies(
-            count,
-            0,
-            (int) gameData.getWorld().getWidth(),
-            0,
-            (int) Math.max(
-                gameData.getWorld().getHeight() *.9f,
-                gameData.getResolution().getHeight() / 2
-            ),
-            func
+        spawnEnemies(
+                count,
+                0,
+                (int) gameData.getWorld().getWidth(),
+                0,
+                (int) Math.max(
+                        gameData.getWorld().getHeight() * .9f,
+                        gameData.getResolution().getHeight() / 2
+                ),
+                func
         );
     }
 
-    public void SpawnEnemies(int count, int lowX, int highX, int lowY, int highY, @NotNull Func<Vector2, Enemy> func)
+    public void spawnEnemies(int count, int lowX, int highX, int lowY, int highY, @NotNull Func<Vector2, Enemy> func)
     {
         for (int i = 0; i < count; i++)
         {
-            SpawnEnemy(lowX, highX, lowY, highY, func);
+            spawnEnemy(lowX, highX, lowY, highY, func);
         }
     }
 

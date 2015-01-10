@@ -11,7 +11,7 @@ public class EnemyMineManager extends Manager<EnemyMine> {
         this.gameData = gameData;
     }
 
-    public void SpawnEnemyMine(int x, int y) {
-        Add(new EnemyMine(gameData, new Vector2(x, y)));
+    public void spawnEnemyMine(int x, int y) {
+        add(new EnemyMine(gameData, new Vector2(x, y)));
     }
 }

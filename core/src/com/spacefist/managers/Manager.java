@@ -17,19 +17,19 @@ public class Manager<T extends Entity> implements Iterable<T> {
         entities      = new Array<T>(false, 16);
     }
 
-    protected void Add(@NotNull T entity) {
+    protected void add(@NotNull T entity) {
         assert entity != null;
 
         entities.add(entity);
     }
 
-    protected void Remove(@NotNull T entity) {
+    protected void remove(@NotNull T entity) {
         assert entity != null;
 
         entities.removeValue(entity,true);
     }
 
-    public void Update() {
+    public void update() {
         for (T entity : entities) {
             if (entity.isAlive()) {
                 entity.update();
@@ -37,14 +37,14 @@ public class Manager<T extends Entity> implements Iterable<T> {
         }
     }
 
-    public void Draw() {
+    public void draw() {
         for(T entity : entities) {
             entity.draw();
         }
     }
 
     @NotNull
-    public Iterable<T> Collisions(@NotNull Entity obj) {
+    public Iterable<T> collisions(@NotNull Entity obj) {
         Array<T> collisions = new Array<T>(false, 16);
 
         for(T entity : entities) {
@@ -56,7 +56,7 @@ public class Manager<T extends Entity> implements Iterable<T> {
         return collisions;
     }
 
-    public void Clear() {
+    public void clear() {
         entities.clear();
     }
 

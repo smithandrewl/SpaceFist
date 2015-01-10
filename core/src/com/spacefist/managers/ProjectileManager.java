@@ -28,7 +28,7 @@ public class ProjectileManager extends Manager<Projectile> {
     }
 
     @Override
-    public void Update() {
+    public void update() {
 
         for (Projectile projectile : entities) {
             Rectangle resolution = gameData.getResolution();
@@ -91,7 +91,7 @@ public class ProjectileManager extends Manager<Projectile> {
 
         projectile.setRotation((float) Math.toRadians(rotation));
 
-        Add(projectile);
+        add(projectile);
 
     }
 
@@ -152,7 +152,7 @@ public class ProjectileManager extends Manager<Projectile> {
                         target
                     ));
 
-                Add(projectile);
+                add(projectile);
             }
         }
     }
@@ -183,7 +183,7 @@ public class ProjectileManager extends Manager<Projectile> {
 
         projectile.setAngularVelocity(angVel);
 
-        Add(projectile);
+        add(projectile);
     }
 
     public void fireMissile(int x, int y)
@@ -199,7 +199,7 @@ public class ProjectileManager extends Manager<Projectile> {
             false
         );
 
-        Add(projectile);
+        add(projectile);
 
         Projectile projectile1 = new Projectile(
             gameData,
@@ -210,7 +210,7 @@ public class ProjectileManager extends Manager<Projectile> {
             false
         );
 
-        Add(projectile1);
+        add(projectile1);
 
         Projectile projectile2 = new Projectile(
             gameData,
@@ -221,7 +221,7 @@ public class ProjectileManager extends Manager<Projectile> {
             false
         );
 
-        Add(projectile2);
+        add(projectile2);
 
     }
     /***************************************/
@@ -231,7 +231,7 @@ public class ProjectileManager extends Manager<Projectile> {
     /// fired by the player.
     /// </returns>
     @NotNull
-    public Iterable<Projectile> PlayerProjectiles()
+    public Iterable<Projectile> playerProjectiles()
     {
         Array<Projectile> playerProjs = new Array<Projectile>(false, 16);
 
@@ -250,7 +250,7 @@ public class ProjectileManager extends Manager<Projectile> {
     /// </summary>
     /// <returns></returns>
     @NotNull
-    public Iterable<Projectile> EnemyProjectiles()
+    public Iterable<Projectile> enemyProjectiles()
     {
         Array<Projectile> enemyProjs = new Array<Projectile>(false, 16);
 

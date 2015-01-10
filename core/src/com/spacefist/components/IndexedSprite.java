@@ -83,7 +83,7 @@ import org.jetbrains.annotations.NotNull;
                 obj.getRotation()
         );
 
-        // FIXME: Draw objects with their tint
+        // FIXME: draw objects with their tint
         // obj.Tint,
         //spriteBatch.setColor(new Color(Color.WHITE));
         spriteBatch.flush();

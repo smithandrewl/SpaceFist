@@ -47,7 +47,7 @@ public class GameOverState implements GameState {
         float width  = resolution.getWidth();
         float height = resolution.getHeight();
 
-        // Draw the game over image
+        // draw the game over image
         gameData.getSpriteBatch().draw(gameOver, 0, 0, width, height);
     }
 

@@ -64,7 +64,7 @@ public class Explosion extends Entity {
             if ((curTime - startTime) >= TimeBetweenFrames) {
                 // Tell the IndexedSprite component that it should be drawing the next frame
                 indexedSprite.setIndex(indexedSprite.getIndex() + 1);
-                startTime = curTime; // Reset the time between frames
+                startTime = curTime; // reset the time between frames
             }
         }
         // If the animation is over mark the object as dead to (keep it from being updated and drawn)

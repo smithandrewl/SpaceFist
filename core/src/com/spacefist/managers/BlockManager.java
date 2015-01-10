@@ -31,7 +31,7 @@ public class BlockManager extends Manager<SpaceBlock>
     /// Repositions the existing blocks around the world with random
     /// velocities marking them as alive.
     /// </summary>
-    public void RespawnBlocks()
+    public void respawnBlocks()
     {
         for (SpaceBlock block : this)
         {
@@ -68,11 +68,11 @@ public class BlockManager extends Manager<SpaceBlock>
     /// locations in the game world.
     /// </summary>
     /// <param name="count">The number of blocks to spawn</param>
-    public void SpawnBlocks(int count)
+    public void spawnBlocks(int count)
     {
-        Clear();
+        clear();
 
-        // Spawn space blocks
+        // spawn space blocks
         for (int i = 0; i < count; i++)
         {
             // Construct the block
@@ -83,15 +83,15 @@ public class BlockManager extends Manager<SpaceBlock>
                 randomVel()
             );
 
-            // Initialize and the block to the list
+            // initialize and the block to the list
             block.initialize();
-            Add(block);
+            add(block);
         }
     }
 
     // Keep the specified entity on world causing it to "bounce"
     // off of the edges of the world.
-    private void KeepOnWorld(@NotNull Entity obj)
+    private void keepOnWorld(@NotNull Entity obj)
     {
         assert obj != null;
         assert gameData.getWorld() != null;
@@ -139,12 +139,12 @@ public class BlockManager extends Manager<SpaceBlock>
     }
 
     @Override
-    public void Update()
+    public void update()
     {
         for (SpaceBlock block : this) {
-            KeepOnWorld(block);
+            keepOnWorld(block);
         }
 
-        super.Update();
+        super.update();
     }
 }

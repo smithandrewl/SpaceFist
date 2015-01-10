@@ -39,12 +39,12 @@ public class PlayerManager
         roundData     = gameData.getRoundData();
     }
 
-    public void Initialize()
+    public void initialize()
     {
         gameData.getShip().initialize();
     }
 
-    public void Update()
+    public void update()
     {
         if (gameData.getShip().isAlive())
         {
@@ -52,7 +52,7 @@ public class PlayerManager
         }
     }
 
-    public void Draw()
+    public void draw()
     {
         if (gameData.getShip().isAlive())
         {
@@ -60,7 +60,7 @@ public class PlayerManager
         }
     }
 
-    public Ship Spawn()
+    public Ship spawn()
     {
         gameData.getSoundEffects().get("PlayerSpawn").play();
 
@@ -93,7 +93,7 @@ public class PlayerManager
         return gameData.getShip();
     }
 
-    public void HandleDeath()
+    public void handleDeath()
     {
         gameData.getShip().onDeath();
 
@@ -102,7 +102,7 @@ public class PlayerManager
             roundData.setLives(roundData.getLives() - 1);
             gameData.getShip().setHealthPoints(100);
 
-            Spawn();
+            spawn();
         }
         else {
             gameData.getShip().setAlive(false);
@@ -111,34 +111,34 @@ public class PlayerManager
         gameData.getShip().setWeapon(new LaserWeapon(gameData));
     }
 
-    public void ShipHit() {
+    public void shipHit() {
         int healthPoints = gameData.getShip().getHealthPoints();
         gameData.getShip().setHealthPoints(healthPoints - HIT_DAMAGE);
 
         if (gameData.getShip().getHealthPoints() <= 0)
         {
-            HandleDeath();
+            handleDeath();
         }
     }
 
-    public void Scored()
+    public void scored()
     {
         roundData.setScore(roundData.getScore() + 10);
     }
 
-    public void ResetScore()
+    public void resetScore()
     {
         roundData.setScore(0);
     }
 
-    public void ResetLives()
+    public void resetLives()
     {
         roundData.setLives(2);
     }
 
     // Replaces the ships current weapon
     // with the laser weapon.
-    public void ResetWeapon() {
+    public void resetWeapon() {
         gameData.getShip().setWeapon(new LaserWeapon(gameData));
     }
 }

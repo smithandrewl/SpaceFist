@@ -48,7 +48,7 @@ public class Sprite implements GraphicsComponent {
             obj.getY()
         ).add(origin);
 
-        // Draw the texture at the location of the Entity obj
+        // draw the texture at the location of the Entity obj
         Vector2 adjPos = position.sub(gameData.getCamera());
 
         spriteBatch.draw(

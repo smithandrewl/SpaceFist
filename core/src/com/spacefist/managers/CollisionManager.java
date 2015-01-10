@@ -45,42 +45,42 @@ public class CollisionManager
         roundData        = gameData.getRoundData();
     }
 
-    public void Update()
+    public void update()
     {
-        HandleLaserRockCollisions();
-        HandleShipRockCollisions();
-        HandleShipPickupCollisions();
-        HandleEnemyLaserCollisions();
-        HandleEnemyShipCollisions();
-        HandleEnemyRockCollisions();
-        HandleProjectileShipCollisions();
-        HandleShipEnemyMineCollisions();
+        handleLaserRockCollisions();
+        handleShipRockCollisions();
+        handleShipPickupCollisions();
+        handleEnemyLaserCollisions();
+        handleEnemyShipCollisions();
+        handleEnemyRockCollisions();
+        handleProjectileShipCollisions();
+        handleShipEnemyMineCollisions();
     }
 
-    private void HandleShipEnemyMineCollisions()
+    private void handleShipEnemyMineCollisions()
     {
         assert gameData.getShip() != null;
 
-        for (EnemyMine mine : enemyMineManager.Collisions(gameData.getShip())) {
+        for (EnemyMine mine : enemyMineManager.collisions(gameData.getShip())) {
             mine.setAlive(false);
             mine.hit();
-            explosionManager.Add(mine.getX(), mine.getY());
-            shipManager.ShipHit();
+            explosionManager.add(mine.getX(), mine.getY());
+            shipManager.shipHit();
         }
     }
 
     /// <summary>
     /// Handles collisions between the ship and projectiles.
     /// </summary>
-    public void HandleProjectileShipCollisions()
+    public void handleProjectileShipCollisions()
     {
-        for (Projectile projectile : laserManager.EnemyProjectiles())
+        for (Projectile projectile : laserManager.enemyProjectiles())
         {
             if(projectile.getRectangle().overlaps(gameData.getShip().getRectangle())) {
                 projectile.setAlive(false);
                 // FIXME: Bug: Explosions draw off-center
-                explosionManager.Add(gameData.getShip().getX(), gameData.getShip().getY());
-                shipManager.ShipHit();
+                explosionManager.add(gameData.getShip().getX(), gameData.getShip().getY());
+                shipManager.shipHit();
             }
         }
     }
@@ -88,33 +88,33 @@ public class CollisionManager
     /// <summary>
     /// Handles collisions between the ship and enemies.
     /// </summary>
-    public void HandleEnemyShipCollisions()
+    public void handleEnemyShipCollisions()
     {
-        for (Enemy enemy : enemyManager.Collisions(gameData.getShip()))
+        for (Enemy enemy : enemyManager.collisions(gameData.getShip()))
         {
-            explosionManager.Add(enemy.getX(), enemy.getY());
+            explosionManager.add(enemy.getX(), enemy.getY());
             enemy.setAlive(false);
             enemy.onDeath();
-            shipManager.ShipHit();
+            shipManager.shipHit();
         }
     }
 
     /// <summary>
     /// Handles collisions between the enemy and projectiles.
     /// </summary>
-    public void HandleEnemyLaserCollisions()
+    public void handleEnemyLaserCollisions()
     {
-        for (Projectile laser : laserManager.PlayerProjectiles())
+        for (Projectile laser : laserManager.playerProjectiles())
         {
             if (laser.isAlive())
             {
-                for (Enemy enemy : enemyManager.Collisions(laser))
+                for (Enemy enemy : enemyManager.collisions(laser))
                 {
                     laser.setAlive(false);
-                    explosionManager.Add(enemy.getX(), enemy.getY());
+                    explosionManager.add(enemy.getX(), enemy.getY());
                     enemy.setAlive(false);
                     enemy.onDeath();
-                    shipManager.Scored();
+                    shipManager.scored();
                     roundData.getEnemiesShot();
                 }
             }
@@ -124,9 +124,9 @@ public class CollisionManager
     /// <summary>
     /// Handles collisions between the ship and weapon and health pickups.
     /// </summary>
-    public void HandleShipPickupCollisions()
+    public void handleShipPickupCollisions()
     {
-        for (Pickup pickup : pickupManager.Collisions(gameData.getShip())) {
+        for (Pickup pickup : pickupManager.collisions(gameData.getShip())) {
             if (pickup.pickedUp(gameData.getShip())) {
                 pickup.setAlive(false);
             }
@@ -136,7 +136,7 @@ public class CollisionManager
     /// <summary>
     /// Handles collisions between the enemy and space blocks.
     /// </summary>
-    public void HandleEnemyRockCollisions()
+    public void handleEnemyRockCollisions()
     {
         Rectangle resolution = gameData.getResolution();
 
@@ -151,7 +151,7 @@ public class CollisionManager
         for (Enemy enemy : enemyManager) {
             if (enemy.isAlive() && cameraRect.contains(enemy.getRectangle()))
             {
-                for (SpaceBlock block : blockManager.Collisions(enemy))
+                for (SpaceBlock block : blockManager.collisions(enemy))
                 {
 
                     if (cameraRect.contains(block.getRectangle()))
@@ -159,8 +159,8 @@ public class CollisionManager
                         enemy.setAlive(false);
                         enemy.onDeath();
 
-                        explosionManager.Add(block.getX(), block.getY());
-                        explosionManager.Add(enemy.getX(), enemy.getY());
+                        explosionManager.add(block.getX(), block.getY());
+                        explosionManager.add(enemy.getX(), enemy.getY());
 
                         block.destroy();
                     }
@@ -172,7 +172,7 @@ public class CollisionManager
     /// <summary>
     /// Handles collisions between projectiles and space blocks.
     /// </summary>
-    public void HandleLaserRockCollisions()
+    public void handleLaserRockCollisions()
     {
         for (Projectile laser : laserManager)
         {
@@ -180,14 +180,14 @@ public class CollisionManager
             if (laser.isAlive())
             {
                 // If an alive laser hits a block
-                for (SpaceBlock block : blockManager.Collisions(laser))
+                for (SpaceBlock block : blockManager.collisions(laser))
                 {
                     laser.setAlive(false);
                     // Create and add a new explosion
-                    explosionManager.Add(block.getX(), block.getY());
+                    explosionManager.add(block.getX(), block.getY());
 
-                    // Update the score
-                    shipManager.Scored();
+                    // update the score
+                    shipManager.scored();
                     roundData.setBlocksShot(roundData.getBlocksShot() + 1);
 
                     // Kill the block
@@ -200,10 +200,10 @@ public class CollisionManager
     /// <summary>
     /// Handles collisions between the ship and space blocks.
     /// </summary>
-    public void HandleShipRockCollisions()
+    public void handleShipRockCollisions()
     {
-        //  Update blocks
-        for (SpaceBlock block : blockManager.Collisions(gameData.getShip()))
+        //  update blocks
+        for (SpaceBlock block : blockManager.collisions(gameData.getShip()))
         {
             // Ignore the collision if the ship is not alive
             if (shipManager.isAlive())
@@ -212,15 +212,15 @@ public class CollisionManager
                 Ship ship = gameData.getShip();
 
                 // Create an explosion at the coordinates of the block
-                explosionManager.Add(block.getX(), block.getY());
+                explosionManager.add(block.getX(), block.getY());
 
                 // Notify the ship manager that the ship has been hit
-                shipManager.ShipHit();
+                shipManager.shipHit();
 
                 // If the ship died, add an explosion where the ship was
                 if (!shipManager.isAlive())
                 {
-                    explosionManager.Add(ship.getX(), ship.getY());
+                    explosionManager.add(ship.getX(), ship.getY());
                 }
 
                 // Notify the block that it has been hit

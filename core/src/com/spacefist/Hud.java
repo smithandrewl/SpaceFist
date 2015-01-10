@@ -49,7 +49,7 @@ public class Hud {
         );
     }
 
-    public void Update() {
+    public void update() {
 
         scoreDisplay = String.format(
                 SCORE_FORMAT,
@@ -65,16 +65,16 @@ public class Hud {
 
     }
 
-    public void Draw() {
+    public void draw() {
         BitmapFont font = gameData.getFont();
 
-        //Draw the top rectangle
+        //draw the top rectangle
         gameData.getSpriteBatch().draw(gameData.getTextures().get("Hud"), TopRect.x, TopRect.y);
 
-        // Draw the score
+        // draw the score
         font.draw(gameData.getSpriteBatch(), scoreDisplay, scorePosition.x, scorePosition.y);
 
-        // Draw the bottom rectangle
+        // draw the bottom rectangle
         gameData.getSpriteBatch().draw(gameData.getTextures().get("Hud"), BottomRect.x, BottomRect.y);
 
 

@@ -15,14 +15,14 @@ public class LevelManager
         this.gameData = gameData;
     }
 
-    public void Init()
+    public void init()
     {
         int levelCount = Gdx.files.absolute("/maps").list().length;
 
         gameData.setLevelCount(levelCount);
     }
 
-    public void LoadLevel(int id)
+    public void loadLevel(int id)
     {
         TmxMapLoader loader = new TmxMapLoader();
         TiledMap map = loader.load(Gdx.files.absolute("maps/" + id + ".tmx").path());

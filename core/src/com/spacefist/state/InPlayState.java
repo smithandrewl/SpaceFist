@@ -70,8 +70,8 @@ public class InPlayState implements GameState {
 
     @Override
     public void loadContent() {
-        gameData.getLevelManager().Init();
-        gameData.getLevelManager().LoadLevel(1);
+        gameData.getLevelManager().init();
+        gameData.getLevelManager().loadLevel(1);
 
         debrisField    = new Array<Rectangle>(false, gameData.getLevel().getDebrisParticleCount());
         gameData.setWorld(new Rectangle(0, 0, gameData.getLevel().getWidth(), gameData.getLevel().getHeight()));
@@ -81,7 +81,7 @@ public class InPlayState implements GameState {
 
     @Override
     public void enteringState() {
-        // Reset the round statistics
+        // reset the round statistics
         gameData.getRoundData().reset();
 
         Music song = gameData.getSongs().get(gameData.getLevel().getSong());
@@ -94,121 +94,121 @@ public class InPlayState implements GameState {
 
         PlayerManager playerManager = gameData.getPlayerManager();
             // Tell the ship manager to spawn the ship
-            playerManager.Spawn();
+            playerManager.spawn();
 
             // Since the game states are reused, clear the score and lives
-            playerManager.ResetLives();
-            playerManager.ResetScore();
-            playerManager.ResetWeapon();
+            playerManager.resetLives();
+            playerManager.resetScore();
+            playerManager.resetWeapon();
 
             int numBlocks = gameData.getLevel().getBlockCount();
 
-            // Spawn blocks to the world
-            gameData.getBlockManager().SpawnBlocks(numBlocks);
+            // spawn blocks to the world
+            gameData.getBlockManager().spawnBlocks(numBlocks);
 
-            gameData.getEnemyManager().Clear();
-            gameData.getEnemyMineManager().Clear();
-            gameData.getPickUpManager().Reset();
+            gameData.getEnemyManager().clear();
+            gameData.getEnemyMineManager().clear();
+            gameData.getPickUpManager().reset();
 
-            //Spawn fighters
+            //spawn fighters
             for (SpawnZone zone : gameData.getLevel().getFighters())
             {
 
                 if(zone.getCount() > 1) {
-                    gameData.getEnemyManager().SpawnEnemies(
-                        zone.getCount(),
-                        zone.getLeft(),
-                        zone.getRight(),
-                        zone.getTop(),
-                        zone.getBottom(),
-                        new Func<Vector2, Enemy>() {
-                            @NotNull
-                            @Override
-                            public Enemy call(Vector2 position) {
-                                return new EnemyFighter(gameData, position);
+                    gameData.getEnemyManager().spawnEnemies(
+                            zone.getCount(),
+                            zone.getLeft(),
+                            zone.getRight(),
+                            zone.getTop(),
+                            zone.getBottom(),
+                            new Func<Vector2, Enemy>() {
+                                @NotNull
+                                @Override
+                                public Enemy call(Vector2 position) {
+                                    return new EnemyFighter(gameData, position);
+                                }
                             }
-                        }
                     );
                 }
                 else
                 {
-                    gameData.getEnemyManager().SpawnEnemy(
-                        (int) zone.getCenter().x,
-                        (int) zone.getCenter().y,
-                        new Func<Vector2, Enemy>() {
-                            @NotNull
-                            @Override
-                            public Enemy call(Vector2 position) {
-                                return new EnemyFighter(gameData, position);
+                    gameData.getEnemyManager().spawnEnemy(
+                            (int) zone.getCenter().x,
+                            (int) zone.getCenter().y,
+                            new Func<Vector2, Enemy>() {
+                                @NotNull
+                                @Override
+                                public Enemy call(Vector2 position) {
+                                    return new EnemyFighter(gameData, position);
+                                }
                             }
-                        }
                     );
                 }
             }
 
-            // Spawn freighters
+            // spawn freighters
             for (SpawnZone zone : gameData.getLevel().getFreighters())
             {
 
                 if (zone.getCount() > 1)
                 {
-                    gameData.getEnemyManager().SpawnEnemies(
-                        zone.getCount(),
-                        zone.getLeft(),
-                        zone.getRight(),
-                        zone.getTop(),
-                        zone.getBottom(),
-                        new Func<Vector2, Enemy>() {
-                            @NotNull
-                            @Override
-                            public Enemy call(Vector2 position) {
-                                return new EnemyFreighter(gameData, position);
+                    gameData.getEnemyManager().spawnEnemies(
+                            zone.getCount(),
+                            zone.getLeft(),
+                            zone.getRight(),
+                            zone.getTop(),
+                            zone.getBottom(),
+                            new Func<Vector2, Enemy>() {
+                                @NotNull
+                                @Override
+                                public Enemy call(Vector2 position) {
+                                    return new EnemyFreighter(gameData, position);
+                                }
                             }
-                        }
                     );
                 }
                 else
                 {
-                    gameData.getEnemyManager().SpawnEnemy(
-                        (int) zone.getCenter().x,
-                        (int) zone.getCenter().y,
-                        new Func<Vector2, Enemy>() {
-                            @NotNull
-                            @Override
-                            public Enemy call(Vector2 position) {
-                                return new EnemyFreighter(gameData, position);
+                    gameData.getEnemyManager().spawnEnemy(
+                            (int) zone.getCenter().x,
+                            (int) zone.getCenter().y,
+                            new Func<Vector2, Enemy>() {
+                                @NotNull
+                                @Override
+                                public Enemy call(Vector2 position) {
+                                    return new EnemyFreighter(gameData, position);
+                                }
                             }
-                        }
                     );
                 }
             }
 
-            //Spawn mines
+            //spawn mines
             for (SpawnPoint point : gameData.getLevel().getMines())
             {
-                gameData.getEnemyMineManager().SpawnEnemyMine(point.getX(), point.getY());
+                gameData.getEnemyMineManager().spawnEnemyMine(point.getX(), point.getY());
             }
 
 
-            // Spawn the players ship
-            playerManager.Initialize();
+            // spawn the players ship
+            playerManager.initialize();
 
             PickUpManager pickupManager = gameData.getPickUpManager();
 
-            // Spawn the different pickups to the world
-            pickupManager.Reset();
-            pickupManager.SpawnExtraLifePickups(3);
+            // spawn the different pickups to the world
+            pickupManager.reset();
+            pickupManager.spawnExtraLifePickups(3);
 
             // TODO: Enable spawning of example pickups
-            //pickupManager.SpawnExamplePickups(4);
+            //pickupManager.spawnExamplePickups(4);
 
-            pickupManager.SpawnHealthPickups(4);
+            pickupManager.spawnHealthPickups(4);
 
 
 
         /***Dongcai*/
-        gameData.getPickUpManager().SpawnLaserbeamPickups(5);
-        gameData.getPickUpManager().SpawnMissilePickups(3);
+        gameData.getPickUpManager().spawnLaserbeamPickups(5);
+        gameData.getPickUpManager().spawnMissilePickups(3);
         /**********/
 
         debrisField.clear();
@@ -238,7 +238,7 @@ public class InPlayState implements GameState {
         /*
         TODO: Convert stopwatch code
 
-        stopwatch.Reset();
+        stopwatch.reset();
         stopwatch.Start();
 
         */
@@ -256,17 +256,17 @@ public class InPlayState implements GameState {
                     gameData.setCurrentState(gameData.getMenuState());
                 }
                 
-                KeepOnScreen(gameData.getShip());
+                keepOnScreen(gameData.getShip());
 
                 // Tell the entity managers to update
-                gameData.getProjectileManager().Update();
-                gameData.getBlockManager().Update();
-                gameData.getExplosionManager().Update();
-                gameData.getCollisionManager().Update();
-                gameData.getPlayerManager().Update();
-                gameData.getEnemyManager().Update();
-                gameData.getPickUpManager().Update();
-                gameData.getEnemyMineManager().Update();
+                gameData.getProjectileManager().update();
+                gameData.getBlockManager().update();
+                gameData.getExplosionManager().update();
+                gameData.getCollisionManager().update();
+                gameData.getPlayerManager().update();
+                gameData.getEnemyManager().update();
+                gameData.getPickUpManager().update();
+                gameData.getEnemyMineManager().update();
  
                 // Until the end of the world is reached, move the camera up the world
                 if (gameData.getCamera().y <= gameData.getWorld().getHeight()) {
@@ -294,7 +294,7 @@ public class InPlayState implements GameState {
                 gameData.setCurrentState(gameData.getGameOverState());
             }
 
-            hud.Update();
+            hud.update();
 
     }
 
@@ -304,7 +304,7 @@ public class InPlayState implements GameState {
             String background    = gameData.getLevel().getBackgroundImage();
             String particleImage = gameData.getLevel().getDebrisParticleImage();
 
-            // Draw the background
+            // draw the background
             gameData.getSpriteBatch().draw(
                 gameData.getTextures().get(background),
                 gameData.getResolution().getX(),
@@ -313,7 +313,7 @@ public class InPlayState implements GameState {
                 gameData.getResolution().getHeight()
             );
 
-            // Draw debris
+            // draw debris
             for(Rectangle rect : debrisField)
             {
                 gameData.getSpriteBatch().draw(
@@ -325,27 +325,27 @@ public class InPlayState implements GameState {
                 );
             }
 
-            // Draw the entities
-            gameData.getExplosionManager().Draw();
-            gameData.getBlockManager().Draw();
-            gameData.getProjectileManager().Draw();
-            gameData.getPickUpManager().Draw();
-            gameData.getEnemyManager().Draw();
-            gameData.getPickUpManager().Draw();
-            gameData.getEnemyMineManager().Draw();
-            gameData.getPlayerManager().Draw();
+            // draw the entities
+            gameData.getExplosionManager().draw();
+            gameData.getBlockManager().draw();
+            gameData.getProjectileManager().draw();
+            gameData.getPickUpManager().draw();
+            gameData.getEnemyManager().draw();
+            gameData.getPickUpManager().draw();
+            gameData.getEnemyMineManager().draw();
+            gameData.getPlayerManager().draw();
             /*
             TODO: Convert DrawLevelMaarkers
-            DrawLevelMarkers();
+            drawLevelMarkers();
             */
 
-            hud.Draw();
+            hud.draw();
 
     }
 
-    private void DrawLevelMarkers() {
+    private void drawLevelMarkers() {
             /*
-            TODO: Convert InPlayState.DrawLevelMarkers
+            TODO: Convert InPlayState.drawLevelMarkers
             int halfWidth  = (int)((gameData.World.Width / 2)    - gameData.Camera.X);
             int nearBottom = (int)((gameData.World.Bottom * .98) - gameData.Camera.Y);
             int nearTop    = (int)((gameData.World.Top * .02)    - gameData.Camera.Y);
@@ -390,7 +390,7 @@ public class InPlayState implements GameState {
                 gameData.Textures["LevelEnd"].Height
             );
 
-            gameData.SpriteBatch.Draw(
+            gameData.SpriteBatch.draw(
                 gameData.Textures["LevelEnd"],
                 EndOfLevelMarkerPos,
                 Color.White
@@ -408,7 +408,7 @@ public class InPlayState implements GameState {
     }
 
     // Keep the player on the screen
-    private void KeepOnScreen(@NotNull Entity obj) {
+    private void keepOnScreen(@NotNull Entity obj) {
         Rectangle resolution = gameData.getResolution();
 
         int farRight   = (int) (gameData.getCamera().x + resolution.getWidth());

@@ -23,9 +23,9 @@ public class ExplosionManager extends Manager<Explosion>
     /// </summary>
     /// <param name="x">The X component of the location</param>
     /// <param name="y">The Y component of the location</param>
-    public void Add(int x, int y)
+    public void add(int x, int y)
     {
         Explosion explosion = new Explosion(gameData, new Vector2(x, y));
-        Add(explosion);
+        add(explosion);
     }
 }
