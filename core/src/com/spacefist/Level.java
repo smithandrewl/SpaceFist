@@ -35,7 +35,6 @@ public class Level {
         freighters = new Array<SpawnZone>(false, 50);
 
         MapProperties properties  = map.getProperties();
-        MapLayer      objectLayer = map.getLayers().get(0);
 
         int heightInTiles = properties.get("height", Integer.class);
         int tileheight    = properties.get("tileheight", Integer.class);

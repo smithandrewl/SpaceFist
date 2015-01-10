@@ -70,8 +70,6 @@ public class InPlayState implements GameState {
 
     @Override
     public void loadContent() {
-        Rectangle resolution = gameData.getResolution();
-
         gameData.getLevelManager().Init();
         gameData.getLevelManager().LoadLevel(1);
 
@@ -90,8 +88,6 @@ public class InPlayState implements GameState {
 
         song.setLooping(true);
         song.play();
-
-        Rectangle resolution = gameData.getResolution();
 
         // Position the camera at the bottom of the world
         gameData.setCamera(new Vector2(0, 0));

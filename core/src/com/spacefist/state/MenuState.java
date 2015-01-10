@@ -48,7 +48,7 @@ public class MenuState implements GameState {
 
         // backgroundRect = gameData.getResolution();
 
-        HashMap<String, Texture> textures = gameData.getTextures();
+        ///HashMap<String, Texture> textures = gameData.getTextures();
 
         // background     = textures.get("BackgroundRed");
     }
@@ -56,18 +56,6 @@ public class MenuState implements GameState {
     @Override
     public void draw() {
         //TODO: Use scene.ui to render the background image
-
-        /*
-        SpriteBatch spriteBatch = gameData.getSpriteBatch();
-
-        spriteBatch.draw(
-                background,
-                backgroundRect.x,
-                backgroundRect.y,
-                background.getWidth(),
-                backgroundRect.getHeight()
-        );
-        */
 
         stage.draw();
     }

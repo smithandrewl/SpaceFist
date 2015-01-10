@@ -33,10 +33,11 @@ public class SpawningState implements ShipState {
 
     @Override
     public void update() {
+
+        /*
         Ship ship      = gameData.getShip();
         byte increment = 5;
 
-        /*
         TODO: Implement fading during the spawning state
 
         // If the ship is not fully visible, increase its visibility
