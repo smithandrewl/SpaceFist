@@ -69,8 +69,8 @@ public class PlayerManager
 
         // Start the ship at the bottom  in the center of the screen
 
-        float xOffset = resolution.getWidth() / 2;
-        double yOffset = resolution.getHeight() * .80;
+        float xOffset  = resolution.getWidth() / 2;
+        double yOffset = resolution.getHeight() * .05;
 
         int startX = (int)(xOffset + camera.x);
         int startY = (int)(yOffset + camera.y);
