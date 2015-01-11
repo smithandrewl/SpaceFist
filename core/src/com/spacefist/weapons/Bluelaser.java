@@ -32,9 +32,11 @@ public class Bluelaser implements Weapon {
         Ship ship = gameData.getShip();
 
         float shipWidth = ship.getRectangle().getWidth();
+        float shipHeight = ship.getRectangle().getHeight();
+
 
         int projectileX = (int) ((ship.getX() + (shipWidth / 2)) - (20 * gameData.getScreenScale()));
-        int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
+        int projectileY = (int) (ship.getY() + (shipHeight * 1.125f));
 
         projectileManager.fireBluelaser(projectileX, projectileY);
     }
