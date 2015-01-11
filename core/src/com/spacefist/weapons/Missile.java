@@ -27,10 +27,11 @@ public class Missile implements Weapon {
     public void fire() {
         Ship ship = gameData.getShip();
 
-        float shipWidth = ship.getRectangle().getWidth();
+        float shipWidth  = ship.getRectangle().getWidth();
+        float shipHeight = ship.getRectangle().getWidth();
 
         int projectileX = (int) ((ship.getX() + (shipWidth / 2)) - 6);
-        int projectileY = (int) ((ship.getY() - (35 * gameData.getScreenScale())));
+        int projectileY = (int) ((ship.getY() + (shipHeight * 1.5f)));
 
         projectileManager.fireMissile(projectileX, projectileY);
     }
