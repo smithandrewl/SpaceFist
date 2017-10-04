@@ -74,11 +74,13 @@ namespace SpaceFist.State
         {
             // Reset the round statistics
             gameData.RoundData.Reset();
+
+
             
             // Start playing music on a loop
             MediaPlayer.Play(gameData.Songs[gameData.Level.Song]);
             MediaPlayer.IsRepeating = true;
-
+            MediaPlayer.Volume  = 0.25f;
             var resolution = gameData.Resolution;
             
             // Position the camera at the bottom of the world
