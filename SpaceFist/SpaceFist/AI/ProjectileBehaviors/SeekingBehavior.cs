@@ -49,7 +49,7 @@ namespace SpaceFist.AI.ProjectileBehaviors
                 // The minimum distance from the launching point
                 // that the projectile must be after being fired, before it will start
                 // intercepting the target.
-                int minDist  = 150;
+                int minDist  = 80;
 
                 var xDiff = projectile.X - origin.X;
                 var yDiff = projectile.Y - origin.Y;
@@ -85,7 +85,7 @@ namespace SpaceFist.AI.ProjectileBehaviors
 
                     var steering = desiredVelocity - projectile.Velocity;
 
-                    var newVelocity = projectile.Velocity + (steering * .2f);
+                    var newVelocity = projectile.Velocity + (steering * .05f);
 
                     float direction = (MathHelper.ToDegrees((float)Math.Atan2(newVelocity.Y, newVelocity.X)) + 90);
 

@@ -25,7 +25,7 @@ namespace SpaceFist.AI.DummyAI
         private Random   random;
         private float    membership;
 
-        private const int Speed = 6;
+        private const int Speed = 5;
 
         public RamState(EnemyAI ai, GameData gameData)
         {
@@ -125,8 +125,8 @@ namespace SpaceFist.AI.DummyAI
                     // The line of sight vector
                     var direction = (wayPoint - new Vector2(Enemy.X, Enemy.Y)) * membership;
                     
-                    var intX = MathHelper.Lerp(Enemy.Velocity.X, direction.X, .185f);
-                    var intY = MathHelper.Lerp(Enemy.Velocity.Y, direction.Y, .185f);
+                    var intX = MathHelper.Lerp(Enemy.Velocity.X, direction.X, .1f);
+                    var intY = MathHelper.Lerp(Enemy.Velocity.Y, direction.Y, .1f);
 
                     direction = new Vector2(intX, intY);
 

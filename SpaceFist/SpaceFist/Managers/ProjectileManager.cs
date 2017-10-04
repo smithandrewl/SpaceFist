@@ -121,7 +121,7 @@ namespace SpaceFist.Managers
                     Projectile projectile = new Projectile(
                         gameData,
                         gameData.Textures["SampleWeapon"],
-                        new Vector2(x, y),
+                        new Vector2(x, y - 50),
                         new Vector2(0, -1),
                         10
                     );
