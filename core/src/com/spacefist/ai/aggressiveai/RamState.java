@@ -25,12 +25,11 @@ import java.util.List;
  * by the degree that the state is active.
  */
 public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
-    private static final int SPEED = 6;
+    private static final int SPEED = 4;
 
     private EnemyAI       ai;
     private Enemy         enemy;
     private GameData      gameData;
-    private long          lastUpdate;
 
     public RamState(@NotNull EnemyAI ai, GameData gameData) {
 
@@ -38,7 +37,6 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
 
         this.ai       = ai;
         enemy         = shipEnemyInfo.getEnemy();
-        lastUpdate    = TimeUtils.millis();
         this.gameData = gameData;
     }
 
@@ -109,15 +107,13 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
         // The rotation of the ship needed for it to face in the direction of the next waypoint
         float destRotation = (direction.angle()+90);
 
-        System.out.println(destRotation);
-
         enemy.setRotation(destRotation);
 
         // Calculate a velocity to move along the line of sight at a magnitude of 5
         // TODO: Convert linear interpolation code in RamState
         //enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), SPEED, .15f) * membership));
 
-        
+
         enemy.setVelocity(new Vector2(direction.x * SPEED * membership, direction.y * SPEED  * membership * -1.0f));
     }
 
