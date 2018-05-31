@@ -61,7 +61,7 @@ public class Sprite implements GraphicsComponent {
                 objRectangle.getHeight(),
                 gameData.getScreenScale(),
                 gameData.getScreenScale(),
-                obj.getRotation()
+                obj.getRotation() % 360
         );
 
         spriteBatch.setColor(new Color(Color.WHITE));

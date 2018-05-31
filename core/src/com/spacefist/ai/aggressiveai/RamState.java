@@ -27,7 +27,6 @@ import java.util.List;
 public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
     private static final int SPEED = 6;
 
-    private List<Vector2> wayPoints;
     private EnemyAI       ai;
     private Enemy         enemy;
     private GameData      gameData;
@@ -39,7 +38,6 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
 
         this.ai       = ai;
         enemy         = shipEnemyInfo.getEnemy();
-        wayPoints     = new ArrayList<Vector2>();
         lastUpdate    = TimeUtils.millis();
         this.gameData = gameData;
     }
@@ -86,91 +84,43 @@ public class RamState extends FuzzyLogicEnabled implements EnemyAIState {
             not(distance.getHigh())
         );
 
-        long millisecondsPassed = TimeUtils.millis() - lastUpdate;
+        Vector2 shipLocation = new Vector2(
+            ship.getX() ,
+            ship.getY()
+        );
 
-        // Keep up to 3 waypoints, updating them every 25 milliseconds
-        boolean updateWaypoints = millisecondsPassed > 25;
+        Vector2 wayPoint = shipLocation;
 
-        if (updateWaypoints) {
-            boolean wayPointNeeded = wayPoints.size() < 3;
 
-            if (wayPointNeeded) {
-                int randX = MathUtils.random(-10, 10);
-                int randY = MathUtils.random(-10, 10);
 
-                Vector2 shipLocation = new Vector2(
-                    ship.getX() + randX,
-                    ship.getY() + randY
-                );
+        // The line of sight vector
+        Vector2 direction = wayPoint.sub(
+                new Vector2(
+                        enemy.getX(),
+                        enemy.getY()
+                )
+        );
 
-                boolean wayPointExists = wayPoints.contains(shipLocation);
+        direction = direction.nor();
 
-                if (!wayPointExists) {
-                    Vector2 lastPoint;
 
-                    if (wayPoints.isEmpty()) {
-                        lastPoint = new Vector2(enemy.getX(), enemy.getY());
-                    } else {
-                        lastPoint = wayPoints.get(wayPoints.size() - 1);
-                    }
+        //direction = new Vector2(enemy.getX(), enemy.getY()).nor();
 
-                    Vector2 newPoint = shipLocation.sub(lastPoint).nor();
+        // The rotation of the ship needed for it to face in the direction of the next waypoint
+        float destRotation = (direction.angle()+90);
 
-                    float mult = 15 * membership;
+        System.out.println(destRotation);
 
-                    // Using fuzzy logic, the generated way point will be more accurate
-                    // the closer the enemy is to the ship.
-                    newPoint = lastPoint.add(newPoint.scl(mult));
+        enemy.setRotation(destRotation);
 
-                    wayPoints.add(newPoint);
-                }
-            }
+        // Calculate a velocity to move along the line of sight at a magnitude of 5
+        // TODO: Convert linear interpolation code in RamState
+        //enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), SPEED, .15f) * membership));
 
-            lastUpdate = TimeUtils.millis();
-        }
-
-        if (!wayPoints.isEmpty()) {
-            Vector2 wayPoint = wayPoints.get(0);
-
-            // If the enemy is close to the waypoint, remove the way point
-            // and draw the enemy at rest.
-            if (isNear(enemy.getX(), enemy.getY(), (int) wayPoint.x, (int) wayPoint.y)) {
-                wayPoints.remove(wayPoint);
-            } else {
-
-                // The line of sight vector
-                Vector2 direction = wayPoint.sub(
-                    new Vector2(
-                        enemy.getX() * membership,
-                        enemy.getY() * membership
-                    )
-                );
-
-                int intX = (int) Interpolation.linear.apply(enemy.getVelocity().x, direction.x, .185f);
-                int intY = (int) Interpolation.linear.apply(enemy.getVelocity().y, direction.y, .185f);
-
-                direction = new Vector2(intX, intY).nor();
-
-                // The rotation of the ship needed for it to face in the direction of the next waypoint
-                float destRotation = direction.angle() + 90;
-
-                enemy.setRotation(destRotation);
-
-                // Calculate a velocity to move along the line of sight at a magnitude of 5
-                // TODO: Convert linear interpolation code in RamState
-                //enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), SPEED, .15f) * membership));
-                enemy.setVelocity(Vector2.Zero);
-            }
-        }
+        
+        enemy.setVelocity(new Vector2(direction.x * SPEED * membership, direction.y * SPEED  * membership * -1.0f));
     }
 
-    public List<Vector2> getWayPoints() {
-        return wayPoints;
-    }
-
-    public void setWayPoints(List<Vector2> wayPoints) {
-        this.wayPoints = wayPoints;
-    }
 
     public EnemyAI getAi() {
         return ai;
