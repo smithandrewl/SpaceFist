@@ -18,7 +18,7 @@ public class PlayerManager
     RoundData roundData;
 
     // Damage the ship takes per hit
-    private static final int HIT_DAMAGE = 10;
+    private static final int HIT_DAMAGE = 5;
 
     // Start the players ship moving at a velocity greater than the camer scrolls
     @NotNull
