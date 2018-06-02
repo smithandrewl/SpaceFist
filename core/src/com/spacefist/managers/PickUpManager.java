@@ -9,7 +9,6 @@ import com.spacefist.RoundData;
 import com.spacefist.entities.Pickup;
 import com.spacefist.entities.Ship;
 import com.spacefist.util.Action;
-import com.spacefist.weapons.Bluelaser;
 import com.spacefist.weapons.Missile;
 import com.spacefist.weapons.SampleWeapon;
 import org.jetbrains.annotations.NotNull;
@@ -100,35 +99,7 @@ public class PickUpManager extends Manager<Pickup>
         });
     }
 
-    /****Dongcai***/
-    public void spawnLaserbeamPickups(int count)
-    {
-        spawnPickups(count, new Action<Integer, Integer>() {
-            @Override
-            public void execute(Integer first, Integer second) {
-                spawnLaserbeamPickup(first, second);
-            }
-        });
-    }
 
-    public void spawnLaserbeamPickup(int x, int y)
-    {
-        Pickup pickup = new Pickup(
-            gameData,
-            gameData.getTextures().get("MinePickup"),
-            gameData.getSoundEffects().get("WeaponPickup"),
-            new Vector2(x, y),
-            Vector2.Zero,
-            new PickupHandler() {
-                @Override
-                public boolean handle(@NotNull Ship ship) {
-                    ship.setWeapon(new Bluelaser(gameData));
-                    return true;
-                }
-            });
-
-        add(pickup);
-    }
 
     public void spawnMissilePickups(int count)
     {

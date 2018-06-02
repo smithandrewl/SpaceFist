@@ -232,7 +232,6 @@ public class InPlayState implements GameState {
 
 
         /***Dongcai*/
-        pickUpManager.spawnLaserbeamPickups(5);
         pickUpManager.spawnMissilePickups(3);
         /**********/
 
