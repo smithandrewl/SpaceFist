@@ -439,7 +439,7 @@ public class InPlayState implements GameState {
                 }
 
             }
-      
+
             EndOfLevelMarkerPos = new Rectangle(
                 (int)halfWidth - (gameData.Textures["LevelEnd"].Width / 2),
                 (int)((gameData.Level.Height / 8) - gameData.Camera.Y),
