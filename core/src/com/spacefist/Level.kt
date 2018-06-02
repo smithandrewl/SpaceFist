@@ -8,6 +8,16 @@ import com.badlogic.gdx.math.Ellipse
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
 
+/**
+ * Represents a spawn point in a level.
+ */
+class SpawnPoint(val x: Int, val y: Int)
+
+/**
+ * Represents a region of a level where enemies will may spawn.
+ */
+class SpawnZone(val count: Int, val left: Int, val right: Int, val top: Int, val bottom: Int, val center: Vector2)
+
 class Level(map: TiledMap) {
     val height: Int
     val width: Int
