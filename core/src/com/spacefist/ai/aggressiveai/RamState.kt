@@ -22,7 +22,7 @@ import java.util.ArrayList
  * The likelyhood of ramming the players ship and the path the enemy takes are determined
  * by the degree that the state is active.
  */
-class RamState(var ai: EnemyAI?, private val gameData: GameData) : FuzzyLogicEnabled(), EnemyAIState {
+class RamState(var ai: EnemyAI, private val gameData: GameData) : FuzzyLogicEnabled(), EnemyAIState {
     var enemy: Enemy? = null
 
     init {
