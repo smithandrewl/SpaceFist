@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.TimeUtils
 import com.spacefist.GameData
 import com.spacefist.ai.abst.FuzzyLogicEnabled
-import com.spacefist.entities.Ship
 import com.spacefist.entities.enemies.Enemy
 
 /**

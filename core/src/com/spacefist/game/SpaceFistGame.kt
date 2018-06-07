@@ -2,24 +2,13 @@ package com.spacefist.game
 
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.audio.Music
-import com.badlogic.gdx.audio.Sound
-import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
 import com.spacefist.GameData
-import com.spacefist.state.CreditsState
-import com.spacefist.state.EndOfGameState
-import com.spacefist.state.EndOfLevelState
-import com.spacefist.state.GameOverState
-import com.spacefist.state.InPlayState
-import com.spacefist.state.LogoState
-import com.spacefist.state.MenuState
-import com.spacefist.state.SplashScreenState
-import com.spacefist.state.abst.GameState
+import com.spacefist.state.*
 
 class SpaceFistGame : ApplicationAdapter() {
     internal var batch: SpriteBatch? = null

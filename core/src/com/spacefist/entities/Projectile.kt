@@ -10,7 +10,6 @@ import com.spacefist.components.NullInputComponent
 import com.spacefist.components.Physics
 import com.spacefist.components.Sound
 import com.spacefist.components.Sprite
-import com.spacefist.components.abst.SoundComponent
 
 /**
  * Represents a projectile fired by either the player or an enemy.

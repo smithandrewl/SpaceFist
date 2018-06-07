@@ -2,9 +2,6 @@ package com.spacefist.state
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input.Keys
-import com.badlogic.gdx.audio.Music
-import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
@@ -12,26 +9,11 @@ import com.badlogic.gdx.utils.Array
 import com.badlogic.gdx.utils.TimeUtils
 import com.spacefist.GameData
 import com.spacefist.Hud
-import com.spacefist.Level
-import com.spacefist.SpawnPoint
-import com.spacefist.SpawnZone
 import com.spacefist.entities.Entity
-import com.spacefist.entities.enemies.Enemy
 import com.spacefist.entities.enemies.EnemyFighter
 import com.spacefist.entities.enemies.EnemyFreighter
-import com.spacefist.managers.BlockManager
-import com.spacefist.managers.CollisionManager
-import com.spacefist.managers.EnemyManager
-import com.spacefist.managers.EnemyMineManager
-import com.spacefist.managers.ExplosionManager
-import com.spacefist.managers.LevelManager
-import com.spacefist.managers.PickUpManager
-import com.spacefist.managers.PlayerManager
-import com.spacefist.managers.ProjectileManager
 import com.spacefist.state.abst.GameState
 import com.spacefist.util.Func
-
-import java.util.HashMap
 
 /*
  * The main state of the game.  All game play occurs in the InPlayState.

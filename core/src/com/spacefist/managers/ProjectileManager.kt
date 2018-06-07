@@ -8,10 +8,6 @@ import com.spacefist.GameData
 import com.spacefist.ai.projectilebehaviors.SeekingBehavior
 import com.spacefist.entities.Entity
 import com.spacefist.entities.Projectile
-import com.spacefist.entities.SpaceBlock
-import com.spacefist.entities.enemies.Enemy
-
-import java.util.Random
 
 /// <summary>
 /// Keeps track of the projectiles in the world.

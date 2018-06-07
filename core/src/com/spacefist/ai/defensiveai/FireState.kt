@@ -1,10 +1,7 @@
 package com.spacefist.ai.defensiveai
 
-import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.TimeUtils
 import com.spacefist.GameData
-import com.spacefist.ai.FuzzyVariable
 import com.spacefist.ai.ShipEnemyInfo
 import com.spacefist.ai.ShipInfo
 import com.spacefist.ai.abst.EnemyAI

@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.TimeUtils
 import com.spacefist.GameData
 import com.spacefist.RoundData
 import com.spacefist.ai.abst.FuzzyLogicEnabled
-import com.spacefist.entities.Ship
 
 /**
  * Provides fuzzy information about the ship and how the player

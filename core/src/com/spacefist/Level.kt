@@ -1,10 +1,7 @@
 package com.spacefist
 
-import com.badlogic.gdx.maps.MapObject
-import com.badlogic.gdx.maps.MapProperties
 import com.badlogic.gdx.maps.objects.EllipseMapObject
 import com.badlogic.gdx.maps.tiled.TiledMap
-import com.badlogic.gdx.math.Ellipse
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
 
@@ -19,48 +16,50 @@ class SpawnPoint(val x: Int, val y: Int)
 class SpawnZone(val count: Int, val left: Int, val right: Int, val top: Int, val bottom: Int, val center: Vector2)
 
 class Level(map: TiledMap) {
-    val height: Int
-    val width: Int
-    val title: String
+    val height:                 Int
+    val width:                  Int
+    val title:                  String
     val debrisParticleMinScale: Int
     val debrisParticleMaxScale: Int
-    val debrisParticleImage: String
-    val debrisParticleCount: Int
-    val song: String
-    val blockCount: Int
-    val backgroundImage: String
-    val levelId: Int
-    val isLastLevel: Boolean
+    val debrisParticleImage:    String
+    val debrisParticleCount:    Int
+    val song:                   String
+    val blockCount:             Int
+    val backgroundImage:        String
+    val levelId:                Int
+    val isLastLevel:            Boolean
 
-    private val mines: Array<SpawnPoint>
-    private val fighters: Array<SpawnZone>
+    private val mines:      Array<SpawnPoint>
+    private val fighters:   Array<SpawnZone>
     private val freighters: Array<SpawnZone>
 
     init {
-        mines = Array(false, 50)
-        fighters = Array(false, 50)
+        mines      = Array(false, 50)
+        fighters   = Array(false, 50)
         freighters = Array(false, 50)
 
         val properties = map.properties
 
-        val heightInTiles = properties.get("height", Int::class.java)
-        val tileheight = properties.get("tileheight", Int::class.java)
-        val widthInTiles = properties.get("width", Int::class.java)
-        val tileWidth = properties.get("tilewidth", Int::class.java)
+        val heightInTiles = properties.get("height",     Int::class.java)
+        val tileheight    = properties.get("tileheight", Int::class.java)
+        val widthInTiles  = properties.get("width",      Int::class.java)
+        val tileWidth     = properties.get("tilewidth",  Int::class.java)
 
         height = heightInTiles * tileheight
-        width = widthInTiles * tileWidth
+        width  = widthInTiles  * tileWidth
 
-        title = properties.get("Level Title", String::class.java)
+        title                  = properties.get("Level Title", String::class.java)
+
         debrisParticleMinScale = Integer.parseInt(properties.get("Debris Particle Min Scale", String::class.java))
         debrisParticleMaxScale = Integer.parseInt(properties.get("Debris Particle Max Scale", String::class.java))
-        debrisParticleImage = properties.get("Debris Particle Image", String::class.java)
-        debrisParticleCount = Integer.parseInt(properties.get("Debris Particle Count", String::class.java))
-        song = properties.get("Song", String::class.java)
-        blockCount = Integer.parseInt(properties.get("Block Count", String::class.java))
+        debrisParticleImage    = properties.get("Debris Particle Image", String::class.java)
+        debrisParticleCount    = Integer.parseInt(properties.get("Debris Particle Count", String::class.java))
+
+        song            = properties.get("Song", String::class.java)
+        blockCount      = Integer.parseInt(properties.get("Block Count", String::class.java))
         backgroundImage = properties.get("Background Image", String::class.java)
-        levelId = Integer.parseInt(properties.get("Level ID", String::class.java))
-        isLastLevel = java.lang.Boolean.parseBoolean(properties.get("Is Last Level", String::class.java))
+        levelId         = Integer.parseInt(properties.get("Level ID", String::class.java))
+        isLastLevel     = java.lang.Boolean.parseBoolean(properties.get("Is Last Level", String::class.java))
 
         for (obj in map.layers.get(0).objects) {
 
@@ -77,36 +76,21 @@ class Level(map: TiledMap) {
             val bounds = `object`.ellipse
             val center = Vector2(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
 
-            val left = bounds.x.toInt()
-            val right = (bounds.x + bounds.width).toInt()
-            val top = bounds.y.toInt()
+            val left   = bounds.x.toInt()
+            val right  = (bounds.x + bounds.width).toInt()
+            val top    = bounds.y.toInt()
             val bottom = (bounds.y + bounds.height).toInt()
 
             if (objectType != null) {
                 if (objectType == "FighterZone") {
+                    fighters.add(SpawnZone(count, left, right, top, bottom, center))
+                }
 
-                    fighters.add(
-                            SpawnZone(
-                                    count,
-                                    left,
-                                    right,
-                                    top,
-                                    bottom,
-                                    center
-                            )
-                    )
-                } else if (objectType == "FreighterZone") {
-                    freighters.add(
-                            SpawnZone(
-                                    count,
-                                    left,
-                                    right,
-                                    top,
-                                    bottom,
-                                    center
-                            )
-                    )
-                } else if (objectType == "Mines") {
+                if (objectType == "FreighterZone") {
+                    freighters.add(SpawnZone(count, left, right, top, bottom, center))
+                }
+
+                if (objectType == "Mines") {
                     mines.add(SpawnPoint(center.x.toInt(), center.y.toInt()))
                 }
             }

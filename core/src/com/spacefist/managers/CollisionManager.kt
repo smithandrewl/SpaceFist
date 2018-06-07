@@ -3,12 +3,6 @@ package com.spacefist.managers
 import com.badlogic.gdx.math.Rectangle
 import com.spacefist.GameData
 import com.spacefist.RoundData
-import com.spacefist.entities.EnemyMine
-import com.spacefist.entities.Pickup
-import com.spacefist.entities.Projectile
-import com.spacefist.entities.Ship
-import com.spacefist.entities.SpaceBlock
-import com.spacefist.entities.enemies.Enemy
 
 /// <summary>
 /// Contains methods to handle the different types of entity and player collisions.

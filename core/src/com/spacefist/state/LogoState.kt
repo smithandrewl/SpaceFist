@@ -1,14 +1,11 @@
 package com.spacefist.state
 
+import com.badlogic.gdx.Gdx.input
 import com.badlogic.gdx.Input.Keys
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.math.Rectangle
 import com.spacefist.GameData
 import com.spacefist.state.abst.GameState
-
-import java.util.Date
-
-import com.badlogic.gdx.Gdx.input
+import java.util.*
 
 /**
  * This state displays the team logo before switching

@@ -1,13 +1,11 @@
 package com.spacefist.managers
 
 import com.badlogic.gdx.math.MathUtils
-import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.spacefist.GameData
 import com.spacefist.PickupHandler
 import com.spacefist.RoundData
 import com.spacefist.entities.Pickup
-import com.spacefist.entities.Ship
 import com.spacefist.util.Action
 import com.spacefist.weapons.Missile
 import com.spacefist.weapons.SampleWeapon

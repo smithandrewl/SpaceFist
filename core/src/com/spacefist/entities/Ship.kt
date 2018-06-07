@@ -1,5 +1,6 @@
 package com.spacefist.entities
 
+import com.badlogic.gdx.math.MathUtils.clamp
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.spacefist.GameData
@@ -13,8 +14,6 @@ import com.spacefist.state.shipstates.NormalState
 import com.spacefist.state.shipstates.SpawningState
 import com.spacefist.weapons.LaserWeapon
 import com.spacefist.weapons.abst.Weapon
-
-import com.badlogic.gdx.math.MathUtils.clamp
 
 /**
  * Creates a new Ship instance at the specified location.

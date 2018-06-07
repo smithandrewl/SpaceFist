@@ -1,6 +1,7 @@
 package com.spacefist.ai.abst;
 
 import com.spacefist.ai.FuzzyVariable;
+
 import org.jetbrains.annotations.NotNull;
 
 /**

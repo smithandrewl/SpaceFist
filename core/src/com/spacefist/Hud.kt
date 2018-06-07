@@ -1,6 +1,5 @@
 package com.spacefist
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.spacefist.managers.PlayerManager
