@@ -1,3 +1,10 @@
+
+configurations {
+    cleanedAnnotations
+    compile.exclude group: 'org.jetbrains' , module:'annotations'
+}
+
+
 android {
     buildToolsVersion "27.0.3"
     compileSdkVersion 27
