@@ -116,7 +116,7 @@ class BlockManager/// <summary>
                 obj.x < 0 ||
                 obj.y > world.getHeight() ||
                 obj.y < 0) {
-            obj.velocity = obj.velocity.scl(-1f)
+            obj.velocity = obj.velocity!!.scl(-1f)
         }
     }
 

@@ -25,8 +25,8 @@ class LaserWeapon
     override fun fire() {
         val ship = gameData.ship
 
-        val shipWidth = ship.rectangle.getWidth()
-        val shipHeight = ship.rectangle.getHeight()
+        val shipWidth = ship.rectangle!!.getWidth()
+        val shipHeight = ship.rectangle!!.getHeight()
 
         val projectileX = (ship.x + shipWidth / 2).toInt()
         val projectileY = (ship.y + shipHeight).toInt()
@@ -51,8 +51,8 @@ class Missile(private val gameData: GameData) : Weapon {
     override fun fire() {
         val ship = gameData.ship
 
-        val shipWidth = ship.rectangle.getWidth()
-        val shipHeight = ship.rectangle.getWidth()
+        val shipWidth = ship.rectangle!!.getWidth()
+        val shipHeight = ship.rectangle!!.getWidth()
 
         val projectileX = (ship.x + shipWidth / 2 - 6).toInt()
         val projectileY = (ship.y + shipHeight * 1.5f).toInt()
@@ -84,7 +84,7 @@ class SampleWeapon
      * Fires a rocket cluster
      */
     override fun fire() {
-        val projectileX = (ship.x.toFloat() + ship.rectangle.getWidth() / 2 + 2f).toInt()
+        val projectileX = (ship.x.toFloat() + ship.rectangle!!.getWidth() / 2 + 2f).toInt()
         val projectileY = (ship.y - 35 * gameData.screenScale).toInt()
 
         projectileManager.fireSampleWeapon(projectileX, projectileY)

@@ -67,7 +67,7 @@ class CollisionManager(
     /// </summary>
     fun handleProjectileShipCollisions() {
         for (projectile in laserManager.enemyProjectiles()) {
-            if (projectile.rectangle.overlaps(gameData.ship.rectangle)) {
+            if (projectile.rectangle!!.overlaps(gameData.ship.rectangle)) {
                 projectile.isAlive = false
                 // FIXME: Bug: Explosions draw off-center
                 explosionManager.add(gameData.ship.x, gameData.ship.y)

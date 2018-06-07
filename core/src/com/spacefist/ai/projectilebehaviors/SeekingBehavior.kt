@@ -54,12 +54,12 @@ class SeekingBehavior
                 val timeToIntercept: Int
 
                 val positionDiff = targetPos.sub(projPos)
-                val velocityDiff = target.velocity.sub(projectile.velocity)
+                val velocityDiff = target.velocity!!.sub(projectile.velocity)
 
                 timeToIntercept = (positionDiff.len() / velocityDiff.len()).toInt()
 
                 // The point of interception
-                val poi = targetPos.add(target.velocity.scl(timeToIntercept.toFloat()))
+                val poi = targetPos.add(target.velocity!!.scl(timeToIntercept.toFloat()))
 
                 var desiredVelocity = poi.sub(projPos)
                 desiredVelocity.nor()
@@ -68,7 +68,7 @@ class SeekingBehavior
 
                 val steering = desiredVelocity.sub(projectile.velocity)
 
-                val newVelocity = projectile.velocity.add(steering.scl(0.2f))
+                val newVelocity = projectile.velocity!!.add(steering.scl(0.2f))
 
                 val direction = newVelocity.angle() + 90
 

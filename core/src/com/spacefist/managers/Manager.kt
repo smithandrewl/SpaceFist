@@ -42,7 +42,7 @@ open class Manager<T : Entity>(protected var gameData: GameData) : Iterable<T> {
         val collisions = Array<T>(false, 16)
 
         for (entity in entities) {
-            if (entity.isAlive && entity.rectangle.overlaps(obj.rectangle)) {
+            if (entity.isAlive && entity.rectangle!!.overlaps(obj.rectangle)) {
                 collisions.add(entity)
             }
         }

@@ -135,7 +135,7 @@ public class Ship extends Entity implements StateMachine<ShipState> {
      * Resets the ship to the default state (drawn normally (no flashing or fading)).
      */
     public void resetState() {
-        setCurrentState(new NormalState(gameData));
+        setCurrentState(new NormalState(getGameData()));
         reset();
     }
 

@@ -91,7 +91,7 @@ class ShipInfo
         val ship = gameData.getShip()
 
         // The ships speed is the magnitude of its velocity
-        speed = ship.getVelocity().len().toInt()
+        speed = ship.velocity!!.len().toInt()
         health = ship.getHealth()
 
         if (DISPLAY_DEBUG) {

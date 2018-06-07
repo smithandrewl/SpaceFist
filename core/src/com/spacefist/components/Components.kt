@@ -45,7 +45,7 @@ class IndexedSprite
         val objRect = obj.rectangle
 
         val origin = Vector2(
-                objRect.getWidth() / 2,
+                objRect!!.getWidth() / 2,
                 objRect.getHeight() / 2
         )
 
@@ -96,8 +96,8 @@ class NullSoundComponent : SoundComponent {
  */
 class Physics : PhysicsComponent {
     override fun update(gameData: GameData, obj: Entity) {
-        obj.x = obj.x + obj.velocity.x.toInt()
-        obj.y = obj.y - obj.velocity.y.toInt()
+        obj.x = obj.x + obj.velocity!!.x.toInt()
+        obj.y = obj.y - obj.velocity!!.y.toInt()
         obj.rotation = obj.rotation % 360
     }
 }
@@ -206,8 +206,8 @@ class Sprite
         val objRectangle = obj.rectangle
 
         val origin = Vector2(
-                objRectangle.getWidth() / 2,
-                objRectangle.getHeight() / 2
+                objRectangle!!.getWidth() / 2,
+                objRectangle!!.getHeight() / 2
         )
 
         val position = Vector2(
@@ -224,7 +224,7 @@ class Sprite
                 adjPos.y,
                 origin.x,
                 origin.y,
-                objRectangle.getWidth(),
+                objRectangle!!.getWidth(),
                 objRectangle.getHeight(),
                 gameData.screenScale,
                 gameData.screenScale,
