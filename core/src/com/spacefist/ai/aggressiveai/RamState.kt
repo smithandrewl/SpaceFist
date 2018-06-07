@@ -1,20 +1,11 @@
 package com.spacefist.ai.aggressiveai
 
-import com.badlogic.gdx.math.Interpolation
-import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.utils.TimeUtils
 import com.spacefist.GameData
-import com.spacefist.ai.FuzzyVariable
-import com.spacefist.ai.ShipEnemyInfo
-import com.spacefist.ai.ShipInfo
 import com.spacefist.ai.abst.EnemyAI
 import com.spacefist.ai.abst.EnemyAIState
 import com.spacefist.ai.abst.FuzzyLogicEnabled
-import com.spacefist.entities.Ship
 import com.spacefist.entities.enemies.Enemy
-
-import java.util.ArrayList
 
 /**
  * A fuzzy state that rams the players ship.
