@@ -83,57 +83,55 @@ class ShipInfo
     /**
      * @return The degree to which the ship belongs to the low, medium and high health sets.
      */
-     fun getHealth():FuzzyVariable {
-return FuzzyLogicEnabled.grade(health, HEALTH_LOW, HEALTH_HIGH, fuzzyHealth)
-}
+    fun getHealth(): FuzzyVariable {
+        return FuzzyLogicEnabled.grade(health, HEALTH_LOW, HEALTH_HIGH, fuzzyHealth)
+    }
 
-public override fun update() {
-val ship = gameData.getShip()
+    public override fun update() {
+        val ship = gameData.getShip()
 
- // The ships speed is the magnitude of its velocity
+        // The ships speed is the magnitude of its velocity
         speed = ship.getVelocity().len().toInt()
-health = ship.getHealth()
+        health = ship.getHealth()
 
-if (DISPLAY_DEBUG)
-{
-printDebugInfo()
-}
-}
+        if (DISPLAY_DEBUG) {
+            printDebugInfo()
+        }
+    }
 
-/**
- * Displays fuzzy membership information once a second.
- */
+    /**
+     * Displays fuzzy membership information once a second.
+     */
     private fun printDebugInfo() {
-val timeSinceLastPrint = TimeUtils.millis() - lastPrint
-val timeToPrintDebug = (timeSinceLastPrint / 1000) >= 1
+        val timeSinceLastPrint = TimeUtils.millis() - lastPrint
+        val timeToPrintDebug = (timeSinceLastPrint / 1000) >= 1
 
-if (timeToPrintDebug)
-{
-println("Ship Info:")
-println(getSpeed())
-println(getHealth())
- //System.out.println(getTriggerHappy());
+        if (timeToPrintDebug) {
+            println("Ship Info:")
+            println(getSpeed())
+            println(getHealth())
+            //System.out.println(getTriggerHappy());
             println(accuracy)
-println()
+            println()
 
-lastPrint = TimeUtils.millis()
-}
-}
+            lastPrint = TimeUtils.millis()
+        }
+    }
 
-companion object {
-private val DISPLAY_DEBUG = false
+    companion object {
+        private val DISPLAY_DEBUG = false
 
- // ------------------- fuzzy variable range constants ---------
-    private val SPEED_HIGH = 20f
-private val SPEED_LOW = 0f
+        // ------------------- fuzzy variable range constants ---------
+        private val SPEED_HIGH = 20f
+        private val SPEED_LOW = 0f
 
-private val TRIGGER_HAPPY_HIGH = 60f
-private val TRIGGER_HAPPY_LOW = 0f
+        private val TRIGGER_HAPPY_HIGH = 60f
+        private val TRIGGER_HAPPY_LOW = 0f
 
-private val ACCURACY_HIGH = 1f
-private val ACCURACY_LOW = 0f
+        private val ACCURACY_HIGH = 1f
+        private val ACCURACY_LOW = 0f
 
-private val HEALTH_LOW = 0f
-private val HEALTH_HIGH = 100f
-}
+        private val HEALTH_LOW = 0f
+        private val HEALTH_HIGH = 100f
+    }
 }
