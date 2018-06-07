@@ -14,6 +14,9 @@ eclipse.project {
 dependencies {
     implementation 'org.jetbrains:annotations-java5:15.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "io.github.libktx:ktx-app:$ktxVersion"
+    compile "io.github.libktx:ktx-assets:$ktxVersion"
+    compile "io.github.libktx:ktx-graphics:$ktxVersion"
 }
 buildscript {
     ext.kotlin_version = '1.2.41'
