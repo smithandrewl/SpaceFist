@@ -1,3 +1,8 @@
+configurations {
+    cleanedAnnotations
+    compile.exclude group: 'org.jetbrains' , module:'annotations'
+}
+
 buildscript {
     ext.kotlin_version = '1.2.30'
 
