@@ -61,3 +61,6 @@ text=lf
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+*.kt linguist-language=Kotlin
+
