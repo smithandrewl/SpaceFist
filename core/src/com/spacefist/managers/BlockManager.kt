@@ -15,12 +15,12 @@ import com.spacefist.entities.SpaceBlock
 /// This class is enumerable and instances can be used
 /// in foreach loops to iterate the live blocks in the world.
 /// </summary>
-class BlockManager/// <summary>
+/// <summary>
 /// Creates a new BlockManager instance.
 /// </summary>
 /// <param name="gameData">Common game data</param>
+class BlockManager
 (gameData: GameData) : Manager<SpaceBlock>(gameData) {
-
     /// <summary>
     /// Returns the live blocks in the world
     /// which are currently visible on the screen.

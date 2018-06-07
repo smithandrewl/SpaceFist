@@ -16,24 +16,31 @@ import com.spacefist.components.abst.SoundComponent
  * Represents a projectile fired by either the player or an enemy.
  */
 class Projectile(
-        gameData: GameData,
-        texture: Texture,
-        position: Vector2,
-        unitVector: Vector2,
-        speed: Int,
+        gameData:              GameData,
+        texture:               Texture,
+        position:              Vector2,
+        unitVector:            Vector2,
+        speed:                 Int,
         val isEnemyProjectile: Boolean
-) : Entity(gameData, Rectangle(
-        position.x.toInt().toFloat(),
-        position.y.toInt().toFloat(),
-        texture.width.toFloat(),
-        texture.height.toFloat()
-), Physics(), NullInputComponent(), Sprite(texture), Sound(gameData.soundEffects["Laser"]!!), gameData.screenScale) {
+) : Entity(
+        gameData,
+        Rectangle(
+            position.x.toInt().toFloat(),
+            position.y.toInt().toFloat(),
+            texture.width.toFloat(),
+            texture.height.toFloat()
+        ),
+        Physics(),
+        NullInputComponent(),
+        Sprite(texture),
+        Sound(gameData.soundEffects["Laser"]!!),
+        gameData.screenScale
+) {
     private var soundPlayed: Boolean = false
 
     var behavior: ProjectileBehavior? = null
 
     init {
-
         velocity = Vector2(
                 unitVector.x * speed,
                 unitVector.y * speed

@@ -38,13 +38,12 @@ class FuzzyVariable {
      * @param highWeight The weight to apply to the high set membership
      */
     fun defuzzify(lowWeight: Float, medWeight: Float, highWeight: Float): Float {
-        val adjustedLow = low * lowWeight
-        val adjustedMed = med * medWeight
+        val adjustedLow  = low  * lowWeight
+        val adjustedMed  = med  * medWeight
         val adjustedHigh = high * highWeight
 
         val weightedTotal = adjustedLow + adjustedMed + adjustedHigh
-
-        val total = low + med + high
+        val total         = low         + med         + high
 
         return weightedTotal / total
     }
@@ -53,8 +52,6 @@ class FuzzyVariable {
      * @return The contents of the variable in a format suitable for display
      */
     override fun toString(): String {
-        // TODO: convert FuzzyVariable.toString()
-        //return String.format("{0}: {1}, {2:P} low, {3:P} med, {4:P} high", name, value, low, med, high);
         return ""
     }
 }

@@ -11,9 +11,7 @@ import com.spacefist.components.Sprite
 
 /**
  * Represents a floating block or crate.
- */
-class SpaceBlock
-/**
+ *
  * Creates a new SpaceBlock instance with a specified position and velocity.
  *
  * @param gameData Common game data
@@ -21,18 +19,30 @@ class SpaceBlock
  * @param position The position of the block in the game world
  * @param velocity The velocity of the block
  */
-(gameData: GameData, texture: Texture, position: Vector2, velocity: Vector2) : Entity(gameData, Rectangle(
+class SpaceBlock(
+    gameData: GameData,
+    texture:  Texture,
+    position: Vector2,
+    velocity: Vector2
+) : Entity(
+    gameData,
+    Rectangle(
         position.x.toInt().toFloat(),
         position.y.toInt().toFloat(),
         WIDTH.toFloat(),
         HEIGHT.toFloat()
-), Physics(), NullInputComponent(), Sprite(texture), Sound(gameData.soundEffects["Explosion"]!!), gameData.screenScale) {
+    ),
+    Physics(),
+    NullInputComponent(),
+    Sprite(texture),
+    Sound(gameData.soundEffects["Explosion"]!!),
+    gameData.screenScale
+) {
 
     // The sound made when the ship hits a block
     private val thump: Sound
 
     init {
-
         thump = Sound(gameData.soundEffects["Explosion"]!!)
 
         this.velocity = velocity
@@ -58,7 +68,7 @@ class SpaceBlock
 
     companion object {
         // Dimensions of the block
-        private val WIDTH = 80
+        private val WIDTH  = 80
         private val HEIGHT = 60
     }
 }

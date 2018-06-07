@@ -24,6 +24,7 @@ class FireState
  */
 (// The AI that this state belongs to
         var ai: EnemyAI?, gameData: GameData) : FuzzyLogicEnabled(), EnemyAIState {
+
     private var rateOfFire: Float = 0.toFloat()
 
     private val projectileManager: ProjectileManager
@@ -38,9 +39,9 @@ class FireState
     var shipEnemyInfo: ShipEnemyInfo? = null
 
     init {
-        shipInfo = ai!!.getShipInfo()
+        shipInfo      = ai!!.getShipInfo()
         shipEnemyInfo = ai!!.getShipEnemyInfo()
-        lastFire = TimeUtils.millis()
+        lastFire      = TimeUtils.millis()
 
         this.projectileManager = gameData.projectileManager
     }
@@ -62,20 +63,15 @@ class FireState
             if (timeToFire) {
                 val enemyRect = shipEnemyInfo!!.enemy!!.rectangle
 
-                val halfWidth = enemyRect!!.getWidth().toInt() / 2
-                val halfHeight = enemyRect.getHeight().toInt() / 2
+                val halfWidth  = enemyRect!!.getWidth().toInt() / 2
+                val halfHeight = enemyRect.getHeight().toInt()  / 2
 
                 val projPosX = shipEnemyInfo!!.enemy!!.x + halfWidth
                 val projPosY = shipEnemyInfo!!.enemy!!.y + halfHeight
 
                 val lineOfSight = shipEnemyInfo!!.lineOfSight
 
-                projectileManager.fireLaser(
-                        projPosX,
-                        projPosY,
-                        lineOfSight,
-                        true
-                )
+                projectileManager.fireLaser(projPosX, projPosY, lineOfSight, true)
 
                 lastFire = TimeUtils.millis()
             }

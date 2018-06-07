@@ -10,7 +10,6 @@ import com.spacefist.entities.enemies.Enemy
 /**
  * Provides information about the players ship that is specific to a particular enemy.
  */
-class ShipEnemyInfo
 /**
  * Creates a new ShipEnemyInfo instance.
  *
@@ -18,16 +17,15 @@ class ShipEnemyInfo
  * @param shipInfo General ship information
  * @param gameData Common game Data
  */
-(var enemy: Enemy?, private val shipInfo: ShipInfo,
-        // ------------- Crisp Input -----------------
-
- private val gameData: GameData) : FuzzyLogicEnabled() {
-
-    //-------------- Crisp input -----------------
-    private var distance: Int = 0
+class ShipEnemyInfo(
+                var enemy:    Enemy?,
+        private val shipInfo: ShipInfo,
+        private val gameData: GameData
+) : FuzzyLogicEnabled() {
     private val fuzzyDistance: FuzzyVariable
 
-    private var lastPrint = TimeUtils.millis()
+    private var distance:  Int  = 0
+    private var lastPrint: Long = TimeUtils.millis()
 
     /**
      * @return whether or not the enemy is on the screen
@@ -39,24 +37,21 @@ class ShipEnemyInfo
             false
         }
 
-
     /**
      * @return A vector from the enemy to the ship representing its line of sight.
      */
     val lineOfSight: Vector2
         get() {
-            val ship = gameData.ship
-            val shipX = ship.x
-            val shipY = ship.y
-            val enemyX = enemy!!.x
-            val enemyY = enemy!!.y
+            val ship     = gameData.ship
+            val shipX    = ship.x
+            val shipY    = ship.y
+            val enemyX   = enemy!!.x
+            val enemyY   = enemy!!.y
 
-            val shipPos = Vector2(shipX.toFloat(), shipY.toFloat())
+            val shipPos  = Vector2(shipX.toFloat(), shipY.toFloat())
             val enemyPos = Vector2(enemyX.toFloat(), enemyY.toFloat())
 
-            var diff = shipPos.sub(enemyPos)
-
-            diff = diff.nor()
+            var diff = shipPos.sub(enemyPos).nor()
 
             diff = Vector2(diff.x, diff.y * -1)
 
@@ -64,9 +59,8 @@ class ShipEnemyInfo
         }
 
     init {
-
         // The fuzzy distance from the player to the enemy.
-        fuzzyDistance = FuzzyVariable()
+        fuzzyDistance      = FuzzyVariable()
         fuzzyDistance.name = "Distance"
     }
 
@@ -111,6 +105,6 @@ class ShipEnemyInfo
 
         // The range for the distance fuzzy variable
         private val DISTANCE_HIGH = 1000f
-        private val DISTANCE_LOW = 0f
+        private val DISTANCE_LOW  = 0f
     }
 }

@@ -20,19 +20,18 @@ class AggressiveAI
     /**
      * The ram fuzzy state
      */
-    private val ramState: RamState
+    private val ramState:      RamState
     private var shipEnemyInfo: ShipEnemyInfo? = null
-    private var shipInfo: ShipInfo? = null
+    private var shipInfo:      ShipInfo?      = null
 
     init {
-        shipInfo = ShipInfo(gameData)
+        shipInfo      = ShipInfo(gameData)
         shipEnemyInfo = ShipEnemyInfo(enemy, shipInfo!!, gameData)
-
-        ramState = RamState(this, gameData)
+        ramState      = RamState(this, gameData)
     }
 
     override fun update() {
-        val shipInfo = this.shipInfo
+        val shipInfo      = this.shipInfo
         val shipEnemyInfo = this.shipEnemyInfo
 
         shipInfo!!.update()

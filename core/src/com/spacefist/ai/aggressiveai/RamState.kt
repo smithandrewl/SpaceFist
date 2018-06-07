@@ -26,9 +26,8 @@ class RamState(var ai: EnemyAI, private val gameData: GameData) : FuzzyLogicEnab
     var enemy: Enemy? = null
 
     init {
-
         val shipEnemyInfo = ai.getShipEnemyInfo()
-        enemy = shipEnemyInfo.enemy
+        enemy             = shipEnemyInfo.enemy
     }
 
     /**
@@ -37,51 +36,32 @@ class RamState(var ai: EnemyAI, private val gameData: GameData) : FuzzyLogicEnab
     override fun update() {
         val ship = gameData.ship
 
-        val shipInfo = ai!!.shipInfo
+        val shipInfo      = ai!!.shipInfo
         val shipEnemyInfo = ai!!.shipEnemyInfo
 
         val accuracy = shipInfo.accuracy
-        val health = shipInfo.getHealth()
+        val health   = shipInfo.getHealth()
         val distance = shipEnemyInfo.getDistance()
 
         val membership = FuzzyLogicEnabled.or(
                 // If the player is doing too well
-                FuzzyLogicEnabled.and(
-                        accuracy.high,
-                        health.high
-                ),
+                FuzzyLogicEnabled.and(accuracy.high, health.high),
                 // If the player is not too far away
                 FuzzyLogicEnabled.not(distance.high)
         )
 
-        val shipLocation = Vector2(
-                ship.x.toFloat(),
-                ship.y.toFloat()
-        )
+        val shipLocation = Vector2(ship.x.toFloat(), ship.y.toFloat())
 
 
         // The line of sight vector
-        var direction = shipLocation.sub(
-                Vector2(
-                        enemy!!.x.toFloat(),
-                        enemy!!.y.toFloat()
-                )
-        )
+        var direction = shipLocation.sub(Vector2(enemy!!.x.toFloat(), enemy!!.y.toFloat()))
 
         direction = direction.nor()
-
-
-        //direction = new Vector2(enemy.getX(), enemy.getY()).nor();
 
         // The rotation of the ship needed for it to face in the direction of the next waypoint
         val destRotation = direction.angle() + 90
 
         enemy!!.rotation = destRotation
-
-        // Calculate a velocity to move along the line of sight at a magnitude of 5
-        // TODO: Convert linear interpolation code in RamState
-        //enemy.Velocity = (direction * (MathHelper.Lerp(Enemy.Velocity.Length(), SPEED, .15f) * membership));
-
 
         enemy!!.velocity = Vector2(direction.x * SPEED.toFloat() * membership, direction.y * SPEED.toFloat() * membership * -1.0f)
     }

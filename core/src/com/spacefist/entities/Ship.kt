@@ -16,19 +16,34 @@ import com.spacefist.weapons.abst.Weapon
 
 import com.badlogic.gdx.math.MathUtils.clamp
 
-class Ship
 /**
  * Creates a new Ship instance at the specified location.
  *
  * @param gameData Common game data
  * @param position The location of the ship in the game world
  */
-(gameData: GameData, position: Vector2) : Entity(gameData, Rectangle(
-        position.x.toInt().toFloat(),
-        position.y.toInt().toFloat(),
-        WIDTH.toFloat(),
-        HEIGHT.toFloat()
-), Physics(), ShipInput(), IndexedSprite(gameData.textures["ShipSheet"]!!, WIDTH, HEIGHT, 4), Sound(gameData.soundEffects["PlayerDeath"]!!), gameData.screenScale), StateMachine<ShipState> {
+class Ship(
+    gameData: GameData,
+    position: Vector2
+) : Entity(
+        gameData,
+        Rectangle(
+            position.x.toInt().toFloat(),
+            position.y.toInt().toFloat(),
+            WIDTH.toFloat(),
+            HEIGHT.toFloat()
+        ),
+        Physics(),
+        ShipInput(),
+        IndexedSprite(
+            gameData.textures["ShipSheet"]!!,
+            WIDTH,
+            HEIGHT,
+            4
+        ),
+        Sound(gameData.soundEffects["PlayerDeath"]!!),
+        gameData.screenScale
+), StateMachine<ShipState> {
 
     /**
      * The current behavior of the ship
@@ -49,16 +64,15 @@ class Ship
     private val indexedSprite: IndexedSprite
 
     // The predefined velocities to use when changing position
-    private val LeftVelocity = Vector2(-1f, 0f)
-    private val RightVelocity = Vector2(1f, 0f)
-    private val ForwardVelocity = Vector2(0f, -1f)
-    private val BackwardVelocity = Vector2(0f, 1f)
+    private val LeftVelocity     = Vector2(-1f, 0f)
+    private val RightVelocity    = Vector2(1f,  0f)
+    private val ForwardVelocity  = Vector2(0f,  -1f)
+    private val BackwardVelocity = Vector2(0f,  1f)
 
     val health: Float
         get() = healthPoints / MAX_HEALTH_POINTS.toFloat()
 
     init {
-
         indexedSprite = graphics as IndexedSprite
 
         healthPoints = 100
@@ -178,16 +192,16 @@ class Ship
         private val MAX_HEALTH_POINTS = 100
 
         // The dimensions of the ship
-        private val WIDTH = 60
+        private val WIDTH  = 60
         private val HEIGHT = 133
 
         // The frame of the sprite sheet (ShipSheet.png) to draw
         // Frame 0 is the ship turning left
         // Frame 4 is the ship in its normal state
         // Frame 7 is the ship turning right
-        private val LEFT_INDEX = 0
+        private val LEFT_INDEX    = 0
         private val AT_REST_INDEX = 4
-        private val RIGHT_INDEX = 7
-        private val MAX_VELOCITY = 20
+        private val RIGHT_INDEX   = 7
+        private val MAX_VELOCITY  = 20
     }
 }

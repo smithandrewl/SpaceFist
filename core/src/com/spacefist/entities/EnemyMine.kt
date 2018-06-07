@@ -8,13 +8,25 @@ import com.spacefist.components.Physics
 import com.spacefist.components.Sound
 import com.spacefist.components.Sprite
 
-class EnemyMine(gameData: GameData, position: Vector2) : Entity(gameData, Rectangle(
+class EnemyMine(
+    gameData: GameData,
+    position: Vector2
+) : Entity(
+    gameData,
+    Rectangle(
         position.x.toInt().toFloat(),
         position.y.toInt().toFloat(),
         gameData.textures["EnemyMine"]!!.getWidth().toFloat(),
         gameData.textures["EnemyMine"]!!.getHeight().toFloat()
-), Physics(), NullInputComponent(), Sprite(gameData.textures["EnemyMine"]!!), Sound(gameData.soundEffects["Explosion"]!!), 0.0f) {
-
+    ),
+    Physics(),
+    NullInputComponent(),
+    Sprite(
+        gameData.textures["EnemyMine"]!!),
+        Sound(gameData.soundEffects["Explosion"]!!
+    ),
+    0.0f
+) {
     fun hit() {
         (sound as Sound).play()
     }

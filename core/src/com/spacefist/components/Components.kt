@@ -24,7 +24,6 @@ import com.spacefist.entities.Ship
  *
  * Explosion.java also uses IndexedSprite as its graphics component to draw an animation
  */
-class IndexedSprite
 /**
  * Provides the ability to draw the cells of a horizontal texture atlas.
  *
@@ -33,29 +32,28 @@ class IndexedSprite
  * @param height The height of each frame
  * @param index The index of the currently visible frame
  */
-(private val texture: Texture, private val width: Int, private val height: Int, var index: Int) : GraphicsComponent {
-
+class IndexedSprite(
+        private val texture: Texture,
+        private val width:   Int,
+        private val height:  Int,
+                var index:   Int
+) : GraphicsComponent {
     override fun draw(gameData: GameData, obj: Entity) {
-
         val spriteBatch = gameData.spriteBatch
+
         spriteBatch.color = Color(obj.tint)
 
         // Calculate and draw the image at an offset (this causes the image to rotate around
         // its center and not its upper left corner
         val objRect = obj.rectangle
 
-        val origin = Vector2(
-                objRect!!.getWidth() / 2,
-                objRect.getHeight() / 2
-        )
+        val origin = Vector2(objRect!!.getWidth() / 2, objRect.getHeight()  / 2)
 
-        val position = Vector2(obj.x.toFloat(), obj.y.toFloat()).add(origin)
+        val position    = Vector2(obj.x.toFloat(), obj.y.toFloat()).add(origin)
         val adjPosition = position.sub(gameData.camera)
-
 
         spriteBatch.draw(
                 TextureRegion(texture, width * index, 0, width, height),
-                //new TextureRegion(texture),
                 adjPosition.x,
                 adjPosition.y,
                 origin.x,
@@ -70,6 +68,7 @@ class IndexedSprite
         // FIXME: draw objects with their tint
         // obj.Tint,
         //spriteBatch.setColor(new Color(Color.WHITE));
+
         spriteBatch.flush()
     }
 
@@ -107,15 +106,15 @@ class Physics : PhysicsComponent {
  */
 class ShipInput : InputComponent {
     private var spaceDown: Boolean = false
-    private var aDown: Boolean = false
-    private var dDown: Boolean = false
+    private var aDown:     Boolean = false
+    private var dDown:     Boolean = false
 
     override fun update(gameData: GameData, obj: Entity) {
         val ship = obj as Ship
 
-        val upKey = Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)
-        val leftKey = Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)
-        val downKey = Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)
+        val upKey    = Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)
+        val leftKey  = Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)
+        val downKey  = Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)
         val rightKey = Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)
 
         val space = Gdx.input.isKeyPressed(Input.Keys.SPACE)
@@ -164,14 +163,12 @@ class ShipInput : InputComponent {
 /**
  * A simple sound component that plays a sound effect.
  */
-class Sound
 /**
  * Creates a new Sound instance from a SoundEffect.
  *
  * @param sound The sound to play
  */
-(internal var soundEffect: com.badlogic.gdx.audio.Sound) : SoundComponent {
-
+class Sound(internal var soundEffect: com.badlogic.gdx.audio.Sound) : SoundComponent {
     /**
      * Plays the sound.
      */
@@ -182,31 +179,26 @@ class Sound
     override fun update(gameData: GameData, obj: Entity) {}
 }
 
-
-
 /**
  * Sprite represents a static image at a position on-world.
  */
-class Sprite
 /**
  * Creates a new Sprite instance from a texture
  *
  * @param texture The image to draw
  */
-(private val image: Texture) : GraphicsComponent {
-
-    override fun update(gameData: GameData, obj: Entity) {
-
-    }
+class Sprite(private val image: Texture) : GraphicsComponent {
+    override fun update(gameData: GameData, obj: Entity) {}
 
     override fun draw(gameData: GameData, obj: Entity) {
         val spriteBatch = gameData.spriteBatch
+
         spriteBatch.color = Color(obj.tint)
 
         val objRectangle = obj.rectangle
 
         val origin = Vector2(
-                objRectangle!!.getWidth() / 2,
+                objRectangle!!.getWidth()  / 2,
                 objRectangle!!.getHeight() / 2
         )
 

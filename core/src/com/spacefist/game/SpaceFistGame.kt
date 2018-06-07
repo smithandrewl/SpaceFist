@@ -23,6 +23,7 @@ import com.spacefist.state.abst.GameState
 
 class SpaceFistGame : ApplicationAdapter() {
     internal var batch: SpriteBatch? = null
+
     var gameData: GameData? = null
         private set
 
@@ -34,13 +35,13 @@ class SpaceFistGame : ApplicationAdapter() {
         // Creates the game states when the game starts.
         // only one state is active at any given time.
         gameData!!.splashScreenState = SplashScreenState(gameData!!)
-        gameData!!.menuState = MenuState(gameData!!)
-        gameData!!.logoState = LogoState(gameData!!)
-        gameData!!.inPlayState = InPlayState(gameData!!)
-        gameData!!.gameOverState = GameOverState(gameData!!)
-        gameData!!.creditsState = CreditsState(gameData!!)
-        gameData!!.endOfLevelState = EndOfLevelState(gameData!!)
-        gameData!!.endOfGameState = EndOfGameState(gameData!!)
+        gameData!!.menuState         = MenuState(gameData!!)
+        gameData!!.logoState         = LogoState(gameData!!)
+        gameData!!.inPlayState       = InPlayState(gameData!!)
+        gameData!!.gameOverState     = GameOverState(gameData!!)
+        gameData!!.creditsState      = CreditsState(gameData!!)
+        gameData!!.endOfLevelState   = EndOfLevelState(gameData!!)
+        gameData!!.endOfGameState    = EndOfGameState(gameData!!)
 
         gameData!!.currentState = gameData!!.logoState
 
@@ -104,7 +105,7 @@ class SpaceFistGame : ApplicationAdapter() {
         val height = Gdx.graphics.height
         val width = Gdx.graphics.width
 
-        gameData!!.resolution = Rectangle(0f, 0f, width.toFloat(), height.toFloat())
+        gameData!!.resolution  = Rectangle(0f, 0f, width.toFloat(), height.toFloat())
         gameData!!.screenScale = 0.5f
 
         // Create a new SpriteBatch, which can be used to draw textures.
@@ -122,7 +123,6 @@ class SpaceFistGame : ApplicationAdapter() {
 
         // GameData.InPlayState.loadContent();
         gameData!!.gameOverState.loadContent()
-
         gameData!!.splashScreenState.loadContent()
         gameData!!.menuState.loadContent()
         gameData!!.logoState.loadContent()
@@ -133,6 +133,6 @@ class SpaceFistGame : ApplicationAdapter() {
 
     companion object {
         private val SPRITE_FONT_ASSET = "Fonts/Raised"
-        private val TITLE_FONT_ASSET = "Fonts/Title"
+        private val TITLE_FONT_ASSET  = "Fonts/Title"
     }
 }

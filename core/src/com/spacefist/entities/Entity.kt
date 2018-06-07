@@ -36,7 +36,6 @@ import com.spacefist.components.abst.SoundComponent
  *
  * As much as possible, the Entity class contains data about the entity, while the components operate on the data.
  */
-open class Entity
 /**
  * @param gameData  Common game data
  * @param rectangle The size and position of the entity
@@ -46,17 +45,14 @@ open class Entity
  * @param sound     The sound component to use
  * @param rotation  The rotation of the entity
  */
-(
-        gameData: GameData,
-        /**
-         * The location, height and width of this entity.
-         */
-        var rectangle: Rectangle?,
-        var physics: PhysicsComponent?,
-        var input: InputComponent?,
-        var graphics: GraphicsComponent?,
-        var sound: SoundComponent?,
-        rotation: Float
+open class Entity(
+        gameData:  GameData,
+    var rectangle: Rectangle?,
+    var physics:   PhysicsComponent?,
+    var input:     InputComponent?,
+    var graphics:  GraphicsComponent?,
+    var sound:     SoundComponent?,
+    rotation:      Float
 ) {
     var gameData: GameData
         protected set
@@ -109,13 +105,11 @@ open class Entity
 
         this.gameData = gameData
 
-        tint = Color.WHITE
+        tint     = Color.WHITE
         velocity = Vector2.Zero
     }
 
-    fun initialize() {
-
-    }
+    fun initialize() {}
 
     /**
      * If the ship is alive, update all of its components

@@ -16,7 +16,7 @@ class DefensiveAI
 (gameData: GameData, enemy: Enemy) : EnemyAI {
     // Fuzzy sets
     private val defendState: DefendState
-    private val fireState: FireState
+    private val fireState:   FireState
 
     /**
      * Fuzzy information about the ship specific to the enemy this AI controls
@@ -29,11 +29,10 @@ class DefensiveAI
     private var shipInfo: ShipInfo? = null
 
     init {
-        shipInfo = ShipInfo(gameData)
+        shipInfo      = ShipInfo(gameData)
         shipEnemyInfo = ShipEnemyInfo(enemy, shipInfo!!, gameData)
-
-        defendState = DefendState(this)
-        fireState = FireState(this, gameData)
+        defendState   = DefendState(this)
+        fireState     = FireState(this, gameData)
     }
 
     override fun update() {
