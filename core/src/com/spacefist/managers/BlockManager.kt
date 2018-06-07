@@ -93,7 +93,7 @@ class BlockManager/// <summary>
             // Construct the block
             val block = SpaceBlock(
                     gameData,
-                    gameData.textures["Block"],
+                    gameData.textures["Block"]!!,
                     randomPos(),
                     randomVel()
             )

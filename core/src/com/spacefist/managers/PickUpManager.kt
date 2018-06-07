@@ -60,7 +60,7 @@ class PickUpManager/// <summary>
         val pickup = Pickup(
                 gameData,
                 gameData.textures["WeaponPickup"]!!,
-                gameData.soundEffects["WeaponPickup"],
+                gameData.soundEffects["WeaponPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
                 Vector2.Zero,
                 PickupHandler { ship ->
@@ -88,7 +88,7 @@ class PickUpManager/// <summary>
         val pickup = Pickup(
                 gameData,
                 gameData.textures["MissilePickUp"]!!,
-                gameData.soundEffects["WeaponPickup"],
+                gameData.soundEffects["WeaponPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
                 Vector2.Zero,
                 PickupHandler { ship ->
@@ -112,7 +112,7 @@ class PickUpManager/// <summary>
         val pickup = Pickup(
                 gameData,
                 gameData.textures["HealthPickup"]!!,
-                gameData.soundEffects["HealthPickup"],
+                gameData.soundEffects["HealthPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
                 Vector2.Zero,
                 PickupHandler { ship ->
@@ -145,7 +145,7 @@ class PickUpManager/// <summary>
         val pickup = Pickup(
                 gameData,
                 gameData.textures["ExtraLifePickup"]!!,
-                gameData.soundEffects["ExtraLife"],
+                gameData.soundEffects["ExtraLife"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
                 Vector2.Zero,
                 PickupHandler {

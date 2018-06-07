@@ -92,7 +92,7 @@ class ShipInfo
 
         // The ships speed is the magnitude of its velocity
         speed = ship.velocity!!.len().toInt()
-        health = ship.getHealth()
+        health = ship.health
 
         if (DISPLAY_DEBUG) {
             printDebugInfo()

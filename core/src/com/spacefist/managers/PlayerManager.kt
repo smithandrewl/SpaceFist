@@ -66,7 +66,7 @@ class PlayerManager/// <summary>
             gameData.ship.isAlive = true
         } else {
             gameData.ship = Ship(gameData, Vector2(startX.toFloat(), startY.toFloat()))
-            gameData.ship.currentState.enteringState()
+            gameData.ship.currentState!!.enteringState()
         }
 
         gameData.ship.healthPoints = 100

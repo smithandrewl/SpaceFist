@@ -15,11 +15,11 @@ import com.spacefist.state.abst.ShipState
 class NormalState(private val gameData: GameData) : ShipState {
 
     override fun update() {
-        val ship = gameData.ship
+        var ship = gameData.ship
 
         if (ship.health <= LOW_HEALTH_THRESHOLD) {
             // Change the ships state to LowHealthState
-            ship.currentState = LowHealthState(gameData)
+            ship.setCurrentState(LowHealthState(gameData))
         }
 
     }

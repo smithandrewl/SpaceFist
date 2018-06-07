@@ -11,7 +11,7 @@ import com.spacefist.state.abst.ShipState
 class LowHealthState(private val gameData: GameData) : ShipState {
 
     override fun update() {
-        val ship = gameData.ship
+        var ship = gameData.ship
 
         /*
         TODO: Convert Ship Flashing
@@ -29,7 +29,7 @@ class LowHealthState(private val gameData: GameData) : ShipState {
 
         // If the ship has died, switch to the respawning state
         if (ship.health <= 0) {
-            ship.currentState = SpawningState(gameData)
+            ship.setCurrentState(SpawningState(gameData))
         }
     }
 
