@@ -79,13 +79,5 @@
     <orderEntry type="library" exported="" name="jinput-platform-2.0.5-natives-osx" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="annotations-java5-15.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="annotations-java5-15.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
-    <orderEntry type="library" exported="" name="desktop.desktop-1.0" level="project" />
   </component>
 </module>
