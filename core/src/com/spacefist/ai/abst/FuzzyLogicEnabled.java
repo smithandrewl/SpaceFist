@@ -57,8 +57,8 @@ public abstract class FuzzyLogicEnabled {
         float upperSupportLimit,
         float upperLimit
     ) {
-        boolean outOfBounds = (val < lowerLimit) || (val > upperLimit);
-        boolean inLowRange = (val >= lowerLimit) && (val <= lowerSupportLimit);
+        boolean outOfBounds   = (val < lowerLimit)         || (val > upperLimit);
+        boolean inLowRange    = (val >= lowerLimit)        && (val <= lowerSupportLimit);
         boolean inMiddleRange = (val >= lowerSupportLimit) && (val <= upperSupportLimit);
 
         if (outOfBounds) {
