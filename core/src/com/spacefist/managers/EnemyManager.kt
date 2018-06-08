@@ -38,11 +38,9 @@ class EnemyManager/// <summary>
 
             val visibleEnemies = Array<Enemy>(false, 16)
 
-            for (enemy in this) {
-                if (enemy.isAlive && screenRect.overlaps(enemy.rectangle)) {
-                    visibleEnemies.add(enemy)
-                }
-            }
+            this
+                .filter  { it.isAlive && screenRect.overlaps(it.rectangle) }
+                .forEach { visibleEnemies.add(it)                          }
 
             return visibleEnemies
         }
@@ -65,7 +63,8 @@ class EnemyManager/// <summary>
 
     fun spawnEnemy(x: Int, y: Int, func: Func<Vector2, Enemy>) {
         val rotation = Math.toRadians(180.0).toFloat()
-        val enemy = func.call(Vector2(x.toFloat(), y.toFloat()))
+        val enemy    = func.call(Vector2(x.toFloat(), y.toFloat()))
+
         enemy.rotation = rotation
         add(enemy)
     }
@@ -101,9 +100,7 @@ class EnemyManager/// <summary>
     }
 
     fun spawnEnemies(count: Int, lowX: Int, highX: Int, lowY: Int, highY: Int, func: Func<Vector2, Enemy>) {
-        for (i in 0 until count) {
-            spawnEnemy(lowX, highX, lowY, highY, func)
-        }
+        (0 until count).forEach { i -> spawnEnemy(lowX, highX, lowY, highY, func) }
     }
 }
 
