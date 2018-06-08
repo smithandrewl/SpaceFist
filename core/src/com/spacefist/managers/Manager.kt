@@ -6,36 +6,24 @@ import com.spacefist.entities.Entity
 
 open class Manager<T : Entity>(protected var gameData: GameData) : Iterable<T> {
 
-    protected var entities: Array<T>
-
-    init {
-        entities = Array(false, 16)
-    }
+    protected var entities: Array<T> = Array(false, 16)
 
     protected fun add(entity: T) {
-        assert(entity != null)
-
         entities.add(entity)
     }
 
     protected fun remove(entity: T) {
-        assert(entity != null)
-
         entities.removeValue(entity, true)
     }
 
     open fun update() {
-        for (entity in entities) {
-            if (entity.isAlive) {
-                entity.update()
-            }
-        }
+        entities
+            .filter  { it.isAlive  }
+            .forEach { it.update() }
     }
 
     fun draw() {
-        for (entity in entities) {
-            entity.draw()
-        }
+        entities.forEach { entity -> entity.draw() }
     }
 
     fun collisions(obj: Entity): Iterable<T> {
