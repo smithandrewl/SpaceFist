@@ -12,17 +12,12 @@ class ExplosionManager/// <summary>
 /// </summary>
 /// <param name="gameData">Common game data</param>
 (gameData: GameData) : Manager<Explosion>(gameData) {
-    init {
-        this.gameData = gameData
-    }
-
     /// <summary>
     /// Adds a new explosion at the specified location.
     /// </summary>
     /// <param name="x">The X component of the location</param>
     /// <param name="y">The Y component of the location</param>
     fun add(x: Int, y: Int) {
-        val explosion = Explosion(gameData, Vector2(x.toFloat(), y.toFloat()))
-        add(explosion)
+        add(Explosion(gameData, Vector2(x.toFloat(), y.toFloat())))
     }
 }
