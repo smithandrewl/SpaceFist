@@ -15,17 +15,13 @@ class PlayerManager/// <summary>
 /// </summary>
 /// <param name="gameData">Common game data</param>
 (internal var gameData: GameData) {
-    internal var roundData: RoundData
+    internal var roundData: RoundData = gameData.roundData
 
     // Start the players ship moving at a velocity greater than the camer scrolls
     private val StartingVelocity = Vector2(0f, -2f)
 
     val isAlive: Boolean
         get() = gameData.ship.isAlive
-
-    init {
-        roundData = gameData.roundData
-    }
 
     fun initialize() {
         gameData.ship.initialize()
