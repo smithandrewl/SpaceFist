@@ -95,8 +95,8 @@ class NullSoundComponent : SoundComponent {
  */
 class Physics : PhysicsComponent {
     override fun update(gameData: GameData, obj: Entity) {
-        obj.x = obj.x + obj.velocity!!.x.toInt()
-        obj.y = obj.y - obj.velocity!!.y.toInt()
+        obj.x        = obj.x + obj.velocity!!.x.toInt()
+        obj.y        = obj.y - obj.velocity!!.y.toInt()
         obj.rotation = obj.rotation % 360
     }
 }
