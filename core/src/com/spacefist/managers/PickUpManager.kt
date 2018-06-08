@@ -19,11 +19,7 @@ class PickUpManager/// <summary>
 /// </summary>
 /// <param name="gameData">Common game data</param>
 (gameData: GameData) : Manager<Pickup>(gameData) {
-    private val roundData: RoundData
-
-    init {
-        roundData = gameData.roundData
-    }
+    private val roundData: RoundData = gameData.roundData
 
     /// <summary>
     /// Spawns the specified number of pickups to the screen.
