@@ -61,8 +61,7 @@ class Level(map: TiledMap) {
         levelId         = Integer.parseInt(properties.get("Level ID", String::class.java))
         isLastLevel     = java.lang.Boolean.parseBoolean(properties.get("Is Last Level", String::class.java))
 
-        for (obj in map.layers.get(0).objects) {
-
+        map.layers.get(0).objects.forEach { obj ->
             val `object` = obj as EllipseMapObject
 
             val objectType = `object`.properties.get("type", String::class.java)
