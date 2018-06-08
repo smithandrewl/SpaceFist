@@ -12,10 +12,8 @@ import com.spacefist.components.Sprite
 /**
  * Represents a floating block or crate.
  *
- * Creates a new SpaceBlock instance with a specified position and velocity.
- *
  * @param gameData Common game data
- * @param texture The image for the block
+ * @param texture  The image for the block
  * @param position The position of the block in the game world
  * @param velocity The velocity of the block
  */

@@ -35,8 +35,7 @@ import com.spacefist.components.abst.SoundComponent
  *
  *
  * As much as possible, the Entity class contains data about the entity, while the components operate on the data.
- */
-/**
+ *
  * @param gameData  Common game data
  * @param rectangle The size and position of the entity
  * @param physics   The physics component to use

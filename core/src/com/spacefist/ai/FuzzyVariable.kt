@@ -1,7 +1,7 @@
 package com.spacefist.ai
 
 /**
- * Represents a fuzzy input variable of three sets
+ * Represents a fuzzy input variable of three sets.
  */
 class FuzzyVariable {
     /**

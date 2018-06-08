@@ -8,14 +8,11 @@ import com.spacefist.entities.enemies.Enemy
 
 /**
  * An aggressive AI which follows the ship and attempts to ram it.
- */
-class AggressiveAI
-/**
- * Creates a new AggressiveAI instance.
  *
  * @param gameData Common game data
  * @param enemy The enemy this AI will control
- */
+*/
+class AggressiveAI
 (gameData: GameData, enemy: Enemy) : EnemyAI {
     /**
      * The ram fuzzy state

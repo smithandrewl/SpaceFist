@@ -10,20 +10,21 @@ import com.spacefist.entities.enemies.EnemyFighter
 import com.spacefist.entities.enemies.EnemyFreighter
 import com.spacefist.util.Func
 
-/// <summary>
-/// Keeps track of all of the enemies in the world.
-/// </summary>
-class EnemyManager/// <summary>
-/// Creates a new EnemyManager instance.
-/// </summary>
-/// <param name="gameData">Common game data</param>
+/**
+ * Keeps track of all of the enemies in the world.
+ *
+ * Creates a new EnemyManager instance.
+ *
+ * @param gameData Common game data
+ */
+class EnemyManager
+
 (gameData: GameData) : Manager<Enemy>(gameData) {
 
-    /// <summary>
-    /// Returns a collection of all of the live enemies
-    /// which are visible to the player.
-    /// </summary>
-    /// <returns></returns>
+    /**
+     * Returns a collection of all of the live enemies
+     * which are visible to the player.
+     */
     val visibleEnemies: Iterable<Enemy>
         get() {
             val camera = gameData.camera
@@ -45,18 +46,20 @@ class EnemyManager/// <summary>
             return visibleEnemies
         }
 
-    /// <summary>
-    /// Spawns a number of enemy fighters to the world.
-    /// </summary>
-    /// <param name="count">The number of fighters to spawn</param>
+    /**
+     *  Spawns a number of enemy fighters to the world.
+     * 
+     *  @param count The number of fighters to spawn
+     */
     fun spawnEnemyFighters(count: Int) {
         spawnEnemies(count,  Func { position -> EnemyFighter(gameData, position) })
     }
 
-    /// <summary>
-    /// Spawns the specified number of enemyFreighters to the world.
-    /// </summary>
-    /// <param name="count">The number of freighters to spawn</param>
+    /**
+     *  Spawns the specified number of enemyFreighters to the world.
+     * 
+     *  @param count The number of freighters to spawn
+     */
     fun spawnEnemyFreighters(count: Int) {
         spawnEnemies(count, Func { position:Vector2 -> EnemyFreighter(gameData, position) })
     }
@@ -76,12 +79,13 @@ class EnemyManager/// <summary>
         spawnEnemy(randX, randY, func)
     }
 
-    /// <summary>
-    /// Spawns a number of enemies to random locations on the screen
-    /// given an enemy placement method.
-    /// </summary>
-    /// <param name="count">The number of enemies to spawn</param>
-    /// <param name="func">A function to spawn a particular type of enemy</param>
+    /**
+     *  Spawns a number of enemies to random locations on the screen
+     *  given an enemy placement method.
+     * 
+     *  @param count The number of enemies to spawn
+     *  @param func A function to spawn a particular type of enemy
+     */
     private fun spawnEnemies(count: Int, func: Func<Vector2, Enemy>) {
         assert(count >= 0)
         assert(func != null)

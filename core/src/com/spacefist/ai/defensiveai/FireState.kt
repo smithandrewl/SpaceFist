@@ -11,17 +11,11 @@ import com.spacefist.managers.ProjectileManager
 
 /**
  * This fuzzy state fires at the ship when the enemy is on the screen.
- */
-class FireState
-/**
- * Creates a new FireState instance
  *
  * @param ai The AI this state belongs to
  * @param gameData Common game data
  */
-(// The AI that this state belongs to
-        var ai: EnemyAI?, gameData: GameData) : FuzzyLogicEnabled(), EnemyAIState {
-
+class FireState(var ai: EnemyAI?, gameData: GameData) : FuzzyLogicEnabled(), EnemyAIState {
     private var rateOfFire: Float = 0.toFloat()
 
     private val projectileManager: ProjectileManager

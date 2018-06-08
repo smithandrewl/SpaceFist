@@ -9,13 +9,15 @@ import com.spacefist.ai.projectilebehaviors.SeekingBehavior
 import com.spacefist.entities.Entity
 import com.spacefist.entities.Projectile
 
-/// <summary>
-/// Keeps track of the projectiles in the world.
-/// </summary>
-class ProjectileManager/// <summary>
-/// Creates a new ProjectileManager instance
-/// </summary>
-/// <param name="gameData">Common game data</param>
+/**
+ *  Keeps track of the projectiles in the world.
+ *
+ *  Creates a new ProjectileManager instance
+ *
+ *  @param name gameData Common game data
+ */
+class ProjectileManager
+
 (gameData: GameData) : Manager<Projectile>(gameData) {
 
     override fun update() {
@@ -41,13 +43,14 @@ class ProjectileManager/// <summary>
         }
 
 
-    /// <summary>
-    /// Fires a laser from the specified location in the specified direction.
-    /// </summary>
-    /// <param name="x">The X value of the location</param>
-    /// <param name="y">The Y value of the location</param>
-    /// <param name="direction">The direction to send the projectile</param>
-    /// <param name="enemyLaser">Whether this laser belongs to an enemy</param>
+    /**
+     *  Fires a laser from the specified location in the specified direction.
+     * 
+     *  @param x The X value of the location
+     *  @param y The Y value of the location
+     *  @param direction The direction to send the projectile
+     *  @param enemyLaser Whether this laser belongs to an enemy
+     */
     @JvmOverloads
     fun fireLaser(x: Int, y: Int, direction: Vector2 = Vector2(0f, -1f), enemyLaser: Boolean = false) {
         gameData.roundData.shotsFired = gameData.roundData.shotsFired + 1
@@ -70,11 +73,12 @@ class ProjectileManager/// <summary>
 
     }
 
-    /// <summary>
-    /// Fires a rocket cluster from the specified location
-    /// </summary>
-    /// <param name="x">The X component of the location</param>
-    /// <param name="y">The Y component of the location</param>
+    /**
+     *  Fires a rocket cluster from the specified location
+     * 
+     *  @param x The X component of the location
+     *  @param y The Y component of the location
+     */
     fun fireSampleWeapon(x: Int, y: Int) {
         val visibleEnemies = gameData.enemyManager.visibleEnemies
         val visibleBlocks = gameData.blockManager.visibleBlocks
@@ -191,12 +195,10 @@ class ProjectileManager/// <summary>
 
     }
 
-    /** */
-
-    /// <returns>
-    /// Returns a collection of all of the live projectiles
-    /// fired by the player.
-    /// </returns>
+    /**
+     *  @return Returns a collection of all of the live projectiles
+     *  fired by the player.
+     */
     fun playerProjectiles(): Iterable<Projectile> {
         val playerProjs = Array<Projectile>(false, 16)
 
@@ -207,11 +209,11 @@ class ProjectileManager/// <summary>
         return playerProjs
     }
 
-    /// <summary>
-    /// Returns a collection of all of the live projectiles
-    /// fired by an enemy.
-    /// </summary>
-    /// <returns></returns>
+    /**
+     *  Returns a collection of all of the live projectiles
+     *  fired by an enemy.
+     * 
+     */
     fun enemyProjectiles(): Iterable<Projectile> {
         val enemyProjs = Array<Projectile>(false, 16)
 
@@ -221,8 +223,4 @@ class ProjectileManager/// <summary>
 
         return enemyProjs
     }
-}/// <summary>
-/// Places a laser at the specified location and fires it.
-/// </summary>
-/// <param name="x">The X value of the location</param>
-/// <param name="y">The Y value of the location</param>
+}

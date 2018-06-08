@@ -23,9 +23,6 @@ import com.spacefist.entities.Ship
  * When the ship turns, it sets the Index property of its graphics component to draw the correct frame.
  *
  * Explosion.java also uses IndexedSprite as its graphics component to draw an animation
- */
-/**
- * Provides the ability to draw the cells of a horizontal texture atlas.
  *
  * @param texture The texture atlas
  * @param width The width of each frame
@@ -162,9 +159,6 @@ class ShipInput : InputComponent {
 
 /**
  * A simple sound component that plays a sound effect.
- */
-/**
- * Creates a new Sound instance from a SoundEffect.
  *
  * @param sound The sound to play
  */
@@ -181,9 +175,6 @@ class Sound(internal var soundEffect: com.badlogic.gdx.audio.Sound) : SoundCompo
 
 /**
  * Sprite represents a static image at a position on-world.
- */
-/**
- * Creates a new Sprite instance from a texture
  *
  * @param texture The image to draw
  */

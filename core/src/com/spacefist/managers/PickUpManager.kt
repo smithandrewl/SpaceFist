@@ -10,22 +10,21 @@ import com.spacefist.util.Action
 import com.spacefist.weapons.Missile
 import com.spacefist.weapons.SampleWeapon
 
-/// <summary>
-/// Keeps track of the pickups in the world and provides
-/// methods to operate on them.
-/// </summary>
-class PickUpManager/// <summary>
-/// Creates a new instance of PickupManager.
-/// </summary>
-/// <param name="gameData">Common game data</param>
+/**
+ * Keeps track of the pickups in the world and provides
+ * methods to operate on them.
+ *
+ * @param gameData Common game data.
+ */
+class PickUpManager
 (gameData: GameData) : Manager<Pickup>(gameData) {
     private val roundData: RoundData = gameData.roundData
 
-    /// <summary>
-    /// Spawns the specified number of pickups to the screen.
-    /// </summary>
-    /// <param name="count">The number of pickups to spawn</param>
-    /// <param name="spawnFunction">A function to spawn a specific pickup type</param>
+    /**
+     *  Spawns the specified number of pickups to the screen.
+     *  @param count The number of pickups to spawn
+     *  @param spawnFunction A function to spawn a specific pickup type
+     */
     fun spawnPickups(count: Int, spawnFunction: Action<Int, Int>) {
         val world = gameData.world
 
@@ -37,19 +36,21 @@ class PickUpManager/// <summary>
         }
     }
 
-    /// <summary>
-    /// Spawns "count" rocket pickups to the world.
-    /// </summary>
-    /// <param name="count">The number of pickups to spawn</param>
+    /**
+     *  Spawns "count" rocket pickups to the world.
+     *
+     *  @param count The number of pickups to spawn.
+     */
     fun spawnExamplePickups(count: Int) {
         spawnPickups(count, Action { first, second -> spawnExamplePickup(first!!, second!!) })
     }
 
-    /// <summary>
-    /// Spawns a single rocket pickup at the specified location.
-    /// </summary>
-    /// <param name="x">The X value of the location</param>
-    /// <param name="y">The Y value of the location</param>
+    /**
+     *  Spawns a single rocket pickup at the specified location.
+     *
+     *  @param x The X value of the location
+     *  @param y The Y value of the location
+     */
     fun spawnExamplePickup(x: Int, y: Int) {
         val pickup = Pickup(
                 gameData,
@@ -65,10 +66,11 @@ class PickUpManager/// <summary>
         add(pickup)
     }
 
-    /// <summary>
-    /// Spawns a number of health pickups to the world.
-    /// </summary>
-    /// <param name="count">The number of pickups to spawn</param>
+    /**
+     *  Spawns a number of health pickups to the world.
+     *
+     *  @param count The number of pickups to spawn.
+     */
     fun spawnHealthPickups(count: Int) {
         spawnPickups(count, Action { first, second -> spawnHealthPickup(first!!, second!!) })
     }
@@ -94,14 +96,13 @@ class PickUpManager/// <summary>
         add(pickup)
     }
 
-    /** */
-
-    /// <summary>
-    /// Spawns a single health pickup to the specified
-    /// location.
-    /// </summary>
-    /// <param name="x">The X value of the location</param>
-    /// <param name="y">The Y value of the location</param>
+    /**
+     *  Spawns a single health pickup to the specified
+     *  location.
+     *
+     *  @param x The X value of the location.
+     *  @param y The Y value of the location.
+     */
     fun spawnHealthPickup(x: Int, y: Int) {
         val pickup = Pickup(
                 gameData,
@@ -122,19 +123,21 @@ class PickUpManager/// <summary>
         add(pickup)
     }
 
-    /// <summary>
-    /// Spawns extra life pickups to the world.
-    /// </summary>
-    /// <param name="count">The number of pickups to spawn</param>
+    /**
+     *  Spawns extra life pickups to the world.
+     *
+     *  @param count The number of pickups to spawn.
+     */
     fun spawnExtraLifePickups(count: Int) {
         spawnPickups(count, Action { first, second -> spawnExtraLifePickup(first!!, second!!) })
     }
 
-    /// <summary>
-    /// spawn one extra life pickup at the specified location.
-    /// </summary>
-    /// <param name="x">The X value of the location</param>
-    /// <param name="y">The Y value of the location</param>
+    /**
+     *  spawn one extra life pickup at the specified location.
+     *
+     *  @param x The X value of the location.
+     *  @param y The y value of the location.
+     */
     fun spawnExtraLifePickup(x: Int, y: Int) {
         val pickup = Pickup(
                 gameData,
@@ -150,9 +153,9 @@ class PickUpManager/// <summary>
         add(pickup)
     }
 
-    /// <summary>
-    /// Removes all pickups from the world.
-    /// </summary>
+    /**
+     *  Removes all pickups from the world.
+     */
     fun reset() {
         clear()
     }

@@ -8,14 +8,14 @@ import com.spacefist.entities.Projectile
 // Interception and steering behavior based
 // on the pursuit section of the paper "Steering Behaviors For Autonomous Characters"
 // http://www.red3d.com/cwr/steer/gdc99/
-class SeekingBehavior
 /**
- * Creates a new SeekingBehavior instance given a target, an initial direction and an initial velocity.
+ * A seeking behavior.
  *
  * @param unitVector The direction the projectile was fired
  * @param origin The point from which the projectile was fired
  * @param target The target entity to intercept
  */
+class SeekingBehavior
 (
         /**
          * The direction the ship was heading when it fired the projectile.

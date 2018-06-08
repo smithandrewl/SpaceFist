@@ -51,7 +51,7 @@ class Ship(
      */
     private var state: ShipState? = null
     /**
-     * @return The ships current weapon.
+     * The ships current weapon.
      */
     var weapon: Weapon? = null
 

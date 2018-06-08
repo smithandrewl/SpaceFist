@@ -8,9 +8,6 @@ import com.spacefist.ai.abst.FuzzyLogicEnabled
 /**
  * Provides fuzzy information about the ship and how the player
  * has played this current round.
- */
-/**
- * Creates a new ShipInfo instance.
  *
  * @param gameData Common game data
  */

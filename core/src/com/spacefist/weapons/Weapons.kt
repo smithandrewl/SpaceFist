@@ -7,9 +7,6 @@ import com.spacefist.weapons.abst.Weapon
 
 /**
  * The default weapon
- */
-/**
- * Creates a new LaserWeapon instance
  *
  * @param gameData Common game data
  */
@@ -62,14 +59,12 @@ class Missile(private val gameData: GameData) : Weapon {
 
 /**
  * Represents a weapon which fires intercepting rockets.
- */
-class SampleWeapon
-/**
- * Creates a new SampleWeapon instance.
  *
  * @param gameData Common game data
  * @param ship The players ship
  */
+class SampleWeapon
+
 (private val gameData: GameData, private val ship: Ship) : Weapon {
     private val projectileManager: ProjectileManager
 

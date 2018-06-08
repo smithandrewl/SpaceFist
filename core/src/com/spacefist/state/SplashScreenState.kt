@@ -14,13 +14,12 @@ import java.util.*
  * it draws the splash screen and waits for the player to press enter or click the mouse.
  *
  * When the player presses enter the game switchs to the menu state.
- */
-class SplashScreenState
-/**
- * Creates a new SplashScreenState instance.
+ *
  *
  * @param gameData Common game data
  */
+class SplashScreenState
+
 (internal var gameData: GameData) : GameState {
     internal var overlayTexture: Texture?   = null
     internal var overlayRect:    Rectangle? = null

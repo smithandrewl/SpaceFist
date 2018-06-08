@@ -6,14 +6,13 @@ import com.spacefist.ai.ShipInfo
 import com.spacefist.ai.abst.EnemyAI
 import com.spacefist.entities.enemies.Enemy
 
-class DefensiveAI
 /**
  * Creates a new DefensiveAI instance.
  *
  * @param gameData Common game data
  * @param enemy The enemy this AI will control
  */
-(gameData: GameData, enemy: Enemy) : EnemyAI {
+class DefensiveAI(gameData: GameData, enemy: Enemy) : EnemyAI {
     // Fuzzy sets
     private val defendState: DefendState
     private val fireState:   FireState

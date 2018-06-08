@@ -8,11 +8,8 @@ import com.spacefist.entities.enemies.Enemy
 
 /**
  * Provides information about the players ship that is specific to a particular enemy.
- */
-/**
- * Creates a new ShipEnemyInfo instance.
  *
- * @param enemy The enemy this information is relevant to
+ * @param enemy    The enemy this information is relevant to
  * @param shipInfo General ship information
  * @param gameData Common game Data
  */

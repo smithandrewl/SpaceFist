@@ -4,9 +4,9 @@ import com.badlogic.gdx.math.Rectangle
 import com.spacefist.GameData
 import com.spacefist.RoundData
 
-/// <summary>
-/// Contains methods to handle the different types of entity and player collisions.
-/// </summary>
+/**
+ * Contains methods to handle the different types of entity and player collisions.
+ */
 class CollisionManager(
         private val gameData: GameData) {
     // These are references to existing managers,
@@ -56,9 +56,9 @@ class CollisionManager(
         }
     }
 
-    /// <summary>
-    /// Handles collisions between the ship and projectiles.
-    /// </summary>
+    /**
+     * Handles collisions between the ship and projectiles.
+     */
     fun handleProjectileShipCollisions() {
         for (projectile in laserManager.enemyProjectiles()) {
             if (projectile.rectangle!!.overlaps(gameData.ship.rectangle)) {
@@ -70,9 +70,9 @@ class CollisionManager(
         }
     }
 
-    /// <summary>
-    /// Handles collisions between the ship and enemies.
-    /// </summary>
+    /**
+     * Handles collisions between the ship and enemies.
+     */
     fun handleEnemyShipCollisions() {
         for (enemy in enemyManager.collisions(gameData.ship)) {
             explosionManager.add(enemy.x, enemy.y)
@@ -82,9 +82,9 @@ class CollisionManager(
         }
     }
 
-    /// <summary>
-    /// Handles collisions between the enemy and projectiles.
-    /// </summary>
+    /**
+     * Handles collisions between the enemy and projectiles.
+     */
     fun handleEnemyLaserCollisions() {
         for (laser in laserManager.playerProjectiles()) {
             if (laser.isAlive) {
@@ -100,9 +100,9 @@ class CollisionManager(
         }
     }
 
-    /// <summary>
-    /// Handles collisions between the ship and weapon and health pickups.
-    /// </summary>
+    /**
+     * Handles collisions between the ship and weapon and health pickups.
+     */
     fun handleShipPickupCollisions() {
         for (pickup in pickupManager.collisions(gameData.ship)) {
             if (pickup.pickedUp(gameData.ship)) {
@@ -111,9 +111,9 @@ class CollisionManager(
         }
     }
 
-    /// <summary>
-    /// Handles collisions between the enemy and space blocks.
-    /// </summary>
+    /**
+     * Handles collisions between the enemy and space blocks.
+     */
     fun handleEnemyRockCollisions() {
         val resolution = gameData.resolution
 
@@ -143,9 +143,9 @@ class CollisionManager(
         }
     }
 
-    /// <summary>
-    /// Handles collisions between projectiles and space blocks.
-    /// </summary>
+    /**
+     * Handles collisions between projectiles and space blocks.
+     */
     fun handleLaserRockCollisions() {
         for (laser in laserManager) {
             // Only process lasers that are still in play
@@ -167,9 +167,9 @@ class CollisionManager(
         }
     }
 
-    /// <summary>
-    /// Handles collisions between the ship and space blocks.
-    /// </summary>
+    /**
+     * Handles collisions between the ship and space blocks.
+     */
     fun handleShipRockCollisions() {
         //  update blocks
         for (block in blockManager.collisions(gameData.ship)) {

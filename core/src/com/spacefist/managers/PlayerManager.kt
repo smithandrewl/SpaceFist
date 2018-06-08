@@ -7,13 +7,13 @@ import com.spacefist.entities.Ship
 import com.spacefist.state.shipstates.SpawningState
 import com.spacefist.weapons.LaserWeapon
 
-/// <summary>
-/// Handles player and ship interaction with the game world.
-/// </summary>
-class PlayerManager/// <summary>
-/// Creates a new PlayerManager instance.
-/// </summary>
-/// <param name="gameData">Common game data</param>
+/**
+ * Handles player and ship interaction with the game world.
+ *
+ * @param gameData Common game data
+ */
+class PlayerManager
+
 (internal var gameData: GameData) {
     internal var roundData: RoundData = gameData.roundData
 
