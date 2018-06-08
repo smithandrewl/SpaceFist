@@ -8,24 +8,22 @@ import com.spacefist.weapons.abst.Weapon
 /**
  * The default weapon
  */
-class LaserWeapon
 /**
  * Creates a new LaserWeapon instance
  *
  * @param gameData Common game data
  */
-(private val gameData: GameData) : Weapon {
+class LaserWeapon(private val gameData: GameData) : Weapon {
     private val projectileManager: ProjectileManager
 
     init {
-
         this.projectileManager = gameData.projectileManager
     }
 
     override fun fire() {
         val ship = gameData.ship
 
-        val shipWidth = ship.rectangle!!.getWidth()
+        val shipWidth  = ship.rectangle!!.getWidth()
         val shipHeight = ship.rectangle!!.getHeight()
 
         val projectileX = (ship.x + shipWidth / 2).toInt()
@@ -34,6 +32,7 @@ class LaserWeapon
         projectileManager.fireLaser(projectileX, projectileY)
     }
 }
+
 /**
  * Represents a cluster of three missiles.
  */
@@ -41,7 +40,6 @@ class Missile(private val gameData: GameData) : Weapon {
     private val projectileManager: ProjectileManager
 
     init {
-
         projectileManager = gameData.projectileManager
     }
 
@@ -54,7 +52,7 @@ class Missile(private val gameData: GameData) : Weapon {
         val shipWidth = ship.rectangle!!.getWidth()
         val shipHeight = ship.rectangle!!.getWidth()
 
-        val projectileX = (ship.x + shipWidth / 2 - 6).toInt()
+        val projectileX = (ship.x + shipWidth  / 2 - 6).toInt()
         val projectileY = (ship.y + shipHeight * 1.5f).toInt()
 
         projectileManager.fireMissile(projectileX, projectileY)

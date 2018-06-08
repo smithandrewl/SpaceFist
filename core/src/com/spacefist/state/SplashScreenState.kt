@@ -22,9 +22,9 @@ class SplashScreenState
  * @param gameData Common game data
  */
 (internal var gameData: GameData) : GameState {
-    internal var overlayTexture: Texture? = null
-    internal var overlayRect: Rectangle? = null
-    internal var enteredAt: Date? = null
+    internal var overlayTexture: Texture?   = null
+    internal var overlayRect:    Rectangle? = null
+    internal var enteredAt:      Date?      = null
 
     override fun loadContent() {
         val resolution = gameData.resolution
@@ -43,27 +43,39 @@ class SplashScreenState
         enteredAt = Date()
     }
 
+    private fun userWantsToSkipScreen(): Boolean {
+        val skipSplashScreen =
+                Gdx.input.isKeyPressed(Keys.ENTER) ||
+                Gdx.input.isKeyPressed(Keys.SPACE) ||
+                Gdx.input.isKeyPressed(Keys.ESCAPE)||
+                Gdx.input.isTouched
+
+        return skipSplashScreen
+    }
+
+
+    private fun timeToSkipScreen(): Boolean {
+        val timeDiff       = Date().time - enteredAt!!.time
+        val secondsElapsed = timeDiff / 1000
+
+        return secondsElapsed > 3
+    }
+
     override fun update() {
         val timeDiff = Date().time - enteredAt!!.time
 
-        if (timeDiff / 1000 > 3) {
-            gameData.currentState = gameData.menuState
-        } else if (timeDiff > 300) {
-            if (Gdx.input.isKeyPressed(Keys.ENTER) ||
-                    Gdx.input.isKeyPressed(Keys.SPACE) ||
-                    Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-                gameData.currentState = gameData.menuState
-            }
-
-            if (Gdx.input.isTouched) {
-                gameData.currentState = gameData.menuState
-            }
-        }// This waits 300 milliseconds after the splash screen state has been entered
+        // This waits 300 milliseconds after the splash screen state has been entered
         // before processing input.
+        val safeToCheckInput = timeDiff > 300
+
+        // If it is time to skip, or the user has requested it, skip to the menu screen
+        if (timeToSkipScreen()|| (safeToCheckInput && userWantsToSkipScreen())) {
+            gameData.currentState = gameData.menuState
+        }
     }
 
     override fun draw() {
-        val resolution = gameData.resolution
+        val resolution  = gameData.resolution
         val spriteBatch = gameData.spriteBatch
 
         spriteBatch.draw(

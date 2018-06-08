@@ -12,10 +12,10 @@ class Hud(private val gameData: GameData, shipManager: PlayerManager) {
     private var scoreDisplay = ""
 
     private val controlsPosition: Vector2
-    private val roundData: RoundData
-    private var scorePosition: Vector2? = null
-    private val BottomRect: Rectangle
-    private val TopRect: Rectangle
+    private val roundData:        RoundData
+    private var scorePosition:    Vector2? = null
+    private val BottomRect:       Rectangle
+    private val TopRect:          Rectangle
 
     init {
         this.roundData = gameData.roundData
@@ -23,7 +23,7 @@ class Hud(private val gameData: GameData, shipManager: PlayerManager) {
         val resolution = gameData.resolution
 
         controlsPosition = Vector2(
-                resolution.getWidth() * .5f - CONTROLS_MSG.length * 4.5f,
+                resolution.getWidth()  * .5f - CONTROLS_MSG.length * 4.5f,
                 resolution.getHeight() * .025f
         )
 
@@ -52,10 +52,9 @@ class Hud(private val gameData: GameData, shipManager: PlayerManager) {
         )
 
         scorePosition = Vector2(
-                gameData.resolution.getWidth() * .5f - scoreDisplay.length * 5,
+                gameData.resolution.getWidth()  * .5f - scoreDisplay.length * 5,
                 gameData.resolution.getHeight() * .994f
         )
-
     }
 
     fun draw() {
@@ -69,7 +68,6 @@ class Hud(private val gameData: GameData, shipManager: PlayerManager) {
 
         // draw the bottom rectangle
         gameData.spriteBatch.draw(gameData.textures["Hud"], BottomRect.x, BottomRect.y)
-
 
         // Write the controls message to the screen
         font.draw(gameData.spriteBatch, CONTROLS_MSG, controlsPosition.x, controlsPosition.y)

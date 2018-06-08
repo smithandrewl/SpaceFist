@@ -42,21 +42,9 @@ public class GameData {
         this.random = random;
     }
 
-    private Random random;
+    private Random        random;
     private GameState     currentState;
     private SpaceFistGame game;
-
-    /*
-    public bool IsMouseVisible {
-    get
-    {
-        return game.IsMouseVisible;
-    }
-    set{
-        game.IsMouseVisible = value;
-    }
-    }
-    */
 
     private float ScreenScale;
     private int   LevelCount;
@@ -81,12 +69,7 @@ public class GameData {
     private SplashScreenState splashScreenState;
     private MenuState         menuState;
 
-    /*
-    public GraphicsDevice                  GraphicsDevice { get; set; }
-    */
-
     private Level level;
-
 
     // -------------- Managers --------------
     private LevelManager      levelManager;
@@ -104,8 +87,7 @@ public class GameData {
     public GameData(SpaceFistGame game) {
         this.game = game;
 
-        random = new Random();
-
+        random    = new Random();
         roundData = new RoundData();
 
         textures     = new HashMap<String, Texture>();
