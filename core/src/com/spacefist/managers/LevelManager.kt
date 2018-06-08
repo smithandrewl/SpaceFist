@@ -15,7 +15,8 @@ class LevelManager(private val gameData: GameData) {
 
     fun loadLevel(id: Int) {
         val loader = TmxMapLoader()
-        val map = loader.load(Gdx.files.absolute("maps/$id.tmx").path())
+        val map    = loader.load(Gdx.files.absolute("maps/$id.tmx").path())
+
         gameData.level = Level(map)
     }
 }
