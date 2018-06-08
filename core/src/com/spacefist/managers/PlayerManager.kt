@@ -47,11 +47,11 @@ class PlayerManager/// <summary>
         gameData.soundEffects["PlayerSpawn"]!!.play()
 
         val resolution = gameData.resolution
-        val camera = gameData.camera
+        val camera     = gameData.camera
 
         // Start the ship at the bottom  in the center of the screen
 
-        val xOffset = resolution.getWidth() / 2
+        val xOffset = resolution.getWidth()  / 2
         val yOffset = resolution.getHeight() * .05
 
         val startX = (xOffset + camera.x).toInt()
@@ -60,8 +60,8 @@ class PlayerManager/// <summary>
         if (gameData.ship != null) {
             gameData.ship.setCurrentState(SpawningState(gameData))
 
-            gameData.ship.x = startX
-            gameData.ship.y = startY
+            gameData.ship.x       = startX
+            gameData.ship.y       = startY
             gameData.ship.isAlive = true
         } else {
             gameData.ship = Ship(gameData, Vector2(startX.toFloat(), startY.toFloat()))
@@ -69,7 +69,7 @@ class PlayerManager/// <summary>
         }
 
         gameData.ship.healthPoints = 100
-        gameData.ship.velocity = StartingVelocity
+        gameData.ship.velocity     = StartingVelocity
 
         return gameData.ship
     }
@@ -78,7 +78,7 @@ class PlayerManager/// <summary>
         gameData.ship.onDeath()
 
         if (roundData.lives > 0) {
-            roundData.lives = roundData.lives - 1
+            roundData.lives            = roundData.lives - 1
             gameData.ship.healthPoints = 100
 
             spawn()
@@ -91,6 +91,7 @@ class PlayerManager/// <summary>
 
     fun shipHit() {
         val healthPoints = gameData.ship.healthPoints
+
         gameData.ship.healthPoints = healthPoints - HIT_DAMAGE
 
         if (gameData.ship.healthPoints <= 0) {
@@ -117,7 +118,6 @@ class PlayerManager/// <summary>
     }
 
     companion object {
-
         // Damage the ship takes per hit
         private val HIT_DAMAGE = 5
     }
