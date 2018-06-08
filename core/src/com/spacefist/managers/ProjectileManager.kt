@@ -19,20 +19,19 @@ class ProjectileManager/// <summary>
 (gameData: GameData) : Manager<Projectile>(gameData) {
 
     override fun update() {
+        entities
+            .filter  { entity -> entity.isAlive }
 
-        for (projectile in entities) {
-            val resolution = gameData.resolution
+            .forEach { projectile ->
+                val resolution = gameData.resolution
 
-            val rect = Rectangle(
-                    gameData.camera.x.toInt().toFloat(),
-                    gameData.camera.y.toInt().toFloat(),
-                    resolution.getWidth(),
-                    resolution.getHeight()
-            )
+                val rect = Rectangle(
+                        gameData.camera.x.toInt().toFloat(),
+                        gameData.camera.y.toInt().toFloat(),
+                        resolution.getWidth(),
+                        resolution.getHeight()
+                )
 
-            // Mark offscreen live projectiles as dead and
-            // only update onscreen projectiles.
-            if (projectile.isAlive) {
                 if (rect.contains(projectile.rectangle)) {
                     projectile.update()
                 } else {
@@ -40,7 +39,7 @@ class ProjectileManager/// <summary>
                 }
             }
         }
-    }
+
 
     /// <summary>
     /// Fires a laser from the specified location in the specified direction.
@@ -87,11 +86,9 @@ class ProjectileManager/// <summary>
 
 
         // TODO: fireSampleWeapon: ConcurrentModification Bug
-        for (entity in onScreen) {
-            if (entity.y >= y) {
-                onScreen.removeValue(entity, true)
-            }
-        }
+        onScreen
+                .filter  { it.y >= y                             }
+                .forEach { onScreen.removeValue(it, true) }
 
         if (onScreen.size != 0) {
             // TODO: fireSampleWeapon: IndexOutOfBounds Bug
@@ -203,11 +200,9 @@ class ProjectileManager/// <summary>
     fun playerProjectiles(): Iterable<Projectile> {
         val playerProjs = Array<Projectile>(false, 16)
 
-        for (projectile in entities) {
-            if (!projectile.isEnemyProjectile && projectile.isAlive) {
-                playerProjs.add(projectile)
-            }
-        }
+        entities
+                .filter  { !it.isEnemyProjectile && it.isAlive }
+                .forEach { playerProjs.add(it)                 }
 
         return playerProjs
     }
@@ -220,11 +215,9 @@ class ProjectileManager/// <summary>
     fun enemyProjectiles(): Iterable<Projectile> {
         val enemyProjs = Array<Projectile>(false, 16)
 
-        for (projectile in entities) {
-            if (projectile.isEnemyProjectile && projectile.isAlive) {
-                enemyProjs.add(projectile)
-            }
-        }
+        entities
+                .filter  { it.isEnemyProjectile && it.isAlive }
+                .forEach { enemyProjs.add(it)                 }
 
         return enemyProjs
     }
