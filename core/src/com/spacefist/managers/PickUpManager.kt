@@ -33,7 +33,7 @@ class PickUpManager/// <summary>
     fun spawnPickups(count: Int, spawnFunction: Action<Int, Int>) {
         val world = gameData.world
 
-        for (i in 0 until count) {
+        (0 until count).forEach { i ->
             val randX = MathUtils.random(0f, world.getWidth()).toInt()
             val randY = MathUtils.random(0f, world.getHeight()).toInt()
 
