@@ -27,9 +27,10 @@ class ShipInfo(private val gameData: GameData) : FuzzyLogicEnabled() {
     private val roundData: RoundData = gameData.roundData
 
     private val fuzzySpeed:        FuzzyVariable
-    private val fuzzyHealth:       FuzzyVariable
     private val fuzzyTriggerHappy: FuzzyVariable
     private val fuzzyAccuracy:     FuzzyVariable
+
+    private val fuzzyHealth:       FuzzyVariable = FuzzyVariable()
 
     /**
      * @return The degree to which the player has low, medium or high accuracy.
@@ -39,7 +40,6 @@ class ShipInfo(private val gameData: GameData) : FuzzyLogicEnabled() {
 
     init {
 
-        fuzzyHealth      = FuzzyVariable()
         fuzzyHealth.name = "Health"
 
         fuzzySpeed      = FuzzyVariable()
