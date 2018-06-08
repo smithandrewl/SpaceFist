@@ -12,14 +12,14 @@ class Hud(private val gameData: GameData, shipManager: PlayerManager) {
     private var scoreDisplay = ""
 
     private val controlsPosition: Vector2
-    private val roundData:        RoundData
-    private var scorePosition:    Vector2? = null
+
     private val BottomRect:       Rectangle
     private val TopRect:          Rectangle
 
-    init {
-        this.roundData = gameData.roundData
+    private val roundData:        RoundData = gameData.roundData
+    private var scorePosition:    Vector2?  = null
 
+    init {
         val resolution = gameData.resolution
 
         controlsPosition = Vector2(
