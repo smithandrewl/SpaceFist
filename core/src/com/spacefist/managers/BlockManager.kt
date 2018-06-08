@@ -8,30 +8,25 @@ import com.spacefist.GameData
 import com.spacefist.entities.Entity
 import com.spacefist.entities.SpaceBlock
 
-/// <summary>
-/// Keeps track of the space blocks in the world and
-/// provides methods to operate on them.
-///
-/// This class is enumerable and instances can be used
-/// in foreach loops to iterate the live blocks in the world.
-/// </summary>
-/// <summary>
-/// Creates a new BlockManager instance.
-/// </summary>
-/// <param name="gameData">Common game data</param>
-class BlockManager
-(gameData: GameData) : Manager<SpaceBlock>(gameData) {
-    /// <summary>
-    /// Returns the live blocks in the world
-    /// which are currently visible on the screen.
-    /// </summary>
-    /// <returns>Blocks which are visible to the player</returns>
-    // The portion of the game world being shown on
-    // the screen.
+/**
+ * Keeps track of the space blocks in the world and
+ * provides methods to operate on them.
+ *
+ * This class is enumerable and instances can be used
+ * in foreach loops to iterate the live blocks in the world.
+ *
+ * @param gameData Common game data
+ */
+class BlockManager(gameData: GameData) : Manager<SpaceBlock>(gameData) {
+    /**
+     * The live blocks in the world
+     * which are currently visible on the screen.
+     */
     val visibleBlocks: Iterable<SpaceBlock>
         get() {
             val camera = gameData.camera
             val bounds = gameData.resolution
+
             val visibleWorldRect = Rectangle(
                     camera.x.toInt().toFloat(),
                     camera.y.toInt().toFloat(),
@@ -50,10 +45,10 @@ class BlockManager
             return res
         }
 
-    /// <summary>
-    /// Repositions the existing blocks around the world with random
-    /// velocities marking them as alive.
-    /// </summary>
+    /**
+     * Repositions the existing blocks around the world with random
+     * velocities marking them as alive.
+     */
     fun respawnBlocks() {
         for (block in this) {
             val position = randomPos()
@@ -65,7 +60,9 @@ class BlockManager
         }
     }
 
-    /// <returns>A random point in the world</returns>
+    /**
+     * @return Returns a random point in the world
+     */
     private fun randomPos(): Vector2 {
         assert(gameData.world != null)
 
@@ -75,16 +72,19 @@ class BlockManager
         return Vector2(randX.toFloat(), randY.toFloat())
     }
 
-    /// <returns>A velocity with a random x between -2 and 2</returns>
+    /**
+     * @return A velocity with a random x between -2 and 2
+     */
     private fun randomVel(): Vector2 {
         return Vector2((MathUtils.random(4) - 2).toFloat(), MathUtils.random(4).toFloat())
     }
 
-    /// <summary>
-    /// Spawns a specified number of blocks to random
-    /// locations in the game world.
-    /// </summary>
-    /// <param name="count">The number of blocks to spawn</param>
+    /**
+     * Spawns a specified number of blocks to random
+     * locations in the game world.
+     *
+     * @param count The number of blocks to spawn.
+     */
     fun spawnBlocks(count: Int) {
         clear()
 
@@ -104,8 +104,12 @@ class BlockManager
         }
     }
 
-    // Keep the specified entity on world causing it to "bounce"
-    // off of the edges of the world.
+    /**
+     * Keeps the specified entity on world causing it to "bounce"
+     * off of the edges of the world.
+     *
+     * @param obj the entity to keep on the screen.
+     */
     private fun keepOnWorld(obj: Entity) {
         assert(obj != null)
         assert(gameData.world != null)
