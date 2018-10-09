@@ -130,33 +130,6 @@ class ProjectileManager
         }
     }
 
-    /*******Dongcai */
-    fun fireBluelaser(x: Int, y: Int) {
-        val rand = gameData.random
-
-        gameData.roundData.shotFired()
-
-        val projectile = Projectile(
-                gameData,
-                gameData.textures["Mine"]!!,
-                Vector2(x.toFloat(), y.toFloat()),
-                Vector2(0f, -1f),
-                1,
-                false
-        )
-
-
-        var angVel = rand.nextInt(3) + 1
-
-        if (rand.nextBoolean()) {
-            angVel = angVel * -1
-        }
-
-        projectile.angularVelocity = angVel
-
-        add(projectile)
-    }
-
     fun fireMissile(x: Int, y: Int) {
         gameData.roundData.shotFired()
 
