@@ -7,11 +7,6 @@
         <option name="BUILDABLE" value="true" />
       </configuration>
     </facet>
-    <facet type="android-gradle" name="Android-Gradle">
-      <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":" />
-      </configuration>
-    </facet>
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="JVM 1.8" useProjectSettings="false">
         <compilerSettings />
