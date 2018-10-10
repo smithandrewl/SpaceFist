@@ -132,13 +132,13 @@ class Ship(
      */
     private fun incrementVelocity(velocity: Vector2) {
         val xVel = clamp(
-                velocity.x + velocity.x,
+                this.velocity!!.x + velocity.x,
                 (-MAX_VELOCITY).toFloat(),
                 MAX_VELOCITY.toFloat()
         )
 
         val yVel = clamp(
-                velocity.y + velocity.y,
+                this.velocity!!.y + velocity.y,
                 (-MAX_VELOCITY).toFloat(),
                 MAX_VELOCITY.toFloat()
         )
