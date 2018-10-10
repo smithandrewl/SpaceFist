@@ -1,4 +1,5 @@
 # Contributors (in alphabetical order)
-Doncai Huang
-Andrew Smith
-Tatsuya Takahashi
+
+ * Doncai Huang
+ * Andrew Smith
+ * Tatsuya Takahashi
