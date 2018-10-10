@@ -1,6 +1,7 @@
 # SpaceFist
 
-A 2d vertical scrolling space shooter game using LibGDX.
+A 2d vertical scrolling space shooter game using LibGDX and Kotlin.
+![In game screenshot.](Screenshot.png)
 
 # Setup
  1. Using git, clone the repository and enter the SpaceFist directory.
