@@ -75,12 +75,9 @@ class MenuState(private val gameData: GameData) : GameState {
         stage!!.addActor(table)
 
         val newGame = TextButton("New Game", skin!!)
-        val credits = TextButton("Credits", skin!!)
         val exit = TextButton("Exit", skin!!)
 
         table.add(newGame).width(BUTTON_WIDTH.toFloat()).pad(BUTTON_PADDING.toFloat())
-        table.row()
-        table.add(credits).width(BUTTON_WIDTH.toFloat()).pad(BUTTON_PADDING.toFloat())
         table.row()
         table.add(exit).width(BUTTON_WIDTH.toFloat()).pad(BUTTON_PADDING.toFloat())
 
@@ -88,12 +85,6 @@ class MenuState(private val gameData: GameData) : GameState {
             override fun changed(event: ChangeListener.ChangeEvent, actor: Actor) {
                 gameData.inPlayState.loadContent()
                 gameData.setCurrentState(gameData.inPlayState)
-            }
-        })
-
-        credits.addListener(object : ChangeListener() {
-            override fun changed(event: ChangeListener.ChangeEvent, actor: Actor) {
-                gameData.setCurrentState(gameData.creditsState)
             }
         })
 

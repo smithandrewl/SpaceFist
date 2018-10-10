@@ -18,7 +18,6 @@ import com.spacefist.managers.LevelManager;
 import com.spacefist.managers.PickUpManager;
 import com.spacefist.managers.PlayerManager;
 import com.spacefist.managers.ProjectileManager;
-import com.spacefist.state.CreditsState;
 import com.spacefist.state.EndOfGameState;
 import com.spacefist.state.EndOfLevelState;
 import com.spacefist.state.GameOverState;
@@ -132,7 +131,6 @@ public class GameData {
     private InPlayState     inPlayState;
     private GameOverState   gameOverState;
     private EndOfGameState  endOfGameState;
-    private CreditsState    creditsState;
     private EndOfLevelState endOfLevelState;
 
     @NotNull
@@ -312,14 +310,6 @@ public class GameData {
 
     public void setEndOfGameState(EndOfGameState endOfGameState) {
         this.endOfGameState = endOfGameState;
-    }
-
-    public CreditsState getCreditsState() {
-        return creditsState;
-    }
-
-    public void setCreditsState(CreditsState creditsState) {
-        this.creditsState = creditsState;
     }
 
     public EndOfLevelState getEndOfLevelState() {
