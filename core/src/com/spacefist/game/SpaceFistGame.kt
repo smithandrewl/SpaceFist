@@ -28,7 +28,6 @@ class SpaceFistGame : ApplicationAdapter() {
         gameData!!.logoState         = LogoState(gameData!!)
         gameData!!.inPlayState       = InPlayState(gameData!!)
         gameData!!.gameOverState     = GameOverState(gameData!!)
-        gameData!!.creditsState      = CreditsState(gameData!!)
         gameData!!.endOfLevelState   = EndOfLevelState(gameData!!)
         gameData!!.endOfGameState    = EndOfGameState(gameData!!)
 

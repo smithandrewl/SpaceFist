@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.badlogicgames.gdx:gdx-ai:1.8.0@jar">
+  <library name="Gradle: com.badlogicgames.gdx:gdx-ai:1.8.0">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-ai/1.8.0/ec30677d8ab1a8b8aa4b853c5f4e4b1361f50bf5/gdx-ai-1.8.0.jar!/" />
     </CLASSES>
