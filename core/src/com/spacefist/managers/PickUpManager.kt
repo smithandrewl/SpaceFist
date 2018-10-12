@@ -3,10 +3,8 @@ package com.spacefist.managers
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
 import com.spacefist.GameData
-import com.spacefist.PickupHandler
 import com.spacefist.RoundData
 import com.spacefist.entities.Pickup
-import com.spacefist.util.Action
 import com.spacefist.weapons.Missile
 import com.spacefist.weapons.SampleWeapon
 
@@ -25,14 +23,14 @@ class PickUpManager
      *  @param count The number of pickups to spawn
      *  @param spawnFunction A function to spawn a specific pickup type
      */
-    fun spawnPickups(count: Int, spawnFunction: Action<Int, Int>) {
+    fun spawnPickups(count: Int, spawnFunction: (Int, Int)-> Unit ) {
         val world = gameData.world
 
         (0 until count).forEach { i ->
             val randX = MathUtils.random(0f, world.getWidth()).toInt()
             val randY = MathUtils.random(0f, world.getHeight()).toInt()
 
-            spawnFunction.execute(randX, randY)
+            spawnFunction(randX, randY)
         }
     }
 
@@ -42,7 +40,7 @@ class PickUpManager
      *  @param count The number of pickups to spawn.
      */
     fun spawnExamplePickups(count: Int) {
-        spawnPickups(count, Action { first, second -> spawnExamplePickup(first!!, second!!) })
+        spawnPickups(count) { first, second -> spawnExamplePickup(first, second) }
     }
 
     /**
@@ -57,11 +55,11 @@ class PickUpManager
                 gameData.textures["WeaponPickup"]!!,
                 gameData.soundEffects["WeaponPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler { ship ->
-                    ship.weapon = SampleWeapon(gameData, gameData.ship)
-                    true
-                })
+                Vector2.Zero
+        ) { ship ->
+            ship.weapon = SampleWeapon(gameData, gameData.ship)
+            true
+        }
 
         add(pickup)
     }
@@ -72,12 +70,12 @@ class PickUpManager
      *  @param count The number of pickups to spawn.
      */
     fun spawnHealthPickups(count: Int) {
-        spawnPickups(count, Action { first, second -> spawnHealthPickup(first!!, second!!) })
+        spawnPickups(count) { first, second -> spawnHealthPickup(first, second) }
     }
 
 
     fun spawnMissilePickups(count: Int) {
-        spawnPickups(count, Action { first, second -> spawnMissilePickup(first!!, second!!) })
+        spawnPickups(count) { first, second -> spawnMissilePickup(first, second) }
     }
 
     fun spawnMissilePickup(x: Int, y: Int) {
@@ -86,12 +84,11 @@ class PickUpManager
                 gameData.textures["MissilePickUp"]!!,
                 gameData.soundEffects["WeaponPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler { ship ->
-                    ship.weapon = Missile(gameData)
-                    true
-                }
-        )
+                Vector2.Zero
+        ) { ship ->
+            ship.weapon = Missile(gameData)
+            true
+        }
 
         add(pickup)
     }
@@ -109,16 +106,16 @@ class PickUpManager
                 gameData.textures["HealthPickup"]!!,
                 gameData.soundEffects["HealthPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler { ship ->
-                    if (ship.health < 1) {
-                        ship.healthPoints = 100
-                        ship.resetState()
-                        return@PickupHandler true
-                    }
+                Vector2.Zero
+        ) { ship ->
+            if (ship.health < 1) {
+                ship.healthPoints = 100
+                ship.resetState()
+                true
+            }
 
-                    false
-                })
+            false
+        }
 
         add(pickup)
     }
@@ -129,7 +126,7 @@ class PickUpManager
      *  @param count The number of pickups to spawn.
      */
     fun spawnExtraLifePickups(count: Int) {
-        spawnPickups(count, Action { first, second -> spawnExtraLifePickup(first!!, second!!) })
+        spawnPickups(count) { first, second -> spawnExtraLifePickup(first, second) }
     }
 
     /**
@@ -144,11 +141,11 @@ class PickUpManager
                 gameData.textures["ExtraLifePickup"]!!,
                 gameData.soundEffects["ExtraLife"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler {
-                    roundData.lives = roundData.lives + 1
-                    true
-                })
+                Vector2.Zero
+        ) {
+            roundData.lives = roundData.lives + 1
+            true
+        }
 
         add(pickup)
     }
