@@ -3,7 +3,6 @@ package com.spacefist.managers
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
 import com.spacefist.GameData
-import com.spacefist.PickupHandler
 import com.spacefist.RoundData
 import com.spacefist.entities.Pickup
 import com.spacefist.weapons.Missile
@@ -56,11 +55,11 @@ class PickUpManager
                 gameData.textures["WeaponPickup"]!!,
                 gameData.soundEffects["WeaponPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler { ship ->
-                    ship.weapon = SampleWeapon(gameData, gameData.ship)
-                    true
-                })
+                Vector2.Zero
+        ) { ship ->
+            ship.weapon = SampleWeapon(gameData, gameData.ship)
+            true
+        }
 
         add(pickup)
     }
@@ -85,12 +84,11 @@ class PickUpManager
                 gameData.textures["MissilePickUp"]!!,
                 gameData.soundEffects["WeaponPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler { ship ->
-                    ship.weapon = Missile(gameData)
-                    true
-                }
-        )
+                Vector2.Zero
+        ) { ship ->
+            ship.weapon = Missile(gameData)
+            true
+        }
 
         add(pickup)
     }
@@ -108,16 +106,16 @@ class PickUpManager
                 gameData.textures["HealthPickup"]!!,
                 gameData.soundEffects["HealthPickup"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler { ship ->
-                    if (ship.health < 1) {
-                        ship.healthPoints = 100
-                        ship.resetState()
-                        return@PickupHandler true
-                    }
+                Vector2.Zero
+        ) { ship ->
+            if (ship.health < 1) {
+                ship.healthPoints = 100
+                ship.resetState()
+                true
+            }
 
-                    false
-                })
+            false
+        }
 
         add(pickup)
     }
@@ -143,11 +141,11 @@ class PickUpManager
                 gameData.textures["ExtraLifePickup"]!!,
                 gameData.soundEffects["ExtraLife"]!!,
                 Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero,
-                PickupHandler {
-                    roundData.lives = roundData.lives + 1
-                    true
-                })
+                Vector2.Zero
+        ) {
+            roundData.lives = roundData.lives + 1
+            true
+        }
 
         add(pickup)
     }

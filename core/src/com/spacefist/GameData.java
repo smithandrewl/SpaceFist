@@ -32,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Random;
 
+
 public class GameData {
     public Random getRandom() {
         return random;

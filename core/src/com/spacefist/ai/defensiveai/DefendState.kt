@@ -10,7 +10,7 @@ import com.spacefist.entities.enemies.Enemy
 /**
  * The fuzzy state for a non-firing AI
  */
-class DefendState(private val ai: EnemyAI) : FuzzyLogicEnabled(), EnemyAIState {
+data class DefendState(private val ai: EnemyAI) : FuzzyLogicEnabled(), EnemyAIState {
     private val shipInfo:      ShipInfo      = ai.shipInfo
     private val shipEnemyInfo: ShipEnemyInfo = ai.shipEnemyInfo
     private val enemy:         Enemy?        = null

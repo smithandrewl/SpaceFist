@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.spacefist.GameData
-import com.spacefist.PickupHandler
 import com.spacefist.components.NullInputComponent
 import com.spacefist.components.Physics
 import com.spacefist.components.Sound
@@ -27,7 +26,7 @@ class Pickup(
     sound:                     com.badlogic.gdx.audio.Sound,
     position:                  Vector2,
     velocity:                  Vector2,
-    private val pickupHandler: PickupHandler
+    private val pickupHandler: (Ship) -> Boolean
 ) : Entity(
         gameData,
         Rectangle(
@@ -54,7 +53,7 @@ class Pickup(
      * @return if the pickup should be removed
      */
     fun pickedUp(ship: Ship): Boolean {
-        val pickedUp = pickupHandler.handle(ship)
+        val pickedUp = pickupHandler(ship)
 
         if (pickedUp) {
             pickupSound.play()
