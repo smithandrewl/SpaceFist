@@ -8,7 +8,6 @@ import com.spacefist.GameData
 import com.spacefist.entities.enemies.Enemy
 import com.spacefist.entities.enemies.EnemyFighter
 import com.spacefist.entities.enemies.EnemyFreighter
-import com.spacefist.util.Func
 
 /**
  * Keeps track of all of the enemies in the world.
@@ -52,7 +51,7 @@ class EnemyManager
      *  @param count The number of fighters to spawn
      */
     fun spawnEnemyFighters(count: Int) {
-        spawnEnemies(count,  Func { position -> EnemyFighter(gameData, position) })
+        spawnEnemies(count,  { position: Vector2 -> EnemyFighter(gameData, position) })
     }
 
     /**
@@ -61,18 +60,18 @@ class EnemyManager
      *  @param count The number of freighters to spawn
      */
     fun spawnEnemyFreighters(count: Int) {
-        spawnEnemies(count, Func { position:Vector2 -> EnemyFreighter(gameData, position) })
+        spawnEnemies(count, { position:Vector2 -> EnemyFreighter(gameData, position) })
     }
 
-    fun spawnEnemy(x: Int, y: Int, func: Func<Vector2, Enemy>) {
+    fun spawnEnemy(x: Int, y: Int, func: (Vector2) -> Enemy) {
         val rotation = Math.toRadians(180.0).toFloat()
-        val enemy    = func.call(Vector2(x.toFloat(), y.toFloat()))
+        val enemy    = func(Vector2(x.toFloat(), y.toFloat()))
 
         enemy.rotation = rotation
         add(enemy)
     }
 
-    fun spawnEnemy(lowX: Int, highX: Int, lowY: Int, highY: Int, func: Func<Vector2, Enemy>) {
+    fun spawnEnemy(lowX: Int, highX: Int, lowY: Int, highY: Int, func: (Vector2) -> Enemy) {
         val randX = MathUtils.random(lowX, highX)
         val randY = MathUtils.random(lowY, highY)
 
@@ -86,9 +85,8 @@ class EnemyManager
      *  @param count The number of enemies to spawn
      *  @param func A function to spawn a particular type of enemy
      */
-    private fun spawnEnemies(count: Int, func: Func<Vector2, Enemy>) {
+    private fun spawnEnemies(count: Int, func: (Vector2) -> Enemy) {
         assert(count >= 0)
-        assert(func != null)
 
         spawnEnemies(
                 count,
@@ -103,7 +101,7 @@ class EnemyManager
         )
     }
 
-    fun spawnEnemies(count: Int, lowX: Int, highX: Int, lowY: Int, highY: Int, func: Func<Vector2, Enemy>) {
+    fun spawnEnemies(count: Int, lowX: Int, highX: Int, lowY: Int, highY: Int, func: (Vector2) -> Enemy) {
         (0 until count).forEach { i -> spawnEnemy(lowX, highX, lowY, highY, func) }
     }
 }

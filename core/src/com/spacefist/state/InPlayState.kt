@@ -13,7 +13,6 @@ import com.spacefist.entities.Entity
 import com.spacefist.entities.enemies.EnemyFighter
 import com.spacefist.entities.enemies.EnemyFreighter
 import com.spacefist.state.abst.GameState
-import com.spacefist.util.Func
 
 /**
  * The main state of the game.  All game play occurs in the InPlayState.
@@ -107,15 +106,13 @@ class InPlayState(internal var gameData: GameData) : GameState {
                         zone.left,
                         zone.right,
                         zone.top,
-                        zone.bottom,
-                        Func { position -> EnemyFighter(gameData, position) }
-                )
+                        zone.bottom
+                ) { position -> EnemyFighter(gameData, position) }
             } else {
                 enemyManager.spawnEnemy(
                         zone.center.x.toInt(),
-                        zone.center.y.toInt(),
-                        Func { position -> EnemyFighter(gameData, position) }
-                )
+                        zone.center.y.toInt()
+                ) { position -> EnemyFighter(gameData, position) }
             }
         }
 
@@ -128,15 +125,13 @@ class InPlayState(internal var gameData: GameData) : GameState {
                         zone.left,
                         zone.right,
                         zone.top,
-                        zone.bottom,
-                        Func { position -> EnemyFreighter(gameData, position) }
-                )
+                        zone.bottom
+                ) { position -> EnemyFreighter(gameData, position) }
             } else {
                 enemyManager.spawnEnemy(
                         zone.center.x.toInt(),
-                        zone.center.y.toInt(),
-                        Func { position -> EnemyFreighter(gameData, position) }
-                )
+                        zone.center.y.toInt()
+                ) { position -> EnemyFreighter(gameData, position) }
             }
         }
 
