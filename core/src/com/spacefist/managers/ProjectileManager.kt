@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
 import com.spacefist.GameData
-import com.spacefist.ai.projectilebehaviors.SeekingBehavior
 import com.spacefist.entities.Entity
 import com.spacefist.entities.Projectile
 
@@ -73,62 +72,7 @@ class ProjectileManager
 
     }
 
-    /**
-     *  Fires a rocket cluster from the specified location
-     * 
-     *  @param x The X component of the location
-     *  @param y The Y component of the location
-     */
-    fun fireSampleWeapon(x: Int, y: Int) {
-        val visibleEnemies = gameData.enemyManager.visibleEnemies
-        val visibleBlocks = gameData.blockManager.visibleBlocks
-
-        val onScreen = Array<Entity>(false, 16)
-
-        onScreen.addAll(visibleEnemies as Array<out Entity>)
-        onScreen.addAll(visibleBlocks as Array<out Entity>)
-
-
-        // TODO: fireSampleWeapon: ConcurrentModification Bug
-        onScreen
-                .filter  { it.y >= y                             }
-                .forEach { onScreen.removeValue(it, true) }
-
-        if (onScreen.size != 0) {
-            // TODO: fireSampleWeapon: IndexOutOfBounds Bug
-            // Mark several onscreen entities as targets
-            // and send rockets to intercept them.
-            for (i in 0..3) {
-                val idx = MathUtils.random(onScreen.size)
-
-                val target = onScreen.get(idx)
-
-                // Convert tinting code in ProjectileManager
-                // Mark targeted entities by tinting them red
-                // target.Tint = Color.Crimson;
-
-                gameData.roundData.shotFired()
-
-
-                val projectile = Projectile(
-                        gameData,
-                        gameData.textures["SampleWeapon"]!!,
-                        Vector2(x.toFloat(), y.toFloat()),
-                        Vector2(0f, -1f),
-                        10,
-                        false
-                )
-
-                projectile.behavior = SeekingBehavior(
-                        Vector2(0f, -1f),
-                        Vector2(x.toFloat(), y.toFloat()),
-                        target
-                )
-
-                add(projectile)
-            }
-        }
-    }
+   
 
     fun fireMissile(x: Int, y: Int) {
         gameData.roundData.shotFired()

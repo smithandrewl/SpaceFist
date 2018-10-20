@@ -6,7 +6,6 @@ import com.spacefist.GameData
 import com.spacefist.RoundData
 import com.spacefist.entities.Pickup
 import com.spacefist.weapons.Missile
-import com.spacefist.weapons.SampleWeapon
 
 /**
  * Keeps track of the pickups in the world and provides
@@ -32,36 +31,6 @@ class PickUpManager
 
             spawnFunction(randX, randY)
         }
-    }
-
-    /**
-     *  Spawns "count" rocket pickups to the world.
-     *
-     *  @param count The number of pickups to spawn.
-     */
-    fun spawnExamplePickups(count: Int) {
-        spawnPickups(count) { first, second -> spawnExamplePickup(first, second) }
-    }
-
-    /**
-     *  Spawns a single rocket pickup at the specified location.
-     *
-     *  @param x The X value of the location
-     *  @param y The Y value of the location
-     */
-    fun spawnExamplePickup(x: Int, y: Int) {
-        val pickup = Pickup(
-                gameData,
-                gameData.textures["WeaponPickup"]!!,
-                gameData.soundEffects["WeaponPickup"]!!,
-                Vector2(x.toFloat(), y.toFloat()),
-                Vector2.Zero
-        ) { ship ->
-            ship.weapon = SampleWeapon(gameData, gameData.ship)
-            true
-        }
-
-        add(pickup)
     }
 
     /**
