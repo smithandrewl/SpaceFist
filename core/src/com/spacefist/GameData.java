@@ -59,6 +59,9 @@ public class GameData {
     private HashMap<String, Sound>   soundEffects;
     private HashMap<String, Music>   songs;
 
+    private float soundVolume = .15f;
+    private float musicVolume = .15f;
+
     private RoundData roundData;
 
     private Ship       ship;
@@ -84,6 +87,15 @@ public class GameData {
     private CollisionManager  collisionManager;
 
     private LogoState logoState;
+
+    public float getSoundVolume() {
+        return soundVolume;
+    }
+
+    public float getMusicVolume() {
+        return musicVolume;
+    }
+
     public GameData(SpaceFistGame game) {
         this.game = game;
 

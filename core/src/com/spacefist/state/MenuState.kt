@@ -59,6 +59,7 @@ class MenuState(private val gameData: GameData) : GameState {
         enteredAt = TimeUtils.millis()
 
         gameData.songs["TitleScreen"]!!.setLooping(true)
+        gameData.songs["TitleScreen"]!!.volume = gameData.musicVolume
         gameData.songs["TitleScreen"]!!.play()
 
         gameData.levelManager.init()

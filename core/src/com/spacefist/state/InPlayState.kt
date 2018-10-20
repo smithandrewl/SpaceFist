@@ -69,6 +69,7 @@ class InPlayState(internal var gameData: GameData) : GameState {
         val song = songs[level.song]
 
         song!!.setLooping(true)
+        song!!.volume = gameData.musicVolume
         song!!.play()
 
         // Position the camera at the bottom of the world
