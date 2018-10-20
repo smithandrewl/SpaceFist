@@ -150,9 +150,6 @@ class InPlayState(internal var gameData: GameData) : GameState {
         pickUpManager.reset()
         pickUpManager.spawnExtraLifePickups(3)
 
-        // TODO: Enable spawning of example pickups
-        //pickUpManager.spawnExamplePickups(4);
-
         pickUpManager.spawnHealthPickups(4)
 
 
