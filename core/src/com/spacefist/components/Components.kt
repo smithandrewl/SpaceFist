@@ -33,7 +33,7 @@ class IndexedSprite(
         private val texture: Texture,
         private val width:   Int,
         private val height:  Int,
-                var index:   Int
+        var index:   Int
 ) : GraphicsComponent {
     override fun draw(gameData: GameData, obj: Entity) {
         val spriteBatch = gameData.spriteBatch
@@ -163,14 +163,17 @@ class ShipInput : InputComponent {
  * @param sound The sound to play
  */
 class Sound(internal var soundEffect: com.badlogic.gdx.audio.Sound) : SoundComponent {
+    var volume = 0f
     /**
      * Plays the sound.
      */
     fun play() {
-        soundEffect.play()
+        soundEffect.play(volume)
     }
 
-    override fun update(gameData: GameData, obj: Entity) {}
+    override fun update(gameData: GameData, obj: Entity) {
+        volume = gameData.soundVolume
+    }
 }
 
 /**

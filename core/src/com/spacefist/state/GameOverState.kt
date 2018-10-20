@@ -18,6 +18,7 @@ class GameOverState(private val gameData: GameData) : GameState {
         val song = gameData.songs["GameOver"]
 
         song!!.setLooping(true)
+        song!!.volume = gameData.musicVolume
         song!!.play()
     }
 

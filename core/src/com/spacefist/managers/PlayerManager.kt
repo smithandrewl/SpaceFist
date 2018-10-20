@@ -40,7 +40,7 @@ class PlayerManager
     }
 
     fun spawn(): Ship {
-        gameData.soundEffects["PlayerSpawn"]!!.play()
+        gameData.soundEffects["PlayerSpawn"]!!.play(gameData.musicVolume)
 
         val resolution = gameData.resolution
         val camera     = gameData.camera
