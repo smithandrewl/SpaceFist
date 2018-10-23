@@ -6,19 +6,20 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.spacefist.GameData
 import com.spacefist.state.*
 
 class SpaceFistGame : ApplicationAdapter() {
     internal var batch: SpriteBatch? = null
-
+    internal var shapeRenderer: ShapeRenderer? = null
     var gameData: GameData? = null
         private set
 
     override fun create() {
         batch = SpriteBatch()
-
+        shapeRenderer = ShapeRenderer()
         gameData = GameData(this)
 
         // Creates the game states when the game starts.
@@ -45,8 +46,10 @@ class SpaceFistGame : ApplicationAdapter() {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f)
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         batch!!.begin()
+        gameData!!.shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
         // Tell the current state to draw itself
         currentState.draw()
+        gameData!!.shapeRenderer.end()
         batch!!.end()
     }
 
@@ -98,7 +101,7 @@ class SpaceFistGame : ApplicationAdapter() {
 
         // Create a new SpriteBatch, which can be used to draw textures.
         gameData!!.spriteBatch = batch
-
+        gameData!!.shapeRenderer =shapeRenderer!!
         // ----------------------------- Load the games assets -----------
         gameData!!.font = BitmapFont(Gdx.files.internal("fonts/font.fnt"))
 

@@ -23,7 +23,9 @@ open class Manager<T : Entity>(protected var gameData: GameData) : Iterable<T> {
     }
 
     fun draw() {
-        entities.forEach { entity -> entity.draw() }
+        entities.forEach {
+            entity -> entity.draw()
+        }
     }
 
     fun collisions(obj: Entity): Iterable<T> {

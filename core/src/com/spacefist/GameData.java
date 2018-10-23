@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.spacefist.entities.Ship;
@@ -34,6 +35,9 @@ import java.util.Random;
 
 
 public class GameData {
+    @NotNull
+    public  ShapeRenderer shapeRenderer;
+
     public Random getRandom() {
         return random;
     }
