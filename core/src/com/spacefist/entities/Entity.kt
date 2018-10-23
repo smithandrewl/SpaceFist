@@ -117,6 +117,9 @@ open class Entity(
      */
     open fun update() {
         if (isAlive) {
+            if(gameData.debugDrawing) {
+                // Future debug info will be drawn here.
+            }
             graphics!!.update(gameData, this)
             input!!.update(gameData, this)
             physics!!.update(gameData, this)
@@ -129,6 +132,7 @@ open class Entity(
      */
     fun draw() {
         if (isAlive) {
+                gameData.shapeRenderer.rect(this.x.toFloat(), this.y.toFloat(), this.rectangle!!.width, this.rectangle!!.height)
             graphics!!.draw(gameData, this)
         }
     }

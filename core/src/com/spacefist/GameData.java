@@ -37,6 +37,7 @@ import java.util.Random;
 public class GameData {
     @NotNull
     public  ShapeRenderer shapeRenderer;
+    public  boolean debugDrawing = false;
 
     public Random getRandom() {
         return random;
