@@ -65,8 +65,6 @@ class IndexedSprite(
         // FIXME: draw objects with their tint
         // obj.Tint,
         //spriteBatch.setColor(new Color(Color.WHITE));
-
-        spriteBatch.flush()
     }
 
     override fun update(gameData: GameData, obj: Entity) {}
