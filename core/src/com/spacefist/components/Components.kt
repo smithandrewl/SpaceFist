@@ -185,6 +185,8 @@ class Sprite(private val image: Texture) : GraphicsComponent {
     override fun draw(gameData: GameData, obj: Entity) {
         val spriteBatch = gameData.spriteBatch
 
+        val shapeRenderer = gameData.shapeRenderer
+
         spriteBatch.color = Color(obj.tint)
 
         val objRectangle = obj.rectangle
@@ -201,6 +203,9 @@ class Sprite(private val image: Texture) : GraphicsComponent {
 
         // draw the texture at the location of the Entity obj
         val adjPos = position.sub(gameData.camera)
+
+        gameData.shapeRenderer.rect(adjPos.x, adjPos.y, objRectangle!!.width, objRectangle!!.height)
+
 
         spriteBatch.draw(
                 TextureRegion(image),

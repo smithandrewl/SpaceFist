@@ -132,7 +132,7 @@ open class Entity(
      */
     fun draw() {
         if (isAlive) {
-                gameData.shapeRenderer.rect(this.x.toFloat(), this.y.toFloat(), this.rectangle!!.width, this.rectangle!!.height)
+            gameData.shapeRenderer.rect(this.x.toFloat(), this.y.toFloat(), this.rectangle!!.width, this.rectangle!!.height)
             graphics!!.draw(gameData, this)
         }
     }

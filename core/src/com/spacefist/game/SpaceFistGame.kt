@@ -49,7 +49,7 @@ class SpaceFistGame : ApplicationAdapter() {
         gameData!!.shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
         // Tell the current state to draw itself
         currentState.draw()
-        gameData!!.shapeRenderer.end()
+            gameData!!.shapeRenderer.end()
         batch!!.end()
     }
 
