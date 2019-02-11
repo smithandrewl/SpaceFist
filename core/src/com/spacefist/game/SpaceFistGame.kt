@@ -97,7 +97,7 @@ class SpaceFistGame : ApplicationAdapter() {
         val width = Gdx.graphics.width
 
         gameData!!.resolution  = Rectangle(0f, 0f, width.toFloat(), height.toFloat())
-        gameData!!.screenScale = 0.5f
+        gameData!!.screenScale = 1.0f
 
         // Create a new SpriteBatch, which can be used to draw textures.
         gameData!!.spriteBatch = batch

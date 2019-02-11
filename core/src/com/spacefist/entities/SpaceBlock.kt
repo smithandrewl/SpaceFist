@@ -27,8 +27,8 @@ class SpaceBlock(
     Rectangle(
         position.x.toInt().toFloat(),
         position.y.toInt().toFloat(),
-        WIDTH.toFloat(),
-        HEIGHT.toFloat()
+        gameData.textures["Block"]!!.width.toFloat(),
+        gameData.textures["Block"]!!.height.toFloat()
     ),
     Physics(),
     NullInputComponent(),

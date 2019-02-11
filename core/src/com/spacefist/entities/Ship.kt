@@ -191,8 +191,8 @@ class Ship(
         private val MAX_HEALTH_POINTS = 100
 
         // The dimensions of the ship
-        private val WIDTH  = 60
-        private val HEIGHT = 133
+        private val WIDTH  = 30
+        private val HEIGHT = 67
 
         // The frame of the sprite sheet (ShipSheet.png) to draw
         // Frame 0 is the ship turning left
