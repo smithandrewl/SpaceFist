@@ -37,6 +37,8 @@ class IndexedSprite(
 ) : GraphicsComponent {
     override fun draw(gameData: GameData, obj: Entity) {
         val spriteBatch = gameData.spriteBatch
+        val shapeRenderer = gameData.shapeRenderer;
+
 
         spriteBatch.color = Color(obj.tint)
 
@@ -48,6 +50,10 @@ class IndexedSprite(
 
         val position    = Vector2(obj.x.toFloat(), obj.y.toFloat()).add(origin)
         val adjPosition = position.sub(gameData.camera)
+
+
+
+        gameData.shapeRenderer.rect(adjPosition.x, adjPosition.y, objRect!!.width, objRect!!.height)
 
         spriteBatch.draw(
                 TextureRegion(texture, width * index, 0, width, height),
@@ -183,6 +189,10 @@ class Sprite(private val image: Texture) : GraphicsComponent {
     override fun update(gameData: GameData, obj: Entity) {}
 
     override fun draw(gameData: GameData, obj: Entity) {
+
+        if(obj.rectangle == gameData.ship.rectangle) {
+            return;
+        }
         val spriteBatch = gameData.spriteBatch
 
         val shapeRenderer = gameData.shapeRenderer
@@ -219,7 +229,6 @@ class Sprite(private val image: Texture) : GraphicsComponent {
                 gameData.screenScale,
                 obj.rotation % 360
         )
-
         spriteBatch.color = Color(Color.WHITE)
         spriteBatch.flush()
     }
