@@ -52,8 +52,9 @@ class IndexedSprite(
         val adjPosition = position.sub(gameData.camera)
 
 
+        gameData.shapeRenderer.rect(adjPosition.x , adjPosition.y, objRect!!.width, objRect!!.height)
 
-        gameData.shapeRenderer.rect(adjPosition.x, adjPosition.y, objRect!!.width, objRect!!.height)
+        gameData.shapeRenderer.rect(adjPosition.x + (origin.x * gameData.screenScale) , adjPosition.y + (origin.y * gameData.screenScale), objRect!!.width * gameData.screenScale, objRect!!.height * gameData.screenScale)
 
         spriteBatch.draw(
                 TextureRegion(texture, width * index, 0, width, height),
@@ -214,7 +215,9 @@ class Sprite(private val image: Texture) : GraphicsComponent {
         // draw the texture at the location of the Entity obj
         val adjPos = position.sub(gameData.camera)
 
-        gameData.shapeRenderer.rect(adjPos.x, adjPos.y, objRectangle!!.width, objRectangle!!.height)
+        gameData.shapeRenderer.rect(adjPos.x , adjPos.y, objRectangle!!.width, objRectangle!!.height)
+
+        gameData.shapeRenderer.rect(adjPos.x + (origin.x * gameData.screenScale) , adjPos.y + (origin.y * gameData.screenScale), objRectangle!!.width * gameData.screenScale, objRectangle!!.height * gameData.screenScale)
 
 
         spriteBatch.draw(
